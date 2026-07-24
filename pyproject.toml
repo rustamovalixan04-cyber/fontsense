@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fontsense"
+version = "0.1.0"
+description = "Typeface category recognition from text images"
+requires-python = ">=3.10"
+authors = [{name = "Rustamov Alixan"}]
+
+[tool.setuptools.packages.find]
+where = ["src"]

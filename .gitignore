@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+*.key
+
+# MLflow
+mlruns/
+mlartifacts/
+
+# Generated datasets and downloaded font files
+data/raw/fonts/*
+!data/raw/fonts/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/interim/*.csv
+
+# Large/replaceable model artifacts
+artifacts/*_final.joblib
+
+# Temporary notebook output
+.ipynb_checkpoints/
