@@ -1,0 +1,47 @@
+family,category,path,usable,reason,split
+EB Garamond Initials,display,/usr/share/fonts/opentype/ebgaramond/EBGaramond-Initials.otf,True,ok,train
+GFS Porson,display,/usr/share/fonts/opentype/porson/GFSPorson.otf,True,ok,train
+GFS Solomos,display,/usr/share/fonts/opentype/solomos/GFSSolomos.otf,True,ok,train
+Inter Display,display,/usr/share/fonts/opentype/inter/InterDisplay-Regular.otf,True,ok,train
+Comfortaa,display,/usr/share/fonts/truetype/comfortaa/Comfortaa-Regular.ttf,True,ok,train
+Noto Sans Display,display,/usr/share/fonts/truetype/noto/NotoSansDisplay-Regular.ttf,True,ok,train
+UnGraphic,display,/usr/share/fonts/truetype/unfonts-core/UnGraphic.ttf,True,ok,validation
+Noto Serif Display,display,/usr/share/fonts/truetype/noto/NotoSerifDisplay-Regular.ttf,True,ok,validation
+Linux Libertine Display O,display,/usr/share/fonts/opentype/linux-libertine/LinLibertine_DR.otf,True,ok,test
+Baekmuk Headline,display,/usr/share/fonts/truetype/baekmuk/hline.ttf,True,ok,test
+UnPilgi,handwriting,/usr/share/fonts/truetype/unfonts-core/UnPilgi.ttf,True,ok,train
+GFS Olga,handwriting,/usr/share/fonts/opentype/olga/GFSOlga.otf,True,ok,train
+UnGungseo,handwriting,/usr/share/fonts/truetype/unfonts-core/UnGungseo.ttf,True,ok,train
+Z003,handwriting,/usr/share/fonts/opentype/urw-base35/Z003-MediumItalic.otf,True,ok,train
+Purisa,handwriting,/usr/share/fonts/opentype/tlwg/Purisa.otf,True,ok,train
+Lobster Two,handwriting,/usr/share/fonts/opentype/lobstertwo/LobsterTwo-Regular.otf,True,ok,train
+UnPenheulim,handwriting,/usr/share/fonts/truetype/unfonts-extra/UnPenheulim.ttf,True,ok,train
+UnPen,handwriting,/usr/share/fonts/truetype/unfonts-extra/UnPen.ttf,True,ok,validation
+Comic Neue,handwriting,/usr/share/fonts/opentype/comic-neue/ComicNeue-Regular.otf,True,ok,test
+PT Mono,monospace,/usr/share/fonts/truetype/paratype/PTM55F.ttf,True,ok,train
+Nimbus Mono PS,monospace,/usr/share/fonts/opentype/urw-base35/NimbusMonoPS-Regular.otf,True,ok,train
+Tlwg Mono,monospace,/usr/share/fonts/opentype/tlwg/TlwgMono.otf,True,ok,train
+Noto Mono,monospace,/usr/share/fonts/truetype/noto/NotoMono-Regular.ttf,True,ok,train
+DejaVu Sans Mono,monospace,/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf,True,ok,train
+Liberation Mono,monospace,/usr/share/fonts/truetype/liberation/LiberationMono-Regular.ttf,True,ok,train
+FreeMono,monospace,/usr/share/fonts/opentype/freefont/FreeMono.otf,True,ok,train
+Cousine,monospace,/usr/share/fonts/truetype/croscore/Cousine-Regular.ttf,True,ok,validation
+Go Mono,monospace,/usr/share/fonts/fonts-go/Go-Mono.ttf,True,ok,test
+PT Sans,sans_serif,/usr/share/fonts/truetype/paratype/PTS55F.ttf,True,ok,train
+Clear Sans,sans_serif,/usr/share/fonts/truetype/clear-sans/ClearSans-Regular.ttf,True,ok,train
+Inter,sans_serif,/usr/share/fonts/opentype/inter/Inter-Regular.otf,True,ok,train
+Open Sans,sans_serif,/usr/share/fonts/truetype/open-sans/OpenSans-Regular.ttf,True,ok,train
+Arimo,sans_serif,/usr/share/fonts/truetype/croscore/Arimo-Regular.ttf,True,ok,train
+Carlito,sans_serif,/usr/share/fonts/truetype/crosextra/Carlito-Regular.ttf,True,ok,train
+Roboto,sans_serif,/usr/share/fonts/truetype/roboto/unhinted/RobotoTTF/Roboto-Regular.ttf,True,ok,validation
+Cabin,sans_serif,/usr/share/fonts/opentype/cabin/Cabin-Regular.otf,True,ok,validation
+Lato,sans_serif,/usr/share/fonts/truetype/lato/Lato-Regular.ttf,True,ok,test
+Cantarell,sans_serif,/usr/share/fonts/opentype/cantarell/Cantarell-VF.otf,True,ok,test
+DejaVu Serif,serif,/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf,True,ok,train
+PT Serif,serif,/usr/share/fonts/truetype/paratype/PTF55F.ttf,True,ok,train
+EB Garamond,serif,/usr/share/fonts/truetype/ebgaramond/EBGaramond08-Regular.ttf,True,ok,train
+Gentium,serif,/usr/share/fonts/truetype/gentium/Gentium-R.ttf,True,ok,train
+FreeSerif,serif,/usr/share/fonts/opentype/freefont/FreeSerif.otf,True,ok,train
+Noto Serif,serif,/usr/share/fonts/truetype/noto/NotoSerif-Regular.ttf,True,ok,train
+Liberation Serif,serif,/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf,True,ok,validation
+Charis SIL,serif,/usr/share/fonts/truetype/charis/CharisSIL-Regular.ttf,True,ok,test

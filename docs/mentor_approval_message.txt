@@ -1,0 +1,7 @@
+Hello, I am submitting my individual Capstone Project Brief for approval.
+
+My project is called FontSense. It is a computer-vision system that classifies a cropped Latin-script text image into one of five broad typeface categories: serif, sans serif, display, handwriting, or monospace. I plan to generate the dataset from legally usable Google Fonts and split it by font family to prevent leakage.
+
+Please let me know whether the scope is appropriate or whether I should revise anything before full implementation.
+
+Student: Rustamov Alixan

@@ -1,0 +1,35 @@
+{
+  "model_type": "hog_logistic_regression",
+  "classes": [
+    "display",
+    "handwriting",
+    "monospace",
+    "sans_serif",
+    "serif"
+  ],
+  "hog": {
+    "image_size": [
+      112,
+      48
+    ],
+    "orientations": 9,
+    "pixels_per_cell": [
+      8,
+      8
+    ],
+    "cells_per_block": [
+      2,
+      2
+    ]
+  },
+  "selected_validation_run": {
+    "name": "hog_lr_c1",
+    "C": 1.0,
+    "class_weight": null,
+    "accuracy": 0.2785714285714286,
+    "macro_f1": 0.26949886023395575,
+    "training_seconds": 0.4627215690002231
+  },
+  "test_rows_reserved": 140,
+  "seed": 42
+}

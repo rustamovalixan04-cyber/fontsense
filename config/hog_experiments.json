@@ -1,0 +1,32 @@
+{
+  "orientations": 9,
+  "pixels_per_cell": [
+    8,
+    8
+  ],
+  "cells_per_block": [
+    2,
+    2
+  ],
+  "experiments": [
+    {
+      "name": "hog_lr_c0_2",
+      "C": 0.2,
+      "class_weight": null
+    },
+    {
+      "name": "hog_lr_c1",
+      "C": 1.0,
+      "class_weight": null
+    },
+    {
+      "name": "hog_lr_c3_balanced",
+      "C": 3.0,
+      "class_weight": "balanced"
+    }
+  ],
+  "image_size": [
+    112,
+    48
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "model": "cnn",
+  "test_images": 140,
+  "test_families": 7,
+  "accuracy": 0.22857142857142856,
+  "macro_f1": 0.2090877990846381,
+  "mean_inference_ms": 8.473589449983722,
+  "uncertain_rate": 1.0
+}

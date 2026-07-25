@@ -1,0 +1,9 @@
+{
+  "model": "hog",
+  "test_images": 140,
+  "test_families": 7,
+  "accuracy": 0.38571428571428573,
+  "macro_f1": 0.3877282621988505,
+  "mean_inference_ms": 1.73777527144726,
+  "uncertain_rate": 0.5214285714285715
+}

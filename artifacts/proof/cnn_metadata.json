@@ -1,0 +1,13 @@
+{
+  "artifact": "artifacts/proof/cnn_model.pt",
+  "best_validation": {
+    "run": "cnn_small_lr3e-4",
+    "macro_f1": 0.30622309197651665,
+    "epoch": 7,
+    "name": "cnn_small_lr3e-4",
+    "learning_rate": 0.0003,
+    "dropout": 0.3,
+    "width": 24
+  },
+  "device": "cpu"
+}

@@ -1,0 +1,16 @@
+{
+  "experiments": [
+    {
+      "name": "cnn_small_lr1e-3",
+      "learning_rate": 0.001,
+      "dropout": 0.25,
+      "width": 24
+    },
+    {
+      "name": "cnn_small_lr3e-4",
+      "learning_rate": 0.0003,
+      "dropout": 0.3,
+      "width": 24
+    }
+  ]
+}
