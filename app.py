@@ -52,6 +52,7 @@ with gr.Blocks(title="FontSense") as demo:
     probabilities = gr.Label(num_top_classes=5, label="Class probabilities")
     warning = gr.Textbox(label="Status / warning")
     button.click(classify, inputs=[image, model, threshold], outputs=[result_text, probabilities, warning])
+    threshold.change(classify, inputs=[image, model, threshold], outputs=[result_text, probabilities, warning])
 
 if __name__ == "__main__":
     demo.launch()
