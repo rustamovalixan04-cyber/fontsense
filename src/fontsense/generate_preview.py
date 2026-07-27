@@ -414,6 +414,8 @@ def create_category_contact_sheets(
     *,
     root: str | Path | None = None,
     columns: int = 6,
+    index_column: str = "preview_index",
+    title_suffix: str = "preview images",
 ) -> list[Path]:
     """Create one 36-image contact sheet for each category."""
     root_path = Path(root) if root is not None else project_root()
@@ -426,7 +428,7 @@ def create_category_contact_sheets(
         group = manifest.loc[manifest["category"] == category].copy()
         split_order = {"train": 0, "validation": 1, "test": 2}
         group["_split_order"] = group["split"].map(split_order)
-        group = group.sort_values(["_split_order", "family", "preview_index"])
+        group = group.sort_values(["_split_order", "family", index_column])
         first_image_path = _resolve_path(group.iloc[0]["image_path"], root_path)
         with Image.open(first_image_path) as first:
             image_width, image_height = first.size
@@ -445,7 +447,7 @@ def create_category_contact_sheets(
         draw = ImageDraw.Draw(sheet)
         draw.text(
             (padding, 8),
-            f"{category}: {len(group)} preview images",
+            f"{category}: {len(group)} {title_suffix}",
             fill=(20, 24, 32),
             font=label_font,
         )

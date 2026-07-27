@@ -40,6 +40,33 @@ are saved in `reports/preview/`.
 The preview is only for checking image generation quality. It is not a final
 training dataset and does not contain model results.
 
+## Full image dataset
+
+`python -m fontsense.generate_full_dataset --verify-reproducibility` reads the
+frozen family split without creating or changing assignments. With seed 42 it
+creates:
+
+- 90 independent font families
+- 40 images per family
+- 3,600 images in total
+- 720 images per category
+- 2,400 training images
+- 600 validation images
+- 600 test images
+
+The complete settings are saved in `config/full_dataset.json`. Images are
+224 by 96 pixels and use short English text with controlled changes to font
+size, spacing, horizontal position, foreground contrast, background, scale,
+translation, rotation, blur, and JPEG quality. Rotation is limited to 2.5
+degrees, scaling to 0.94–1.06, and blur to at most 0.55 pixels so the text
+stays readable.
+
+The same deterministic effect schedule is used in every category. This stops
+background or augmentation frequency from acting as a shortcut for the class.
+Validation results are stored in `reports/dataset/`, including the full
+manifest, effect-balance table, reproducibility check, and contact sheets.
+The 3,600 PNG files remain ignored in `data/processed/fontsense_full/`.
+
 ## Unit of observation
 
 One record is one raster image containing a short Latin-script word or text line rendered with a single font family. The target is one of five broad categories.
@@ -50,7 +77,10 @@ The project splits **font families**, not images. All images rendered with one f
 
 ## Generated variations
 
-Images may vary in text, size, position, background, foreground, blur, contrast, noise, JPEG compression, and a small rotation. Augmentation must not make the task unrealistic.
+Images vary in text, size, position, background, foreground contrast, letter
+spacing, scaling, translation, blur, JPEG compression, and mild rotation.
+Augmentation is applied independently of category and must not make the text
+unreadable.
 
 ## Git policy
 

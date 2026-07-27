@@ -1,0 +1,6 @@
+category,images,light_background,dark_background,soft_contrast,strong_contrast,letter_spacing_applied,mild_rotation_applied,mild_scaling_applied,horizontal_shift_applied,vertical_shift_applied,mild_blur,jpeg_compression,mean_actual_font_size,minimum_luminance_difference
+serif,720,515,205,264,456,542,720,720,687,644,174,185,22.403,136.33
+sans_serif,720,515,205,264,456,542,720,720,687,644,174,185,22.403,136.33
+display,720,515,205,264,456,542,720,720,687,644,174,185,22.403,136.33
+handwriting,720,515,205,264,456,542,720,720,687,644,174,185,22.403,136.33
+monospace,720,515,205,264,456,542,720,720,687,644,174,185,22.403,136.33

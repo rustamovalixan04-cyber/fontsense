@@ -60,14 +60,11 @@ python scripts/run_pipeline.py --source system --images-per-family 20 --cnn-epoc
 
 ```bash
 python scripts/download_google_fonts.py --max-per-category 35
-python -m fontsense.generate_dataset \
-  --font-manifest data/interim/google_fonts_manifest.csv \
-  --output-dir data/processed/fontsense \
-  --images-per-family 40
-python -m fontsense.train_hog --manifest data/processed/fontsense/manifest.csv
-python -m fontsense.train_cnn --manifest data/processed/fontsense/manifest.csv --epochs 15
-python -m fontsense.evaluate --manifest data/processed/fontsense/manifest.csv --model hog
-python -m fontsense.evaluate --manifest data/processed/fontsense/manifest.csv --model cnn
+python -m fontsense.generate_full_dataset --verify-reproducibility
+python -m fontsense.train_hog --manifest reports/dataset/full_manifest.csv
+python -m fontsense.train_cnn --manifest reports/dataset/full_manifest.csv --epochs 15
+python -m fontsense.evaluate --manifest reports/dataset/full_manifest.csv --model hog
+python -m fontsense.evaluate --manifest reports/dataset/full_manifest.csv --model cnn
 ```
 
 When running modules locally, either install the package or set the source path:
