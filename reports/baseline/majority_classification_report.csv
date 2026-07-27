@@ -1,0 +1,6 @@
+class,precision,recall,f1,support
+display,0.2,1.0,0.3333333333333333,120
+handwriting,0.0,0.0,0.0,120
+monospace,0.0,0.0,0.0,120
+sans_serif,0.0,0.0,0.0,120
+serif,0.0,0.0,0.0,120

@@ -1,0 +1,54 @@
+{
+  "status": "passed",
+  "purpose": "Validation-only majority and HOG baseline comparison; not final test performance.",
+  "experiment_name": "FontSense HOG baselines",
+  "seed": 42,
+  "train_rows_fitted": 2400,
+  "validation_rows_compared": 600,
+  "test_images_loaded": 0,
+  "test_rows_evaluated": 0,
+  "test_metrics_recorded": false,
+  "family_overlap_count": 0,
+  "family_assignments_match_frozen_split": true,
+  "frozen_split_sha256_before": "f6cdd858449a4143993b051e9de83578cd423544135dbf6cc17f004359d2e17b",
+  "frozen_split_sha256_after": "f6cdd858449a4143993b051e9de83578cd423544135dbf6cc17f004359d2e17b",
+  "manifest_sha256_before": "93afae99ea6ac7dc65e8cf03a1e5743f9581c189f1feaf115ad7439fad58d69c",
+  "manifest_sha256_after": "93afae99ea6ac7dc65e8cf03a1e5743f9581c189f1feaf115ad7439fad58d69c",
+  "preprocessing_fit_rows": 2400,
+  "preprocessing_fit_split": "train",
+  "majority_baseline": {
+    "predicted_training_class": "display",
+    "validation_accuracy": 0.2,
+    "validation_macro_f1": 0.06666666666666667,
+    "role": "sanity-check baseline only"
+  },
+  "hog_experiments_completed": 4,
+  "best_hog_run": {
+    "name": "Coarser HOG cells",
+    "validation_accuracy": 0.695,
+    "validation_macro_f1": 0.6932617332254356,
+    "inference_ms_per_image": 2.2354986666080854,
+    "saved_model_size_bytes": 35700
+  },
+  "saved_model_reload_check": {
+    "passed": true,
+    "prediction": "serif",
+    "probability_count": 5,
+    "probability_sum": 1.0,
+    "validation_example_path": "data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0000.png"
+  },
+  "mlflow": {
+    "tracking_database": "C:\\Users\\Admin\\Downloads\\FontSense_GitHub_Ready\\fontsense-clone\\fontsense\\mlruns\\mlflow.db",
+    "runs_recorded": 5,
+    "run_ids_exported": true,
+    "ui_command": "mlflow ui --backend-store-uri sqlite:///C:/Users/Admin/Downloads/FontSense_GitHub_Ready/fontsense-clone/fontsense/mlruns/mlflow.db"
+  },
+  "outputs": {
+    "pipeline": "C:\\Users\\Admin\\Downloads\\FontSense_GitHub_Ready\\fontsense-clone\\fontsense\\artifacts\\baseline\\hog_pipeline.joblib",
+    "metadata": "C:\\Users\\Admin\\Downloads\\FontSense_GitHub_Ready\\fontsense-clone\\fontsense\\artifacts\\baseline\\hog_metadata.json",
+    "comparison": "C:\\Users\\Admin\\Downloads\\FontSense_GitHub_Ready\\fontsense-clone\\fontsense\\reports\\baseline\\validation_comparison.csv",
+    "classification_report": "C:\\Users\\Admin\\Downloads\\FontSense_GitHub_Ready\\fontsense-clone\\fontsense\\reports\\baseline\\best_hog_classification_report.csv",
+    "validation_predictions": "C:\\Users\\Admin\\Downloads\\FontSense_GitHub_Ready\\fontsense-clone\\fontsense\\reports\\baseline\\best_hog_validation_predictions.csv",
+    "confusion_matrix": "C:\\Users\\Admin\\Downloads\\FontSense_GitHub_Ready\\fontsense-clone\\fontsense\\reports\\figures\\hog_validation_confusion_matrix.png"
+  }
+}

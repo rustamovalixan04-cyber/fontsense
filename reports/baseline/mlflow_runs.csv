@@ -1,0 +1,6 @@
+run_order,run_name,model_type,mlflow_run_id,mlflow_artifact_uri,validation_macro_f1,validation_accuracy
+0,Majority-class sanity check,majority_class,d51cb38be8194172bb34d14b95d9be1b,file:C:/Users/Admin/Downloads/FontSense_GitHub_Ready/fontsense-clone/fontsense/mlruns/3/d51cb38be8194172bb34d14b95d9be1b/artifacts,0.06666666666666667,0.2
+1,Reference detail,hog_logistic_regression,65428d0ee92a4b3691e50888397167ba,file:C:/Users/Admin/Downloads/FontSense_GitHub_Ready/fontsense-clone/fontsense/mlruns/3/65428d0ee92a4b3691e50888397167ba/artifacts,0.6743081410949898,0.6783333333333333
+2,Compact resolution,hog_logistic_regression,2b829036fdc543aa8cb35962ad54ebde,file:C:/Users/Admin/Downloads/FontSense_GitHub_Ready/fontsense-clone/fontsense/mlruns/3/2b829036fdc543aa8cb35962ad54ebde/artifacts,0.6691093330381148,0.6683333333333333
+3,Coarser HOG cells,hog_logistic_regression,5431d168d0c84de6ba4a40f87537a20b,file:C:/Users/Admin/Downloads/FontSense_GitHub_Ready/fontsense-clone/fontsense/mlruns/3/5431d168d0c84de6ba4a40f87537a20b/artifacts,0.6932617332254356,0.695
+4,Stronger regularization,hog_logistic_regression,ed6a810f2ac9403ca4b2b68ddf6c2f38,file:C:/Users/Admin/Downloads/FontSense_GitHub_Ready/fontsense-clone/fontsense/mlruns/3/ed6a810f2ac9403ca4b2b68ddf6c2f38/artifacts,0.6895304619955462,0.6916666666666667

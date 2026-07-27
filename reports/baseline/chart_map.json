@@ -1,0 +1,36 @@
+[
+  {
+    "section": "Run comparison",
+    "question": "Which real baseline run has the strongest validation macro F1?",
+    "chart": "bar",
+    "fields": [
+      "run_name",
+      "validation_macro_f1"
+    ],
+    "palette_policy": "single-root blue",
+    "artifact": "reports/baseline/baseline_summary_report.html"
+  },
+  {
+    "section": "Per-class results",
+    "question": "Which categories are strongest and weakest for the selected HOG model?",
+    "chart": "bar",
+    "fields": [
+      "class",
+      "f1"
+    ],
+    "palette_policy": "single-root blue",
+    "artifact": "reports/baseline/baseline_summary_report.html"
+  },
+  {
+    "section": "Validation confusion",
+    "question": "Which actual and predicted categories are confused?",
+    "chart": "static confusion matrix",
+    "fields": [
+      "category",
+      "predicted_category",
+      "count"
+    ],
+    "palette_policy": "single-root blue",
+    "artifact": "reports/figures/hog_validation_confusion_matrix.png"
+  }
+]

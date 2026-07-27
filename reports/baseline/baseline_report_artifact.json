@@ -1,0 +1,640 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "FontSense validation baseline report",
+    "description": "Validation-only comparison of a majority baseline and HOG with multinomial Logistic Regression.",
+    "generatedAt": "2026-07-27T11:52:14Z",
+    "cards": [
+      {
+        "id": "majority_card",
+        "description": "Sanity-check macro F1 on validation families.",
+        "dataset": "headline",
+        "sourceId": "headline",
+        "metrics": [
+          {
+            "label": "Majority macro F1",
+            "field": "majority_macro_f1",
+            "format": "percent"
+          }
+        ]
+      },
+      {
+        "id": "hog_f1_card",
+        "description": "Primary selection metric for the best HOG run.",
+        "dataset": "headline",
+        "sourceId": "headline",
+        "metrics": [
+          {
+            "label": "Best HOG macro F1",
+            "field": "best_hog_macro_f1",
+            "format": "percent"
+          }
+        ]
+      },
+      {
+        "id": "hog_accuracy_card",
+        "description": "Validation accuracy for the selected HOG run.",
+        "dataset": "headline",
+        "sourceId": "headline",
+        "metrics": [
+          {
+            "label": "Best HOG accuracy",
+            "field": "best_hog_accuracy",
+            "format": "percent"
+          }
+        ]
+      },
+      {
+        "id": "test_card",
+        "description": "Test images loaded, predicted, or scored in this task.",
+        "dataset": "headline",
+        "sourceId": "headline",
+        "metrics": [
+          {
+            "label": "Test images evaluated",
+            "field": "test_images_evaluated",
+            "format": "number"
+          }
+        ]
+      }
+    ],
+    "charts": [
+      {
+        "id": "run_comparison_chart",
+        "title": "Validation macro F1 by baseline run",
+        "subtitle": "Primary selection metric on 600 validation images from unseen families.",
+        "type": "bar",
+        "intent": "comparison",
+        "dataset": "comparison",
+        "sourceId": "comparison",
+        "valueFormat": "percent",
+        "encodings": {
+          "x": {
+            "field": "run_name",
+            "type": "nominal",
+            "label": "Run"
+          },
+          "y": {
+            "field": "validation_macro_f1",
+            "type": "quantitative",
+            "label": "Validation macro F1"
+          },
+          "tooltip": [
+            {
+              "field": "validation_accuracy",
+              "type": "quantitative",
+              "label": "Validation accuracy"
+            },
+            {
+              "field": "inference_ms_per_image",
+              "type": "quantitative",
+              "label": "Inference ms/image"
+            }
+          ]
+        }
+      },
+      {
+        "id": "class_f1_chart",
+        "title": "Best HOG validation F1 by class",
+        "subtitle": "Each category has 120 validation images from three families not used for fitting.",
+        "type": "bar",
+        "intent": "comparison",
+        "dataset": "per_class",
+        "sourceId": "per_class",
+        "valueFormat": "percent",
+        "encodings": {
+          "x": {
+            "field": "class",
+            "type": "nominal",
+            "label": "Category"
+          },
+          "y": {
+            "field": "f1",
+            "type": "quantitative",
+            "label": "Validation F1"
+          },
+          "tooltip": [
+            {
+              "field": "precision",
+              "type": "quantitative",
+              "label": "Precision"
+            },
+            {
+              "field": "recall",
+              "type": "quantitative",
+              "label": "Recall"
+            },
+            {
+              "field": "support",
+              "type": "quantitative",
+              "label": "Images"
+            }
+          ]
+        }
+      }
+    ],
+    "tables": [
+      {
+        "id": "comparison_table",
+        "title": "Validation run comparison",
+        "subtitle": "Controlled settings and measured validation results; no test metrics.",
+        "dataset": "comparison",
+        "sourceId": "comparison",
+        "defaultSort": {
+          "field": "validation_macro_f1",
+          "direction": "desc"
+        },
+        "columns": [
+          {
+            "field": "run_name",
+            "label": "Run",
+            "type": "text"
+          },
+          {
+            "field": "validation_macro_f1",
+            "label": "Macro F1",
+            "format": "percent"
+          },
+          {
+            "field": "validation_accuracy",
+            "label": "Accuracy",
+            "format": "percent"
+          },
+          {
+            "field": "inference_ms_per_image",
+            "label": "Inference ms/image",
+            "format": "number"
+          },
+          {
+            "field": "model_size_bytes",
+            "label": "Model bytes",
+            "format": "number"
+          },
+          {
+            "field": "reason",
+            "label": "Reason for run",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "id": "class_table",
+        "title": "Best HOG per-class validation metrics",
+        "subtitle": "Precision, recall, and F1 for all five categories.",
+        "dataset": "per_class",
+        "sourceId": "per_class",
+        "defaultSort": {
+          "field": "f1",
+          "direction": "desc"
+        },
+        "columns": [
+          {
+            "field": "class",
+            "label": "Class",
+            "type": "text"
+          },
+          {
+            "field": "precision",
+            "label": "Precision",
+            "format": "percent"
+          },
+          {
+            "field": "recall",
+            "label": "Recall",
+            "format": "percent"
+          },
+          {
+            "field": "f1",
+            "label": "F1",
+            "format": "percent"
+          },
+          {
+            "field": "support",
+            "label": "Images",
+            "format": "number"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "headline",
+        "label": "Baseline validation headline metrics",
+        "path": "reports/baseline/baseline_validation_summary.json",
+        "query": {
+          "engine": "sqlite",
+          "language": "sql",
+          "sql": "SELECT majority_macro_f1, best_hog_macro_f1,\n               best_hog_accuracy, test_images_evaluated\n        FROM baseline_headline",
+          "description": "Reads the reviewed majority and selected HOG validation metrics.",
+          "executed_at": "2026-07-27T11:52:14Z",
+          "tables_used": [
+            "baseline_headline"
+          ]
+        }
+      },
+      {
+        "id": "comparison",
+        "label": "Validation experiment comparison",
+        "path": "reports/baseline/validation_comparison.csv",
+        "query": {
+          "engine": "sqlite",
+          "language": "sql",
+          "sql": "SELECT run_order, run_name, model_type, reason,\n               image_width, image_height, pixels_per_cell, C,\n               validation_macro_f1, validation_accuracy,\n               inference_ms_per_image, model_size_bytes\n        FROM validation_comparison\n        ORDER BY run_order",
+          "description": "Reads settings, metrics, runtime, and model size for each real run.",
+          "executed_at": "2026-07-27T11:52:14Z",
+          "tables_used": [
+            "validation_comparison"
+          ]
+        }
+      },
+      {
+        "id": "per_class",
+        "label": "Best HOG per-class validation metrics",
+        "path": "reports/baseline/best_hog_classification_report.csv",
+        "query": {
+          "engine": "sqlite",
+          "language": "sql",
+          "sql": "SELECT class, precision, recall, f1, support\n        FROM best_hog_per_class\n        ORDER BY f1 DESC, class",
+          "description": "Reads precision, recall, F1, and support for all five classes.",
+          "executed_at": "2026-07-27T11:52:14Z",
+          "tables_used": [
+            "best_hog_per_class"
+          ]
+        }
+      },
+      {
+        "id": "confusions",
+        "label": "Best HOG validation predictions",
+        "path": "reports/baseline/best_hog_validation_predictions.csv",
+        "query": {
+          "engine": "sqlite",
+          "language": "sql",
+          "sql": "SELECT category AS actual_category,\n               predicted_category,\n               COUNT(*) AS validation_images\n        FROM best_hog_predictions\n        WHERE correct = 0\n        GROUP BY category, predicted_category\n        ORDER BY validation_images DESC, category, predicted_category",
+          "description": "Counts incorrect validation predictions by actual and predicted class.",
+          "executed_at": "2026-07-27T11:52:14Z",
+          "tables_used": [
+            "best_hog_predictions"
+          ]
+        }
+      }
+    ],
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "body": "# FontSense validation baseline report"
+      },
+      {
+        "id": "summary",
+        "type": "markdown",
+        "sourceId": "headline",
+        "body": "## Technical summary\n\n**Coarser HOG cells was selected using validation macro F1 (0.693).** Its validation accuracy is 0.695. The majority sanity check scored 0.067 macro F1. These are validation results, not final test results."
+      },
+      {
+        "id": "cards",
+        "type": "metric-strip",
+        "cardIds": [
+          "majority_card",
+          "hog_f1_card",
+          "hog_accuracy_card",
+          "test_card"
+        ]
+      },
+      {
+        "id": "key_findings",
+        "type": "markdown",
+        "sourceId": "comparison",
+        "body": "## Key findings\n\n**Every HOG experiment is a real controlled change.** The comparison varies resolution, HOG cell size, or regularization from one reference configuration."
+      },
+      {
+        "id": "comparison_chart",
+        "type": "chart",
+        "chartId": "run_comparison_chart"
+      },
+      {
+        "id": "comparison_note",
+        "type": "markdown",
+        "sourceId": "comparison",
+        "body": "**The selected run is Coarser HOG cells.** The majority result is included only to prove that the learned model beats a simple class-frequency guess."
+      },
+      {
+        "id": "comparison_detail",
+        "type": "table",
+        "tableId": "comparison_table"
+      },
+      {
+        "id": "class_findings",
+        "type": "markdown",
+        "sourceId": "per_class",
+        "body": "## Per-class validation results\n\n**Handwriting has the highest F1 (0.983), while Display has the lowest (0.488).**"
+      },
+      {
+        "id": "class_chart",
+        "type": "chart",
+        "chartId": "class_f1_chart"
+      },
+      {
+        "id": "class_note",
+        "type": "markdown",
+        "sourceId": "confusions",
+        "body": "**The most frequent error was display predicted as monospace (39 images).** The saved confusion-matrix PNG shows every actual-versus-predicted count."
+      },
+      {
+        "id": "class_detail",
+        "type": "table",
+        "tableId": "class_table"
+      },
+      {
+        "id": "scope",
+        "type": "markdown",
+        "body": "## Scope, data, and metric definitions\n\n- **Fit data:** 2,400 train images from 60 font families.\n- **Selection data:** 600 validation images from 15 different families.\n- **Macro F1:** the average of the five class F1 scores, giving every class equal weight.\n- **Accuracy:** the share of validation images classified correctly.\n- **Inference time:** full saved pipeline time, including grayscale resize and HOG extraction.\n- **Model size:** compressed saved pipeline size in bytes."
+      },
+      {
+        "id": "methodology",
+        "type": "markdown",
+        "body": "## Methodology and checks\n\nEvery image follows the same deterministic grayscale, fit-to-size, and HOG process for its run. Multinomial Logistic Regression returns five probabilities. The HOG transformer records 2,400 fit rows, so validation images are never fitted. Family assignments and the frozen split SHA-256 are checked before and after training. The saved winner is reloaded and used for one five-probability prediction."
+      },
+      {
+        "id": "limitations",
+        "type": "markdown",
+        "body": "## Limitations and uncertainty\n\n- The validation set contains only three unseen families per category.\n- Synthetic rendered images may be easier than real screenshots.\n- HOG describes edge direction and cannot learn higher-level shapes like a CNN.\n- No test image was loaded or scored, so this report is not final assessed performance."
+      },
+      {
+        "id": "next_steps",
+        "type": "markdown",
+        "body": "## Recommended next step\n\nTrain and compare small CNN configurations using the same train and validation family split. Keep the test set untouched until both model families have been selected."
+      },
+      {
+        "id": "questions",
+        "type": "markdown",
+        "body": "## Further questions\n\n- Does a small CNN improve the weakest HOG category?\n- Which individual validation families cause the largest errors?\n- How much slower is CNN inference than this HOG baseline?"
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-07-27T11:52:14Z",
+    "status": "ready",
+    "datasets": {
+      "headline": [
+        {
+          "majority_macro_f1": 0.0666666667,
+          "best_hog_macro_f1": 0.6932617332,
+          "best_hog_accuracy": 0.695,
+          "test_images_evaluated": 0
+        }
+      ],
+      "comparison": [
+        {
+          "run_order": 0,
+          "run_name": "Majority-class sanity check",
+          "model_type": "majority_class",
+          "reason": "Sanity check that always predicts the most common training category.",
+          "image_width": null,
+          "image_height": null,
+          "pixels_per_cell": null,
+          "C": null,
+          "validation_macro_f1": 0.0666666667,
+          "validation_accuracy": 0.2,
+          "inference_ms_per_image": 0.0001041665,
+          "model_size_bytes": 418
+        },
+        {
+          "run_order": 1,
+          "run_name": "Reference detail",
+          "model_type": "hog_logistic_regression",
+          "reason": "Reference configuration at the dataset image size.",
+          "image_width": 224.0,
+          "image_height": 96.0,
+          "pixels_per_cell": "8x8",
+          "C": 1.0,
+          "validation_macro_f1": 0.6743081411,
+          "validation_accuracy": 0.6783333333,
+          "inference_ms_per_image": 5.7549055,
+          "model_size_bytes": 112818
+        },
+        {
+          "run_order": 2,
+          "run_name": "Compact resolution",
+          "model_type": "hog_logistic_regression",
+          "reason": "Tests whether half-size images retain enough stroke information with less computation.",
+          "image_width": 112.0,
+          "image_height": 48.0,
+          "pixels_per_cell": "8x8",
+          "C": 1.0,
+          "validation_macro_f1": 0.669109333,
+          "validation_accuracy": 0.6683333333,
+          "inference_ms_per_image": 1.7063691667,
+          "model_size_bytes": 36520
+        },
+        {
+          "run_order": 3,
+          "run_name": "Coarser HOG cells",
+          "model_type": "hog_logistic_regression",
+          "reason": "Changes only the HOG cell size to measure the value of fine edge detail.",
+          "image_width": 224.0,
+          "image_height": 96.0,
+          "pixels_per_cell": "16x16",
+          "C": 1.0,
+          "validation_macro_f1": 0.6932617332,
+          "validation_accuracy": 0.695,
+          "inference_ms_per_image": 2.2354986666,
+          "model_size_bytes": 35700
+        },
+        {
+          "run_order": 4,
+          "run_name": "Stronger regularization",
+          "model_type": "hog_logistic_regression",
+          "reason": "Changes only Logistic Regression C to reduce overfitting.",
+          "image_width": 224.0,
+          "image_height": 96.0,
+          "pixels_per_cell": "8x8",
+          "C": 0.2,
+          "validation_macro_f1": 0.689530462,
+          "validation_accuracy": 0.6916666667,
+          "inference_ms_per_image": 6.0376324999,
+          "model_size_bytes": 112942
+        }
+      ],
+      "per_class": [
+        {
+          "class": "handwriting",
+          "precision": 0.9833333333,
+          "recall": 0.9833333333,
+          "f1": 0.9833333333,
+          "support": 120
+        },
+        {
+          "class": "sans_serif",
+          "precision": 0.8222222222,
+          "recall": 0.6166666667,
+          "f1": 0.7047619048,
+          "support": 120
+        },
+        {
+          "class": "serif",
+          "precision": 0.6453900709,
+          "recall": 0.7583333333,
+          "f1": 0.6973180077,
+          "support": 120
+        },
+        {
+          "class": "monospace",
+          "precision": 0.51875,
+          "recall": 0.6916666667,
+          "f1": 0.5928571429,
+          "support": 120
+        },
+        {
+          "class": "display",
+          "precision": 0.5730337079,
+          "recall": 0.425,
+          "f1": 0.4880382775,
+          "support": 120
+        }
+      ],
+      "confusions": [
+        {
+          "actual_category": "display",
+          "predicted_category": "monospace",
+          "validation_images": 39
+        },
+        {
+          "actual_category": "display",
+          "predicted_category": "serif",
+          "validation_images": 28
+        },
+        {
+          "actual_category": "sans_serif",
+          "predicted_category": "monospace",
+          "validation_images": 28
+        },
+        {
+          "actual_category": "monospace",
+          "predicted_category": "display",
+          "validation_images": 20
+        },
+        {
+          "actual_category": "monospace",
+          "predicted_category": "serif",
+          "validation_images": 12
+        },
+        {
+          "actual_category": "sans_serif",
+          "predicted_category": "serif",
+          "validation_images": 10
+        },
+        {
+          "actual_category": "serif",
+          "predicted_category": "monospace",
+          "validation_images": 10
+        },
+        {
+          "actual_category": "serif",
+          "predicted_category": "display",
+          "validation_images": 9
+        },
+        {
+          "actual_category": "serif",
+          "predicted_category": "sans_serif",
+          "validation_images": 9
+        },
+        {
+          "actual_category": "sans_serif",
+          "predicted_category": "display",
+          "validation_images": 7
+        },
+        {
+          "actual_category": "monospace",
+          "predicted_category": "sans_serif",
+          "validation_images": 5
+        },
+        {
+          "actual_category": "display",
+          "predicted_category": "sans_serif",
+          "validation_images": 2
+        },
+        {
+          "actual_category": "handwriting",
+          "predicted_category": "display",
+          "validation_images": 2
+        },
+        {
+          "actual_category": "sans_serif",
+          "predicted_category": "handwriting",
+          "validation_images": 1
+        },
+        {
+          "actual_category": "serif",
+          "predicted_category": "handwriting",
+          "validation_images": 1
+        }
+      ]
+    },
+    "accessIssues": []
+  },
+  "sources": [
+    {
+      "id": "headline",
+      "label": "Baseline validation headline metrics",
+      "path": "reports/baseline/baseline_validation_summary.json",
+      "query": {
+        "engine": "sqlite",
+        "language": "sql",
+        "sql": "SELECT majority_macro_f1, best_hog_macro_f1,\n               best_hog_accuracy, test_images_evaluated\n        FROM baseline_headline",
+        "description": "Reads the reviewed majority and selected HOG validation metrics.",
+        "executed_at": "2026-07-27T11:52:14Z",
+        "tables_used": [
+          "baseline_headline"
+        ]
+      }
+    },
+    {
+      "id": "comparison",
+      "label": "Validation experiment comparison",
+      "path": "reports/baseline/validation_comparison.csv",
+      "query": {
+        "engine": "sqlite",
+        "language": "sql",
+        "sql": "SELECT run_order, run_name, model_type, reason,\n               image_width, image_height, pixels_per_cell, C,\n               validation_macro_f1, validation_accuracy,\n               inference_ms_per_image, model_size_bytes\n        FROM validation_comparison\n        ORDER BY run_order",
+        "description": "Reads settings, metrics, runtime, and model size for each real run.",
+        "executed_at": "2026-07-27T11:52:14Z",
+        "tables_used": [
+          "validation_comparison"
+        ]
+      }
+    },
+    {
+      "id": "per_class",
+      "label": "Best HOG per-class validation metrics",
+      "path": "reports/baseline/best_hog_classification_report.csv",
+      "query": {
+        "engine": "sqlite",
+        "language": "sql",
+        "sql": "SELECT class, precision, recall, f1, support\n        FROM best_hog_per_class\n        ORDER BY f1 DESC, class",
+        "description": "Reads precision, recall, F1, and support for all five classes.",
+        "executed_at": "2026-07-27T11:52:14Z",
+        "tables_used": [
+          "best_hog_per_class"
+        ]
+      }
+    },
+    {
+      "id": "confusions",
+      "label": "Best HOG validation predictions",
+      "path": "reports/baseline/best_hog_validation_predictions.csv",
+      "query": {
+        "engine": "sqlite",
+        "language": "sql",
+        "sql": "SELECT category AS actual_category,\n               predicted_category,\n               COUNT(*) AS validation_images\n        FROM best_hog_predictions\n        WHERE correct = 0\n        GROUP BY category, predicted_category\n        ORDER BY validation_images DESC, category, predicted_category",
+        "description": "Counts incorrect validation predictions by actual and predicted class.",
+        "executed_at": "2026-07-27T11:52:14Z",
+        "tables_used": [
+          "best_hog_predictions"
+        ]
+      }
+    }
+  ]
+}

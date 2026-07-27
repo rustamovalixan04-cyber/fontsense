@@ -22,7 +22,7 @@ Converts images to grayscale and extracts HOG features. HOG measures local edge 
 
 ## `train_hog.py`
 
-Trains a majority-class sanity baseline and several HOG + Logistic Regression configurations. It chooses the model using validation macro F1, refits it on train plus validation, and saves the pipeline. The test set is not used for selection.
+Trains a majority-class sanity baseline and several controlled HOG + multinomial Logistic Regression configurations. The saved pipeline includes grayscale resizing, HOG extraction, and the classifier. It fits on training families only, chooses the model using validation macro F1, and does not load or score test images.
 
 ## `cnn_model.py` and `train_cnn.py`
 

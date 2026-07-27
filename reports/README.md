@@ -16,6 +16,11 @@ not model evaluation results.
 measurements, balance tables, duplicate-screen results, a validation summary,
 the canonical report input, and the self-contained HTML summary report.
 
+`reports/baseline/` contains validation-only majority and HOG experiment
+records, MLflow run identifiers, per-class results, predictions, the canonical
+report input, and the self-contained HTML summary report. These are not final
+test metrics.
+
 `reports/figures/` contains the EDA charts and sample grids. Every important
 chart has a short conclusion in `notebooks/03_eda.ipynb` and in the HTML
-report. The EDA outputs do not contain trained-model metrics.
+report. It also contains the validation-only HOG confusion matrix.

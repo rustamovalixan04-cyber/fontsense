@@ -1,0 +1,601 @@
+image_path,family,category,split,predicted_category,correct,probability_display,probability_handwriting,probability_monospace,probability_sans_serif,probability_serif
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0000.png,Libre Caslon Text,serif,validation,serif,True,0.0047400775,0.005373727,0.2095705,0.05442959,0.72588605
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0001.png,Libre Caslon Text,serif,validation,serif,True,0.010016387,0.0006936723,0.12520999,0.12732509,0.7367549
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0002.png,Libre Caslon Text,serif,validation,serif,True,0.015290033,0.15642352,0.17414552,0.17573957,0.4784013
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0003.png,Libre Caslon Text,serif,validation,serif,True,0.24227041,0.0001566727,0.21173199,0.18193421,0.36390674
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0004.png,Libre Caslon Text,serif,validation,display,False,0.42686453,0.0036610682,0.16545455,0.14017206,0.2638478
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0005.png,Libre Caslon Text,serif,validation,serif,True,0.24081929,0.004011785,0.23768453,0.082386546,0.43509784
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0006.png,Libre Caslon Text,serif,validation,serif,True,0.1339593,0.005317108,0.12426453,0.23155437,0.5049046
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0007.png,Libre Caslon Text,serif,validation,display,False,0.5725706,0.009787203,0.15188956,0.018943852,0.24680877
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0008.png,Libre Caslon Text,serif,validation,serif,True,0.011945393,0.0019731969,0.009660409,0.067173526,0.90924746
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0009.png,Libre Caslon Text,serif,validation,serif,True,0.23833975,0.006972862,0.18465404,0.015265467,0.55476785
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0010.png,Libre Caslon Text,serif,validation,sans_serif,False,0.11340732,0.016615363,0.16546321,0.543662,0.16085215
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0011.png,Libre Caslon Text,serif,validation,serif,True,0.059634905,0.00044038834,0.26336017,0.034261126,0.64230335
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0012.png,Libre Caslon Text,serif,validation,sans_serif,False,0.01533653,0.012499083,0.2409597,0.5635016,0.16770305
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0013.png,Libre Caslon Text,serif,validation,serif,True,0.019587431,0.0027363305,0.37851065,0.065937586,0.533228
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0014.png,Libre Caslon Text,serif,validation,serif,True,0.0017766677,0.010025854,0.12312599,0.4084705,0.45660096
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0015.png,Libre Caslon Text,serif,validation,display,False,0.5453772,0.033420257,0.029120851,0.04397973,0.34810197
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0016.png,Libre Caslon Text,serif,validation,serif,True,0.007275031,0.008465834,0.30540434,0.080419004,0.5984358
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0017.png,Libre Caslon Text,serif,validation,serif,True,0.13441978,0.0018890266,0.019744279,0.027871411,0.8160755
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0018.png,Libre Caslon Text,serif,validation,serif,True,0.0006659581,0.045161434,0.026022887,0.096156314,0.83199334
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0019.png,Libre Caslon Text,serif,validation,serif,True,0.0001285248,0.07651333,0.007365319,0.09908919,0.81690365
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0020.png,Libre Caslon Text,serif,validation,serif,True,0.04579288,0.00028671217,0.11050504,0.24717964,0.59623575
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0021.png,Libre Caslon Text,serif,validation,display,False,0.4438906,0.04283443,0.14594755,0.09659767,0.2707297
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0022.png,Libre Caslon Text,serif,validation,serif,True,0.0061694444,0.033760067,0.051775776,0.32242048,0.5858742
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0023.png,Libre Caslon Text,serif,validation,monospace,False,0.0013258468,3.3080218e-05,0.8098864,0.18384448,0.004910237
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0024.png,Libre Caslon Text,serif,validation,serif,True,0.038354035,0.0046049627,0.04541417,0.09702896,0.81459785
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0025.png,Libre Caslon Text,serif,validation,serif,True,0.1904667,0.00030914898,0.24908416,0.0046444377,0.55549556
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0026.png,Libre Caslon Text,serif,validation,serif,True,0.08925319,0.10600168,0.0030553124,0.25445536,0.5472344
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0027.png,Libre Caslon Text,serif,validation,monospace,False,0.008380213,0.0063831955,0.43699005,0.17790365,0.37034288
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0028.png,Libre Caslon Text,serif,validation,monospace,False,0.0018171053,0.00037831464,0.6447774,0.253185,0.09984217
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0029.png,Libre Caslon Text,serif,validation,serif,True,0.006116356,5.8994765e-06,0.013516381,0.0010166465,0.9793448
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0030.png,Libre Caslon Text,serif,validation,serif,True,5.8677484e-05,0.0015715352,0.011564789,0.029800039,0.95700496
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0031.png,Libre Caslon Text,serif,validation,display,False,0.4770234,0.023184044,0.10675146,0.3278778,0.06516329
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0032.png,Libre Caslon Text,serif,validation,sans_serif,False,0.0031349561,0.15655234,0.007638678,0.8322159,0.00045811132
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0033.png,Libre Caslon Text,serif,validation,serif,True,0.0035964698,0.0010473725,0.022076068,0.06261048,0.9106696
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0034.png,Libre Caslon Text,serif,validation,serif,True,0.30158868,0.0008692283,0.061936803,0.07503618,0.5605691
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0035.png,Libre Caslon Text,serif,validation,display,False,0.6111299,0.00032811757,0.10990626,0.038935643,0.23970015
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0036.png,Libre Caslon Text,serif,validation,serif,True,0.015422111,0.033253226,0.17322052,0.058648046,0.71945614
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0037.png,Libre Caslon Text,serif,validation,display,False,0.34874633,0.0023872417,0.07896029,0.23269519,0.33721092
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0038.png,Libre Caslon Text,serif,validation,sans_serif,False,0.08413769,0.0033837622,0.34378844,0.5188092,0.049880937
+data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0039.png,Libre Caslon Text,serif,validation,serif,True,0.068180695,0.0012903045,0.3674914,0.09990733,0.46313027
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0000.png,PT Serif,serif,validation,monospace,False,0.007950776,0.0035680532,0.6512919,0.19091797,0.14627127
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0001.png,PT Serif,serif,validation,serif,True,0.26198462,0.01011541,0.058520507,0.18900166,0.48037776
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0002.png,PT Serif,serif,validation,serif,True,0.034296613,0.02061288,0.06279344,0.041374166,0.8409229
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0003.png,PT Serif,serif,validation,serif,True,0.00038680452,0.0012558226,0.013501841,0.01398065,0.97087497
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0004.png,PT Serif,serif,validation,serif,True,0.003238006,0.003076833,0.09727729,0.090765975,0.80564195
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0005.png,PT Serif,serif,validation,serif,True,0.0052230745,0.095268674,0.06500395,0.01931128,0.815193
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0006.png,PT Serif,serif,validation,serif,True,0.005618812,0.006310361,0.02372845,0.015124125,0.9492182
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0007.png,PT Serif,serif,validation,serif,True,0.013411305,0.0025196765,0.036686994,0.28958628,0.6577957
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0008.png,PT Serif,serif,validation,serif,True,0.0018564996,0.0026402539,0.045246296,0.20644933,0.7438076
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0009.png,PT Serif,serif,validation,serif,True,0.0034120113,0.0016091766,0.027462916,0.17119251,0.7963234
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0010.png,PT Serif,serif,validation,serif,True,0.0003158906,0.0035075366,0.0059771617,0.0059890416,0.9842104
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0011.png,PT Serif,serif,validation,serif,True,0.002428546,0.065413505,0.031921417,0.10760115,0.79263544
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0012.png,PT Serif,serif,validation,serif,True,0.00050199195,6.187111e-05,0.00921178,0.0011230418,0.98910135
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0013.png,PT Serif,serif,validation,serif,True,0.04154005,0.033013888,0.009763708,0.08480056,0.83088183
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0014.png,PT Serif,serif,validation,serif,True,0.05459788,0.0026234938,0.0046630725,0.013423368,0.9246922
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0015.png,PT Serif,serif,validation,serif,True,0.004300936,0.0014905031,0.02429977,0.3022798,0.66762906
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0016.png,PT Serif,serif,validation,monospace,False,0.09635445,0.0068714893,0.57051116,0.11390528,0.21235767
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0017.png,PT Serif,serif,validation,serif,True,0.005077759,0.006481009,0.28450713,0.32834166,0.37559244
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0018.png,PT Serif,serif,validation,display,False,0.6290595,0.008207173,0.16572721,0.11392332,0.08308279
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0019.png,PT Serif,serif,validation,serif,True,0.002456173,0.0032966705,0.0070518265,0.01601568,0.97117966
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0020.png,PT Serif,serif,validation,monospace,False,0.00083195796,0.005923151,0.5231634,0.034360733,0.43572074
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0021.png,PT Serif,serif,validation,serif,True,0.04555254,0.002312367,0.030926459,0.010259555,0.9109491
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0022.png,PT Serif,serif,validation,serif,True,0.0003251281,0.009748235,0.112651564,0.06350692,0.81376815
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0023.png,PT Serif,serif,validation,handwriting,False,0.003919748,0.50017965,0.0009772097,0.1638058,0.3311176
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0024.png,PT Serif,serif,validation,serif,True,0.001431998,0.0047779907,0.06948608,0.004823646,0.91948026
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0025.png,PT Serif,serif,validation,monospace,False,0.015704622,0.0059987935,0.520213,0.30553,0.15255354
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0026.png,PT Serif,serif,validation,serif,True,0.017691383,0.005005488,0.09466309,0.015128273,0.86751175
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0027.png,PT Serif,serif,validation,serif,True,0.00027567399,0.00047239254,0.0024047443,0.0015725791,0.99527454
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0028.png,PT Serif,serif,validation,serif,True,5.87133e-05,5.8642847e-05,0.007015786,0.0014923572,0.99137455
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0029.png,PT Serif,serif,validation,serif,True,0.001466675,0.0015572124,0.002184711,0.0016456039,0.9931458
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0030.png,PT Serif,serif,validation,sans_serif,False,0.008660357,0.010035167,0.08322092,0.48554176,0.41254175
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0031.png,PT Serif,serif,validation,serif,True,8.31224e-06,0.0017688394,0.0015345002,0.005141763,0.9915466
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0032.png,PT Serif,serif,validation,serif,True,0.19300571,0.026226813,0.18154523,0.035170175,0.56405205
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0033.png,PT Serif,serif,validation,serif,True,0.0069226543,0.057203427,0.014484941,0.015421022,0.90596795
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0034.png,PT Serif,serif,validation,serif,True,0.0041822004,0.00014090502,0.004679141,0.023192907,0.96780485
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0035.png,PT Serif,serif,validation,serif,True,0.01820395,0.00047768065,0.05306958,0.011933319,0.9163155
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0036.png,PT Serif,serif,validation,serif,True,0.011240023,0.00047686597,0.026216742,0.085153244,0.87691313
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0037.png,PT Serif,serif,validation,serif,True,0.0010509007,0.0010590896,0.036703452,0.0049986714,0.9561879
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0038.png,PT Serif,serif,validation,serif,True,0.0013442645,0.0013394874,0.061233897,0.1985263,0.7375561
+data/processed/fontsense_full/images/validation/serif/PT_Serif/PT_Serif_0039.png,PT Serif,serif,validation,serif,True,0.12482775,0.0016093082,0.02557694,0.057392593,0.7905934
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0000.png,Source Serif 4,serif,validation,serif,True,0.024215022,0.31499463,0.012752767,0.09207801,0.5559596
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0001.png,Source Serif 4,serif,validation,serif,True,9.4427676e-05,0.04156558,0.0051998063,0.008056057,0.9450841
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0002.png,Source Serif 4,serif,validation,serif,True,0.0006180696,0.0027522508,0.024876837,0.041380435,0.9303724
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0003.png,Source Serif 4,serif,validation,serif,True,0.00053016463,9.002623e-05,0.14971457,0.011468983,0.8381963
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0004.png,Source Serif 4,serif,validation,serif,True,0.014128493,0.0022618074,0.020939337,0.008335533,0.95433486
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0005.png,Source Serif 4,serif,validation,serif,True,0.017310016,0.0018772641,0.047169577,0.052807726,0.8808354
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0006.png,Source Serif 4,serif,validation,serif,True,0.0025626598,0.023886379,0.033919856,0.35679358,0.5828375
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0007.png,Source Serif 4,serif,validation,serif,True,0.18494625,0.0005926924,0.07307069,0.11465984,0.6267305
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0008.png,Source Serif 4,serif,validation,serif,True,0.0135366805,0.032199062,0.013898518,0.04739236,0.89297336
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0009.png,Source Serif 4,serif,validation,serif,True,0.0010274815,0.05536228,0.14502974,0.04660333,0.7519772
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0010.png,Source Serif 4,serif,validation,serif,True,0.036950164,0.0010513038,0.03837377,0.004677896,0.91894686
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0011.png,Source Serif 4,serif,validation,serif,True,0.02865881,0.02849999,0.16621338,0.012205203,0.7644226
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0012.png,Source Serif 4,serif,validation,serif,True,0.024238756,0.124433026,0.048835512,0.030002002,0.77249074
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0013.png,Source Serif 4,serif,validation,serif,True,0.0046216664,0.056124363,0.028384104,0.33440313,0.57646674
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0014.png,Source Serif 4,serif,validation,sans_serif,False,0.0035563237,0.08250912,0.0032358777,0.5366884,0.3740103
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0015.png,Source Serif 4,serif,validation,serif,True,0.00038138404,0.0056603733,0.02115358,0.3306266,0.642178
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0016.png,Source Serif 4,serif,validation,serif,True,0.15358682,0.0026407833,0.071560696,0.0772697,0.69494206
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0017.png,Source Serif 4,serif,validation,serif,True,0.0022756523,0.0060830074,0.14076176,0.034828905,0.8160507
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0018.png,Source Serif 4,serif,validation,serif,True,0.006223401,0.0029398694,0.12030326,0.03691203,0.8336215
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0019.png,Source Serif 4,serif,validation,serif,True,0.019661793,0.0004623244,0.0021395357,0.016779847,0.96095645
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0020.png,Source Serif 4,serif,validation,monospace,False,0.17330803,5.2590927e-05,0.39222285,0.063971706,0.37044486
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0021.png,Source Serif 4,serif,validation,serif,True,0.004402033,0.00077854854,0.03353243,0.0074360785,0.95385087
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0022.png,Source Serif 4,serif,validation,serif,True,0.00072692573,0.015982835,0.17871988,0.10186357,0.7027069
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0023.png,Source Serif 4,serif,validation,monospace,False,0.18759885,0.004339713,0.41779718,0.063205846,0.32705843
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0024.png,Source Serif 4,serif,validation,display,False,0.40099996,0.0007506343,0.24880354,0.23314679,0.11629901
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0025.png,Source Serif 4,serif,validation,serif,True,0.02129463,0.00901257,0.049988817,0.32528126,0.59442276
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0026.png,Source Serif 4,serif,validation,serif,True,0.0020200487,0.0018916002,0.010015233,0.08786031,0.8982128
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0027.png,Source Serif 4,serif,validation,serif,True,0.00088819716,0.09803406,0.042234574,0.028578311,0.8302649
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0028.png,Source Serif 4,serif,validation,serif,True,0.039088972,0.0002899247,0.044980217,0.018577179,0.89706373
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0029.png,Source Serif 4,serif,validation,serif,True,0.0083353035,0.002173409,0.007368328,0.011467133,0.97065586
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0030.png,Source Serif 4,serif,validation,monospace,False,0.26783612,0.010491898,0.44345033,0.13302886,0.14519286
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0031.png,Source Serif 4,serif,validation,sans_serif,False,0.29184368,0.0001347004,0.22214486,0.39554876,0.09032802
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0032.png,Source Serif 4,serif,validation,serif,True,0.00093743554,0.0010892764,0.00132019,0.008639819,0.98801327
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0033.png,Source Serif 4,serif,validation,serif,True,0.012638437,0.0068888324,0.00965188,0.08988031,0.8809405
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0034.png,Source Serif 4,serif,validation,serif,True,0.013581317,0.002333894,0.007546018,0.016705727,0.9598331
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0035.png,Source Serif 4,serif,validation,sans_serif,False,0.011898634,0.028390095,0.08449161,0.80637974,0.06883996
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0036.png,Source Serif 4,serif,validation,serif,True,0.0061789225,0.0017393184,0.038279667,0.013878758,0.93992335
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0037.png,Source Serif 4,serif,validation,serif,True,0.0018314096,0.025639534,0.20145959,0.22174793,0.54932153
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0038.png,Source Serif 4,serif,validation,sans_serif,False,0.1529939,0.21062459,0.17442136,0.340074,0.121886194
+data/processed/fontsense_full/images/validation/serif/Source_Serif_4/Source_Serif_4_0039.png,Source Serif 4,serif,validation,serif,True,0.0041373502,0.00036677078,0.045910716,0.025374066,0.92421114
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0000.png,Archivo,sans_serif,validation,sans_serif,True,0.025538195,0.017114315,0.032667696,0.6190828,0.30559698
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0001.png,Archivo,sans_serif,validation,serif,False,0.07807237,0.14358598,0.1134098,0.24564476,0.4192871
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0002.png,Archivo,sans_serif,validation,sans_serif,True,0.010044052,0.13676612,0.03768623,0.6145354,0.2009682
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0003.png,Archivo,sans_serif,validation,monospace,False,0.06609576,0.0005365293,0.583347,0.33665305,0.013367655
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0004.png,Archivo,sans_serif,validation,display,False,0.48684624,0.013869433,0.07409182,0.39129585,0.03389663
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0005.png,Archivo,sans_serif,validation,sans_serif,True,0.029004317,0.062030908,0.23155254,0.5947794,0.08263286
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0006.png,Archivo,sans_serif,validation,serif,False,0.011324797,0.020327602,0.049655225,0.4406068,0.47808558
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0007.png,Archivo,sans_serif,validation,monospace,False,0.12092758,0.026285347,0.38786015,0.34522912,0.11969782
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0008.png,Archivo,sans_serif,validation,serif,False,0.02032502,0.0023600077,0.17091177,0.17529234,0.63111085
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0009.png,Archivo,sans_serif,validation,sans_serif,True,0.068528816,0.02910581,0.11515184,0.7583534,0.028860226
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0010.png,Archivo,sans_serif,validation,monospace,False,0.06297265,0.002509243,0.5029878,0.42583552,0.0056948387
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0011.png,Archivo,sans_serif,validation,serif,False,0.058604196,0.015114971,0.085030675,0.38639122,0.45485896
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0012.png,Archivo,sans_serif,validation,monospace,False,0.053534377,0.048015922,0.4862076,0.3708738,0.04136828
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0013.png,Archivo,sans_serif,validation,sans_serif,True,0.0032624262,0.10929333,0.2336616,0.36424667,0.28953597
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0014.png,Archivo,sans_serif,validation,sans_serif,True,0.0057824547,0.0073552667,0.15320724,0.7892968,0.044358224
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0015.png,Archivo,sans_serif,validation,display,False,0.48208115,0.0016379427,0.14531457,0.35261634,0.018350082
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0016.png,Archivo,sans_serif,validation,monospace,False,0.0047164755,0.0920116,0.3864964,0.31662747,0.20014802
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0017.png,Archivo,sans_serif,validation,sans_serif,True,0.047794085,0.0071971756,0.05359858,0.82349753,0.06791257
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0018.png,Archivo,sans_serif,validation,sans_serif,True,0.03172351,0.12404668,0.10259052,0.42433408,0.31730518
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0019.png,Archivo,sans_serif,validation,serif,False,0.004911459,0.2780034,0.017548298,0.064035825,0.63550097
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0020.png,Archivo,sans_serif,validation,sans_serif,True,0.01882177,0.00061557774,0.21051104,0.76531726,0.004734317
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0021.png,Archivo,sans_serif,validation,display,False,0.5004887,0.051808685,0.052041847,0.2749997,0.120661035
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0022.png,Archivo,sans_serif,validation,sans_serif,True,0.015194365,0.026109591,0.048347905,0.74233836,0.16800986
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0023.png,Archivo,sans_serif,validation,sans_serif,True,0.062864386,0.0022201377,0.42484665,0.5062117,0.0038571474
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0024.png,Archivo,sans_serif,validation,sans_serif,True,0.23442468,0.028768351,0.037716188,0.47493845,0.22415237
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0025.png,Archivo,sans_serif,validation,sans_serif,True,0.056092653,6.380618e-05,0.43215528,0.5096956,0.0019926832
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0026.png,Archivo,sans_serif,validation,sans_serif,True,0.010600962,0.16655424,0.000537557,0.7743191,0.047988165
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0027.png,Archivo,sans_serif,validation,monospace,False,0.000987537,0.0047948454,0.56302917,0.4231522,0.008036206
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0028.png,Archivo,sans_serif,validation,monospace,False,0.00092481624,7.873625e-05,0.5664479,0.42547974,0.007068724
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0029.png,Archivo,sans_serif,validation,serif,False,0.14214842,0.007259244,0.17009066,0.21371791,0.46678373
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0030.png,Archivo,sans_serif,validation,sans_serif,True,0.0004146403,0.013098939,0.1132549,0.43837285,0.43485874
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0031.png,Archivo,sans_serif,validation,serif,False,0.17634588,0.023739792,0.32390293,0.11146243,0.36454895
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0032.png,Archivo,sans_serif,validation,sans_serif,True,0.0006482943,0.034607336,0.04753259,0.91346735,0.0037443675
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0033.png,Archivo,sans_serif,validation,sans_serif,True,0.07170452,0.017313236,0.07893947,0.53248936,0.2995534
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0034.png,Archivo,sans_serif,validation,sans_serif,True,0.012345408,0.0019590806,0.3200812,0.6190015,0.046612862
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0035.png,Archivo,sans_serif,validation,sans_serif,True,0.0026222034,0.0022203515,0.041484263,0.95265234,0.0010208889
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0036.png,Archivo,sans_serif,validation,sans_serif,True,0.001323823,0.09977616,0.21625616,0.61328655,0.06935736
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0037.png,Archivo,sans_serif,validation,display,False,0.9181659,0.000258449,0.0015605678,0.07908083,0.0009343399
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0038.png,Archivo,sans_serif,validation,sans_serif,True,0.031844225,0.0020364006,0.4202648,0.53614676,0.009707789
+data/processed/fontsense_full/images/validation/sans_serif/Archivo/Archivo_0039.png,Archivo,sans_serif,validation,sans_serif,True,0.036659747,0.0052304403,0.0186329,0.9254743,0.014002726
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0000.png,Mulish,sans_serif,validation,monospace,False,0.017980298,0.035709295,0.53707445,0.37544292,0.03379302
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0001.png,Mulish,sans_serif,validation,sans_serif,True,0.073679015,0.026487336,0.055789232,0.8264015,0.017642923
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0002.png,Mulish,sans_serif,validation,sans_serif,True,0.0070715793,0.0047470406,0.18218403,0.7782433,0.027754035
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0003.png,Mulish,sans_serif,validation,monospace,False,0.011496143,0.0058944337,0.5925879,0.1515371,0.23848446
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0004.png,Mulish,sans_serif,validation,serif,False,0.0230789,0.0030240123,0.05198508,0.406534,0.515378
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0005.png,Mulish,sans_serif,validation,sans_serif,True,0.008101781,0.10538603,0.12236221,0.7603852,0.0037647255
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0006.png,Mulish,sans_serif,validation,sans_serif,True,0.019000715,0.072529905,0.11335922,0.741403,0.053707182
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0007.png,Mulish,sans_serif,validation,sans_serif,True,0.04874995,0.0044382475,0.101713516,0.7801515,0.0649468
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0008.png,Mulish,sans_serif,validation,monospace,False,0.007555863,0.0021088517,0.47472364,0.43113282,0.084478885
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0009.png,Mulish,sans_serif,validation,sans_serif,True,0.0054323925,0.001582286,0.034243725,0.86792547,0.09081609
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0010.png,Mulish,sans_serif,validation,sans_serif,True,0.036489,0.0066124,0.3050634,0.6160473,0.035787843
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0011.png,Mulish,sans_serif,validation,sans_serif,True,0.0013363054,0.034705997,0.08189745,0.8545385,0.027521683
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0012.png,Mulish,sans_serif,validation,sans_serif,True,0.017290706,0.00014149974,0.22451706,0.7272581,0.030792695
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0013.png,Mulish,sans_serif,validation,sans_serif,True,0.010716988,0.012164245,0.02121038,0.9477044,0.008204016
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0014.png,Mulish,sans_serif,validation,sans_serif,True,0.12332485,0.008672425,0.069338776,0.7061455,0.09251839
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0015.png,Mulish,sans_serif,validation,sans_serif,True,0.009106479,0.0037345302,0.09672122,0.8252817,0.06515598
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0016.png,Mulish,sans_serif,validation,monospace,False,0.10801219,0.0018890136,0.75457567,0.1336967,0.0018265276
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0017.png,Mulish,sans_serif,validation,sans_serif,True,0.0043565105,0.015954612,0.27959725,0.56839824,0.13169338
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0018.png,Mulish,sans_serif,validation,monospace,False,0.053689986,0.007135104,0.64286804,0.29476804,0.0015387526
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0019.png,Mulish,sans_serif,validation,sans_serif,True,0.10984834,0.017067686,0.18666545,0.5358852,0.15053327
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0020.png,Mulish,sans_serif,validation,serif,False,0.059591036,0.0010895644,0.1471987,0.07909945,0.7130212
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0021.png,Mulish,sans_serif,validation,sans_serif,True,0.03329775,0.035015926,0.010038912,0.8874413,0.03420609
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0022.png,Mulish,sans_serif,validation,sans_serif,True,0.026714569,0.0065044677,0.2235127,0.7322465,0.011021734
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0023.png,Mulish,sans_serif,validation,sans_serif,True,0.012051146,0.40263057,0.005210399,0.49295938,0.08714849
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0024.png,Mulish,sans_serif,validation,handwriting,False,0.0053726747,0.5828481,0.1075409,0.272852,0.031386375
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0025.png,Mulish,sans_serif,validation,sans_serif,True,0.15867943,0.00057159615,0.06157594,0.7783578,0.0008152418
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0026.png,Mulish,sans_serif,validation,sans_serif,True,0.010518035,0.005570648,0.25488904,0.6866716,0.04235059
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0027.png,Mulish,sans_serif,validation,sans_serif,True,0.02235672,0.047907457,0.051441208,0.7799703,0.09832428
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0028.png,Mulish,sans_serif,validation,sans_serif,True,0.002267418,0.0023959675,0.061457817,0.9199984,0.013880377
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0029.png,Mulish,sans_serif,validation,display,False,0.6074012,0.04674997,0.11002066,0.19796553,0.03786264
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0030.png,Mulish,sans_serif,validation,display,False,0.44097954,0.011245921,0.3274492,0.16086715,0.05945819
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0031.png,Mulish,sans_serif,validation,sans_serif,True,0.00027447715,0.006657178,0.07668699,0.9021875,0.014193786
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0032.png,Mulish,sans_serif,validation,display,False,0.5562817,0.023073666,0.026311265,0.38540447,0.008928949
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0033.png,Mulish,sans_serif,validation,monospace,False,0.014883588,0.01568712,0.45555356,0.42551607,0.08835967
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0034.png,Mulish,sans_serif,validation,sans_serif,True,0.29385662,0.004632343,0.31953415,0.35049728,0.031479627
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0035.png,Mulish,sans_serif,validation,sans_serif,True,0.016105391,0.0033229967,0.25583214,0.7173543,0.0073851338
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0036.png,Mulish,sans_serif,validation,sans_serif,True,0.019966975,0.0008286377,0.08985498,0.88256115,0.006788219
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0037.png,Mulish,sans_serif,validation,monospace,False,0.0039654896,0.004028613,0.529628,0.4565928,0.0057850867
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0038.png,Mulish,sans_serif,validation,sans_serif,True,0.014714988,0.0049632336,0.09395773,0.851605,0.034759074
+data/processed/fontsense_full/images/validation/sans_serif/Mulish/Mulish_0039.png,Mulish,sans_serif,validation,sans_serif,True,0.2073084,0.006177663,0.08767754,0.68841827,0.0104180835
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0000.png,Work Sans,sans_serif,validation,sans_serif,True,0.050965138,0.058660176,0.22999583,0.6552731,0.0051057395
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0001.png,Work Sans,sans_serif,validation,monospace,False,0.0055512628,0.02416716,0.52080756,0.41637015,0.033103894
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0002.png,Work Sans,sans_serif,validation,monospace,False,0.0044898386,0.0026645616,0.86882544,0.10598591,0.01803417
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0003.png,Work Sans,sans_serif,validation,monospace,False,0.0037316391,7.7327764e-05,0.91556,0.080528185,0.000102817794
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0004.png,Work Sans,sans_serif,validation,monospace,False,0.20822214,0.0017010418,0.41182107,0.36002734,0.018228408
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0005.png,Work Sans,sans_serif,validation,sans_serif,True,0.008732366,0.01037553,0.0728769,0.8952306,0.012784572
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0006.png,Work Sans,sans_serif,validation,sans_serif,True,0.000797442,0.0009935283,0.3967235,0.54496187,0.05652371
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0007.png,Work Sans,sans_serif,validation,sans_serif,True,0.0025202716,4.1875355e-05,0.06030476,0.9369618,0.00017125167
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0008.png,Work Sans,sans_serif,validation,sans_serif,True,0.0010231668,0.0010548185,0.16160987,0.83399576,0.002316429
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0009.png,Work Sans,sans_serif,validation,monospace,False,0.004421784,0.09850333,0.4092053,0.23565224,0.25221735
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0010.png,Work Sans,sans_serif,validation,sans_serif,True,0.017924733,0.00028659462,0.04044435,0.9395307,0.0018136398
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0011.png,Work Sans,sans_serif,validation,serif,False,0.0051564714,0.008188963,0.14601657,0.070035,0.77060294
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0012.png,Work Sans,sans_serif,validation,sans_serif,True,0.055307515,0.014651213,0.045090448,0.88022596,0.004724792
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0013.png,Work Sans,sans_serif,validation,sans_serif,True,0.00011384408,0.005035946,0.02646332,0.96794003,0.00044679217
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0014.png,Work Sans,sans_serif,validation,sans_serif,True,0.0087787565,0.07086817,0.010764978,0.7090022,0.2005858
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0015.png,Work Sans,sans_serif,validation,sans_serif,True,0.0019345293,0.0014587981,0.24917318,0.68151903,0.06591436
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0016.png,Work Sans,sans_serif,validation,monospace,False,0.042272672,0.0054481314,0.76624036,0.10234081,0.083697975
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0017.png,Work Sans,sans_serif,validation,monospace,False,0.0005320089,0.027572228,0.53499395,0.41758692,0.019314863
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0018.png,Work Sans,sans_serif,validation,monospace,False,0.00025382725,0.0007767464,0.8148459,0.18371183,0.00041177616
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0019.png,Work Sans,sans_serif,validation,sans_serif,True,0.014836638,0.0006271904,0.033332445,0.93681324,0.014390424
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0020.png,Work Sans,sans_serif,validation,sans_serif,True,0.014428039,0.00028793543,0.2939945,0.45976186,0.23152769
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0021.png,Work Sans,sans_serif,validation,sans_serif,True,0.12282269,0.01753124,0.27723253,0.5433391,0.03907444
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0022.png,Work Sans,sans_serif,validation,monospace,False,0.0094168885,0.00014291401,0.78191024,0.19906415,0.0094658965
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0023.png,Work Sans,sans_serif,validation,monospace,False,0.075475715,0.0011802281,0.5198182,0.36665192,0.03687391
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0024.png,Work Sans,sans_serif,validation,sans_serif,True,0.2224576,0.005633188,0.03498454,0.68960315,0.047321513
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0025.png,Work Sans,sans_serif,validation,sans_serif,True,0.001391255,0.0002683038,0.16867211,0.82842284,0.001245494
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0026.png,Work Sans,sans_serif,validation,sans_serif,True,0.00023182078,0.027481059,0.049330298,0.919764,0.0031928588
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0027.png,Work Sans,sans_serif,validation,sans_serif,True,0.0005312611,0.0013124907,0.054838262,0.9336313,0.009686616
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0028.png,Work Sans,sans_serif,validation,sans_serif,True,0.12121863,0.019868953,0.25227574,0.35379678,0.25283992
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0029.png,Work Sans,sans_serif,validation,sans_serif,True,0.011721483,0.008351561,0.16708302,0.8027069,0.010137009
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0030.png,Work Sans,sans_serif,validation,sans_serif,True,0.3476597,0.004881397,0.048551377,0.59702384,0.0018836462
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0031.png,Work Sans,sans_serif,validation,monospace,False,0.020700758,0.0008830424,0.5657819,0.40807652,0.0045577344
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0032.png,Work Sans,sans_serif,validation,sans_serif,True,0.030065622,0.0020349494,0.19062126,0.7692412,0.008036961
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0033.png,Work Sans,sans_serif,validation,sans_serif,True,0.072652295,0.01041753,0.06938182,0.6520884,0.19545998
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0034.png,Work Sans,sans_serif,validation,sans_serif,True,0.017201345,0.0015806647,0.23215239,0.63991195,0.109153636
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0035.png,Work Sans,sans_serif,validation,sans_serif,True,0.00538042,0.0044765994,0.04730667,0.93117815,0.011658051
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0036.png,Work Sans,sans_serif,validation,monospace,False,0.019710088,0.0015480096,0.93643343,0.039436832,0.002871615
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0037.png,Work Sans,sans_serif,validation,monospace,False,0.013003719,0.024701562,0.49111503,0.33700445,0.13417518
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0038.png,Work Sans,sans_serif,validation,sans_serif,True,0.012461503,0.14781272,0.24561253,0.3231975,0.2709157
+data/processed/fontsense_full/images/validation/sans_serif/Work_Sans/Work_Sans_0039.png,Work Sans,sans_serif,validation,monospace,False,9.73888e-05,3.5570636e-05,0.6174796,0.36250746,0.019879958
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0000.png,Abril Fatface,display,validation,serif,False,0.094188996,0.0008093004,0.072954886,0.043263104,0.7887837
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0001.png,Abril Fatface,display,validation,monospace,False,0.052784305,0.00082311564,0.5313728,0.041544333,0.37347546
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0002.png,Abril Fatface,display,validation,serif,False,0.0023881455,0.00014242799,0.12831196,0.004646026,0.8645115
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0003.png,Abril Fatface,display,validation,serif,False,0.118726,1.8973668e-06,0.14729774,0.007387538,0.7265868
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0004.png,Abril Fatface,display,validation,display,True,0.9142541,2.538427e-06,0.05943964,0.019714732,0.0065890076
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0005.png,Abril Fatface,display,validation,display,True,0.78291094,2.0826084e-07,0.19596119,0.0005352715,0.020592362
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0006.png,Abril Fatface,display,validation,serif,False,0.039815504,0.0008505435,0.1733078,0.042582735,0.7434434
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0007.png,Abril Fatface,display,validation,display,True,0.48848847,7.590139e-05,0.14447503,0.038394555,0.32856607
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0008.png,Abril Fatface,display,validation,serif,False,0.24971241,2.0793255e-05,0.148369,0.08096984,0.52092797
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0009.png,Abril Fatface,display,validation,display,True,0.8792216,2.1271117e-05,0.083170176,0.004021061,0.033565886
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0010.png,Abril Fatface,display,validation,display,True,0.8235918,7.3495935e-06,0.059690922,0.02072738,0.09598248
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0011.png,Abril Fatface,display,validation,serif,False,0.017774766,5.57368e-05,0.30226976,0.05561044,0.62428933
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0012.png,Abril Fatface,display,validation,monospace,False,0.059353232,0.0001621586,0.5599436,0.21107244,0.1694686
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0013.png,Abril Fatface,display,validation,monospace,False,0.018168036,4.2206364e-05,0.9563762,0.018315986,0.007097681
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0014.png,Abril Fatface,display,validation,monospace,False,0.0032112293,6.981796e-05,0.53091204,0.32227963,0.14352725
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0015.png,Abril Fatface,display,validation,display,True,0.8879817,0.0004056876,0.008487022,0.005627319,0.09749833
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0016.png,Abril Fatface,display,validation,monospace,False,0.001666847,1.5023004e-05,0.68138397,0.0028507146,0.3140834
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0017.png,Abril Fatface,display,validation,serif,False,0.16041677,0.00034183016,0.037069872,0.0293313,0.7728402
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0018.png,Abril Fatface,display,validation,serif,False,0.0026857245,0.001730065,0.13294092,0.07607311,0.7865702
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0019.png,Abril Fatface,display,validation,serif,False,0.0028910805,0.0006090893,0.03256665,0.003301623,0.9606315
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0020.png,Abril Fatface,display,validation,display,True,0.5602119,1.8093164e-05,0.20097068,0.055636704,0.18316258
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0021.png,Abril Fatface,display,validation,serif,False,0.30683735,0.001130928,0.043750215,0.0038694502,0.64441204
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0022.png,Abril Fatface,display,validation,display,True,0.51371294,0.0034234074,0.05271293,0.07857249,0.3515782
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0023.png,Abril Fatface,display,validation,monospace,False,0.046260126,3.9356271e-07,0.9266998,0.013144889,0.013894816
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0024.png,Abril Fatface,display,validation,serif,False,0.022059776,6.190313e-05,0.030903697,0.02424052,0.9227341
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0025.png,Abril Fatface,display,validation,display,True,0.6256126,7.591648e-06,0.29975784,0.0017411079,0.072880864
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0026.png,Abril Fatface,display,validation,serif,False,0.07726292,0.006876702,0.0032043883,0.025025334,0.8876306
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0027.png,Abril Fatface,display,validation,monospace,False,0.031629883,0.00014226063,0.80221957,0.070872925,0.09513544
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0028.png,Abril Fatface,display,validation,serif,False,0.046621718,8.330243e-07,0.18971965,0.09028881,0.673369
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0029.png,Abril Fatface,display,validation,serif,False,0.36283728,2.871408e-06,0.10136622,0.00062519894,0.5351684
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0030.png,Abril Fatface,display,validation,serif,False,0.0022069095,0.00020745337,0.01854235,0.030381305,0.948662
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0031.png,Abril Fatface,display,validation,serif,False,0.41807368,0.00033408645,0.06861055,0.018441526,0.49454018
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0032.png,Abril Fatface,display,validation,sans_serif,False,0.09322769,0.060931303,0.14039262,0.49353725,0.21191114
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0033.png,Abril Fatface,display,validation,display,True,0.38222322,3.7759288e-05,0.1732531,0.17042252,0.27406338
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0034.png,Abril Fatface,display,validation,serif,False,0.1005034,5.1390223e-05,0.0857691,0.015681919,0.79799426
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0035.png,Abril Fatface,display,validation,display,True,0.9206347,1.7954791e-06,0.060821194,0.0038940937,0.014648365
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0036.png,Abril Fatface,display,validation,serif,False,0.06393232,0.00026043545,0.31238556,0.012969232,0.6104525
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0037.png,Abril Fatface,display,validation,display,True,0.5416912,3.9431834e-05,0.08056371,0.0340727,0.34363294
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0038.png,Abril Fatface,display,validation,monospace,False,0.10599826,0.00028135942,0.54691064,0.32202747,0.02478228
+data/processed/fontsense_full/images/validation/display/Abril_Fatface/Abril_Fatface_0039.png,Abril Fatface,display,validation,display,True,0.92794806,1.0074485e-05,0.061477974,0.008370287,0.0021935808
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0000.png,Alfa Slab One,display,validation,monospace,False,0.46450776,0.00034802812,0.50016093,0.009611313,0.025371963
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0001.png,Alfa Slab One,display,validation,display,True,0.9337559,0.00019373368,0.014445138,0.0012418006,0.050363485
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0002.png,Alfa Slab One,display,validation,display,True,0.9903278,2.4465922e-07,0.0032195537,6.756817e-05,0.006384969
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0003.png,Alfa Slab One,display,validation,display,True,0.93819845,1.1903967e-05,0.043662786,0.004396216,0.013730743
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0004.png,Alfa Slab One,display,validation,serif,False,0.1683261,9.059846e-06,0.1111035,0.0019538722,0.7186075
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0005.png,Alfa Slab One,display,validation,display,True,0.7326712,7.9778874e-05,0.23145787,0.0073918905,0.028399346
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0006.png,Alfa Slab One,display,validation,display,True,0.9564648,4.5459524e-07,0.019730255,0.00035547517,0.023448892
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0007.png,Alfa Slab One,display,validation,display,True,0.8493454,0.00030800747,0.06478073,0.010296807,0.07526903
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0008.png,Alfa Slab One,display,validation,display,True,0.9048448,8.569303e-08,0.08951449,0.00025911714,0.005381563
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0009.png,Alfa Slab One,display,validation,display,True,0.5753106,8.5996464e-05,0.09128407,0.01034312,0.32297617
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0010.png,Alfa Slab One,display,validation,monospace,False,0.011001078,5.9835747e-06,0.61246514,0.0019785753,0.3745492
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0011.png,Alfa Slab One,display,validation,serif,False,0.021187078,0.00029359598,0.116351925,0.0033370312,0.85883033
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0012.png,Alfa Slab One,display,validation,serif,False,0.2961781,1.4670997e-05,0.09462134,0.0025229445,0.606663
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0013.png,Alfa Slab One,display,validation,display,True,0.61798507,0.00079446216,0.3373298,0.011754751,0.03213593
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0014.png,Alfa Slab One,display,validation,serif,False,0.25193352,2.754647e-05,0.050808482,0.0009878944,0.6962426
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0015.png,Alfa Slab One,display,validation,serif,False,0.4700732,6.160707e-05,0.016253933,0.008388464,0.5052228
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0016.png,Alfa Slab One,display,validation,display,True,0.8020489,3.254085e-05,0.18586007,0.0026776157,0.009380926
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0017.png,Alfa Slab One,display,validation,monospace,False,0.16693398,0.0008300867,0.5034011,0.057526294,0.27130863
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0018.png,Alfa Slab One,display,validation,display,True,0.8135338,0.00022343828,0.15798187,0.0041000955,0.0241608
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0019.png,Alfa Slab One,display,validation,display,True,0.89071983,9.572569e-06,0.04505104,0.00026633881,0.0639533
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0020.png,Alfa Slab One,display,validation,display,True,0.84187406,1.777029e-05,0.13111119,0.001414808,0.025582278
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0021.png,Alfa Slab One,display,validation,serif,False,0.39473835,1.2177147e-05,0.0730775,0.036650985,0.49552095
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0022.png,Alfa Slab One,display,validation,display,True,0.7806741,0.0010545172,0.16925023,0.0059843687,0.04303682
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0023.png,Alfa Slab One,display,validation,monospace,False,0.025619157,0.0020353936,0.60742337,0.30273262,0.062189367
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0024.png,Alfa Slab One,display,validation,display,True,0.541872,8.944141e-06,0.4224933,0.00096252764,0.034663226
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0025.png,Alfa Slab One,display,validation,display,True,0.5733125,0.0005465665,0.34636414,0.0024496233,0.07732718
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0026.png,Alfa Slab One,display,validation,display,True,0.77284473,2.3412957e-05,0.1394731,0.0017285148,0.08593029
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0027.png,Alfa Slab One,display,validation,display,True,0.567585,1.7159919e-05,0.16562307,0.007223467,0.25955126
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0028.png,Alfa Slab One,display,validation,serif,False,0.01219794,1.45029735e-05,0.015735077,0.0002496059,0.97180283
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0029.png,Alfa Slab One,display,validation,display,True,0.97749615,5.708567e-07,0.0022661076,4.7803846e-06,0.020232452
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0030.png,Alfa Slab One,display,validation,display,True,0.7427037,5.1488055e-06,0.12225598,3.706875e-05,0.13499814
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0031.png,Alfa Slab One,display,validation,monospace,False,0.23435569,0.00010672225,0.5202577,0.013053781,0.23222607
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0032.png,Alfa Slab One,display,validation,display,True,0.47253487,6.0609433e-05,0.11894499,0.0001576885,0.40830183
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0033.png,Alfa Slab One,display,validation,display,True,0.9248809,2.161349e-05,0.050759465,0.004679743,0.019658273
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0034.png,Alfa Slab One,display,validation,display,True,0.8026028,2.5286754e-05,0.102645956,0.023693813,0.07103221
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0035.png,Alfa Slab One,display,validation,display,True,0.9424989,2.1177505e-06,0.040842827,0.0027963414,0.013859717
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0036.png,Alfa Slab One,display,validation,display,True,0.82946414,1.8639007e-07,0.14347644,0.001126321,0.025932906
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0037.png,Alfa Slab One,display,validation,monospace,False,0.031123145,0.0002948273,0.4640977,0.08950472,0.4149796
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0038.png,Alfa Slab One,display,validation,serif,False,0.038130686,3.903982e-05,0.11565087,0.0006256316,0.84555376
+data/processed/fontsense_full/images/validation/display/Alfa_Slab_One/Alfa_Slab_One_0039.png,Alfa Slab One,display,validation,display,True,0.8309792,4.6335604e-06,0.05371638,0.006988066,0.10831166
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0000.png,Black Ops One,display,validation,monospace,False,0.38253108,2.1811738e-05,0.41692385,0.106858306,0.09366499
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0001.png,Black Ops One,display,validation,monospace,False,0.23573264,1.2689036e-05,0.7094961,0.02944123,0.025317412
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0002.png,Black Ops One,display,validation,monospace,False,0.113439515,1.6448526e-05,0.77603114,0.08452851,0.025984364
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0003.png,Black Ops One,display,validation,monospace,False,0.1379727,3.513976e-06,0.79527086,0.013722911,0.053029966
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0004.png,Black Ops One,display,validation,monospace,False,0.37979212,1.4097362e-06,0.5091408,0.06266968,0.04839603
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0005.png,Black Ops One,display,validation,display,True,0.9763505,4.4937688e-06,0.011016778,0.0034983498,0.009129855
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0006.png,Black Ops One,display,validation,display,True,0.9623382,2.6831935e-06,0.014796083,0.012422859,0.010440227
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0007.png,Black Ops One,display,validation,monospace,False,0.4237235,1.8056964e-07,0.5231314,0.02692083,0.02622408
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0008.png,Black Ops One,display,validation,monospace,False,0.046038978,6.8091424e-07,0.5823009,0.37116283,0.0004965923
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0009.png,Black Ops One,display,validation,monospace,False,0.07964469,2.997496e-05,0.7959898,0.019268898,0.10506665
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0010.png,Black Ops One,display,validation,monospace,False,0.2931953,1.330908e-07,0.65617895,0.041506406,0.009119182
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0011.png,Black Ops One,display,validation,monospace,False,0.118641175,3.239242e-05,0.44624147,0.06671674,0.3683682
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0012.png,Black Ops One,display,validation,display,True,0.5108343,0.00013559202,0.32934725,0.045245297,0.114437595
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0013.png,Black Ops One,display,validation,monospace,False,0.30921188,0.00011405712,0.46893308,0.13122706,0.0905139
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0014.png,Black Ops One,display,validation,serif,False,0.029742956,8.843675e-05,0.047496635,0.0912688,0.83140314
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0015.png,Black Ops One,display,validation,monospace,False,0.06558974,1.9871337e-07,0.7562113,0.090253696,0.08794514
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0016.png,Black Ops One,display,validation,display,True,0.91241324,2.4330794e-07,0.07599668,0.008716314,0.0028734705
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0017.png,Black Ops One,display,validation,monospace,False,0.036286175,3.1402808e-05,0.8753379,0.08054986,0.0077946424
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0018.png,Black Ops One,display,validation,monospace,False,0.08782778,1.7802888e-05,0.80506027,0.09029892,0.016795222
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0019.png,Black Ops One,display,validation,display,True,0.7560498,1.8417611e-06,0.09251014,0.025626961,0.12581126
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0020.png,Black Ops One,display,validation,display,True,0.75037044,1.7927918e-07,0.18492165,0.05618763,0.008520011
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0021.png,Black Ops One,display,validation,display,True,0.9650149,6.3642915e-07,0.024159554,0.0016091211,0.009215774
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0022.png,Black Ops One,display,validation,monospace,False,0.13963605,7.458027e-07,0.7789411,0.008474066,0.07294811
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0023.png,Black Ops One,display,validation,display,True,0.8957568,1.1879754e-08,0.09667052,0.0012874507,0.006285215
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0024.png,Black Ops One,display,validation,display,True,0.71869427,8.7236697e-07,0.2151862,0.010624434,0.055494167
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0025.png,Black Ops One,display,validation,sans_serif,False,0.025741236,1.1011233e-06,0.3912635,0.5757363,0.0072578387
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0026.png,Black Ops One,display,validation,serif,False,0.16142622,2.8933471e-05,0.36351135,0.10008806,0.3749455
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0027.png,Black Ops One,display,validation,monospace,False,0.20266075,4.3962705e-06,0.70141727,0.035404406,0.060513224
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0028.png,Black Ops One,display,validation,display,True,0.9848231,7.2718916e-07,0.0091232,0.00094127865,0.0051116953
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0029.png,Black Ops One,display,validation,monospace,False,0.28787637,3.0473916e-06,0.59577566,0.084166795,0.03217813
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0030.png,Black Ops One,display,validation,display,True,0.9946354,1.4547075e-08,0.0049812105,0.00021871453,0.00016455521
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0031.png,Black Ops One,display,validation,monospace,False,0.2400711,8.275842e-08,0.54258966,0.2064788,0.010860381
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0032.png,Black Ops One,display,validation,monospace,False,0.15726319,2.0399762e-06,0.8271614,0.011325805,0.004247633
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0033.png,Black Ops One,display,validation,monospace,False,0.028892446,5.483387e-07,0.71608377,0.0063457843,0.24867743
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0034.png,Black Ops One,display,validation,monospace,False,0.4365653,2.3904956e-06,0.48865026,0.0069893557,0.067792654
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0035.png,Black Ops One,display,validation,monospace,False,0.16872595,4.011124e-06,0.5445049,0.039807193,0.24695797
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0036.png,Black Ops One,display,validation,display,True,0.6334681,2.2554225e-06,0.28212214,0.04327311,0.04113441
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0037.png,Black Ops One,display,validation,monospace,False,0.04723243,1.2557293e-05,0.83758456,0.087497495,0.027672904
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0038.png,Black Ops One,display,validation,monospace,False,0.009195377,1.8240394e-07,0.9223737,0.038708385,0.029722244
+data/processed/fontsense_full/images/validation/display/Black_Ops_One/Black_Ops_One_0039.png,Black Ops One,display,validation,monospace,False,0.036214802,8.470138e-07,0.7527372,0.081491925,0.12955531
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0000.png,Allura,handwriting,validation,handwriting,True,0.00021314896,0.9993561,5.001938e-08,0.00043079743,2.6158629e-08
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0001.png,Allura,handwriting,validation,handwriting,True,5.9721406e-06,0.9999809,5.6138894e-09,1.3144368e-05,2.8364104e-08
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0002.png,Allura,handwriting,validation,handwriting,True,0.0041545285,0.99302214,9.250773e-06,0.0027190126,9.505213e-05
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0003.png,Allura,handwriting,validation,handwriting,True,0.0028376738,0.9732246,1.8073475e-05,0.023919223,4.7670102e-07
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0004.png,Allura,handwriting,validation,handwriting,True,1.8189023e-05,0.999686,1.826529e-08,0.00029544276,3.4879204e-07
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0005.png,Allura,handwriting,validation,handwriting,True,0.0091382135,0.98546034,2.7786267e-05,0.0053656087,8.002079e-06
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0006.png,Allura,handwriting,validation,handwriting,True,0.0016241792,0.9955089,8.165784e-06,0.0028553128,3.4781247e-06
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0007.png,Allura,handwriting,validation,handwriting,True,8.159135e-05,0.9996927,4.2555865e-07,0.00022464528,5.751118e-07
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0008.png,Allura,handwriting,validation,handwriting,True,0.0052391053,0.9042958,0.00028939394,0.09012566,5.0057155e-05
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0009.png,Allura,handwriting,validation,handwriting,True,0.00030364728,0.99949837,6.976417e-07,0.0001971545,9.1613195e-08
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0010.png,Allura,handwriting,validation,handwriting,True,2.0606707e-05,0.9973097,3.3592093e-07,0.0026693526,2.351649e-08
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0011.png,Allura,handwriting,validation,handwriting,True,0.044105757,0.94305426,0.00020027232,0.0071954,0.0054444256
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0012.png,Allura,handwriting,validation,handwriting,True,0.0005921169,0.99745315,1.5192192e-06,0.0019526362,4.540729e-07
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0013.png,Allura,handwriting,validation,handwriting,True,0.0002264082,0.9563178,0.00038327818,0.043071516,9.912836e-07
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0014.png,Allura,handwriting,validation,handwriting,True,0.00436113,0.9778991,1.8900815e-06,0.017732829,5.0047774e-06
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0015.png,Allura,handwriting,validation,handwriting,True,3.2258267e-06,0.999879,2.4994382e-08,0.000117818796,4.7669415e-09
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0016.png,Allura,handwriting,validation,handwriting,True,5.12297e-06,0.99965274,3.180231e-07,0.00034074322,1.1280997e-06
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0017.png,Allura,handwriting,validation,handwriting,True,0.0002100391,0.99578613,9.063907e-07,0.0040024132,5.073203e-07
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0018.png,Allura,handwriting,validation,handwriting,True,0.00050246826,0.9991398,9.577536e-07,0.00035057866,6.1520786e-06
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0019.png,Allura,handwriting,validation,handwriting,True,7.704698e-07,0.9998598,7.736989e-10,0.00013945128,3.10214e-08
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0020.png,Allura,handwriting,validation,handwriting,True,0.00022710042,0.7986387,0.00024363524,0.2008878,2.7573308e-06
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0021.png,Allura,handwriting,validation,handwriting,True,0.00010706766,0.9997619,1.0745457e-07,0.00013091559,1.366896e-07
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0022.png,Allura,handwriting,validation,handwriting,True,0.00017540478,0.99965906,1.457142e-07,0.0001651145,2.7201716e-07
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0023.png,Allura,handwriting,validation,handwriting,True,0.003500282,0.99600095,2.9221958e-06,0.0004805852,1.5187046e-05
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0024.png,Allura,handwriting,validation,handwriting,True,5.8490034e-05,0.9996437,3.9489713e-08,0.00029759374,2.858441e-07
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0025.png,Allura,handwriting,validation,handwriting,True,0.0061251963,0.9935162,3.613583e-07,0.00034701102,1.1222277e-05
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0026.png,Allura,handwriting,validation,handwriting,True,0.00025088474,0.9989819,2.5244738e-08,0.0007667571,3.2232197e-07
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0027.png,Allura,handwriting,validation,handwriting,True,0.0012269499,0.9987412,8.9300464e-08,2.9085344e-05,2.7596457e-06
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0028.png,Allura,handwriting,validation,handwriting,True,0.0002770524,0.9848518,1.2154186e-06,0.014869059,8.838995e-07
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0029.png,Allura,handwriting,validation,handwriting,True,0.0157678,0.98394644,9.288568e-06,0.000274084,2.31387e-06
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0030.png,Allura,handwriting,validation,handwriting,True,0.0002615436,0.99927396,5.5630426e-07,0.0004634148,4.737982e-07
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0031.png,Allura,handwriting,validation,handwriting,True,0.00016151898,0.99969256,1.0184364e-07,0.00014590898,2.6945399e-08
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0032.png,Allura,handwriting,validation,handwriting,True,1.5639564e-06,0.9999914,6.372889e-09,7.0442597e-06,3.1782076e-08
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0033.png,Allura,handwriting,validation,handwriting,True,0.0011233351,0.99748933,2.580741e-07,0.0013850285,2.0236937e-06
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0034.png,Allura,handwriting,validation,handwriting,True,0.003755163,0.99467343,1.00825755e-05,0.0015603798,9.5121436e-07
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0035.png,Allura,handwriting,validation,handwriting,True,0.0034546491,0.9939612,6.693251e-06,0.0025477672,2.9765386e-05
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0036.png,Allura,handwriting,validation,handwriting,True,0.00071927166,0.99856853,3.6233003e-05,0.0006731989,2.8477345e-06
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0037.png,Allura,handwriting,validation,handwriting,True,0.0013489831,0.9984438,1.6523538e-06,0.0002035881,2.07073e-06
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0038.png,Allura,handwriting,validation,handwriting,True,0.009879678,0.98800606,4.042895e-05,0.0020723944,1.3693484e-06
+data/processed/fontsense_full/images/validation/handwriting/Allura/Allura_0039.png,Allura,handwriting,validation,handwriting,True,0.016942946,0.9257953,0.00012236019,0.055134445,0.0020048467
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0000.png,Caveat,handwriting,validation,handwriting,True,0.00974232,0.5130156,0.0009477764,0.47580707,0.0004871819
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0001.png,Caveat,handwriting,validation,handwriting,True,0.0022462893,0.99659723,2.4566405e-06,0.0010870163,6.6903194e-05
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0002.png,Caveat,handwriting,validation,handwriting,True,0.00015512192,0.99396837,7.718655e-06,0.0058525456,1.6189204e-05
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0003.png,Caveat,handwriting,validation,handwriting,True,0.0009528055,0.9986817,1.3293835e-06,0.0003497494,1.4456017e-05
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0004.png,Caveat,handwriting,validation,handwriting,True,0.008510378,0.97662044,4.6133446e-06,0.01456493,0.00029968517
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0005.png,Caveat,handwriting,validation,handwriting,True,0.0007940447,0.9887821,5.6069325e-07,0.010413714,9.494991e-06
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0006.png,Caveat,handwriting,validation,handwriting,True,0.12559396,0.87178236,5.126063e-07,0.002617087,6.006784e-06
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0007.png,Caveat,handwriting,validation,handwriting,True,0.0017950416,0.9886863,7.4372715e-06,0.009123535,0.00038764707
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0008.png,Caveat,handwriting,validation,handwriting,True,0.01653668,0.9745026,2.8670464e-05,0.0084948465,0.00043731224
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0009.png,Caveat,handwriting,validation,handwriting,True,0.00046553413,0.99776804,6.3711576e-07,0.0017385904,2.723371e-05
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0010.png,Caveat,handwriting,validation,handwriting,True,0.00021519644,0.8977245,8.084409e-05,0.10196561,1.39073245e-05
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0011.png,Caveat,handwriting,validation,handwriting,True,0.015805969,0.9816668,7.998659e-06,0.0025140939,5.1996167e-06
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0012.png,Caveat,handwriting,validation,handwriting,True,0.16265398,0.8139628,7.492685e-05,0.023161959,0.00014632716
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0013.png,Caveat,handwriting,validation,handwriting,True,9.828641e-05,0.9894097,3.2236796e-06,0.010475778,1.3081889e-05
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0014.png,Caveat,handwriting,validation,handwriting,True,0.0044485023,0.98857415,4.0999444e-06,0.0066797417,0.0002935309
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0015.png,Caveat,handwriting,validation,handwriting,True,0.009690636,0.7919578,0.00017532487,0.19754277,0.00063336286
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0016.png,Caveat,handwriting,validation,handwriting,True,0.0019840517,0.9626904,0.00021262659,0.028853664,0.006259237
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0017.png,Caveat,handwriting,validation,handwriting,True,0.007332134,0.9382947,0.0018725756,0.05108886,0.001411761
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0018.png,Caveat,handwriting,validation,handwriting,True,0.033937234,0.9531963,0.0021035706,0.0076782675,0.0030845513
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0019.png,Caveat,handwriting,validation,handwriting,True,0.0012784959,0.99162173,2.415512e-05,0.007071222,4.508785e-06
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0020.png,Caveat,handwriting,validation,handwriting,True,0.040693887,0.8520663,5.0216655e-05,0.10502562,0.0021640565
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0021.png,Caveat,handwriting,validation,handwriting,True,0.018530698,0.92433864,8.936033e-07,0.057057396,7.2345436e-05
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0022.png,Caveat,handwriting,validation,handwriting,True,0.026691712,0.96041024,3.533566e-05,0.012769092,9.3611015e-05
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0023.png,Caveat,handwriting,validation,handwriting,True,2.8530174e-05,0.9993248,1.0839996e-08,0.0006244451,2.2240733e-05
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0024.png,Caveat,handwriting,validation,handwriting,True,0.01830558,0.9181381,0.00021109027,0.06321958,0.00012560905
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0025.png,Caveat,handwriting,validation,handwriting,True,0.0020534196,0.9182266,8.1100465e-05,0.0715777,0.008061128
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0026.png,Caveat,handwriting,validation,handwriting,True,0.0008470908,0.9179747,3.996871e-05,0.08101415,0.00012410322
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0027.png,Caveat,handwriting,validation,handwriting,True,0.0067816894,0.9925135,8.982316e-07,0.00061269704,9.119765e-05
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0028.png,Caveat,handwriting,validation,handwriting,True,0.0007128458,0.9985964,1.9650095e-06,0.00065859227,3.0274561e-05
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0029.png,Caveat,handwriting,validation,handwriting,True,0.42037982,0.5620644,2.9071713e-05,0.017503887,2.2842818e-05
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0030.png,Caveat,handwriting,validation,handwriting,True,0.039443728,0.9319375,0.00019550245,0.028421972,1.3433214e-06
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0031.png,Caveat,handwriting,validation,handwriting,True,0.0030391158,0.97674245,0.00085298344,0.018289303,0.0010761019
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0032.png,Caveat,handwriting,validation,handwriting,True,0.0024529865,0.9849476,3.5039343e-06,0.012585717,1.0149206e-05
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0033.png,Caveat,handwriting,validation,handwriting,True,0.00011108533,0.9985794,8.326836e-07,0.0011408447,0.00016787178
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0034.png,Caveat,handwriting,validation,handwriting,True,0.00031169617,0.99249035,1.6043518e-06,0.0071546547,4.168937e-05
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0035.png,Caveat,handwriting,validation,handwriting,True,0.01831752,0.9806028,1.3572431e-06,0.0010679335,1.02400345e-05
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0036.png,Caveat,handwriting,validation,handwriting,True,0.006817031,0.9240216,3.9481292e-06,0.06914496,1.2393018e-05
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0037.png,Caveat,handwriting,validation,handwriting,True,0.0024037438,0.996671,2.4706237e-06,0.00014185962,0.0007809024
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0038.png,Caveat,handwriting,validation,handwriting,True,0.1402583,0.8060127,0.0011360914,0.052576046,1.6822529e-05
+data/processed/fontsense_full/images/validation/handwriting/Caveat/Caveat_0039.png,Caveat,handwriting,validation,handwriting,True,0.0073122857,0.98068,1.1046682e-05,0.011744597,0.000252109
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0000.png,Marck Script,handwriting,validation,handwriting,True,0.0045775594,0.9847586,5.7072204e-05,0.010572068,3.4625686e-05
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0001.png,Marck Script,handwriting,validation,handwriting,True,0.0053810063,0.8779198,0.0008779624,0.015420215,0.10040094
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0002.png,Marck Script,handwriting,validation,handwriting,True,0.015259098,0.9793785,6.613762e-05,0.005251124,4.5168566e-05
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0003.png,Marck Script,handwriting,validation,handwriting,True,0.0007100165,0.9974511,0.00025012338,0.001574739,1.39388985e-05
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0004.png,Marck Script,handwriting,validation,handwriting,True,0.03344109,0.9633083,6.772873e-05,0.0031783034,4.556801e-06
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0005.png,Marck Script,handwriting,validation,display,False,0.7582719,0.21628708,0.0003190065,0.024961762,0.00016029882
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0006.png,Marck Script,handwriting,validation,handwriting,True,0.019518794,0.975076,0.00020942284,0.005193159,2.545313e-06
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0007.png,Marck Script,handwriting,validation,handwriting,True,0.024026576,0.9317924,4.000516e-05,0.04391593,0.000225138
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0008.png,Marck Script,handwriting,validation,handwriting,True,0.0072550196,0.9755526,0.00023551153,0.016766263,0.00019062284
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0009.png,Marck Script,handwriting,validation,handwriting,True,0.1419803,0.8563181,2.0327896e-05,0.0016808375,4.453238e-07
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0010.png,Marck Script,handwriting,validation,handwriting,True,0.041365296,0.85062385,0.0014789979,0.10650504,2.6827523e-05
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0011.png,Marck Script,handwriting,validation,handwriting,True,3.637048e-06,0.964715,0.0003014865,0.03497962,1.3730617e-07
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0012.png,Marck Script,handwriting,validation,handwriting,True,0.07829911,0.91928095,1.7806327e-05,0.0023969684,5.192597e-06
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0013.png,Marck Script,handwriting,validation,handwriting,True,0.0021080172,0.9803257,0.00084592035,0.016703444,1.6797356e-05
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0014.png,Marck Script,handwriting,validation,handwriting,True,6.133962e-05,0.99739385,1.4676412e-05,0.0024866762,4.3499953e-05
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0015.png,Marck Script,handwriting,validation,handwriting,True,0.0010330656,0.996414,1.2462118e-05,0.0025372535,3.1507666e-06
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0016.png,Marck Script,handwriting,validation,handwriting,True,0.037737202,0.9620908,3.2473715e-06,0.00016100834,7.793756e-06
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0017.png,Marck Script,handwriting,validation,handwriting,True,0.24598047,0.70232207,0.009179705,0.020054726,0.022463031
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0018.png,Marck Script,handwriting,validation,handwriting,True,0.0032841428,0.99389344,3.254278e-05,0.0027746647,1.5082158e-05
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0019.png,Marck Script,handwriting,validation,handwriting,True,2.9035034e-05,0.9979905,8.3406725e-08,0.0019786695,1.6657548e-06
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0020.png,Marck Script,handwriting,validation,handwriting,True,0.1279887,0.86528015,4.186328e-05,0.0001843849,0.0065049054
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0021.png,Marck Script,handwriting,validation,handwriting,True,0.0012861597,0.99840873,1.9632926e-05,0.0002835854,1.874948e-06
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0022.png,Marck Script,handwriting,validation,handwriting,True,0.00016758974,0.9990964,1.1984821e-06,0.0007311538,3.68415e-06
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0023.png,Marck Script,handwriting,validation,handwriting,True,0.0026088853,0.9972556,4.940988e-07,0.00013500049,5.8719202e-08
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0024.png,Marck Script,handwriting,validation,handwriting,True,0.0059973085,0.98918426,6.8010525e-07,0.004816331,1.4687232e-06
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0025.png,Marck Script,handwriting,validation,handwriting,True,0.034589693,0.95122564,0.0019745692,0.012193604,1.6534772e-05
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0026.png,Marck Script,handwriting,validation,handwriting,True,0.000113349146,0.8263291,0.0014487127,0.17209731,1.1566342e-05
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0027.png,Marck Script,handwriting,validation,handwriting,True,0.00032925114,0.9960238,0.00030346733,0.0033289422,1.448354e-05
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0028.png,Marck Script,handwriting,validation,handwriting,True,0.019697102,0.9756159,0.0021618505,0.0022758113,0.0002493573
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0029.png,Marck Script,handwriting,validation,handwriting,True,0.09304446,0.6951474,0.0074100415,0.20351563,0.00088237715
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0030.png,Marck Script,handwriting,validation,handwriting,True,0.005784612,0.9941678,2.5085019e-08,4.749379e-05,7.739041e-09
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0031.png,Marck Script,handwriting,validation,handwriting,True,0.39174655,0.59032404,0.0017601295,0.016114578,5.4683587e-05
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0032.png,Marck Script,handwriting,validation,handwriting,True,0.0018264024,0.9924516,3.3884626e-05,0.0056811674,6.8537556e-06
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0033.png,Marck Script,handwriting,validation,handwriting,True,0.009952449,0.89795417,0.00013084407,0.08642358,0.005539034
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0034.png,Marck Script,handwriting,validation,handwriting,True,0.028460529,0.95229113,0.00011657003,0.018900787,0.00023093594
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0035.png,Marck Script,handwriting,validation,handwriting,True,0.0075776465,0.90740615,1.4474064e-05,0.08497656,2.5220355e-05
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0036.png,Marck Script,handwriting,validation,display,False,0.96876055,0.029879363,0.000420823,0.00093473244,4.4931166e-06
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0037.png,Marck Script,handwriting,validation,handwriting,True,0.07878639,0.9141844,7.199767e-05,0.0069197235,3.746963e-05
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0038.png,Marck Script,handwriting,validation,handwriting,True,0.00017366305,0.99246997,2.3979732e-05,0.007312715,1.9661033e-05
+data/processed/fontsense_full/images/validation/handwriting/Marck_Script/Marck_Script_0039.png,Marck Script,handwriting,validation,handwriting,True,0.00058831746,0.9991002,1.7183648e-06,0.0002755023,3.4251436e-05
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0000.png,Cousine,monospace,validation,monospace,True,0.0115878945,0.00043323616,0.96509814,0.00810028,0.014780492
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0001.png,Cousine,monospace,validation,monospace,True,0.027589532,0.0020143618,0.7046952,0.24621198,0.019488972
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0002.png,Cousine,monospace,validation,monospace,True,0.006108746,0.06851648,0.52436197,0.06767929,0.33333352
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0003.png,Cousine,monospace,validation,monospace,True,0.09068993,7.719439e-05,0.85968876,0.04572308,0.0038210624
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0004.png,Cousine,monospace,validation,display,False,0.9847911,1.4213605e-06,0.014290538,0.00033343575,0.0005835843
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0005.png,Cousine,monospace,validation,monospace,True,0.028320616,2.8858385e-05,0.9602754,0.007137032,0.004238132
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0006.png,Cousine,monospace,validation,display,False,0.49970657,0.0010488932,0.26454863,0.042355582,0.19234028
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0007.png,Cousine,monospace,validation,monospace,True,0.20683803,0.0043226196,0.7204837,0.068267,8.867435e-05
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0008.png,Cousine,monospace,validation,sans_serif,False,0.06412005,0.002242911,0.20173699,0.44170952,0.2901906
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0009.png,Cousine,monospace,validation,display,False,0.62785906,0.0002808054,0.24970803,0.12023985,0.001912232
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0010.png,Cousine,monospace,validation,monospace,True,0.0988232,0.00012493541,0.84774834,0.053088464,0.00021508652
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0011.png,Cousine,monospace,validation,monospace,True,0.054745518,0.00036169603,0.80957216,0.05582384,0.079496786
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0012.png,Cousine,monospace,validation,monospace,True,0.1349952,0.014900775,0.5822035,0.24604215,0.0218584
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0013.png,Cousine,monospace,validation,monospace,True,0.025913093,0.0035267284,0.83259934,0.021705845,0.116255
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0014.png,Cousine,monospace,validation,monospace,True,0.024863888,0.0005129268,0.8894349,0.084554225,0.00063402235
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0015.png,Cousine,monospace,validation,display,False,0.8521023,1.7912334e-06,0.1361928,0.003928341,0.0077747144
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0016.png,Cousine,monospace,validation,monospace,True,0.008536826,0.04380049,0.87867683,0.03863854,0.030347295
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0017.png,Cousine,monospace,validation,monospace,True,0.09651967,9.763025e-06,0.8183374,0.083399445,0.0017337521
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0018.png,Cousine,monospace,validation,monospace,True,0.005797966,0.0026786227,0.9125967,0.0441481,0.03477864
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0019.png,Cousine,monospace,validation,sans_serif,False,0.0024396367,0.41610742,0.035015337,0.5256939,0.020743752
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0020.png,Cousine,monospace,validation,monospace,True,0.003791678,0.0003504855,0.62855434,0.34100738,0.026296053
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0021.png,Cousine,monospace,validation,display,False,0.92159134,0.0001989464,0.04388847,0.012113568,0.022207778
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0022.png,Cousine,monospace,validation,monospace,True,0.022309355,0.0004242273,0.94296753,0.005773435,0.028525557
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0023.png,Cousine,monospace,validation,sans_serif,False,0.2240403,0.00014236933,0.20058647,0.5501189,0.025111968
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0024.png,Cousine,monospace,validation,monospace,True,0.03339931,0.0017692732,0.6044933,0.35803312,0.002304906
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0025.png,Cousine,monospace,validation,display,False,0.62557685,7.219194e-06,0.360825,0.0134024285,0.00018855056
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0026.png,Cousine,monospace,validation,sans_serif,False,0.17035905,0.008084132,0.15298793,0.41745156,0.2511173
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0027.png,Cousine,monospace,validation,monospace,True,0.009753086,0.00073762285,0.93588376,0.042508725,0.011116745
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0028.png,Cousine,monospace,validation,monospace,True,0.010479509,2.6744441e-05,0.9579381,0.023801364,0.0077542933
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0029.png,Cousine,monospace,validation,monospace,True,0.06092464,0.00062810874,0.90573394,0.0015325317,0.031180743
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0030.png,Cousine,monospace,validation,monospace,True,0.0031039915,0.0017079224,0.45822692,0.11110817,0.42585307
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0031.png,Cousine,monospace,validation,monospace,True,0.20938337,6.756332e-05,0.6616914,0.12725207,0.0016055908
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0032.png,Cousine,monospace,validation,monospace,True,0.0023742192,0.00050227554,0.763867,0.20782748,0.025428953
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0033.png,Cousine,monospace,validation,monospace,True,0.19032599,0.010995947,0.34968287,0.1799469,0.26904824
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0034.png,Cousine,monospace,validation,display,False,0.5761389,0.0009363852,0.34332317,0.061623372,0.017978184
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0035.png,Cousine,monospace,validation,monospace,True,0.1019672,0.0006922857,0.65032,0.24665004,0.0003705206
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0036.png,Cousine,monospace,validation,monospace,True,0.0001109797,0.0004943835,0.983996,0.009949738,0.005448921
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0037.png,Cousine,monospace,validation,display,False,0.5818882,1.7082406e-05,0.32607928,0.0901133,0.0019021994
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0038.png,Cousine,monospace,validation,monospace,True,0.10714211,1.4604281e-05,0.8797537,0.003992886,0.0090967575
+data/processed/fontsense_full/images/validation/monospace/Cousine/Cousine_0039.png,Cousine,monospace,validation,monospace,True,0.3188292,1.7556413e-05,0.663415,0.009334653,0.00840358
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0000.png,Cutive Mono,monospace,validation,monospace,True,0.014886814,0.002444023,0.94660926,0.03073091,0.005329056
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0001.png,Cutive Mono,monospace,validation,display,False,0.68457556,6.9749685e-06,0.29146072,0.0008439295,0.023112865
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0002.png,Cutive Mono,monospace,validation,serif,False,0.16117305,0.0029023988,0.05378886,0.021090865,0.7610448
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0003.png,Cutive Mono,monospace,validation,monospace,True,0.03405573,0.011239044,0.55177784,0.19949906,0.20342831
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0004.png,Cutive Mono,monospace,validation,monospace,True,0.0019104662,6.369183e-05,0.9685411,0.009910844,0.019573903
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0005.png,Cutive Mono,monospace,validation,monospace,True,0.008894265,0.004554649,0.71359074,0.017634539,0.25532576
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0006.png,Cutive Mono,monospace,validation,display,False,0.76747,1.8056978e-06,0.1858557,0.00028992834,0.0463825
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0007.png,Cutive Mono,monospace,validation,serif,False,0.079638414,0.00075638015,0.34706068,0.028104449,0.5444401
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0008.png,Cutive Mono,monospace,validation,monospace,True,0.006443693,0.0017206327,0.9415405,0.010590522,0.039704558
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0009.png,Cutive Mono,monospace,validation,serif,False,0.089620546,0.00027356032,0.084755845,0.091219895,0.73413014
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0010.png,Cutive Mono,monospace,validation,monospace,True,0.048246697,0.00061976514,0.92370903,0.026508367,0.0009162076
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0011.png,Cutive Mono,monospace,validation,monospace,True,0.003424772,0.00134044,0.7532433,0.22765462,0.014336835
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0012.png,Cutive Mono,monospace,validation,monospace,True,0.0051006298,1.8478859e-05,0.67175287,0.00019069704,0.32293728
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0013.png,Cutive Mono,monospace,validation,monospace,True,0.08914409,0.0015231252,0.7825792,0.12207075,0.0046828887
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0014.png,Cutive Mono,monospace,validation,monospace,True,0.009267339,0.00011316462,0.82315606,0.005968746,0.16149466
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0015.png,Cutive Mono,monospace,validation,serif,False,0.15581098,0.0013602083,0.17651547,0.035210814,0.63110256
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0016.png,Cutive Mono,monospace,validation,monospace,True,0.02327358,0.003925465,0.6285673,0.009162675,0.335071
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0017.png,Cutive Mono,monospace,validation,monospace,True,0.057221666,0.007876624,0.7863802,0.09074619,0.05777539
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0018.png,Cutive Mono,monospace,validation,monospace,True,0.23625718,0.0023991019,0.63264,0.017978359,0.110725395
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0019.png,Cutive Mono,monospace,validation,serif,False,0.0291373,0.0022230814,0.3281287,0.050309416,0.5902015
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0020.png,Cutive Mono,monospace,validation,display,False,0.7420143,2.0514502e-05,0.23901218,0.0060180672,0.012934912
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0021.png,Cutive Mono,monospace,validation,monospace,True,0.19105259,3.3001197e-06,0.8010891,0.0014219856,0.0064330986
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0022.png,Cutive Mono,monospace,validation,monospace,True,0.06406566,0.0063159596,0.4700203,0.39207298,0.067525186
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0023.png,Cutive Mono,monospace,validation,monospace,True,0.0012767127,0.0042707403,0.67060596,0.024235591,0.299611
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0024.png,Cutive Mono,monospace,validation,monospace,True,0.0014697819,0.0035380065,0.77940696,0.05020714,0.1653781
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0025.png,Cutive Mono,monospace,validation,display,False,0.885293,4.5096504e-06,0.108001724,0.00035174328,0.0063490258
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0026.png,Cutive Mono,monospace,validation,serif,False,0.05113809,0.00029713736,0.34755674,0.011669405,0.58933866
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0027.png,Cutive Mono,monospace,validation,serif,False,0.07594053,0.0014830579,0.38994473,0.015718257,0.5169134
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0028.png,Cutive Mono,monospace,validation,serif,False,0.00251685,7.852575e-05,0.22028233,0.015308523,0.76181376
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0029.png,Cutive Mono,monospace,validation,display,False,0.46631542,0.00089353253,0.352734,0.0040808003,0.17597628
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0030.png,Cutive Mono,monospace,validation,monospace,True,0.09149006,0.005009513,0.4689649,0.00091770844,0.43361777
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0031.png,Cutive Mono,monospace,validation,serif,False,0.0016727445,0.00028029596,0.13852389,0.0094813,0.85004175
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0032.png,Cutive Mono,monospace,validation,monospace,True,0.0076721576,0.0002816907,0.91986644,0.03856225,0.03361748
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0033.png,Cutive Mono,monospace,validation,monospace,True,0.34039208,0.0064969575,0.48727372,0.16318801,0.002649217
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0034.png,Cutive Mono,monospace,validation,monospace,True,0.17109592,0.000105708736,0.61473244,0.016972074,0.19709387
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0035.png,Cutive Mono,monospace,validation,serif,False,0.2175237,0.00047630648,0.23050524,0.030781604,0.5207131
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0036.png,Cutive Mono,monospace,validation,monospace,True,0.0049665417,1.9514237e-05,0.9839669,0.0042052143,0.006841766
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0037.png,Cutive Mono,monospace,validation,serif,False,0.21987629,0.0041439068,0.23467822,0.042042654,0.4992589
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0038.png,Cutive Mono,monospace,validation,serif,False,0.29653448,0.0013689186,0.18453087,0.0071655614,0.5104002
+data/processed/fontsense_full/images/validation/monospace/Cutive_Mono/Cutive_Mono_0039.png,Cutive Mono,monospace,validation,display,False,0.77914697,6.3597264e-07,0.21796511,0.0023556757,0.0005316689
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0000.png,IBM Plex Mono,monospace,validation,monospace,True,0.06551524,0.0002386755,0.88476014,0.0069880504,0.042497862
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0001.png,IBM Plex Mono,monospace,validation,monospace,True,0.34749255,0.00146347,0.63323736,0.0014259972,0.016380692
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0002.png,IBM Plex Mono,monospace,validation,monospace,True,0.029368771,0.0002703207,0.79962075,0.01627419,0.15446596
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0003.png,IBM Plex Mono,monospace,validation,monospace,True,0.0006151331,8.161614e-06,0.9917502,0.007548813,7.762111e-05
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0004.png,IBM Plex Mono,monospace,validation,monospace,True,0.059075247,9.157045e-05,0.8111301,0.115643814,0.014059207
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0005.png,IBM Plex Mono,monospace,validation,monospace,True,0.014896675,0.00062001916,0.8806517,0.08911443,0.014717201
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0006.png,IBM Plex Mono,monospace,validation,monospace,True,0.022515934,0.0011262303,0.7786353,0.18484145,0.012881085
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0007.png,IBM Plex Mono,monospace,validation,display,False,0.5757764,1.5428203e-06,0.41688898,0.0039095893,0.0034234435
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0008.png,IBM Plex Mono,monospace,validation,monospace,True,0.022405447,0.0056008757,0.69290656,0.12928216,0.14980496
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0009.png,IBM Plex Mono,monospace,validation,monospace,True,0.020636655,2.6990285e-05,0.96557724,0.0028413744,0.010917709
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0010.png,IBM Plex Mono,monospace,validation,monospace,True,0.28821883,4.935018e-07,0.69817877,0.009856077,0.0037458516
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0011.png,IBM Plex Mono,monospace,validation,sans_serif,False,0.025522325,0.00041772908,0.38818216,0.48975053,0.096127264
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0012.png,IBM Plex Mono,monospace,validation,display,False,0.83922905,0.00010422424,0.13950685,0.012782352,0.00837756
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0013.png,IBM Plex Mono,monospace,validation,monospace,True,0.0023642918,0.0017004979,0.66261363,0.31257296,0.02074851
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0014.png,IBM Plex Mono,monospace,validation,monospace,True,0.060507443,0.00015774085,0.9099693,0.011925725,0.017439857
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0015.png,IBM Plex Mono,monospace,validation,monospace,True,0.0013833526,1.926677e-05,0.68636537,0.30937192,0.0028600518
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0016.png,IBM Plex Mono,monospace,validation,monospace,True,0.3121567,6.927081e-05,0.6499217,0.012056067,0.025796263
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0017.png,IBM Plex Mono,monospace,validation,monospace,True,0.011065833,0.0002815089,0.7919886,0.18342216,0.013241922
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0018.png,IBM Plex Mono,monospace,validation,monospace,True,0.0055904286,0.000142612,0.97517824,0.014068067,0.005020781
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0019.png,IBM Plex Mono,monospace,validation,monospace,True,0.096979655,0.00018792938,0.5265644,0.13810213,0.23816587
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0020.png,IBM Plex Mono,monospace,validation,monospace,True,0.34349507,6.5490785e-06,0.4352772,0.04177119,0.17945008
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0021.png,IBM Plex Mono,monospace,validation,monospace,True,0.45449686,4.6568886e-05,0.5331264,0.010503937,0.0018263045
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0022.png,IBM Plex Mono,monospace,validation,monospace,True,0.10519399,3.7286714e-05,0.7941955,0.05577614,0.044797156
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0023.png,IBM Plex Mono,monospace,validation,monospace,True,0.12666196,1.1874825e-05,0.8572294,0.004777839,0.011318817
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0024.png,IBM Plex Mono,monospace,validation,display,False,0.84992373,5.596255e-08,0.14541362,0.001155323,0.0035071457
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0025.png,IBM Plex Mono,monospace,validation,monospace,True,0.009101337,4.082197e-06,0.8025922,0.18511806,0.0031842845
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0026.png,IBM Plex Mono,monospace,validation,monospace,True,0.0013893446,0.0010322586,0.75559807,0.23894514,0.0030351605
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0027.png,IBM Plex Mono,monospace,validation,monospace,True,0.0042832163,0.0002459481,0.9232366,0.060889207,0.01134507
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0028.png,IBM Plex Mono,monospace,validation,display,False,0.82919276,2.6813253e-05,0.15165116,0.0011704363,0.017958932
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0029.png,IBM Plex Mono,monospace,validation,monospace,True,0.13478519,0.000647066,0.80838764,0.020254502,0.035925627
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0030.png,IBM Plex Mono,monospace,validation,display,False,0.99751496,3.8108205e-06,0.0009965117,0.00037572524,0.0011090213
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0031.png,IBM Plex Mono,monospace,validation,monospace,True,0.01910289,1.07868345e-05,0.8013745,0.17722826,0.0022835105
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0032.png,IBM Plex Mono,monospace,validation,monospace,True,0.018918553,1.4059019e-05,0.8198244,0.15938935,0.001853683
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0033.png,IBM Plex Mono,monospace,validation,monospace,True,0.1663376,8.6650514e-05,0.390661,0.2096469,0.23326787
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0034.png,IBM Plex Mono,monospace,validation,monospace,True,0.06715063,0.00019578017,0.7484804,0.07857694,0.10559635
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0035.png,IBM Plex Mono,monospace,validation,display,False,0.29490203,0.0008739537,0.2807469,0.29306746,0.13040961
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0036.png,IBM Plex Mono,monospace,validation,monospace,True,0.26193342,0.00016947203,0.54311925,0.067356564,0.12742141
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0037.png,IBM Plex Mono,monospace,validation,monospace,True,0.10450317,0.0002358479,0.88205093,0.008764968,0.004445061
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0038.png,IBM Plex Mono,monospace,validation,monospace,True,0.06549831,3.6028876e-05,0.88869596,0.036460828,0.009308897
+data/processed/fontsense_full/images/validation/monospace/IBM_Plex_Mono/IBM_Plex_Mono_0039.png,IBM Plex Mono,monospace,validation,monospace,True,0.0046891677,1.283038e-05,0.86118203,0.11372413,0.020391809

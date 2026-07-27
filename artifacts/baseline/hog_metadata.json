@@ -1,0 +1,51 @@
+{
+  "model_type": "hog_multinomial_logistic_regression",
+  "selection_metric": "validation_macro_f1",
+  "classes": [
+    "display",
+    "handwriting",
+    "monospace",
+    "sans_serif",
+    "serif"
+  ],
+  "hog": {
+    "image_size": [
+      224,
+      96
+    ],
+    "orientations": 9,
+    "pixels_per_cell": [
+      16,
+      16
+    ],
+    "cells_per_block": [
+      2,
+      2
+    ],
+    "grayscale": true,
+    "block_norm": "L2-Hys"
+  },
+  "logistic_regression": {
+    "C": 1.0,
+    "solver": "lbfgs",
+    "max_iter": 500
+  },
+  "best_validation_run": {
+    "name": "Coarser HOG cells",
+    "validation_macro_f1": 0.6932617332254356,
+    "validation_accuracy": 0.695
+  },
+  "training_data": {
+    "train_rows": 2400,
+    "validation_rows": 600,
+    "fit_splits": [
+      "train"
+    ],
+    "selection_split": "validation",
+    "test_images_loaded": 0,
+    "test_rows_evaluated": 0,
+    "test_metrics_recorded": false
+  },
+  "saved_model_size_bytes": 35700,
+  "seed": 42
+}

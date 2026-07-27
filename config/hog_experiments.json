@@ -1,32 +1,68 @@
 {
+  "experiment_name": "FontSense HOG baselines",
+  "expected_split_sha256": "f6cdd858449a4143993b051e9de83578cd423544135dbf6cc17f004359d2e17b",
   "orientations": 9,
-  "pixels_per_cell": [
-    8,
-    8
-  ],
   "cells_per_block": [
     2,
     2
   ],
   "experiments": [
     {
-      "name": "hog_lr_c0_2",
-      "C": 0.2,
-      "class_weight": null
+      "name": "Reference detail",
+      "reason": "Reference configuration at the dataset image size.",
+      "image_size": [
+        224,
+        96
+      ],
+      "pixels_per_cell": [
+        8,
+        8
+      ],
+      "C": 1.0
     },
     {
-      "name": "hog_lr_c1",
-      "C": 1.0,
-      "class_weight": null
+      "name": "Compact resolution",
+      "reason": "Tests whether half-size images retain enough stroke information with less computation.",
+      "image_size": [
+        112,
+        48
+      ],
+      "pixels_per_cell": [
+        8,
+        8
+      ],
+      "C": 1.0
     },
     {
-      "name": "hog_lr_c3_balanced",
-      "C": 3.0,
-      "class_weight": "balanced"
+      "name": "Coarser HOG cells",
+      "reason": "Changes only the HOG cell size to measure the value of fine edge detail.",
+      "image_size": [
+        224,
+        96
+      ],
+      "pixels_per_cell": [
+        16,
+        16
+      ],
+      "C": 1.0
+    },
+    {
+      "name": "Stronger regularization",
+      "reason": "Changes only Logistic Regression C to reduce overfitting.",
+      "image_size": [
+        224,
+        96
+      ],
+      "pixels_per_cell": [
+        8,
+        8
+      ],
+      "C": 0.2
     }
   ],
-  "image_size": [
-    112,
-    48
-  ]
+  "logistic_regression": {
+    "solver": "lbfgs",
+    "max_iter": 500,
+    "tolerance": 0.0001
+  }
 }
