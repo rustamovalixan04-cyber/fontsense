@@ -1,0 +1,95 @@
+{
+  "status": "prepared",
+  "purpose": "Immutable record created before loading the final test split.",
+  "prepared_at_utc": "2026-07-27T14:23:32.966201+00:00",
+  "selected_model": {
+    "name": "Reference small CNN",
+    "checkpoint": "artifacts/cnn/cnn_model.pt",
+    "checkpoint_sha256": "c98cf0d1a02503a02b8f8242fec462ea2a0c455380238ec54fc4f62fdb13bb2f",
+    "metadata": "artifacts/cnn/cnn_metadata.json",
+    "metadata_sha256": "ebbda237b88b4f753fd573c66dd8f678e4b1a55643e3901b4d34387accc98f95",
+    "comparison": "reports/cnn/cnn_experiment_comparison.csv",
+    "comparison_sha256": "6f8583d0176cfa59969f85df47a139de11acc6e58fda8ca2328278bcb5c11a4f",
+    "learning_rate": 0.001,
+    "filters": 16,
+    "dropout": 0.25,
+    "selected_checkpoint_epoch": 14,
+    "selection_metric": "validation_macro_f1",
+    "selected_validation_macro_f1": 0.8330775632635403,
+    "selected_validation_accuracy": 0.835
+  },
+  "preprocessing": {
+    "image_size": [
+      112,
+      48
+    ],
+    "grayscale": true,
+    "normalize_mean": [
+      0.5
+    ],
+    "normalize_std": [
+      0.5
+    ]
+  },
+  "class_order": [
+    "display",
+    "handwriting",
+    "monospace",
+    "sans_serif",
+    "serif"
+  ],
+  "random_seed": 42,
+  "frozen_family_split": {
+    "path": "data/interim/google_fonts_final_family_split.csv",
+    "sha256": "f6cdd858449a4143993b051e9de83578cd423544135dbf6cc17f004359d2e17b"
+  },
+  "full_manifest": {
+    "path": "reports/dataset/full_manifest.csv",
+    "sha256": "93afae99ea6ac7dc65e8cf03a1e5743f9581c189f1feaf115ad7439fad58d69c"
+  },
+  "uncertainty_threshold": {
+    "method": "Choose the lowest candidate threshold with at least 90% accepted-prediction accuracy and at least 50% validation coverage.",
+    "source_split": "validation",
+    "candidate_thresholds": [
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75,
+      0.8,
+      0.85,
+      0.9
+    ],
+    "minimum_accepted_accuracy": 0.9,
+    "minimum_coverage": 0.5,
+    "selected_threshold": 0.6,
+    "validation_rows": 600,
+    "validation_accepted_predictions": 431,
+    "validation_uncertain_predictions": 169,
+    "validation_coverage": 0.7183333333333334,
+    "validation_accepted_accuracy": 0.9071925754060325,
+    "test_data_used": false,
+    "validation_predictions": "reports/cnn/best_cnn_validation_predictions.csv",
+    "validation_predictions_sha256": "02e84529bf176232b9cd9012632dbd27315041124368ce95a7c76325d83abee0",
+    "analysis_path": "reports/final_evaluation/validation_threshold_analysis.csv"
+  },
+  "test_access_before_freeze": {
+    "test_manifest_rows_loaded": 0,
+    "test_images_loaded": 0,
+    "test_predictions_made": 0,
+    "test_metrics_recorded": false
+  },
+  "expected_final_test": {
+    "images": 600,
+    "images_per_category": 120,
+    "families_per_category": 3,
+    "categories": [
+      "display",
+      "handwriting",
+      "monospace",
+      "sans_serif",
+      "serif"
+    ]
+  }
+}

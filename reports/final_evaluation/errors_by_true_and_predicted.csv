@@ -1,0 +1,10 @@
+category,predicted_category,errors
+sans_serif,monospace,24
+serif,monospace,20
+sans_serif,serif,17
+handwriting,display,9
+monospace,sans_serif,4
+serif,sans_serif,3
+display,serif,1
+handwriting,monospace,1
+monospace,serif,1

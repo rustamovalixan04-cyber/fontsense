@@ -25,6 +25,10 @@ test metrics.
 curves, confusion matrices, MLflow run identifiers, the HOG comparison, and
 the self-contained CNN experiment report. These are not final test metrics.
 
+`reports/final_evaluation/` contains the immutable pre-test freeze, the single
+final CNN test evaluation, per-class and uncertainty analysis, error examples,
+figures, and the self-contained final evaluation report.
+
 `reports/figures/` contains the EDA charts and sample grids. Every important
 chart has a short conclusion in `notebooks/03_eda.ipynb` and in the HTML
 report. It also contains the validation-only HOG confusion matrix.

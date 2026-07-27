@@ -1,0 +1,1017 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "FontSense final CNN evaluation",
+    "description": "Single held-out-family test evaluation of the selected CNN.",
+    "generatedAt": "2026-07-27T14:26:26Z",
+    "cards": [
+      {
+        "id": "macro_f1_card",
+        "description": "Primary metric across all five held-out categories.",
+        "dataset": "headline",
+        "sourceId": "headline",
+        "metrics": [
+          {
+            "label": "Test macro F1",
+            "field": "test_macro_f1",
+            "format": "percent"
+          }
+        ]
+      },
+      {
+        "id": "accuracy_card",
+        "description": "Correct predictions among 600 test images.",
+        "dataset": "headline",
+        "sourceId": "headline",
+        "metrics": [
+          {
+            "label": "Test accuracy",
+            "field": "test_accuracy",
+            "format": "percent"
+          }
+        ]
+      },
+      {
+        "id": "accepted_accuracy_card",
+        "description": "Accuracy after applying the validation-only threshold.",
+        "dataset": "headline",
+        "sourceId": "headline",
+        "metrics": [
+          {
+            "label": "Accepted accuracy",
+            "field": "accepted_accuracy",
+            "format": "percent"
+          }
+        ]
+      },
+      {
+        "id": "uncertain_card",
+        "description": "Predictions below the frozen 0.60 confidence threshold.",
+        "dataset": "headline",
+        "sourceId": "headline",
+        "metrics": [
+          {
+            "label": "Uncertain predictions",
+            "field": "uncertain_predictions",
+            "format": "number"
+          }
+        ]
+      }
+    ],
+    "charts": [
+      {
+        "id": "class_f1_chart",
+        "title": "Final test F1 by category",
+        "subtitle": "120 images from three held-out families per category.",
+        "type": "bar",
+        "intent": "comparison",
+        "dataset": "classification",
+        "sourceId": "classification",
+        "valueFormat": "percent",
+        "encodings": {
+          "x": {
+            "field": "class",
+            "type": "nominal",
+            "label": "Category"
+          },
+          "y": {
+            "field": "f1",
+            "type": "quantitative",
+            "label": "Test F1"
+          },
+          "tooltip": [
+            {
+              "field": "precision",
+              "type": "quantitative",
+              "label": "Precision"
+            },
+            {
+              "field": "recall",
+              "type": "quantitative",
+              "label": "Recall"
+            }
+          ]
+        }
+      },
+      {
+        "id": "confidence_chart",
+        "title": "Final test prediction confidence",
+        "subtitle": "Correct and incorrect predictions in 0.10-wide bins.",
+        "type": "bar",
+        "intent": "distribution",
+        "dataset": "confidence",
+        "sourceId": "confidence",
+        "encodings": {
+          "x": {
+            "field": "confidence_bin",
+            "type": "nominal",
+            "label": "Maximum probability"
+          },
+          "y": {
+            "field": "predictions",
+            "type": "quantitative",
+            "label": "Predictions"
+          },
+          "color": {
+            "field": "outcome",
+            "type": "nominal",
+            "label": "Outcome"
+          }
+        }
+      },
+      {
+        "id": "error_chart",
+        "title": "Final errors by true and predicted category",
+        "subtitle": "Observed directions among 80 incorrect predictions.",
+        "type": "bar",
+        "intent": "ranking",
+        "dataset": "errors",
+        "sourceId": "errors",
+        "encodings": {
+          "x": {
+            "field": "category",
+            "type": "nominal",
+            "label": "True category"
+          },
+          "y": {
+            "field": "errors",
+            "type": "quantitative",
+            "label": "Errors"
+          },
+          "color": {
+            "field": "predicted_category",
+            "type": "nominal",
+            "label": "Predicted category"
+          }
+        }
+      }
+    ],
+    "tables": [
+      {
+        "id": "confusion_table",
+        "title": "Final test confusion matrix cells",
+        "subtitle": "All 25 true-to-predicted category counts.",
+        "dataset": "confusion",
+        "sourceId": "confusion",
+        "defaultSort": {
+          "field": "true_category",
+          "direction": "asc"
+        },
+        "columns": [
+          {
+            "field": "true_category",
+            "label": "True class",
+            "type": "text"
+          },
+          {
+            "field": "predicted_category",
+            "label": "Predicted class",
+            "type": "text"
+          },
+          {
+            "field": "test_images",
+            "label": "Images",
+            "format": "number"
+          }
+        ]
+      },
+      {
+        "id": "classification_table",
+        "title": "Final per-class test metrics",
+        "subtitle": "Exact precision, recall, F1, and support.",
+        "dataset": "classification",
+        "sourceId": "classification",
+        "defaultSort": {
+          "field": "f1",
+          "direction": "desc"
+        },
+        "columns": [
+          {
+            "field": "class",
+            "label": "Class",
+            "type": "text"
+          },
+          {
+            "field": "precision",
+            "label": "Precision",
+            "format": "percent"
+          },
+          {
+            "field": "recall",
+            "label": "Recall",
+            "format": "percent"
+          },
+          {
+            "field": "f1",
+            "label": "F1",
+            "format": "percent"
+          },
+          {
+            "field": "support",
+            "label": "Images",
+            "format": "number"
+          }
+        ]
+      },
+      {
+        "id": "uncertainty_table",
+        "title": "Uncertainty behavior by true category",
+        "subtitle": "Accepted and uncertain counts at threshold 0.60.",
+        "dataset": "uncertainty",
+        "sourceId": "uncertainty",
+        "defaultSort": {
+          "field": "accepted_accuracy",
+          "direction": "desc"
+        },
+        "columns": [
+          {
+            "field": "category",
+            "label": "Category",
+            "type": "text"
+          },
+          {
+            "field": "accepted_predictions",
+            "label": "Accepted",
+            "format": "number"
+          },
+          {
+            "field": "uncertain_predictions",
+            "label": "Uncertain",
+            "format": "number"
+          },
+          {
+            "field": "coverage",
+            "label": "Coverage",
+            "format": "percent"
+          },
+          {
+            "field": "accepted_accuracy",
+            "label": "Accepted accuracy",
+            "format": "percent"
+          }
+        ]
+      },
+      {
+        "id": "errors_table",
+        "title": "Final error directions",
+        "subtitle": "Every observed true-to-predicted mistake pair.",
+        "dataset": "errors",
+        "sourceId": "errors",
+        "defaultSort": {
+          "field": "errors",
+          "direction": "desc"
+        },
+        "columns": [
+          {
+            "field": "category",
+            "label": "True class",
+            "type": "text"
+          },
+          {
+            "field": "predicted_category",
+            "label": "Predicted class",
+            "type": "text"
+          },
+          {
+            "field": "errors",
+            "label": "Errors",
+            "format": "number"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "headline",
+        "label": "Final test headline metrics",
+        "path": "reports/final_evaluation/final_test_metrics.json",
+        "query": {
+          "engine": "sqlite",
+          "language": "sql",
+          "sql": "SELECT test_macro_f1, test_accuracy, correct_predictions,\n               incorrect_predictions, accepted_accuracy,\n               accepted_predictions, uncertain_predictions,\n               confidence_threshold, inference_ms_per_image,\n               model_size_bytes\n        FROM final_headline",
+          "description": "Reads the immutable final test metrics and uncertainty summary.",
+          "executed_at": "2026-07-27T14:26:26Z",
+          "tables_used": [
+            "final_headline"
+          ]
+        }
+      },
+      {
+        "id": "classification",
+        "label": "Final per-class classification metrics",
+        "path": "reports/final_evaluation/final_classification_report.csv",
+        "query": {
+          "engine": "sqlite",
+          "language": "sql",
+          "sql": "SELECT class, precision, recall, f1, support\n        FROM final_classification\n        ORDER BY f1 DESC, class",
+          "description": "Reads test precision, recall, F1, and support by category.",
+          "executed_at": "2026-07-27T14:26:26Z",
+          "tables_used": [
+            "final_classification"
+          ]
+        }
+      },
+      {
+        "id": "confusion",
+        "label": "Final test confusion matrix",
+        "path": "reports/final_evaluation/final_confusion_matrix.csv",
+        "query": {
+          "engine": "sqlite",
+          "language": "sql",
+          "sql": "SELECT true_category, predicted_category, test_images\n        FROM final_confusion\n        ORDER BY true_category, predicted_category",
+          "description": "Reads every true and predicted category cell.",
+          "executed_at": "2026-07-27T14:26:26Z",
+          "tables_used": [
+            "final_confusion"
+          ]
+        }
+      },
+      {
+        "id": "confidence",
+        "label": "Final confidence distribution",
+        "path": "reports/final_evaluation/confidence_distribution.csv",
+        "query": {
+          "engine": "sqlite",
+          "language": "sql",
+          "sql": "SELECT confidence_bin, bin_lower, bin_upper, outcome, predictions\n        FROM final_confidence\n        ORDER BY bin_lower, outcome",
+          "description": "Reads binned correct and incorrect prediction confidence.",
+          "executed_at": "2026-07-27T14:26:26Z",
+          "tables_used": [
+            "final_confidence"
+          ]
+        }
+      },
+      {
+        "id": "uncertainty",
+        "label": "Final uncertainty analysis by class",
+        "path": "reports/final_evaluation/uncertainty_by_class.csv",
+        "query": {
+          "engine": "sqlite",
+          "language": "sql",
+          "sql": "SELECT category, test_images, accepted_predictions,\n               uncertain_predictions, coverage, accepted_correct,\n               accepted_accuracy\n        FROM final_uncertainty\n        ORDER BY category",
+          "description": "Reads accepted coverage and accepted accuracy by category.",
+          "executed_at": "2026-07-27T14:26:26Z",
+          "tables_used": [
+            "final_uncertainty"
+          ]
+        }
+      },
+      {
+        "id": "errors",
+        "label": "Final errors by true and predicted category",
+        "path": "reports/final_evaluation/errors_by_true_and_predicted.csv",
+        "query": {
+          "engine": "sqlite",
+          "language": "sql",
+          "sql": "SELECT category, predicted_category, errors\n        FROM final_errors\n        ORDER BY errors DESC, category, predicted_category",
+          "description": "Reads the count of each observed error direction.",
+          "executed_at": "2026-07-27T14:26:26Z",
+          "tables_used": [
+            "final_errors"
+          ]
+        }
+      }
+    ],
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "body": "# FontSense final CNN evaluation"
+      },
+      {
+        "id": "technical_summary",
+        "type": "markdown",
+        "sourceId": "headline",
+        "body": "## Final held-out result\n\nThe selected CNN achieved **0.865 macro F1** and **86.7% accuracy** on 600 images from 15 previously untouched font families. It made 520 correct and 80 incorrect predictions. This is the single final test evaluation; the model and threshold were not changed afterward."
+      },
+      {
+        "id": "metrics",
+        "type": "metric-strip",
+        "cardIds": [
+          "macro_f1_card",
+          "accuracy_card",
+          "accepted_accuracy_card",
+          "uncertain_card"
+        ]
+      },
+      {
+        "id": "class_findings",
+        "type": "markdown",
+        "sourceId": "classification",
+        "body": "## Performance differs by font category\n\n**Display** was strongest at 0.960 F1. **Sans Serif** was weakest at 0.767 F1. Equal support means these differences are not caused by class-count imbalance."
+      },
+      {
+        "id": "class_chart_block",
+        "type": "chart",
+        "chartId": "class_f1_chart"
+      },
+      {
+        "id": "class_note",
+        "type": "markdown",
+        "sourceId": "classification",
+        "body": "Display and handwriting generalized strongly. Sans serif recall was much lower, showing that many true sans-serif examples were assigned to visually similar categories."
+      },
+      {
+        "id": "class_table_block",
+        "type": "table",
+        "tableId": "classification_table"
+      },
+      {
+        "id": "confusion_findings",
+        "type": "markdown",
+        "sourceId": "errors",
+        "body": "## Most mistakes involve sans serif, serif, and monospace\n\nThe largest error direction was **sans serif → monospace** (24 images). These categories share straight strokes and can look similar in short crops."
+      },
+      {
+        "id": "confusion_chart_block",
+        "type": "table",
+        "tableId": "confusion_table"
+      },
+      {
+        "id": "confusion_note",
+        "type": "markdown",
+        "sourceId": "confusion",
+        "body": "The diagonal contains correct predictions. Off-diagonal cells show exactly where the model confused one true category for another."
+      },
+      {
+        "id": "error_chart_block",
+        "type": "chart",
+        "chartId": "error_chart"
+      },
+      {
+        "id": "error_note",
+        "type": "markdown",
+        "sourceId": "errors",
+        "body": "The ranked error view makes the main failure directions easier to compare than the complete matrix."
+      },
+      {
+        "id": "errors_table_block",
+        "type": "table",
+        "tableId": "errors_table"
+      },
+      {
+        "id": "uncertainty_findings",
+        "type": "markdown",
+        "sourceId": "headline",
+        "body": "## The validation-only threshold improves accepted accuracy\n\nThreshold 0.60 marked 146 predictions uncertain. The remaining 454 accepted predictions were 92.5% accurate. This threshold was fixed using validation data before the test split was loaded."
+      },
+      {
+        "id": "confidence_chart_block",
+        "type": "chart",
+        "chartId": "confidence_chart"
+      },
+      {
+        "id": "confidence_note",
+        "type": "markdown",
+        "sourceId": "confidence",
+        "body": "Incorrect predictions are concentrated at lower confidence, but some errors remain highly confident. The warning therefore reduces risk without guaranteeing that every accepted result is correct."
+      },
+      {
+        "id": "uncertainty_table_block",
+        "type": "table",
+        "tableId": "uncertainty_table"
+      },
+      {
+        "id": "scope",
+        "type": "markdown",
+        "body": "## Scope and metric definitions\n\n- **Macro F1** averages F1 equally across the five categories.\n- **Accuracy** is correct predictions divided by 600.\n- **Accepted accuracy** uses predictions with maximum probability at least 0.60.\n- The test cohort contains three unseen font families per category and 40 images per family."
+      },
+      {
+        "id": "methodology",
+        "type": "markdown",
+        "body": "## Frozen evaluation method\n\nThe epoch-14 Reference small CNN checkpoint, class order, seed, grayscale 112×48 preprocessing, manifest hash, and family-split hash were recorded before test access. The threshold was chosen from validation predictions only. The test command had no training or threshold-tuning option and is guarded against reruns."
+      },
+      {
+        "id": "limitations",
+        "type": "markdown",
+        "body": "## Limitations and remaining uncertainty\n\n- Test data are synthetic rendered crops, not real screenshots.\n- Only three held-out families represent each category.\n- Sans serif remains weak, especially after confidence filtering.\n- Some wrong predictions are confident, so uncertainty warnings are not a correctness guarantee.\n- This single test result should not be used for further model selection or tuning."
+      },
+      {
+        "id": "next_steps",
+        "type": "markdown",
+        "body": "## Recommended next step\n\nKeep this checkpoint and threshold fixed. Continue with post-evaluation error analysis and then update the inference demo to use the checkpoint’s exact 112×48 preprocessing and the frozen 0.60 warning threshold."
+      },
+      {
+        "id": "questions",
+        "type": "markdown",
+        "body": "## Further questions\n\nHow well does the frozen model handle real screenshots, cropping noise, mixed backgrounds, and font families outside this Google Fonts sample?"
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-07-27T14:26:26Z",
+    "status": "ready",
+    "datasets": {
+      "headline": [
+        {
+          "test_macro_f1": 0.8653303839,
+          "test_accuracy": 0.8666666667,
+          "correct_predictions": 520,
+          "incorrect_predictions": 80,
+          "accepted_accuracy": 0.9251101322,
+          "accepted_predictions": 454,
+          "uncertain_predictions": 146,
+          "confidence_threshold": 0.6,
+          "inference_ms_per_image": 7.6593090016,
+          "model_size_bytes": 255505
+        }
+      ],
+      "classification": [
+        {
+          "class": "display",
+          "precision": 0.9296875,
+          "recall": 0.9916666667,
+          "f1": 0.9596774194,
+          "support": 120
+        },
+        {
+          "class": "handwriting",
+          "precision": 1.0,
+          "recall": 0.9166666667,
+          "f1": 0.9565217391,
+          "support": 120
+        },
+        {
+          "class": "serif",
+          "precision": 0.8362068966,
+          "recall": 0.8083333333,
+          "f1": 0.8220338983,
+          "support": 120
+        },
+        {
+          "class": "monospace",
+          "precision": 0.71875,
+          "recall": 0.9583333333,
+          "f1": 0.8214285714,
+          "support": 120
+        },
+        {
+          "class": "sans_serif",
+          "precision": 0.9186046512,
+          "recall": 0.6583333333,
+          "f1": 0.7669902913,
+          "support": 120
+        }
+      ],
+      "confusion": [
+        {
+          "true_category": "display",
+          "predicted_category": "display",
+          "test_images": 119
+        },
+        {
+          "true_category": "display",
+          "predicted_category": "handwriting",
+          "test_images": 0
+        },
+        {
+          "true_category": "display",
+          "predicted_category": "monospace",
+          "test_images": 0
+        },
+        {
+          "true_category": "display",
+          "predicted_category": "sans_serif",
+          "test_images": 0
+        },
+        {
+          "true_category": "display",
+          "predicted_category": "serif",
+          "test_images": 1
+        },
+        {
+          "true_category": "handwriting",
+          "predicted_category": "display",
+          "test_images": 9
+        },
+        {
+          "true_category": "handwriting",
+          "predicted_category": "handwriting",
+          "test_images": 110
+        },
+        {
+          "true_category": "handwriting",
+          "predicted_category": "monospace",
+          "test_images": 1
+        },
+        {
+          "true_category": "handwriting",
+          "predicted_category": "sans_serif",
+          "test_images": 0
+        },
+        {
+          "true_category": "handwriting",
+          "predicted_category": "serif",
+          "test_images": 0
+        },
+        {
+          "true_category": "monospace",
+          "predicted_category": "display",
+          "test_images": 0
+        },
+        {
+          "true_category": "monospace",
+          "predicted_category": "handwriting",
+          "test_images": 0
+        },
+        {
+          "true_category": "monospace",
+          "predicted_category": "monospace",
+          "test_images": 115
+        },
+        {
+          "true_category": "monospace",
+          "predicted_category": "sans_serif",
+          "test_images": 4
+        },
+        {
+          "true_category": "monospace",
+          "predicted_category": "serif",
+          "test_images": 1
+        },
+        {
+          "true_category": "sans_serif",
+          "predicted_category": "display",
+          "test_images": 0
+        },
+        {
+          "true_category": "sans_serif",
+          "predicted_category": "handwriting",
+          "test_images": 0
+        },
+        {
+          "true_category": "sans_serif",
+          "predicted_category": "monospace",
+          "test_images": 24
+        },
+        {
+          "true_category": "sans_serif",
+          "predicted_category": "sans_serif",
+          "test_images": 79
+        },
+        {
+          "true_category": "sans_serif",
+          "predicted_category": "serif",
+          "test_images": 17
+        },
+        {
+          "true_category": "serif",
+          "predicted_category": "display",
+          "test_images": 0
+        },
+        {
+          "true_category": "serif",
+          "predicted_category": "handwriting",
+          "test_images": 0
+        },
+        {
+          "true_category": "serif",
+          "predicted_category": "monospace",
+          "test_images": 20
+        },
+        {
+          "true_category": "serif",
+          "predicted_category": "sans_serif",
+          "test_images": 3
+        },
+        {
+          "true_category": "serif",
+          "predicted_category": "serif",
+          "test_images": 97
+        }
+      ],
+      "confidence": [
+        {
+          "confidence_bin": "0.0–0.1",
+          "bin_lower": 0.0,
+          "bin_upper": 0.1,
+          "outcome": "Correct",
+          "predictions": 0
+        },
+        {
+          "confidence_bin": "0.0–0.1",
+          "bin_lower": 0.0,
+          "bin_upper": 0.1,
+          "outcome": "Incorrect",
+          "predictions": 0
+        },
+        {
+          "confidence_bin": "0.1–0.2",
+          "bin_lower": 0.1,
+          "bin_upper": 0.2,
+          "outcome": "Correct",
+          "predictions": 0
+        },
+        {
+          "confidence_bin": "0.1–0.2",
+          "bin_lower": 0.1,
+          "bin_upper": 0.2,
+          "outcome": "Incorrect",
+          "predictions": 0
+        },
+        {
+          "confidence_bin": "0.2–0.3",
+          "bin_lower": 0.2,
+          "bin_upper": 0.3,
+          "outcome": "Correct",
+          "predictions": 0
+        },
+        {
+          "confidence_bin": "0.2–0.3",
+          "bin_lower": 0.2,
+          "bin_upper": 0.3,
+          "outcome": "Incorrect",
+          "predictions": 0
+        },
+        {
+          "confidence_bin": "0.3–0.4",
+          "bin_lower": 0.3,
+          "bin_upper": 0.4,
+          "outcome": "Correct",
+          "predictions": 10
+        },
+        {
+          "confidence_bin": "0.3–0.4",
+          "bin_lower": 0.3,
+          "bin_upper": 0.4,
+          "outcome": "Incorrect",
+          "predictions": 9
+        },
+        {
+          "confidence_bin": "0.4–0.5",
+          "bin_lower": 0.4,
+          "bin_upper": 0.5,
+          "outcome": "Correct",
+          "predictions": 40
+        },
+        {
+          "confidence_bin": "0.4–0.5",
+          "bin_lower": 0.4,
+          "bin_upper": 0.5,
+          "outcome": "Incorrect",
+          "predictions": 18
+        },
+        {
+          "confidence_bin": "0.5–0.6",
+          "bin_lower": 0.5,
+          "bin_upper": 0.6,
+          "outcome": "Correct",
+          "predictions": 50
+        },
+        {
+          "confidence_bin": "0.5–0.6",
+          "bin_lower": 0.5,
+          "bin_upper": 0.6,
+          "outcome": "Incorrect",
+          "predictions": 19
+        },
+        {
+          "confidence_bin": "0.6–0.7",
+          "bin_lower": 0.6,
+          "bin_upper": 0.7,
+          "outcome": "Correct",
+          "predictions": 59
+        },
+        {
+          "confidence_bin": "0.6–0.7",
+          "bin_lower": 0.6,
+          "bin_upper": 0.7,
+          "outcome": "Incorrect",
+          "predictions": 17
+        },
+        {
+          "confidence_bin": "0.7–0.8",
+          "bin_lower": 0.7,
+          "bin_upper": 0.8,
+          "outcome": "Correct",
+          "predictions": 43
+        },
+        {
+          "confidence_bin": "0.7–0.8",
+          "bin_lower": 0.7,
+          "bin_upper": 0.8,
+          "outcome": "Incorrect",
+          "predictions": 7
+        },
+        {
+          "confidence_bin": "0.8–0.9",
+          "bin_lower": 0.8,
+          "bin_upper": 0.9,
+          "outcome": "Correct",
+          "predictions": 66
+        },
+        {
+          "confidence_bin": "0.8–0.9",
+          "bin_lower": 0.8,
+          "bin_upper": 0.9,
+          "outcome": "Incorrect",
+          "predictions": 9
+        },
+        {
+          "confidence_bin": "0.9–1.0",
+          "bin_lower": 0.9,
+          "bin_upper": 1.0,
+          "outcome": "Correct",
+          "predictions": 252
+        },
+        {
+          "confidence_bin": "0.9–1.0",
+          "bin_lower": 0.9,
+          "bin_upper": 1.0,
+          "outcome": "Incorrect",
+          "predictions": 1
+        }
+      ],
+      "uncertainty": [
+        {
+          "category": "display",
+          "test_images": 120,
+          "accepted_predictions": 117,
+          "uncertain_predictions": 3,
+          "coverage": 0.975,
+          "accepted_correct": 116,
+          "accepted_accuracy": 0.9914529915
+        },
+        {
+          "category": "handwriting",
+          "test_images": 120,
+          "accepted_predictions": 108,
+          "uncertain_predictions": 12,
+          "coverage": 0.9,
+          "accepted_correct": 102,
+          "accepted_accuracy": 0.9444444444
+        },
+        {
+          "category": "monospace",
+          "test_images": 120,
+          "accepted_predictions": 107,
+          "uncertain_predictions": 13,
+          "coverage": 0.8916666667,
+          "accepted_correct": 106,
+          "accepted_accuracy": 0.9906542056
+        },
+        {
+          "category": "sans_serif",
+          "test_images": 120,
+          "accepted_predictions": 42,
+          "uncertain_predictions": 78,
+          "coverage": 0.35,
+          "accepted_correct": 26,
+          "accepted_accuracy": 0.619047619
+        },
+        {
+          "category": "serif",
+          "test_images": 120,
+          "accepted_predictions": 80,
+          "uncertain_predictions": 40,
+          "coverage": 0.6666666667,
+          "accepted_correct": 70,
+          "accepted_accuracy": 0.875
+        }
+      ],
+      "errors": [
+        {
+          "category": "sans_serif",
+          "predicted_category": "monospace",
+          "errors": 24
+        },
+        {
+          "category": "serif",
+          "predicted_category": "monospace",
+          "errors": 20
+        },
+        {
+          "category": "sans_serif",
+          "predicted_category": "serif",
+          "errors": 17
+        },
+        {
+          "category": "handwriting",
+          "predicted_category": "display",
+          "errors": 9
+        },
+        {
+          "category": "monospace",
+          "predicted_category": "sans_serif",
+          "errors": 4
+        },
+        {
+          "category": "serif",
+          "predicted_category": "sans_serif",
+          "errors": 3
+        },
+        {
+          "category": "display",
+          "predicted_category": "serif",
+          "errors": 1
+        },
+        {
+          "category": "handwriting",
+          "predicted_category": "monospace",
+          "errors": 1
+        },
+        {
+          "category": "monospace",
+          "predicted_category": "serif",
+          "errors": 1
+        }
+      ]
+    },
+    "accessIssues": []
+  },
+  "sources": [
+    {
+      "id": "headline",
+      "label": "Final test headline metrics",
+      "path": "reports/final_evaluation/final_test_metrics.json",
+      "query": {
+        "engine": "sqlite",
+        "language": "sql",
+        "sql": "SELECT test_macro_f1, test_accuracy, correct_predictions,\n               incorrect_predictions, accepted_accuracy,\n               accepted_predictions, uncertain_predictions,\n               confidence_threshold, inference_ms_per_image,\n               model_size_bytes\n        FROM final_headline",
+        "description": "Reads the immutable final test metrics and uncertainty summary.",
+        "executed_at": "2026-07-27T14:26:26Z",
+        "tables_used": [
+          "final_headline"
+        ]
+      }
+    },
+    {
+      "id": "classification",
+      "label": "Final per-class classification metrics",
+      "path": "reports/final_evaluation/final_classification_report.csv",
+      "query": {
+        "engine": "sqlite",
+        "language": "sql",
+        "sql": "SELECT class, precision, recall, f1, support\n        FROM final_classification\n        ORDER BY f1 DESC, class",
+        "description": "Reads test precision, recall, F1, and support by category.",
+        "executed_at": "2026-07-27T14:26:26Z",
+        "tables_used": [
+          "final_classification"
+        ]
+      }
+    },
+    {
+      "id": "confusion",
+      "label": "Final test confusion matrix",
+      "path": "reports/final_evaluation/final_confusion_matrix.csv",
+      "query": {
+        "engine": "sqlite",
+        "language": "sql",
+        "sql": "SELECT true_category, predicted_category, test_images\n        FROM final_confusion\n        ORDER BY true_category, predicted_category",
+        "description": "Reads every true and predicted category cell.",
+        "executed_at": "2026-07-27T14:26:26Z",
+        "tables_used": [
+          "final_confusion"
+        ]
+      }
+    },
+    {
+      "id": "confidence",
+      "label": "Final confidence distribution",
+      "path": "reports/final_evaluation/confidence_distribution.csv",
+      "query": {
+        "engine": "sqlite",
+        "language": "sql",
+        "sql": "SELECT confidence_bin, bin_lower, bin_upper, outcome, predictions\n        FROM final_confidence\n        ORDER BY bin_lower, outcome",
+        "description": "Reads binned correct and incorrect prediction confidence.",
+        "executed_at": "2026-07-27T14:26:26Z",
+        "tables_used": [
+          "final_confidence"
+        ]
+      }
+    },
+    {
+      "id": "uncertainty",
+      "label": "Final uncertainty analysis by class",
+      "path": "reports/final_evaluation/uncertainty_by_class.csv",
+      "query": {
+        "engine": "sqlite",
+        "language": "sql",
+        "sql": "SELECT category, test_images, accepted_predictions,\n               uncertain_predictions, coverage, accepted_correct,\n               accepted_accuracy\n        FROM final_uncertainty\n        ORDER BY category",
+        "description": "Reads accepted coverage and accepted accuracy by category.",
+        "executed_at": "2026-07-27T14:26:26Z",
+        "tables_used": [
+          "final_uncertainty"
+        ]
+      }
+    },
+    {
+      "id": "errors",
+      "label": "Final errors by true and predicted category",
+      "path": "reports/final_evaluation/errors_by_true_and_predicted.csv",
+      "query": {
+        "engine": "sqlite",
+        "language": "sql",
+        "sql": "SELECT category, predicted_category, errors\n        FROM final_errors\n        ORDER BY errors DESC, category, predicted_category",
+        "description": "Reads the count of each observed error direction.",
+        "executed_at": "2026-07-27T14:26:26Z",
+        "tables_used": [
+          "final_errors"
+        ]
+      }
+    }
+  ]
+}

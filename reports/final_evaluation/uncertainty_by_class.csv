@@ -1,0 +1,6 @@
+category,test_images,accepted_predictions,uncertain_predictions,coverage,accepted_correct,accepted_accuracy
+display,120,117,3,0.975,116,0.9914529914529915
+handwriting,120,108,12,0.9,102,0.9444444444444444
+monospace,120,107,13,0.8916666666666667,106,0.9906542056074766
+sans_serif,120,42,78,0.35,26,0.6190476190476191
+serif,120,80,40,0.6666666666666666,70,0.875

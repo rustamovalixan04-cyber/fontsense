@@ -1,0 +1,13 @@
+{
+  "status": "completed",
+  "started_at_utc": "2026-07-27T14:23:54.486268+00:00",
+  "purpose": "Single final evaluation on the frozen test families.",
+  "freeze_record": "reports/final_evaluation/pre_test_freeze.json",
+  "freeze_record_sha256": "aebbb24b0c5f05fa8587af8f26f714289c144ba33a6885b802f058ba90d92254",
+  "test_images_expected": 600,
+  "rerun_allowed": false,
+  "completed_at_utc": "2026-07-27T14:24:00.163237+00:00",
+  "test_images_evaluated": 600,
+  "metrics": "reports/final_evaluation/final_test_metrics.json",
+  "metrics_sha256": "0e991fb614258b0c38caf4474c93a6ea30dda6d5117feebb7dcaa5452587d6f5"
+}

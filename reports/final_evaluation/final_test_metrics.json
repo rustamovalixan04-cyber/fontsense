@@ -1,0 +1,153 @@
+{
+  "status": "completed",
+  "purpose": "Single final CNN evaluation on previously untouched test families; no post-test tuning was performed.",
+  "completed_at_utc": "2026-07-27T14:24:00.163237+00:00",
+  "selected_model": {
+    "name": "Reference small CNN",
+    "checkpoint": "artifacts/cnn/cnn_model.pt",
+    "checkpoint_sha256": "c98cf0d1a02503a02b8f8242fec462ea2a0c455380238ec54fc4f62fdb13bb2f",
+    "metadata": "artifacts/cnn/cnn_metadata.json",
+    "metadata_sha256": "ebbda237b88b4f753fd573c66dd8f678e4b1a55643e3901b4d34387accc98f95",
+    "comparison": "reports/cnn/cnn_experiment_comparison.csv",
+    "comparison_sha256": "6f8583d0176cfa59969f85df47a139de11acc6e58fda8ca2328278bcb5c11a4f",
+    "learning_rate": 0.001,
+    "filters": 16,
+    "dropout": 0.25,
+    "selected_checkpoint_epoch": 14,
+    "selection_metric": "validation_macro_f1",
+    "selected_validation_macro_f1": 0.8330775632635403,
+    "selected_validation_accuracy": 0.835
+  },
+  "preprocessing": {
+    "image_size": [
+      112,
+      48
+    ],
+    "grayscale": true,
+    "normalize_mean": [
+      0.5
+    ],
+    "normalize_std": [
+      0.5
+    ]
+  },
+  "class_order": [
+    "display",
+    "handwriting",
+    "monospace",
+    "sans_serif",
+    "serif"
+  ],
+  "random_seed": 42,
+  "uncertainty_threshold": {
+    "value": 0.6,
+    "selected_using": "validation only",
+    "selection_rule": "Choose the lowest candidate threshold with at least 90% accepted-prediction accuracy and at least 50% validation coverage.",
+    "test_results_used_for_selection": false
+  },
+  "test_results": {
+    "images": 600,
+    "families": 15,
+    "images_per_category": {
+      "display": 120,
+      "handwriting": 120,
+      "monospace": 120,
+      "sans_serif": 120,
+      "serif": 120
+    },
+    "families_per_category": {
+      "display": 3,
+      "handwriting": 3,
+      "monospace": 3,
+      "sans_serif": 3,
+      "serif": 3
+    },
+    "macro_f1": 0.8653303838962131,
+    "accuracy": 0.8666666666666667,
+    "correct_predictions": 520,
+    "incorrect_predictions": 80,
+    "inference_seconds_total": 4.6222787000006065,
+    "inference_ms_per_image": 7.659309001561875,
+    "model_size_bytes": 255505
+  },
+  "uncertainty_results": {
+    "accepted_predictions": 454,
+    "uncertain_predictions": 146,
+    "coverage": 0.7566666666666667,
+    "accepted_accuracy": 0.9251101321585903,
+    "confident_mistakes": 34,
+    "low_confidence_mistakes": 46,
+    "confidence_distribution": {
+      "all": {
+        "count": 600,
+        "mean": 0.7788938550154368,
+        "median": 0.8392853736877441,
+        "minimum": 0.3333132266998291,
+        "q25": 0.6033182144165039,
+        "q75": 0.9687903225421906,
+        "maximum": 0.9999995231628418
+      },
+      "correct": {
+        "count": 520,
+        "mean": 0.8091377667509593,
+        "median": 0.8915746212005615,
+        "minimum": 0.3333132266998291,
+        "q25": 0.6445659846067429,
+        "q75": 0.9772740751504898,
+        "maximum": 0.9999995231628418
+      },
+      "incorrect": {
+        "count": 80,
+        "mean": 0.5823084287345409,
+        "median": 0.5561477541923523,
+        "minimum": 0.3488195538520813,
+        "q25": 0.4728916734457016,
+        "q75": 0.66755810379982,
+        "maximum": 0.9481140971183777
+      }
+    }
+  },
+  "checks": {
+    "exactly_600_test_images": true,
+    "exactly_120_images_per_category": true,
+    "exactly_3_test_families_per_category": true,
+    "family_overlap_count": 0,
+    "training_splits": [
+      "train"
+    ],
+    "selection_split": "validation",
+    "test_used_for_training": false,
+    "test_used_for_validation": false,
+    "test_used_for_model_selection": false,
+    "test_used_for_early_stopping": false,
+    "test_used_for_threshold_selection": false,
+    "checkpoint_loaded": true,
+    "preprocessing_loaded": true,
+    "checkpoint_hash_unchanged": true,
+    "frozen_split_hash_unchanged": true,
+    "manifest_hash_unchanged": true,
+    "post_test_retraining_or_tuning": false
+  },
+  "environment": {
+    "python": "3.12.13",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "torch": "2.13.0+cpu",
+    "device": "cpu"
+  },
+  "outputs": {
+    "predictions": "reports/final_evaluation/final_test_predictions.csv",
+    "classification_report": "reports/final_evaluation/final_classification_report.csv",
+    "confusion_matrix_csv": "reports/final_evaluation/final_confusion_matrix.csv",
+    "confidence_distribution": "reports/final_evaluation/confidence_distribution.csv",
+    "uncertainty_by_class": "reports/final_evaluation/uncertainty_by_class.csv",
+    "errors_by_true_and_predicted": "reports/final_evaluation/errors_by_true_and_predicted.csv",
+    "confident_mistakes": "reports/final_evaluation/confident_mistakes.csv",
+    "low_confidence_mistakes": "reports/final_evaluation/low_confidence_mistakes.csv",
+    "representative_error_examples": "reports/final_evaluation/representative_error_examples.csv",
+    "figures": [
+      "reports/final_evaluation/figures/final_test_confusion_matrix.png",
+      "reports/final_evaluation/figures/final_test_confidence_distribution.png",
+      "reports/final_evaluation/figures/final_test_uncertainty_by_class.png"
+    ]
+  }
+}

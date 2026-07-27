@@ -1,0 +1,55 @@
+[
+  {
+    "section": "Class performance",
+    "question": "Which categories generalized best and worst?",
+    "chart": "bar",
+    "fields": [
+      "class",
+      "f1",
+      "precision",
+      "recall"
+    ],
+    "supported_claim": "display is strongest and sans_serif is weakest.",
+    "palette_policy": "single-root blue",
+    "artifact": "reports/final_evaluation/final_evaluation_report.html"
+  },
+  {
+    "section": "Confusion matrix",
+    "question": "Where did true and predicted categories differ?",
+    "chart": "static matrix",
+    "fields": [
+      "true_category",
+      "predicted_category",
+      "test_images"
+    ],
+    "supported_claim": "Shows every final test confusion cell.",
+    "palette_policy": "single-root blue",
+    "artifact": "reports/final_evaluation/figures/final_test_confusion_matrix.png"
+  },
+  {
+    "section": "Confidence distribution",
+    "question": "How does confidence differ for correct and incorrect results?",
+    "chart": "stacked bar",
+    "fields": [
+      "confidence_bin",
+      "outcome",
+      "predictions"
+    ],
+    "supported_claim": "Errors are lower-confidence overall, with confident exceptions.",
+    "palette_policy": "hard two-root cap",
+    "artifact": "reports/final_evaluation/final_evaluation_report.html"
+  },
+  {
+    "section": "Error directions",
+    "question": "Which mistake directions occurred most often?",
+    "chart": "grouped bar",
+    "fields": [
+      "category",
+      "predicted_category",
+      "errors"
+    ],
+    "supported_claim": "sans_serif to monospace is the top error.",
+    "palette_policy": "relaxed multi-category",
+    "artifact": "reports/final_evaluation/final_evaluation_report.html"
+  }
+]
