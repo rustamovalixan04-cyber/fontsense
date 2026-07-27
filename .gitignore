@@ -30,6 +30,8 @@ data/processed/*
 data/interim/*.csv
 !data/interim/google_fonts_manifest.csv
 !data/interim/google_fonts_audit_summary.csv
+!data/interim/google_fonts_final_family_split.csv
+!data/interim/google_fonts_balancing_exclusions.csv
 
 # Large/replaceable model artifacts
 artifacts/*_final.joblib

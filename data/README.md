@@ -16,6 +16,18 @@ The audit writes `data/interim/google_fonts_manifest.csv` and a small category
 summary. Downloaded font files remain ignored by Git. This audit does not
 generate the image dataset or train a model.
 
+## Final family split
+
+`python -m fontsense.split` selects 18 usable families per category with random
+seed 42, then assigns 12 to training, 3 to validation, and 3 to test. It writes:
+
+- `data/interim/google_fonts_final_family_split.csv`
+- `data/interim/google_fonts_balancing_exclusions.csv`
+
+This split is created before image generation. A font family must never move
+between splits, and the test families must remain untouched until final
+evaluation.
+
 ## Unit of observation
 
 One record is one raster image containing a short Latin-script word or text line rendered with a single font family. The target is one of five broad categories.
