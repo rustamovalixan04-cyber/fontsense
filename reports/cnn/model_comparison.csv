@@ -1,0 +1,4 @@
+model,model_family,validation_macro_f1,validation_accuracy,inference_ms_per_image,model_size_bytes,selection_basis
+Majority-class baseline,majority,0.06666666666666667,0.2,0.0001041664897153,418,sanity check only
+Best HOG + Logistic Regression,hog,0.6932617332254356,0.695,2.2354986666080854,35700,best HOG validation macro F1
+Best small CNN,cnn,0.8330775632635403,0.835,2.1007721667410806,255505,best CNN validation macro F1

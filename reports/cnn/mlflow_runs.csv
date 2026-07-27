@@ -1,0 +1,4 @@
+run_order,run_name,mlflow_run_id,mlflow_artifact_uri,validation_macro_f1,validation_accuracy
+1,Reference small CNN,b92dcc5071b54adc9ae72d499f79dced,mlruns/4/b92dcc5071b54adc9ae72d499f79dced/artifacts,0.8330775632635403,0.835
+2,Lower learning rate,7d8870cecae346e39703e1dfb7feaa6c,mlruns/4/7d8870cecae346e39703e1dfb7feaa6c/artifacts,0.7575970168430907,0.7616666666666667
+3,Wider convolution filters,4906f9dd531748d2b101af76823f9af9,mlruns/4/4906f9dd531748d2b101af76823f9af9/artifacts,0.757870963580714,0.775

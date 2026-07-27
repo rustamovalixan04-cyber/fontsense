@@ -337,3 +337,80 @@ def test_training_stops_if_frozen_split_hash_changed(tmp_path: Path):
             enable_mlflow=False,
             device_name="cpu",
         )
+
+
+def test_saved_full_cnn_is_validation_only_and_reloadable():
+    summary = json.loads(
+        (
+            ROOT / "reports" / "cnn" / "cnn_validation_summary.json"
+        ).read_text(encoding="utf-8")
+    )
+    config = json.loads(
+        (ROOT / "config" / "cnn_experiments.json").read_text(
+            encoding="utf-8"
+        )
+    )
+
+    assert summary["status"] == "passed"
+    assert summary["train_rows_fitted"] == 2400
+    assert summary["validation_rows_compared"] == 600
+    assert summary["test_images_loaded"] == 0
+    assert summary["test_rows_evaluated"] == 0
+    assert summary["test_metrics_recorded"] is False
+    assert summary["family_overlap_count"] == 0
+    assert summary["family_assignments_match_frozen_split"] is True
+    assert (
+        summary["frozen_split_sha256_before"]
+        == summary["frozen_split_sha256_after"]
+        == config["expected_split_sha256"]
+    )
+    assert summary["manifest_sha256_before"] == summary["manifest_sha256_after"]
+    assert summary["augmentation"]["training_enabled"] is True
+    assert summary["augmentation"]["validation_enabled"] is False
+    assert summary["saved_model_reload_check"]["passed"] is True
+    assert summary["saved_model_reload_check"]["probability_count"] == 5
+    assert np.isclose(
+        summary["saved_model_reload_check"]["probability_sum"],
+        1.0,
+    )
+
+    comparison = pd.read_csv(
+        ROOT / "reports" / "cnn" / "cnn_experiment_comparison.csv"
+    )
+    assert len(comparison) == 3
+    assert comparison["mlflow_run_id"].nunique() == 3
+    assert comparison["mlflow_run_id"].str.fullmatch(
+        r"[0-9a-f]{32}"
+    ).all()
+
+    predictions = pd.read_csv(
+        ROOT
+        / "reports"
+        / "cnn"
+        / "best_cnn_validation_predictions.csv"
+    )
+    probability_columns = [
+        column
+        for column in predictions.columns
+        if column.startswith("probability_")
+    ]
+    assert len(predictions) == 600
+    assert set(predictions["split"]) == {"validation"}
+    assert len(probability_columns) == 5
+    assert np.allclose(predictions[probability_columns].sum(axis=1), 1.0)
+
+    checkpoint_path = ROOT / "artifacts" / "cnn" / "cnn_model.pt"
+    model, checkpoint = load_cnn_checkpoint(checkpoint_path)
+    width, height = checkpoint["preprocessing"]["image_size"]
+    with torch.inference_mode():
+        probabilities = torch.softmax(
+            model(torch.zeros(1, 1, height, width)),
+            dim=1,
+        ).numpy()
+    assert probabilities.shape == (1, 5)
+    assert np.isclose(probabilities.sum(), 1.0)
+    assert checkpoint["training_data"]["fit_splits"] == ["train"]
+    assert checkpoint["training_data"]["selection_split"] == "validation"
+    assert checkpoint_path.stat().st_size == summary["best_cnn_run"][
+        "saved_model_size_bytes"
+    ]

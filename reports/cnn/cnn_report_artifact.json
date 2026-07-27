@@ -1,0 +1,1030 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "FontSense CNN validation experiments",
+    "description": "Validation-only comparison of three small CNN experiments and the earlier majority and HOG baselines.",
+    "generatedAt": "2026-07-27T12:42:34Z",
+    "cards": [
+      {
+        "id": "cnn_f1_card",
+        "description": "Primary validation selection metric.",
+        "dataset": "headline",
+        "sourceId": "headline",
+        "metrics": [
+          {
+            "label": "Best CNN macro F1",
+            "field": "best_cnn_macro_f1",
+            "format": "percent"
+          }
+        ]
+      },
+      {
+        "id": "cnn_accuracy_card",
+        "description": "Validation accuracy at the selected epoch.",
+        "dataset": "headline",
+        "sourceId": "headline",
+        "metrics": [
+          {
+            "label": "Best CNN accuracy",
+            "field": "best_cnn_accuracy",
+            "format": "percent"
+          }
+        ]
+      },
+      {
+        "id": "cnn_size_card",
+        "description": "Saved selected checkpoint size in bytes.",
+        "dataset": "headline",
+        "sourceId": "headline",
+        "metrics": [
+          {
+            "label": "CNN checkpoint bytes",
+            "field": "best_cnn_model_bytes",
+            "format": "number"
+          }
+        ]
+      },
+      {
+        "id": "test_card",
+        "description": "Test images loaded, predicted, or scored.",
+        "dataset": "headline",
+        "sourceId": "headline",
+        "metrics": [
+          {
+            "label": "Test images evaluated",
+            "field": "test_images_evaluated",
+            "format": "number"
+          }
+        ]
+      }
+    ],
+    "charts": [
+      {
+        "id": "cnn_runs_chart",
+        "title": "Validation macro F1 by CNN experiment",
+        "subtitle": "Three controlled runs on the same 600 validation images.",
+        "type": "bar",
+        "intent": "comparison",
+        "dataset": "cnn_runs",
+        "sourceId": "cnn_runs",
+        "valueFormat": "percent",
+        "encodings": {
+          "x": {
+            "field": "run_name",
+            "type": "nominal",
+            "label": "CNN run"
+          },
+          "y": {
+            "field": "validation_macro_f1",
+            "type": "quantitative",
+            "label": "Validation macro F1"
+          },
+          "tooltip": [
+            {
+              "field": "validation_accuracy",
+              "type": "quantitative",
+              "label": "Accuracy"
+            },
+            {
+              "field": "training_seconds",
+              "type": "quantitative",
+              "label": "Training seconds"
+            }
+          ]
+        }
+      },
+      {
+        "id": "model_comparison_chart",
+        "title": "Validation macro F1 by required model family",
+        "subtitle": "Majority, selected HOG, and selected CNN results; no test metrics.",
+        "type": "bar",
+        "intent": "comparison",
+        "dataset": "model_comparison",
+        "sourceId": "model_comparison",
+        "valueFormat": "percent",
+        "encodings": {
+          "x": {
+            "field": "model",
+            "type": "nominal",
+            "label": "Model"
+          },
+          "y": {
+            "field": "validation_macro_f1",
+            "type": "quantitative",
+            "label": "Validation macro F1"
+          },
+          "tooltip": [
+            {
+              "field": "validation_accuracy",
+              "type": "quantitative",
+              "label": "Accuracy"
+            },
+            {
+              "field": "inference_ms_per_image",
+              "type": "quantitative",
+              "label": "Inference ms/image"
+            }
+          ]
+        }
+      },
+      {
+        "id": "learning_chart",
+        "title": "Selected CNN train and validation loss",
+        "subtitle": "Reference small CNN; early stopping monitors validation macro F1.",
+        "type": "line",
+        "intent": "trend",
+        "dataset": "learning",
+        "sourceId": "learning",
+        "encodings": {
+          "x": {
+            "field": "epoch",
+            "type": "quantitative",
+            "label": "Epoch"
+          },
+          "y": {
+            "field": "value",
+            "type": "quantitative",
+            "label": "Cross-entropy loss"
+          },
+          "color": {
+            "field": "series",
+            "type": "nominal",
+            "label": "Series"
+          }
+        }
+      },
+      {
+        "id": "class_f1_chart",
+        "title": "Selected CNN validation F1 by category",
+        "subtitle": "Each category has 120 images from three unseen font families.",
+        "type": "bar",
+        "intent": "comparison",
+        "dataset": "per_class",
+        "sourceId": "per_class",
+        "valueFormat": "percent",
+        "encodings": {
+          "x": {
+            "field": "class",
+            "type": "nominal",
+            "label": "Category"
+          },
+          "y": {
+            "field": "f1",
+            "type": "quantitative",
+            "label": "Validation F1"
+          },
+          "tooltip": [
+            {
+              "field": "precision",
+              "type": "quantitative",
+              "label": "Precision"
+            },
+            {
+              "field": "recall",
+              "type": "quantitative",
+              "label": "Recall"
+            }
+          ]
+        }
+      }
+    ],
+    "tables": [
+      {
+        "id": "cnn_runs_table",
+        "title": "CNN experiment settings and validation results",
+        "subtitle": "One controlled parameter change per alternative run.",
+        "dataset": "cnn_runs",
+        "sourceId": "cnn_runs",
+        "defaultSort": {
+          "field": "validation_macro_f1",
+          "direction": "desc"
+        },
+        "columns": [
+          {
+            "field": "run_name",
+            "label": "Run",
+            "type": "text"
+          },
+          {
+            "field": "learning_rate",
+            "label": "Learning rate",
+            "format": "number"
+          },
+          {
+            "field": "width",
+            "label": "Base filters",
+            "format": "number"
+          },
+          {
+            "field": "best_epoch",
+            "label": "Best epoch",
+            "format": "number"
+          },
+          {
+            "field": "validation_macro_f1",
+            "label": "Macro F1",
+            "format": "percent"
+          },
+          {
+            "field": "validation_accuracy",
+            "label": "Accuracy",
+            "format": "percent"
+          },
+          {
+            "field": "training_seconds",
+            "label": "Training seconds",
+            "format": "number"
+          },
+          {
+            "field": "model_size_bytes",
+            "label": "Model bytes",
+            "format": "number"
+          }
+        ]
+      },
+      {
+        "id": "class_table",
+        "title": "Selected CNN per-class validation metrics",
+        "subtitle": "Precision, recall, and F1 for all five categories.",
+        "dataset": "per_class",
+        "sourceId": "per_class",
+        "defaultSort": {
+          "field": "f1",
+          "direction": "desc"
+        },
+        "columns": [
+          {
+            "field": "class",
+            "label": "Class",
+            "type": "text"
+          },
+          {
+            "field": "precision",
+            "label": "Precision",
+            "format": "percent"
+          },
+          {
+            "field": "recall",
+            "label": "Recall",
+            "format": "percent"
+          },
+          {
+            "field": "f1",
+            "label": "F1",
+            "format": "percent"
+          },
+          {
+            "field": "support",
+            "label": "Images",
+            "format": "number"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "headline",
+        "label": "CNN validation headline metrics",
+        "path": "reports/cnn/cnn_validation_summary.json",
+        "query": {
+          "engine": "sqlite",
+          "language": "sql",
+          "sql": "SELECT best_cnn_macro_f1, best_cnn_accuracy,\n               best_cnn_model_bytes, test_images_evaluated\n        FROM cnn_headline",
+          "description": "Reads the reviewed selected-CNN metrics and test-access guard.",
+          "executed_at": "2026-07-27T12:42:34Z",
+          "tables_used": [
+            "cnn_headline"
+          ]
+        }
+      },
+      {
+        "id": "cnn_runs",
+        "label": "CNN validation experiment comparison",
+        "path": "reports/cnn/cnn_experiment_comparison.csv",
+        "query": {
+          "engine": "sqlite",
+          "language": "sql",
+          "sql": "SELECT run_order, run_name, reason, learning_rate, width, dropout,\n               image_width, image_height, batch_size, epochs_trained,\n               best_epoch, stopped_early, validation_macro_f1,\n               validation_accuracy, training_seconds,\n               inference_ms_per_image, model_size_bytes, parameter_count\n        FROM cnn_experiments\n        ORDER BY run_order",
+          "description": "Reads controlled settings, results, runtime, and size for each CNN run.",
+          "executed_at": "2026-07-27T12:42:34Z",
+          "tables_used": [
+            "cnn_experiments"
+          ]
+        }
+      },
+      {
+        "id": "model_comparison",
+        "label": "Majority, HOG, and CNN validation comparison",
+        "path": "reports/cnn/model_comparison.csv",
+        "query": {
+          "engine": "sqlite",
+          "language": "sql",
+          "sql": "SELECT model, model_family, validation_macro_f1,\n               validation_accuracy, inference_ms_per_image,\n               model_size_bytes, selection_basis\n        FROM model_comparison\n        ORDER BY validation_macro_f1 DESC",
+          "description": "Compares the selected validation result from each required model family.",
+          "executed_at": "2026-07-27T12:42:34Z",
+          "tables_used": [
+            "model_comparison"
+          ]
+        }
+      },
+      {
+        "id": "per_class",
+        "label": "Best CNN per-class validation metrics",
+        "path": "reports/cnn/best_cnn_classification_report.csv",
+        "query": {
+          "engine": "sqlite",
+          "language": "sql",
+          "sql": "SELECT class, precision, recall, f1, support\n        FROM best_cnn_per_class\n        ORDER BY f1 DESC, class",
+          "description": "Reads precision, recall, F1, and support for all five categories.",
+          "executed_at": "2026-07-27T12:42:34Z",
+          "tables_used": [
+            "best_cnn_per_class"
+          ]
+        }
+      },
+      {
+        "id": "learning",
+        "label": "Best CNN training history",
+        "path": "reports/cnn/cnn_training_history.csv",
+        "query": {
+          "engine": "sqlite",
+          "language": "sql",
+          "sql": "SELECT epoch, 'Train loss' AS series, train_loss AS value,\n               train_accuracy, validation_accuracy, validation_macro_f1\n        FROM cnn_training_history\n        WHERE run = 'Reference small CNN'\n        UNION ALL\n        SELECT epoch, 'Validation loss', validation_loss,\n               train_accuracy, validation_accuracy, validation_macro_f1\n        FROM cnn_training_history\n        WHERE run = 'Reference small CNN'\n        ORDER BY epoch, series",
+          "description": "Reads train and validation loss from the selected CNN run by epoch.",
+          "executed_at": "2026-07-27T12:42:34Z",
+          "tables_used": [
+            "cnn_training_history"
+          ]
+        }
+      },
+      {
+        "id": "confusions",
+        "label": "Best CNN validation predictions",
+        "path": "reports/cnn/best_cnn_validation_predictions.csv",
+        "query": {
+          "engine": "sqlite",
+          "language": "sql",
+          "sql": "SELECT category AS actual_category,\n               predicted_category,\n               COUNT(*) AS validation_images\n        FROM best_cnn_predictions\n        WHERE correct = 0\n        GROUP BY category, predicted_category\n        ORDER BY validation_images DESC, category, predicted_category",
+          "description": "Counts incorrect validation predictions by actual and predicted category.",
+          "executed_at": "2026-07-27T12:42:34Z",
+          "tables_used": [
+            "best_cnn_predictions"
+          ]
+        }
+      }
+    ],
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "body": "# FontSense CNN validation experiments"
+      },
+      {
+        "id": "technical_summary",
+        "type": "markdown",
+        "sourceId": "headline",
+        "body": "## Technical summary\n\n**Reference small CNN was the strongest CNN at validation macro F1 0.833 and accuracy 0.835.** The model-selection comparison recommends **Best small CNN** for the one final test evaluation. No test image was loaded or scored."
+      },
+      {
+        "id": "metrics",
+        "type": "metric-strip",
+        "cardIds": [
+          "cnn_f1_card",
+          "cnn_accuracy_card",
+          "cnn_size_card",
+          "test_card"
+        ]
+      },
+      {
+        "id": "cnn_findings",
+        "type": "markdown",
+        "sourceId": "cnn_runs",
+        "body": "## Controlled CNN experiments identify the best training setup\n\n**Each alternative changes one setting from the reference.** This makes the learning-rate and filter-width comparisons meaningful instead of increasing run count with duplicates."
+      },
+      {
+        "id": "cnn_runs_chart_block",
+        "type": "chart",
+        "chartId": "cnn_runs_chart"
+      },
+      {
+        "id": "cnn_runs_note",
+        "type": "markdown",
+        "sourceId": "cnn_runs",
+        "body": "**Reference small CNN produced the highest CNN validation macro F1.** Its best checkpoint came from epoch 14; later epochs do not replace it unless macro F1 improves."
+      },
+      {
+        "id": "cnn_runs_table_block",
+        "type": "table",
+        "tableId": "cnn_runs_table"
+      },
+      {
+        "id": "model_selection",
+        "type": "markdown",
+        "sourceId": "model_comparison",
+        "body": "## Validation evidence determines the final-test candidate\n\n**The best CNN differs from the selected HOG model by +0.140 macro F1.** The recommendation follows the primary metric first; test performance remains unknown."
+      },
+      {
+        "id": "model_comparison_block",
+        "type": "chart",
+        "chartId": "model_comparison_chart"
+      },
+      {
+        "id": "model_comparison_note",
+        "type": "markdown",
+        "sourceId": "model_comparison",
+        "body": "**Select Best small CNN for final evaluation.** This choice is based only on train/validation evidence and does not claim that the same ranking will hold on test families."
+      },
+      {
+        "id": "learning",
+        "type": "markdown",
+        "sourceId": "learning",
+        "body": "## The selected checkpoint protects against later overfitting\n\n**Train and validation loss are recorded for every completed epoch.** Mild random affine and sharpness changes appear only in training; validation preprocessing is deterministic."
+      },
+      {
+        "id": "learning_chart_block",
+        "type": "chart",
+        "chartId": "learning_chart"
+      },
+      {
+        "id": "learning_note",
+        "type": "markdown",
+        "sourceId": "learning",
+        "body": "**The saved state is epoch 14, not automatically the final epoch.** This is the early-stopping checkpoint selected by validation macro F1."
+      },
+      {
+        "id": "class_results",
+        "type": "markdown",
+        "sourceId": "per_class",
+        "body": "## Performance still varies by font category\n\n**Handwriting is strongest at F1 0.988; Sans Serif is weakest at 0.693.**"
+      },
+      {
+        "id": "class_chart_block",
+        "type": "chart",
+        "chartId": "class_f1_chart"
+      },
+      {
+        "id": "class_note",
+        "type": "markdown",
+        "sourceId": "confusions",
+        "body": "**The most frequent CNN error was sans serif predicted as monospace (30 images).** The saved confusion matrices show exact counts for every CNN run. Per-class differences matter because overall accuracy can hide a weak category."
+      },
+      {
+        "id": "class_table_block",
+        "type": "table",
+        "tableId": "class_table"
+      },
+      {
+        "id": "scope",
+        "type": "markdown",
+        "body": "## Scope, data, and metric definitions\n\n- **Fit cohort:** 2,400 train images from 60 font families.\n- **Selection cohort:** 600 validation images from 15 different families.\n- **Input:** one grayscale 112×48 tensor normalized to [-1, 1].\n- **Macro F1:** equal-weight average of the five category F1 scores.\n- **Inference time:** validation preprocessing and model forward pass per image.\n- **Model size:** saved PyTorch checkpoint bytes."
+      },
+      {
+        "id": "methodology",
+        "type": "markdown",
+        "body": "## Model specification and validation design\n\nThe compact network uses four 3×3 convolution blocks, batch normalization, ReLU, max pooling, global average pooling, dropout, and one five-output linear layer. AdamW minimizes cross-entropy. Fixed seed 42 and deterministic algorithms support repeatability. Only training tensors receive mild augmentation. The checkpoint with the highest validation macro F1 is retained, then reloaded for a five-probability smoke test."
+      },
+      {
+        "id": "limitations",
+        "type": "markdown",
+        "body": "## Limitations, uncertainty, and robustness checks\n\n- Validation contains only three unseen families per category.\n- All training ran on CPU and synthetic rendered images.\n- A single seed gives reproducibility but not uncertainty across seeds.\n- Real screenshots may contain layout and capture noise absent here.\n- Test families remain untouched, so final generalization is unknown."
+      },
+      {
+        "id": "next_steps",
+        "type": "markdown",
+        "body": "## Recommended next step\n\nEvaluate **Best small CNN** once on the frozen test split. Do not tune after viewing test results. Then complete error analysis and update the inference demo only after the final model choice is documented."
+      },
+      {
+        "id": "questions",
+        "type": "markdown",
+        "body": "## Further questions\n\n- Does the validation winner remain strongest on unseen test families?\n- Which individual families drive the weakest category?\n- How large is the synthetic-to-real screenshot gap?"
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-07-27T12:42:34Z",
+    "status": "ready",
+    "datasets": {
+      "headline": [
+        {
+          "best_cnn_macro_f1": 0.8330775633,
+          "best_cnn_accuracy": 0.835,
+          "best_cnn_model_bytes": 255505,
+          "test_images_evaluated": 0
+        }
+      ],
+      "cnn_runs": [
+        {
+          "run_order": 1,
+          "run_name": "Reference small CNN",
+          "reason": "Reference architecture and learning rate for the controlled comparison.",
+          "learning_rate": 0.001,
+          "width": 16,
+          "dropout": 0.25,
+          "image_width": 112,
+          "image_height": 48,
+          "batch_size": 64,
+          "epochs_trained": 15,
+          "best_epoch": 14,
+          "stopped_early": 0,
+          "validation_macro_f1": 0.8330775633,
+          "validation_accuracy": 0.835,
+          "training_seconds": 157.3994816,
+          "inference_ms_per_image": 2.1007721667,
+          "model_size_bytes": 255505,
+          "parameter_count": 60901
+        },
+        {
+          "run_order": 2,
+          "run_name": "Lower learning rate",
+          "reason": "Changes only the learning rate to test slower optimization.",
+          "learning_rate": 0.0003,
+          "width": 16,
+          "dropout": 0.25,
+          "image_width": 112,
+          "image_height": 48,
+          "batch_size": 64,
+          "epochs_trained": 15,
+          "best_epoch": 13,
+          "stopped_early": 0,
+          "validation_macro_f1": 0.7575970168,
+          "validation_accuracy": 0.7616666667,
+          "training_seconds": 155.9297991999,
+          "inference_ms_per_image": 1.9438715,
+          "model_size_bytes": 255505,
+          "parameter_count": 60901
+        },
+        {
+          "run_order": 3,
+          "run_name": "Wider convolution filters",
+          "reason": "Changes only the filter width to test a slightly larger feature extractor.",
+          "learning_rate": 0.001,
+          "width": 24,
+          "dropout": 0.25,
+          "image_width": 112,
+          "image_height": 48,
+          "batch_size": 64,
+          "epochs_trained": 13,
+          "best_epoch": 9,
+          "stopped_early": 1,
+          "validation_macro_f1": 0.7578709636,
+          "validation_accuracy": 0.775,
+          "training_seconds": 198.2475490001,
+          "inference_ms_per_image": 2.6354963334,
+          "model_size_bytes": 557521,
+          "parameter_count": 136277
+        }
+      ],
+      "model_comparison": [
+        {
+          "model": "Best small CNN",
+          "model_family": "cnn",
+          "validation_macro_f1": 0.8330775633,
+          "validation_accuracy": 0.835,
+          "inference_ms_per_image": 2.1007721667,
+          "model_size_bytes": 255505,
+          "selection_basis": "best CNN validation macro F1"
+        },
+        {
+          "model": "Best HOG + Logistic Regression",
+          "model_family": "hog",
+          "validation_macro_f1": 0.6932617332,
+          "validation_accuracy": 0.695,
+          "inference_ms_per_image": 2.2354986666,
+          "model_size_bytes": 35700,
+          "selection_basis": "best HOG validation macro F1"
+        },
+        {
+          "model": "Majority-class baseline",
+          "model_family": "majority",
+          "validation_macro_f1": 0.0666666667,
+          "validation_accuracy": 0.2,
+          "inference_ms_per_image": 0.0001041665,
+          "model_size_bytes": 418,
+          "selection_basis": "sanity check only"
+        }
+      ],
+      "per_class": [
+        {
+          "class": "handwriting",
+          "precision": 0.9756097561,
+          "recall": 1.0,
+          "f1": 0.987654321,
+          "support": 120
+        },
+        {
+          "class": "display",
+          "precision": 1.0,
+          "recall": 0.8083333333,
+          "f1": 0.8940092166,
+          "support": 120
+        },
+        {
+          "class": "monospace",
+          "precision": 0.7243589744,
+          "recall": 0.9416666667,
+          "f1": 0.8188405797,
+          "support": 120
+        },
+        {
+          "class": "serif",
+          "precision": 0.7194244604,
+          "recall": 0.8333333333,
+          "f1": 0.7722007722,
+          "support": 120
+        },
+        {
+          "class": "sans_serif",
+          "precision": 0.8352941176,
+          "recall": 0.5916666667,
+          "f1": 0.6926829268,
+          "support": 120
+        }
+      ],
+      "learning": [
+        {
+          "epoch": 1,
+          "series": "Train loss",
+          "value": 1.4603924767,
+          "train_accuracy": 0.3675,
+          "validation_accuracy": 0.22,
+          "validation_macro_f1": 0.1037988273
+        },
+        {
+          "epoch": 1,
+          "series": "Validation loss",
+          "value": 1.685098451,
+          "train_accuracy": 0.3675,
+          "validation_accuracy": 0.22,
+          "validation_macro_f1": 0.1037988273
+        },
+        {
+          "epoch": 2,
+          "series": "Train loss",
+          "value": 1.2422047249,
+          "train_accuracy": 0.4833333333,
+          "validation_accuracy": 0.3783333333,
+          "validation_macro_f1": 0.3120736987
+        },
+        {
+          "epoch": 2,
+          "series": "Validation loss",
+          "value": 1.6746926912,
+          "train_accuracy": 0.4833333333,
+          "validation_accuracy": 0.3783333333,
+          "validation_macro_f1": 0.3120736987
+        },
+        {
+          "epoch": 3,
+          "series": "Train loss",
+          "value": 1.1124929635,
+          "train_accuracy": 0.5383333333,
+          "validation_accuracy": 0.6416666667,
+          "validation_macro_f1": 0.6419630161
+        },
+        {
+          "epoch": 3,
+          "series": "Validation loss",
+          "value": 0.9598688221,
+          "train_accuracy": 0.5383333333,
+          "validation_accuracy": 0.6416666667,
+          "validation_macro_f1": 0.6419630161
+        },
+        {
+          "epoch": 4,
+          "series": "Train loss",
+          "value": 1.0101521015,
+          "train_accuracy": 0.58,
+          "validation_accuracy": 0.5083333333,
+          "validation_macro_f1": 0.4721924286
+        },
+        {
+          "epoch": 4,
+          "series": "Validation loss",
+          "value": 1.1292470105,
+          "train_accuracy": 0.58,
+          "validation_accuracy": 0.5083333333,
+          "validation_macro_f1": 0.4721924286
+        },
+        {
+          "epoch": 5,
+          "series": "Train loss",
+          "value": 0.9623795684,
+          "train_accuracy": 0.6079166667,
+          "validation_accuracy": 0.625,
+          "validation_macro_f1": 0.6253422749
+        },
+        {
+          "epoch": 5,
+          "series": "Validation loss",
+          "value": 0.8920895735,
+          "train_accuracy": 0.6079166667,
+          "validation_accuracy": 0.625,
+          "validation_macro_f1": 0.6253422749
+        },
+        {
+          "epoch": 6,
+          "series": "Train loss",
+          "value": 0.9218879954,
+          "train_accuracy": 0.6254166667,
+          "validation_accuracy": 0.645,
+          "validation_macro_f1": 0.6302494619
+        },
+        {
+          "epoch": 6,
+          "series": "Validation loss",
+          "value": 0.840306929,
+          "train_accuracy": 0.6254166667,
+          "validation_accuracy": 0.645,
+          "validation_macro_f1": 0.6302494619
+        },
+        {
+          "epoch": 7,
+          "series": "Train loss",
+          "value": 0.8618666466,
+          "train_accuracy": 0.6541666667,
+          "validation_accuracy": 0.6533333333,
+          "validation_macro_f1": 0.6463717081
+        },
+        {
+          "epoch": 7,
+          "series": "Validation loss",
+          "value": 0.7651618807,
+          "train_accuracy": 0.6541666667,
+          "validation_accuracy": 0.6533333333,
+          "validation_macro_f1": 0.6463717081
+        },
+        {
+          "epoch": 8,
+          "series": "Train loss",
+          "value": 0.8602195525,
+          "train_accuracy": 0.6575,
+          "validation_accuracy": 0.6083333333,
+          "validation_macro_f1": 0.5903502605
+        },
+        {
+          "epoch": 8,
+          "series": "Validation loss",
+          "value": 0.9419056773,
+          "train_accuracy": 0.6575,
+          "validation_accuracy": 0.6083333333,
+          "validation_macro_f1": 0.5903502605
+        },
+        {
+          "epoch": 9,
+          "series": "Train loss",
+          "value": 0.893831865,
+          "train_accuracy": 0.63625,
+          "validation_accuracy": 0.7383333333,
+          "validation_macro_f1": 0.7337096427
+        },
+        {
+          "epoch": 9,
+          "series": "Validation loss",
+          "value": 0.7425582802,
+          "train_accuracy": 0.63625,
+          "validation_accuracy": 0.7383333333,
+          "validation_macro_f1": 0.7337096427
+        },
+        {
+          "epoch": 10,
+          "series": "Train loss",
+          "value": 0.7733905586,
+          "train_accuracy": 0.6933333333,
+          "validation_accuracy": 0.7266666667,
+          "validation_macro_f1": 0.662059979
+        },
+        {
+          "epoch": 10,
+          "series": "Validation loss",
+          "value": 0.6836271622,
+          "train_accuracy": 0.6933333333,
+          "validation_accuracy": 0.7266666667,
+          "validation_macro_f1": 0.662059979
+        },
+        {
+          "epoch": 11,
+          "series": "Train loss",
+          "value": 0.7691148559,
+          "train_accuracy": 0.6891666667,
+          "validation_accuracy": 0.7066666667,
+          "validation_macro_f1": 0.6936046142
+        },
+        {
+          "epoch": 11,
+          "series": "Validation loss",
+          "value": 0.7101648029,
+          "train_accuracy": 0.6891666667,
+          "validation_accuracy": 0.7066666667,
+          "validation_macro_f1": 0.6936046142
+        },
+        {
+          "epoch": 12,
+          "series": "Train loss",
+          "value": 0.714327809,
+          "train_accuracy": 0.7295833333,
+          "validation_accuracy": 0.67,
+          "validation_macro_f1": 0.6809600115
+        },
+        {
+          "epoch": 12,
+          "series": "Validation loss",
+          "value": 0.7876385609,
+          "train_accuracy": 0.7295833333,
+          "validation_accuracy": 0.67,
+          "validation_macro_f1": 0.6809600115
+        },
+        {
+          "epoch": 13,
+          "series": "Train loss",
+          "value": 0.696799767,
+          "train_accuracy": 0.7316666667,
+          "validation_accuracy": 0.7716666667,
+          "validation_macro_f1": 0.774817705
+        },
+        {
+          "epoch": 13,
+          "series": "Validation loss",
+          "value": 0.6284163853,
+          "train_accuracy": 0.7316666667,
+          "validation_accuracy": 0.7716666667,
+          "validation_macro_f1": 0.774817705
+        },
+        {
+          "epoch": 14,
+          "series": "Train loss",
+          "value": 0.6732397294,
+          "train_accuracy": 0.7391666667,
+          "validation_accuracy": 0.835,
+          "validation_macro_f1": 0.8330775633
+        },
+        {
+          "epoch": 14,
+          "series": "Validation loss",
+          "value": 0.4843871063,
+          "train_accuracy": 0.7391666667,
+          "validation_accuracy": 0.835,
+          "validation_macro_f1": 0.8330775633
+        },
+        {
+          "epoch": 15,
+          "series": "Train loss",
+          "value": 0.620537707,
+          "train_accuracy": 0.7633333333,
+          "validation_accuracy": 0.71,
+          "validation_macro_f1": 0.7031790211
+        },
+        {
+          "epoch": 15,
+          "series": "Validation loss",
+          "value": 0.9644753679,
+          "train_accuracy": 0.7633333333,
+          "validation_accuracy": 0.71,
+          "validation_macro_f1": 0.7031790211
+        }
+      ],
+      "confusions": [
+        {
+          "actual_category": "sans_serif",
+          "predicted_category": "monospace",
+          "validation_images": 30
+        },
+        {
+          "actual_category": "display",
+          "predicted_category": "serif",
+          "validation_images": 22
+        },
+        {
+          "actual_category": "sans_serif",
+          "predicted_category": "serif",
+          "validation_images": 16
+        },
+        {
+          "actual_category": "serif",
+          "predicted_category": "monospace",
+          "validation_images": 12
+        },
+        {
+          "actual_category": "serif",
+          "predicted_category": "sans_serif",
+          "validation_images": 8
+        },
+        {
+          "actual_category": "monospace",
+          "predicted_category": "sans_serif",
+          "validation_images": 6
+        },
+        {
+          "actual_category": "sans_serif",
+          "predicted_category": "handwriting",
+          "validation_images": 3
+        },
+        {
+          "actual_category": "display",
+          "predicted_category": "monospace",
+          "validation_images": 1
+        },
+        {
+          "actual_category": "monospace",
+          "predicted_category": "serif",
+          "validation_images": 1
+        }
+      ]
+    },
+    "accessIssues": []
+  },
+  "sources": [
+    {
+      "id": "headline",
+      "label": "CNN validation headline metrics",
+      "path": "reports/cnn/cnn_validation_summary.json",
+      "query": {
+        "engine": "sqlite",
+        "language": "sql",
+        "sql": "SELECT best_cnn_macro_f1, best_cnn_accuracy,\n               best_cnn_model_bytes, test_images_evaluated\n        FROM cnn_headline",
+        "description": "Reads the reviewed selected-CNN metrics and test-access guard.",
+        "executed_at": "2026-07-27T12:42:34Z",
+        "tables_used": [
+          "cnn_headline"
+        ]
+      }
+    },
+    {
+      "id": "cnn_runs",
+      "label": "CNN validation experiment comparison",
+      "path": "reports/cnn/cnn_experiment_comparison.csv",
+      "query": {
+        "engine": "sqlite",
+        "language": "sql",
+        "sql": "SELECT run_order, run_name, reason, learning_rate, width, dropout,\n               image_width, image_height, batch_size, epochs_trained,\n               best_epoch, stopped_early, validation_macro_f1,\n               validation_accuracy, training_seconds,\n               inference_ms_per_image, model_size_bytes, parameter_count\n        FROM cnn_experiments\n        ORDER BY run_order",
+        "description": "Reads controlled settings, results, runtime, and size for each CNN run.",
+        "executed_at": "2026-07-27T12:42:34Z",
+        "tables_used": [
+          "cnn_experiments"
+        ]
+      }
+    },
+    {
+      "id": "model_comparison",
+      "label": "Majority, HOG, and CNN validation comparison",
+      "path": "reports/cnn/model_comparison.csv",
+      "query": {
+        "engine": "sqlite",
+        "language": "sql",
+        "sql": "SELECT model, model_family, validation_macro_f1,\n               validation_accuracy, inference_ms_per_image,\n               model_size_bytes, selection_basis\n        FROM model_comparison\n        ORDER BY validation_macro_f1 DESC",
+        "description": "Compares the selected validation result from each required model family.",
+        "executed_at": "2026-07-27T12:42:34Z",
+        "tables_used": [
+          "model_comparison"
+        ]
+      }
+    },
+    {
+      "id": "per_class",
+      "label": "Best CNN per-class validation metrics",
+      "path": "reports/cnn/best_cnn_classification_report.csv",
+      "query": {
+        "engine": "sqlite",
+        "language": "sql",
+        "sql": "SELECT class, precision, recall, f1, support\n        FROM best_cnn_per_class\n        ORDER BY f1 DESC, class",
+        "description": "Reads precision, recall, F1, and support for all five categories.",
+        "executed_at": "2026-07-27T12:42:34Z",
+        "tables_used": [
+          "best_cnn_per_class"
+        ]
+      }
+    },
+    {
+      "id": "learning",
+      "label": "Best CNN training history",
+      "path": "reports/cnn/cnn_training_history.csv",
+      "query": {
+        "engine": "sqlite",
+        "language": "sql",
+        "sql": "SELECT epoch, 'Train loss' AS series, train_loss AS value,\n               train_accuracy, validation_accuracy, validation_macro_f1\n        FROM cnn_training_history\n        WHERE run = 'Reference small CNN'\n        UNION ALL\n        SELECT epoch, 'Validation loss', validation_loss,\n               train_accuracy, validation_accuracy, validation_macro_f1\n        FROM cnn_training_history\n        WHERE run = 'Reference small CNN'\n        ORDER BY epoch, series",
+        "description": "Reads train and validation loss from the selected CNN run by epoch.",
+        "executed_at": "2026-07-27T12:42:34Z",
+        "tables_used": [
+          "cnn_training_history"
+        ]
+      }
+    },
+    {
+      "id": "confusions",
+      "label": "Best CNN validation predictions",
+      "path": "reports/cnn/best_cnn_validation_predictions.csv",
+      "query": {
+        "engine": "sqlite",
+        "language": "sql",
+        "sql": "SELECT category AS actual_category,\n               predicted_category,\n               COUNT(*) AS validation_images\n        FROM best_cnn_predictions\n        WHERE correct = 0\n        GROUP BY category, predicted_category\n        ORDER BY validation_images DESC, category, predicted_category",
+        "description": "Counts incorrect validation predictions by actual and predicted category.",
+        "executed_at": "2026-07-27T12:42:34Z",
+        "tables_used": [
+          "best_cnn_predictions"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+[
+  {
+    "section": "CNN experiment comparison",
+    "question": "Which controlled CNN run has the best validation macro F1?",
+    "chart": "bar",
+    "fields": [
+      "run_name",
+      "validation_macro_f1"
+    ],
+    "supported_claim": "Reference small CNN is the strongest CNN run.",
+    "palette_policy": "single-root blue",
+    "artifact": "reports/cnn/cnn_experiment_report.html"
+  },
+  {
+    "section": "Required model comparison",
+    "question": "Which model family should reach final test evaluation?",
+    "chart": "bar",
+    "fields": [
+      "model",
+      "validation_macro_f1"
+    ],
+    "supported_claim": "Best small CNN has the highest validation macro F1.",
+    "palette_policy": "single-root blue",
+    "artifact": "reports/cnn/cnn_experiment_report.html"
+  },
+  {
+    "section": "Selected CNN learning",
+    "question": "How do train and validation loss change by epoch?",
+    "chart": "line",
+    "fields": [
+      "epoch",
+      "series",
+      "value"
+    ],
+    "supported_claim": "The best validation checkpoint is not assumed to be the final epoch.",
+    "palette_policy": "hard two-root cap",
+    "artifact": "reports/cnn/cnn_experiment_report.html"
+  },
+  {
+    "section": "Per-class validation",
+    "question": "Which font categories are strongest and weakest?",
+    "chart": "bar",
+    "fields": [
+      "class",
+      "f1"
+    ],
+    "supported_claim": "handwriting is strongest and sans_serif is weakest.",
+    "palette_policy": "single-root blue",
+    "artifact": "reports/cnn/cnn_experiment_report.html"
+  },
+  {
+    "section": "Run-level confusion matrices",
+    "question": "Which actual categories are confused with which predictions?",
+    "chart": "static matrix",
+    "fields": [
+      "actual_category",
+      "predicted_category",
+      "count"
+    ],
+    "supported_claim": "The most frequent CNN error was sans serif predicted as monospace (30 images).",
+    "palette_policy": "single-root blue",
+    "artifact": "reports/cnn/figures/*_confusion_matrix.png"
+  }
+]

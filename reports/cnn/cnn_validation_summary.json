@@ -1,0 +1,84 @@
+{
+  "status": "passed",
+  "purpose": "Validation-only small CNN comparison; not final test performance.",
+  "experiment_name": "FontSense CNN validation",
+  "seed": 42,
+  "device": "cpu",
+  "train_rows_fitted": 2400,
+  "validation_rows_compared": 600,
+  "test_images_loaded": 0,
+  "test_rows_evaluated": 0,
+  "test_metrics_recorded": false,
+  "family_overlap_count": 0,
+  "family_assignments_match_frozen_split": true,
+  "frozen_split_sha256_before": "f6cdd858449a4143993b051e9de83578cd423544135dbf6cc17f004359d2e17b",
+  "frozen_split_sha256_after": "f6cdd858449a4143993b051e9de83578cd423544135dbf6cc17f004359d2e17b",
+  "manifest_sha256_before": "93afae99ea6ac7dc65e8cf03a1e5743f9581c189f1feaf115ad7439fad58d69c",
+  "manifest_sha256_after": "93afae99ea6ac7dc65e8cf03a1e5743f9581c189f1feaf115ad7439fad58d69c",
+  "augmentation": {
+    "training_enabled": true,
+    "validation_enabled": false,
+    "settings": {
+      "enabled": true,
+      "rotation_degrees": 2.0,
+      "translate_fraction": [
+        0.02,
+        0.03
+      ],
+      "scale_range": [
+        0.97,
+        1.03
+      ],
+      "sharpness_probability": 0.2,
+      "sharpness_factor": 1.25
+    }
+  },
+  "cnn_experiments_completed": 3,
+  "best_cnn_run": {
+    "name": "Reference small CNN",
+    "best_epoch": 14,
+    "epochs_trained": 15,
+    "validation_accuracy": 0.835,
+    "validation_macro_f1": 0.8330775632635403,
+    "training_seconds": 157.39948160003405,
+    "inference_ms_per_image": 2.1007721667410806,
+    "saved_model_size_bytes": 255505,
+    "parameter_count": 60901
+  },
+  "saved_model_reload_check": {
+    "passed": true,
+    "prediction": "serif",
+    "probability_count": 5,
+    "probability_sum": 1.0,
+    "validation_example_path": "data/processed/fontsense_full/images/validation/serif/Libre_Caslon_Text/Libre_Caslon_Text_0000.png"
+  },
+  "model_selected_for_final_test": {
+    "model": "Best small CNN",
+    "model_family": "cnn",
+    "reason": "Highest validation macro F1; the untouched test split has not been evaluated.",
+    "validation_macro_f1": 0.8330775632635403
+  },
+  "mlflow": {
+    "tracking_database": "mlruns/mlflow.db",
+    "runs_recorded": 3,
+    "run_ids_exported": true,
+    "ui_command": "mlflow ui --backend-store-uri sqlite:///mlruns/mlflow.db"
+  },
+  "outputs": {
+    "checkpoint": "artifacts/cnn/cnn_model.pt",
+    "metadata": "artifacts/cnn/cnn_metadata.json",
+    "experiment_comparison": "reports/cnn/cnn_experiment_comparison.csv",
+    "training_history": "reports/cnn/cnn_training_history.csv",
+    "classification_report": "reports/cnn/best_cnn_classification_report.csv",
+    "validation_predictions": "reports/cnn/best_cnn_validation_predictions.csv",
+    "model_comparison": "reports/cnn/model_comparison.csv",
+    "figures": [
+      "reports/cnn/figures/reference_small_cnn_learning_curves.png",
+      "reports/cnn/figures/lower_learning_rate_learning_curves.png",
+      "reports/cnn/figures/wider_convolution_filters_learning_curves.png",
+      "reports/cnn/figures/reference_small_cnn_confusion_matrix.png",
+      "reports/cnn/figures/lower_learning_rate_confusion_matrix.png",
+      "reports/cnn/figures/wider_convolution_filters_confusion_matrix.png"
+    ]
+  }
+}

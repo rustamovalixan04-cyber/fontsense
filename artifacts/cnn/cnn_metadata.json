@@ -1,0 +1,61 @@
+{
+  "model_type": "small_grayscale_cnn",
+  "selection_metric": "validation_macro_f1",
+  "classes": [
+    "display",
+    "handwriting",
+    "monospace",
+    "sans_serif",
+    "serif"
+  ],
+  "architecture": {
+    "width": 16,
+    "dropout": 0.25
+  },
+  "preprocessing": {
+    "image_size": [
+      112,
+      48
+    ],
+    "grayscale": true,
+    "normalize_mean": [
+      0.5
+    ],
+    "normalize_std": [
+      0.5
+    ]
+  },
+  "training_augmentation": {
+    "enabled": true,
+    "rotation_degrees": 2.0,
+    "translate_fraction": [
+      0.02,
+      0.03
+    ],
+    "scale_range": [
+      0.97,
+      1.03
+    ],
+    "sharpness_probability": 0.2,
+    "sharpness_factor": 1.25
+  },
+  "best_validation_run": {
+    "name": "Reference small CNN",
+    "best_epoch": 14,
+    "validation_macro_f1": 0.8330775632635403,
+    "validation_accuracy": 0.835
+  },
+  "training_data": {
+    "train_rows": 2400,
+    "validation_rows": 600,
+    "fit_splits": [
+      "train"
+    ],
+    "selection_split": "validation",
+    "test_images_loaded": 0,
+    "test_rows_evaluated": 0,
+    "test_metrics_recorded": false
+  },
+  "saved_model_size_bytes": 255505,
+  "seed": 42
+}

@@ -55,6 +55,15 @@ def sha256_file(path: str | Path) -> str:
     return digest.hexdigest()
 
 
+def display_path(path: str | Path, root: Path) -> str:
+    """Prefer a portable repository-relative path for saved reports."""
+    resolved = Path(path).resolve()
+    try:
+        return resolved.relative_to(root.resolve()).as_posix()
+    except ValueError:
+        return str(resolved)
+
+
 def read_train_validation_manifest(path: str | Path) -> pd.DataFrame:
     """Retain only train/validation rows; test rows never enter a DataFrame."""
     rows: list[dict[str, str]] = []
@@ -634,6 +643,7 @@ def train_cnn(
         root / "reports" / "dataset" / "full_manifest.csv"
     ).resolve()
     is_final_manifest = manifest_path.resolve() == final_manifest_path
+    family_split_was_explicit = family_split_path is not None
     if family_split_path is None:
         family_split_path = (
             root
@@ -652,10 +662,10 @@ def train_cnn(
         model_manifest,
         family_split_path,
         str(config["expected_split_sha256"])
-        if is_final_manifest
+        if is_final_manifest or family_split_was_explicit
         else None,
         int(config.get("expected_family_count", 90))
-        if is_final_manifest
+        if is_final_manifest or family_split_was_explicit
         else None,
     )
 
@@ -846,7 +856,7 @@ def train_cnn(
                 if active_mlflow is not None:
                     active_mlflow.log_metrics(
                         {
-                            key: float(value)
+                            f"epoch_{key}": float(value)
                             for key, value in row.items()
                             if key
                             not in {"run_order", "run", "epoch"}
@@ -973,6 +983,8 @@ def train_cnn(
                 )
                 active_mlflow.log_metrics(
                     {
+                        "validation_macro_f1": validation_macro_f1,
+                        "validation_accuracy": validation_accuracy,
                         "best_validation_macro_f1": validation_macro_f1,
                         "best_validation_accuracy": validation_accuracy,
                         "best_epoch": best_run_epoch,
@@ -1000,7 +1012,11 @@ def train_cnn(
                 )
                 active_run = active_mlflow.active_run()
                 mlflow_run_id = active_run.info.run_id
-                mlflow_artifact_uri = active_run.info.artifact_uri
+                mlflow_artifact_uri = (
+                    f"{display_path(tracking_dir, root)}/"
+                    f"{active_run.info.experiment_id}/"
+                    f"{mlflow_run_id}/artifacts"
+                )
             else:
                 mlflow_run_id = ""
                 mlflow_artifact_uri = ""
@@ -1131,6 +1147,21 @@ def train_cnn(
     prediction_frame.to_csv(predictions_path, index=False)
 
     baseline = load_json(baseline_summary_path)
+    baseline_comparison_path = baseline_summary_path.parent / "validation_comparison.csv"
+    majority_inference_ms = None
+    majority_model_size = None
+    if baseline_comparison_path.exists():
+        baseline_comparison = pd.read_csv(baseline_comparison_path)
+        majority_rows = baseline_comparison.loc[
+            baseline_comparison["model_type"] == "majority_class"
+        ]
+        if len(majority_rows) == 1:
+            majority_inference_ms = float(
+                majority_rows.iloc[0]["inference_ms_per_image"]
+            )
+            majority_model_size = int(
+                majority_rows.iloc[0]["model_size_bytes"]
+            )
     model_comparison = pd.DataFrame(
         [
             {
@@ -1142,8 +1173,8 @@ def train_cnn(
                 "validation_accuracy": baseline["majority_baseline"][
                     "validation_accuracy"
                 ],
-                "inference_ms_per_image": 0.0,
-                "model_size_bytes": 418,
+                "inference_ms_per_image": majority_inference_ms,
+                "model_size_bytes": majority_model_size,
                 "selection_basis": "sanity check only",
             },
             {
@@ -1283,8 +1314,9 @@ def train_cnn(
             ),
         },
         "mlflow": {
-            "tracking_database": str(
-                tracking_dir.resolve() / "mlflow.db"
+            "tracking_database": display_path(
+                tracking_dir / "mlflow.db",
+                root,
             ),
             "runs_recorded": int(len(comparison)) if enable_mlflow else 0,
             "run_ids_exported": bool(
@@ -1293,23 +1325,32 @@ def train_cnn(
             ),
             "ui_command": (
                 "mlflow ui --backend-store-uri "
-                f"sqlite:///{(tracking_dir.resolve() / 'mlflow.db').as_posix()}"
+                f"sqlite:///{display_path(tracking_dir / 'mlflow.db', root)}"
             ),
         },
         "outputs": {
-            "checkpoint": str(model_path),
-            "metadata": str(metadata_path),
-            "experiment_comparison": str(comparison_path),
-            "training_history": str(history_path),
-            "classification_report": str(per_class_path),
-            "validation_predictions": str(predictions_path),
-            "model_comparison": str(model_comparison_path),
+            "checkpoint": display_path(model_path, root),
+            "metadata": display_path(metadata_path, root),
+            "experiment_comparison": display_path(
+                comparison_path,
+                root,
+            ),
+            "training_history": display_path(history_path, root),
+            "classification_report": display_path(per_class_path, root),
+            "validation_predictions": display_path(
+                predictions_path,
+                root,
+            ),
+            "model_comparison": display_path(
+                model_comparison_path,
+                root,
+            ),
             "figures": [
-                str(output["curves_path"])
+                display_path(output["curves_path"], root)
                 for output in run_outputs.values()
             ]
             + [
-                str(output["confusion_path"])
+                display_path(output["confusion_path"], root)
                 for output in run_outputs.values()
             ],
         },
