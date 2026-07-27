@@ -16,6 +16,13 @@ from fontsense.font_audit import (
     resolve_system_font,
 )
 from fontsense.generate_dataset import generate_dataset
+from fontsense.google_fonts import (
+    CATEGORY_ORDER,
+    GOOGLE_FONTS_AUDIT_COLUMNS,
+    download_catalog,
+    summarise_audit,
+    validate_font_file,
+)
 from fontsense.mlflow_utils import optional_mlflow_run
 
 
@@ -36,6 +43,138 @@ subsets: \"latin\"
     assert result["license"] == "OFL"
     assert result["filenames"] == ["ExampleSans-Regular.ttf"]
     assert "latin" in result["subsets"]
+
+
+def test_google_fonts_audit_uses_official_metadata_and_validates_rendering(tmp_path, monkeypatch):
+    catalog_path = tmp_path / "catalog.json"
+    output_dir = tmp_path / "fonts"
+    manifest_path = tmp_path / "manifest.csv"
+    catalog_path.write_text(json.dumps({"serif": ["example-serif"]}), encoding="utf-8")
+    metadata = {
+        "family": "Example Serif",
+        "category": "SERIF",
+        "license": "OFL",
+        "filenames": ["ExampleSerif-Regular.ttf"],
+        "subsets": ["latin", "latin-ext"],
+    }
+    monkeypatch.setattr(
+        "fontsense.google_fonts.locate_metadata",
+        lambda slug: ("ofl", 'name: "Example Serif"', metadata),
+    )
+    font_bytes = packaged_font("DejaVuSerif.ttf").read_bytes()
+
+    def fake_request(url, *, binary=False, retries=3):
+        return font_bytes if binary else "Official licence text"
+
+    monkeypatch.setattr("fontsense.google_fonts.request_with_retry", fake_request)
+
+    frame = download_catalog(catalog_path, output_dir, manifest_path, max_per_category=1)
+    saved = pd.read_csv(manifest_path)
+    row = frame.iloc[0]
+
+    assert list(frame.columns) == GOOGLE_FONTS_AUDIT_COLUMNS
+    assert list(saved.columns) == GOOGLE_FONTS_AUDIT_COLUMNS
+    assert row["family"] == "Example Serif"
+    assert row["category"] == "serif"
+    assert row["source"] == "Google Fonts official repository"
+    assert row["license"] == "OFL"
+    assert bool(row["latin_support"])
+    assert row["validation_status"] == "passed"
+    assert row["failure_reason"] == ""
+    assert bool(row["usable"])
+    assert Path(row["path"]).is_file()
+    assert validate_font_file(row["path"]) == (True, "")
+
+
+def test_google_fonts_audit_keeps_failed_rows_in_the_same_schema(tmp_path, monkeypatch):
+    catalog_path = tmp_path / "catalog.json"
+    manifest_path = tmp_path / "manifest.csv"
+    catalog_path.write_text(json.dumps({"display": ["missing-font"]}), encoding="utf-8")
+    monkeypatch.setattr("fontsense.google_fonts.locate_metadata", lambda slug: None)
+
+    frame = download_catalog(catalog_path, tmp_path / "fonts", manifest_path, max_per_category=1)
+    row = frame.iloc[0]
+
+    assert list(frame.columns) == GOOGLE_FONTS_AUDIT_COLUMNS
+    assert row["family"] == ""
+    assert row["category"] == ""
+    assert row["catalog_category"] == "display"
+    assert not bool(row["usable"])
+    assert row["validation_status"] == "failed"
+    assert row["failure_reason"] == "official METADATA.pb not found"
+
+
+def test_google_fonts_audit_rejects_catalog_label_that_disagrees_with_official_metadata(tmp_path, monkeypatch):
+    catalog_path = tmp_path / "catalog.json"
+    manifest_path = tmp_path / "manifest.csv"
+    catalog_path.write_text(json.dumps({"display": ["example-font"]}), encoding="utf-8")
+    metadata = {
+        "family": "Example Font",
+        "category": "SANS_SERIF",
+        "license": "OFL",
+        "filenames": ["ExampleFont-Regular.ttf"],
+        "subsets": ["latin"],
+    }
+    monkeypatch.setattr(
+        "fontsense.google_fonts.locate_metadata",
+        lambda slug: ("ofl", 'name: "Example Font"', metadata),
+    )
+
+    frame = download_catalog(catalog_path, tmp_path / "fonts", manifest_path, max_per_category=1)
+    row = frame.iloc[0]
+
+    assert row["catalog_category"] == "display"
+    assert row["metadata_category"] == "SANS_SERIF"
+    assert row["category"] == "sans_serif"
+    assert not bool(row["usable"])
+    assert row["failure_reason"] == "official metadata category does not match catalog category"
+
+
+def test_google_fonts_audit_rejects_missing_licence_file(tmp_path, monkeypatch):
+    catalog_path = tmp_path / "catalog.json"
+    manifest_path = tmp_path / "manifest.csv"
+    catalog_path.write_text(json.dumps({"monospace": ["example-mono"]}), encoding="utf-8")
+    metadata = {
+        "family": "Example Mono",
+        "category": "MONOSPACE",
+        "license": "OFL",
+        "filenames": ["ExampleMono-Regular.ttf"],
+        "subsets": ["latin"],
+    }
+    monkeypatch.setattr(
+        "fontsense.google_fonts.locate_metadata",
+        lambda slug: ("ofl", 'name: "Example Mono"', metadata),
+    )
+
+    def missing_request(url, **kwargs):
+        raise FileNotFoundError(url)
+
+    monkeypatch.setattr("fontsense.google_fonts.request_with_retry", missing_request)
+
+    frame = download_catalog(catalog_path, tmp_path / "fonts", manifest_path, max_per_category=1)
+    row = frame.iloc[0]
+
+    assert not bool(row["usable"])
+    assert row["path"] == ""
+    assert "FileNotFoundError" in row["failure_reason"]
+
+
+def test_google_fonts_summary_counts_independent_usable_families():
+    frame = pd.DataFrame(
+        [
+            {"family": "A", "category": "serif", "catalog_category": "serif", "usable": True},
+            {"family": "A", "category": "serif", "catalog_category": "serif", "usable": True},
+            {"family": "B", "category": "serif", "catalog_category": "serif", "usable": False},
+        ]
+    )
+
+    summary = summarise_audit(frame)
+
+    assert summary["category"].tolist() == list(CATEGORY_ORDER)
+    serif = summary.loc[summary["category"] == "serif"].iloc[0]
+    assert serif["usable_families"] == 1
+    assert serif["failed_entries"] == 1
+    assert serif["audited_entries"] == 3
 
 
 def test_windows_font_discovery_checks_system_and_user_directories(tmp_path, monkeypatch):

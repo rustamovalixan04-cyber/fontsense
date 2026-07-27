@@ -5,11 +5,16 @@
 The assessed dataset is generated from legally usable open-source font files in the official Google Fonts repository. `scripts/download_google_fonts.py` downloads a curated subset and records:
 
 - family name
-- broad Google Fonts category
+- broad category read from official Google Fonts metadata
+- official Google Fonts source and exact source URL
 - font file path
 - license code
 - Latin subset availability
-- exact source URL
+- Pillow validation status and any failure reason
+
+The audit writes `data/interim/google_fonts_manifest.csv` and a small category
+summary. Downloaded font files remain ignored by Git. This audit does not
+generate the image dataset or train a model.
 
 ## Unit of observation
 
