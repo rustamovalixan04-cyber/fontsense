@@ -1,0 +1,16 @@
+category,split,images,families
+display,test,120,3
+display,train,480,12
+display,validation,120,3
+handwriting,test,120,3
+handwriting,train,480,12
+handwriting,validation,120,3
+monospace,test,120,3
+monospace,train,480,12
+monospace,validation,120,3
+sans_serif,test,120,3
+sans_serif,train,480,12
+sans_serif,validation,120,3
+serif,test,120,3
+serif,train,480,12
+serif,validation,120,3

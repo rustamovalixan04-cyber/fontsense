@@ -11,3 +11,11 @@ performance results.
 summary, exact category-effect balance table, same-seed reproducibility check,
 and five small contact sheets. These are verified dataset-generation records,
 not model evaluation results.
+
+`reports/eda/` contains the pre-training data-quality evidence: per-image
+measurements, balance tables, duplicate-screen results, a validation summary,
+the canonical report input, and the self-contained HTML summary report.
+
+`reports/figures/` contains the EDA charts and sample grids. Every important
+chart has a short conclusion in `notebooks/03_eda.ipynb` and in the HTML
+report. The EDA outputs do not contain trained-model metrics.

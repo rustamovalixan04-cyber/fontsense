@@ -1,0 +1,138 @@
+{
+  "status": "passed",
+  "purpose": "EDA and data-quality checks only; no model training or model results.",
+  "dataset_ready_for_model_training": true,
+  "structure": {
+    "manifest_grain": "one row per rendered image",
+    "candidate_key": "image_path",
+    "total_images": 3600,
+    "unique_image_paths": 3600,
+    "unique_families": 90,
+    "family_overlap_count": 0,
+    "images_per_category": {
+      "display": 720,
+      "handwriting": 720,
+      "monospace": 720,
+      "sans_serif": 720,
+      "serif": 720
+    },
+    "images_per_split": {
+      "test": 600,
+      "train": 2400,
+      "validation": 600
+    },
+    "images_per_family_min": 40,
+    "images_per_family_max": 40,
+    "families_per_category": {
+      "display": 18,
+      "handwriting": 18,
+      "monospace": 18,
+      "sans_serif": 18,
+      "serif": 18
+    },
+    "families_per_split": {
+      "test": 15,
+      "train": 60,
+      "validation": 15
+    }
+  },
+  "image_quality": {
+    "manifest_paths_checked": 3600,
+    "images_opened_successfully": 3600,
+    "missing_images": 0,
+    "corrupted_images": 0,
+    "blank_images": 0,
+    "low_pixel_contrast_flags": 0,
+    "automated_unreadable_flags": 0,
+    "readability_scope": "Automated screen for missing, corrupt, blank, or extremely low-contrast images; human review is still required for subjective readability.",
+    "wrong_dimension_images": 0,
+    "expected_dimensions": "224x96",
+    "brightness": {
+      "minimum": 11.2568,
+      "median": 234.8136,
+      "maximum": 251.5986
+    },
+    "contrast": {
+      "minimum": 7.5245,
+      "median": 26.6531,
+      "maximum": 76.2661
+    },
+    "exact_duplicate_hash_groups": 0,
+    "suspicious_near_identical_pairs": 0,
+    "near_duplicate_definition": "16x16 difference-hash Hamming distance <= 2 and structural similarity >= 0.995"
+  },
+  "text_size": {
+    "minimum_actual_font_size": 13,
+    "median_actual_font_size": 22.0,
+    "maximum_actual_font_size": 46
+  },
+  "effects": {
+    "maximum_binary_effect_rate_spread": 0.0,
+    "binary_effect_rate_spreads": {
+      "dark_background": 0.0,
+      "soft_contrast": 0.0,
+      "blur_applied": 0.0,
+      "jpeg_applied": 0.0,
+      "letter_spacing_applied": 0.0,
+      "rotation_applied": 0.0,
+      "horizontal_shift_applied": 0.0,
+      "vertical_shift_applied": 0.0,
+      "scaling_applied": 0.0
+    },
+    "serious_imbalance_threshold": 0.05,
+    "serious_category_dependent_effect_imbalance": false,
+    "mean_actual_font_size_spread": 0.0,
+    "background_counts": {
+      "light": 2575,
+      "dark": 1025
+    },
+    "blurred_images": 870,
+    "jpeg_compressed_images": 925,
+    "rotation_range_degrees": [
+      -2.485,
+      2.5
+    ]
+  },
+  "phrase_balance": {
+    "unique_phrases": 55,
+    "cramers_v": 0.0,
+    "maximum_phrase_rate_spread": 0.0,
+    "strong_category_association": false
+  },
+  "model_feature_audit": {
+    "status": "passed_by_code_inspection",
+    "hog_input": "HOG values calculated from grayscale image pixels only",
+    "cnn_input": "normalized grayscale image tensor only",
+    "target": "category",
+    "path_usage": "image_path is used only to open the image file",
+    "excluded_from_model_features": [
+      "image_path text",
+      "file name",
+      "family",
+      "split",
+      "rendered_text",
+      "source_font",
+      "random_seed",
+      "applied_effects"
+    ],
+    "code_checked": [
+      "src/fontsense/features.py",
+      "src/fontsense/train_hog.py",
+      "src/fontsense/train_cnn.py"
+    ]
+  },
+  "frozen_split_sha256": "f6cdd858449a4143993b051e9de83578cd423544135dbf6cc17f004359d2e17b",
+  "source_manifest_sha256": "93afae99ea6ac7dc65e8cf03a1e5743f9581c189f1feaf115ad7439fad58d69c",
+  "model_training_performed": false,
+  "figures": {
+    "class_counts": "reports/figures/class_counts.png",
+    "split_counts": "reports/figures/split_counts.png",
+    "families_per_category_split": "reports/figures/families_per_category_split.png",
+    "effect_distributions": "reports/figures/effect_distributions.png",
+    "brightness_contrast_distributions": "reports/figures/brightness_contrast_distributions.png",
+    "text_size_rotation_distributions": "reports/figures/text_size_rotation_distributions.png",
+    "phrase_category_balance": "reports/figures/phrase_category_balance.png",
+    "representative_samples": "reports/figures/representative_samples.png",
+    "unusual_difficult_samples": "reports/figures/unusual_difficult_samples.png"
+  }
+}

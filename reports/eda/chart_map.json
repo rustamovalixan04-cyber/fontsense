@@ -1,0 +1,56 @@
+[
+  {
+    "figure": "class_counts",
+    "path": "reports/figures/class_counts.png",
+    "question": "Are image classes balanced?",
+    "claim_supported": "Each category contains 720 images."
+  },
+  {
+    "figure": "split_counts",
+    "path": "reports/figures/split_counts.png",
+    "question": "How many images are in each family-level split?",
+    "claim_supported": "The dataset contains 2,400 train, 600 validation, and 600 test images."
+  },
+  {
+    "figure": "families_per_category_split",
+    "path": "reports/figures/families_per_category_split.png",
+    "question": "Are independent families balanced by category and split?",
+    "claim_supported": "Each category contains 12 train, 3 validation, and 3 test families."
+  },
+  {
+    "figure": "effect_distributions",
+    "path": "reports/figures/effect_distributions.png",
+    "question": "Are generation effects balanced across categories?",
+    "claim_supported": "Selected binary effect rates match across categories."
+  },
+  {
+    "figure": "brightness_contrast_distributions",
+    "path": "reports/figures/brightness_contrast_distributions.png",
+    "question": "What do image brightness and contrast distributions look like?",
+    "claim_supported": "All images have measurable pixel variation; category differences are descriptive."
+  },
+  {
+    "figure": "text_size_rotation_distributions",
+    "path": "reports/figures/text_size_rotation_distributions.png",
+    "question": "What text-size and rotation ranges were used?",
+    "claim_supported": "Text remains within the configured mild rendering ranges."
+  },
+  {
+    "figure": "phrase_category_balance",
+    "path": "reports/figures/phrase_category_balance.png",
+    "question": "Are rendered phrases associated with category?",
+    "claim_supported": "The phrase distribution is identical across categories."
+  },
+  {
+    "figure": "representative_samples",
+    "path": "reports/figures/representative_samples.png",
+    "question": "What does each category and split look like?",
+    "claim_supported": "All 15 category-split combinations are represented."
+  },
+  {
+    "figure": "unusual_difficult_samples",
+    "path": "reports/figures/unusual_difficult_samples.png",
+    "question": "Which images merit closer manual review?",
+    "claim_supported": "The automated screen highlights edge cases for human inspection."
+  }
+]

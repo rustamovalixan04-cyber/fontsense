@@ -67,6 +67,32 @@ Validation results are stored in `reports/dataset/`, including the full
 manifest, effect-balance table, reproducibility check, and contact sheets.
 The 3,600 PNG files remain ignored in `data/processed/fontsense_full/`.
 
+## EDA and data-quality audit
+
+`python -m fontsense.eda` reads the existing full manifest, frozen split, and
+3,600 generated images. It does not regenerate images and does not train a
+model.
+
+The audit verifies:
+
+- 3,600 unique image paths and 90 independent families
+- 720 images and 18 families per category
+- 2,400 train, 600 validation, and 600 test images
+- exactly 40 images per family
+- zero family overlap between splits
+- all images open at 224 by 96 pixels
+- no missing, corrupt, blank, exact-duplicate, or strictly near-identical files
+- the saved effect and phrase schedules are balanced across categories
+- manifest metadata is not used as a model feature
+
+The full per-image measurements, validation summary, notebook, report, and
+figures are saved under `reports/eda/`, `reports/figures/`, and
+`notebooks/03_eda.ipynb`.
+
+The automated readability screen catches missing, corrupt, blank, or extremely
+low-contrast files. It does not replace human review. These findings describe
+data quality only; they are not model-performance results.
+
 ## Unit of observation
 
 One record is one raster image containing a short Latin-script word or text line rendered with a single font family. The target is one of five broad categories.

@@ -1,0 +1,1059 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "FontSense dataset EDA and quality audit",
+    "description": "Technical audit of the existing 3,600-image FontSense dataset before model training.",
+    "generatedAt": "2026-07-27T08:19:21Z",
+    "cards": [
+      {
+        "id": "images_card",
+        "description": "Manifest rows at one image per row.",
+        "dataset": "headline",
+        "sourceId": "headline_summary",
+        "metrics": [
+          {
+            "label": "Images",
+            "field": "total_images",
+            "format": "number"
+          }
+        ]
+      },
+      {
+        "id": "families_card",
+        "description": "Independent font families in the frozen split.",
+        "dataset": "headline",
+        "sourceId": "headline_summary",
+        "metrics": [
+          {
+            "label": "Font families",
+            "field": "unique_families",
+            "format": "number"
+          }
+        ]
+      },
+      {
+        "id": "invalid_card",
+        "description": "Missing, corrupt, blank, or extremely low-contrast flags.",
+        "dataset": "headline",
+        "sourceId": "headline_summary",
+        "metrics": [
+          {
+            "label": "Automated quality flags",
+            "field": "invalid_images",
+            "format": "number"
+          }
+        ]
+      },
+      {
+        "id": "overlap_card",
+        "description": "Families appearing in more than one split.",
+        "dataset": "headline",
+        "sourceId": "headline_summary",
+        "metrics": [
+          {
+            "label": "Split-overlap families",
+            "field": "family_overlap",
+            "format": "number"
+          }
+        ]
+      }
+    ],
+    "charts": [
+      {
+        "id": "category_counts_chart",
+        "title": "Images per font category",
+        "subtitle": "All 3,600 manifest rows; count axis starts at zero.",
+        "type": "bar",
+        "intent": "comparison",
+        "dataset": "category_counts",
+        "sourceId": "category_counts",
+        "encodings": {
+          "x": {
+            "field": "category",
+            "type": "nominal",
+            "label": "Category"
+          },
+          "y": {
+            "field": "images",
+            "type": "quantitative",
+            "label": "Images"
+          },
+          "tooltip": [
+            {
+              "field": "families",
+              "type": "quantitative",
+              "label": "Families"
+            },
+            {
+              "field": "total_images",
+              "type": "quantitative",
+              "label": "Dataset images"
+            }
+          ]
+        }
+      },
+      {
+        "id": "split_counts_chart",
+        "title": "Images per family-level split",
+        "subtitle": "Train, validation, and test assignments are fixed before modeling.",
+        "type": "bar",
+        "intent": "comparison",
+        "dataset": "split_counts",
+        "sourceId": "split_counts",
+        "encodings": {
+          "x": {
+            "field": "split",
+            "type": "nominal",
+            "label": "Split"
+          },
+          "y": {
+            "field": "images",
+            "type": "quantitative",
+            "label": "Images"
+          },
+          "tooltip": [
+            {
+              "field": "families",
+              "type": "quantitative",
+              "label": "Families"
+            }
+          ]
+        }
+      },
+      {
+        "id": "family_split_chart",
+        "title": "Independent families per category and split",
+        "subtitle": "Each category has 12 train, 3 validation, and 3 test families.",
+        "type": "bar",
+        "intent": "comparison",
+        "dataset": "family_split_counts",
+        "sourceId": "family_split_counts",
+        "encodings": {
+          "x": {
+            "field": "category",
+            "type": "nominal",
+            "label": "Category"
+          },
+          "y": {
+            "field": "families",
+            "type": "quantitative",
+            "label": "Unique families"
+          },
+          "color": {
+            "field": "split",
+            "type": "nominal",
+            "label": "Split"
+          },
+          "tooltip": [
+            {
+              "field": "images_per_family",
+              "type": "quantitative",
+              "label": "Images per family"
+            }
+          ]
+        }
+      },
+      {
+        "id": "effect_rates_chart",
+        "title": "Applied effect rates by category",
+        "subtitle": "Four requested binary effects across 720 images per category.",
+        "type": "bar",
+        "intent": "comparison",
+        "dataset": "effect_rates",
+        "sourceId": "effect_rates",
+        "valueFormat": "percent",
+        "encodings": {
+          "x": {
+            "field": "effect",
+            "type": "nominal",
+            "label": "Effect"
+          },
+          "y": {
+            "field": "rate",
+            "type": "quantitative",
+            "label": "Share of images"
+          },
+          "color": {
+            "field": "category",
+            "type": "nominal",
+            "label": "Category"
+          },
+          "tooltip": [
+            {
+              "field": "images",
+              "type": "quantitative",
+              "label": "Images per category"
+            }
+          ]
+        }
+      },
+      {
+        "id": "contrast_chart",
+        "title": "Average pixel contrast by category",
+        "subtitle": "Mean grayscale standard deviation; 720 open images per category.",
+        "type": "bar",
+        "intent": "comparison",
+        "dataset": "quality_by_category",
+        "sourceId": "quality_by_category",
+        "encodings": {
+          "x": {
+            "field": "category",
+            "type": "nominal",
+            "label": "Category"
+          },
+          "y": {
+            "field": "contrast_average",
+            "type": "quantitative",
+            "label": "Average grayscale standard deviation"
+          },
+          "tooltip": [
+            {
+              "field": "contrast_min",
+              "type": "quantitative",
+              "label": "Minimum contrast"
+            },
+            {
+              "field": "contrast_max",
+              "type": "quantitative",
+              "label": "Maximum contrast"
+            }
+          ]
+        }
+      }
+    ],
+    "tables": [
+      {
+        "id": "quality_table",
+        "title": "Image-quality distribution summary",
+        "subtitle": "Brightness, contrast, and actual font-size ranges by category.",
+        "dataset": "quality_by_category",
+        "sourceId": "quality_by_category",
+        "defaultSort": {
+          "field": "category",
+          "direction": "asc"
+        },
+        "columns": [
+          {
+            "field": "category",
+            "label": "Category",
+            "type": "text"
+          },
+          {
+            "field": "images",
+            "label": "Images",
+            "format": "number"
+          },
+          {
+            "field": "brightness_average",
+            "label": "Average brightness",
+            "format": "number"
+          },
+          {
+            "field": "contrast_average",
+            "label": "Average contrast",
+            "format": "number"
+          },
+          {
+            "field": "font_size_min",
+            "label": "Min font size",
+            "format": "number"
+          },
+          {
+            "field": "font_size_average",
+            "label": "Average font size",
+            "format": "number"
+          },
+          {
+            "field": "font_size_max",
+            "label": "Max font size",
+            "format": "number"
+          }
+        ]
+      },
+      {
+        "id": "checks_table",
+        "title": "Validation checks",
+        "subtitle": "Blocking checks required before model development.",
+        "dataset": "validation_checks",
+        "sourceId": "validation_checks",
+        "defaultSort": {
+          "field": "check",
+          "direction": "asc"
+        },
+        "columns": [
+          {
+            "field": "check",
+            "label": "Check",
+            "type": "text"
+          },
+          {
+            "field": "result",
+            "label": "Observed result",
+            "type": "text"
+          },
+          {
+            "field": "status",
+            "label": "Status",
+            "type": "text"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "headline_summary",
+        "label": "EDA headline validation results",
+        "path": "reports/eda/eda_validation_summary.json",
+        "query": {
+          "engine": "sqlite",
+          "language": "sql",
+          "sql": "SELECT\n            total_images,\n            unique_families,\n            invalid_images,\n            family_overlap,\n            effect_rate_spread,\n            phrase_cramers_v\n        FROM eda_headline",
+          "description": "Reads the reviewed headline quality and balance checks.",
+          "executed_at": "2026-07-27T08:19:21Z",
+          "tables_used": [
+            "eda_headline"
+          ]
+        }
+      },
+      {
+        "id": "category_counts",
+        "label": "Category counts from the full manifest",
+        "path": "reports/dataset/full_manifest.csv",
+        "query": {
+          "engine": "sqlite",
+          "language": "sql",
+          "sql": "SELECT\n            category,\n            COUNT(*) AS images,\n            COUNT(DISTINCT family) AS families,\n            (SELECT COUNT(*) FROM full_manifest) AS total_images\n        FROM full_manifest\n        GROUP BY category",
+          "description": "Counts images and independent families by category.",
+          "executed_at": "2026-07-27T08:19:21Z",
+          "tables_used": [
+            "full_manifest"
+          ]
+        }
+      },
+      {
+        "id": "split_counts",
+        "label": "Split counts from the full manifest",
+        "path": "reports/dataset/full_manifest.csv",
+        "query": {
+          "engine": "sqlite",
+          "language": "sql",
+          "sql": "SELECT\n            split,\n            COUNT(*) AS images,\n            COUNT(DISTINCT family) AS families,\n            (SELECT COUNT(*) FROM full_manifest) AS total_images\n        FROM full_manifest\n        GROUP BY split",
+          "description": "Counts images and independent families by split.",
+          "executed_at": "2026-07-27T08:19:21Z",
+          "tables_used": [
+            "full_manifest"
+          ]
+        }
+      },
+      {
+        "id": "family_split_counts",
+        "label": "Family counts from the frozen split",
+        "path": "data/interim/google_fonts_final_family_split.csv",
+        "query": {
+          "engine": "sqlite",
+          "language": "sql",
+          "sql": "SELECT\n            category,\n            split,\n            COUNT(DISTINCT family) AS families,\n            40 AS images_per_family\n        FROM frozen_split\n        GROUP BY category, split",
+          "description": "Counts independent frozen families by category and split.",
+          "executed_at": "2026-07-27T08:19:21Z",
+          "tables_used": [
+            "frozen_split"
+          ]
+        }
+      },
+      {
+        "id": "quality_by_category",
+        "label": "Per-category image quality summary",
+        "path": "reports/eda/image_quality_metrics.csv",
+        "query": {
+          "engine": "sqlite",
+          "language": "sql",
+          "sql": "SELECT\n            category,\n            COUNT(*) AS images,\n            MIN(brightness_mean) AS brightness_min,\n            AVG(brightness_mean) AS brightness_average,\n            MAX(brightness_mean) AS brightness_max,\n            MIN(contrast_std) AS contrast_min,\n            AVG(contrast_std) AS contrast_average,\n            MAX(contrast_std) AS contrast_max,\n            MIN(actual_font_size) AS font_size_min,\n            AVG(actual_font_size) AS font_size_average,\n            MAX(actual_font_size) AS font_size_max\n        FROM image_quality\n        WHERE opens_successfully = 1\n        GROUP BY category",
+          "description": "Summarizes brightness, contrast, and actual font size for open images.",
+          "executed_at": "2026-07-27T08:19:21Z",
+          "tables_used": [
+            "image_quality"
+          ]
+        }
+      },
+      {
+        "id": "effect_rates",
+        "label": "Effect rates by category",
+        "path": "reports/eda/effect_balance_by_category.csv",
+        "query": {
+          "engine": "sqlite",
+          "language": "sql",
+          "sql": "SELECT category, 'Dark background' AS effect, dark_background AS rate, 720 AS images\n        FROM effect_balance\n        UNION ALL\n        SELECT category, 'Soft contrast', soft_contrast, 720 FROM effect_balance\n        UNION ALL\n        SELECT category, 'Mild blur', blur_applied, 720 FROM effect_balance\n        UNION ALL\n        SELECT category, 'JPEG round-trip', jpeg_applied, 720 FROM effect_balance",
+          "description": "Reshapes four reviewed binary effect rates for category comparison.",
+          "executed_at": "2026-07-27T08:19:21Z",
+          "tables_used": [
+            "effect_balance"
+          ]
+        }
+      },
+      {
+        "id": "validation_checks",
+        "label": "Blocking EDA validation checks",
+        "path": "reports/eda/eda_validation_summary.json",
+        "query": {
+          "engine": "sqlite",
+          "language": "sql",
+          "sql": "SELECT \"check\", result, status\n        FROM validation_checks\n        ORDER BY \"check\"",
+          "description": "Reads the reviewed pass/fail checks shown in the report.",
+          "executed_at": "2026-07-27T08:19:21Z",
+          "tables_used": [
+            "validation_checks"
+          ]
+        }
+      }
+    ],
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "body": "# FontSense dataset EDA and quality audit"
+      },
+      {
+        "id": "technical_summary",
+        "type": "markdown",
+        "sourceId": "headline_summary",
+        "body": "## Technical summary\n\n**The existing full dataset passes the requested pre-training quality gate.** All 3,600 images open at 224×96, all 90 families match the frozen split, family overlap is zero, and the automated screen finds no missing, corrupt, blank, extremely low-contrast, exact-duplicate, or strictly near-identical images. Effects and phrases show no category-dependent schedule imbalance. No model was trained."
+      },
+      {
+        "id": "headline_metrics",
+        "type": "metric-strip",
+        "cardIds": [
+          "images_card",
+          "families_card",
+          "invalid_card",
+          "overlap_card"
+        ]
+      },
+      {
+        "id": "key_findings",
+        "type": "markdown",
+        "sourceId": "category_counts",
+        "body": "## Key findings\n\n**The dataset is exactly balanced by target category.** Each of the five categories has 720 images and 18 independent families, so raw class frequency will not give a model an advantage."
+      },
+      {
+        "id": "category_counts",
+        "type": "chart",
+        "chartId": "category_counts_chart"
+      },
+      {
+        "id": "category_counts_note",
+        "type": "markdown",
+        "sourceId": "category_counts",
+        "body": "**How to read it.** Equal bar heights confirm the 720-image target for every category. This removes class-count imbalance, but it does not guarantee that every visual style is equally difficult."
+      },
+      {
+        "id": "split_counts",
+        "type": "chart",
+        "chartId": "split_counts_chart"
+      },
+      {
+        "id": "split_counts_note",
+        "type": "markdown",
+        "sourceId": "split_counts",
+        "body": "**The split sizes are 2,400 train, 600 validation, and 600 test images.** Because whole families—not individual images—were assigned, the split supports evaluation on unseen families."
+      },
+      {
+        "id": "leakage_balance",
+        "type": "markdown",
+        "sourceId": "family_split_counts",
+        "body": "## Leakage and balance\n\n**No font family appears in more than one split.** Every category contains 12 train, 3 validation, and 3 test families. Training code inspection also confirms that family, phrase, source font, file name, path text, split, random seed, and effect metadata are not model features."
+      },
+      {
+        "id": "family_split",
+        "type": "chart",
+        "chartId": "family_split_chart"
+      },
+      {
+        "id": "family_split_note",
+        "type": "markdown",
+        "sourceId": "family_split_counts",
+        "body": "**The family-level pattern is identical across categories.** The test families stay reserved for final evaluation; this audit uses them only for the requested integrity and quality checks."
+      },
+      {
+        "id": "effect_rates",
+        "type": "chart",
+        "chartId": "effect_rates_chart"
+      },
+      {
+        "id": "effect_rates_note",
+        "type": "markdown",
+        "sourceId": "headline_summary",
+        "body": "**Background and selected effect rates match exactly across categories.** The maximum binary effect-rate spread is 0.0 percentage points. Rendered-phrase distributions also match exactly (Cramér's V = 0.000), so these metadata schedules do not reveal the label."
+      },
+      {
+        "id": "quality_findings",
+        "type": "markdown",
+        "sourceId": "quality_by_category",
+        "body": "## Image quality\n\n**All files pass the blocking image checks.** Brightness spans both dark and light backgrounds. Contrast varies by font shape and stroke coverage; display fonts have the highest average pixel contrast, while handwriting has the lowest. Actual font size ranges from 13 to 46 pixels with an average of 22.4."
+      },
+      {
+        "id": "contrast",
+        "type": "chart",
+        "chartId": "contrast_chart"
+      },
+      {
+        "id": "contrast_note",
+        "type": "markdown",
+        "sourceId": "quality_by_category",
+        "body": "**Contrast differences are descriptive, not a generation imbalance.** They can arise naturally because broad font categories occupy different amounts of the image. No image fell below the conservative low-pixel-contrast flag."
+      },
+      {
+        "id": "quality_detail",
+        "type": "table",
+        "tableId": "quality_table"
+      },
+      {
+        "id": "quality_table_note",
+        "type": "markdown",
+        "sourceId": "quality_by_category",
+        "body": "**The ranges remain broad but valid.** The saved representative and difficult-sample figures should still receive human review because numeric screening cannot prove subjective readability."
+      },
+      {
+        "id": "validation_checks",
+        "type": "table",
+        "tableId": "checks_table"
+      },
+      {
+        "id": "scope_definitions",
+        "type": "markdown",
+        "body": "## Scope, data, and metric definitions\n\n- **Image:** one manifest row and one 224×96 PNG.\n- **Family overlap:** a family with more than one distinct split.\n- **Brightness:** mean grayscale value from 0 to 255.\n- **Contrast:** grayscale pixel standard deviation.\n- **Blank:** zero grayscale intensity range.\n- **Strict near-identical pair:** difference-hash Hamming distance ≤2 and structural similarity ≥0.995.\n- **Serious effect imbalance:** maximum category rate spread above 5 percentage points."
+      },
+      {
+        "id": "methodology",
+        "type": "markdown",
+        "body": "## Methodology\n\nThe audit loads the committed full manifest and frozen split without changing either. It validates the image-level key and exact assignments, opens every listed image with Pillow, calculates per-image pixel summaries and hashes, expands the saved effect JSON, compares category rates, and measures phrase association. The notebook executes the same reusable `fontsense.eda` code from top to bottom."
+      },
+      {
+        "id": "limitations",
+        "type": "markdown",
+        "body": "## Limitations and uncertainty\n\n- Automated checks cannot guarantee that every text sample is easy for every person to read.\n- The data are synthetic renders; real screenshots may add cropping, lighting, noise, and layout shift.\n- Broad categories can be visually ambiguous even when files and labels are valid.\n- The strict near-duplicate rule is designed to catch very similar files, not every semantic resemblance.\n- These findings describe data quality only and are not model metrics."
+      },
+      {
+        "id": "next_steps",
+        "type": "markdown",
+        "body": "## Recommended next step\n\nProceed to the leakage-safe HOG + Logistic Regression baseline using train and validation families only. Keep the test split untouched until the one final evaluation, and record all experiments in MLflow."
+      },
+      {
+        "id": "further_questions",
+        "type": "markdown",
+        "body": "## Further questions\n\n- Which categories and unseen families create the most validation confusion?\n- How large is the synthetic-to-real gap on user screenshots?\n- Do smaller text sizes or softer contrast drive validation errors after training?"
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-07-27T08:19:21Z",
+    "status": "ready",
+    "datasets": {
+      "headline": [
+        {
+          "total_images": 3600,
+          "unique_families": 90,
+          "invalid_images": 0,
+          "family_overlap": 0,
+          "effect_rate_spread": 0.0,
+          "phrase_cramers_v": 0.0
+        }
+      ],
+      "category_counts": [
+        {
+          "category": "Serif",
+          "images": 720,
+          "families": 18,
+          "total_images": 3600
+        },
+        {
+          "category": "Sans serif",
+          "images": 720,
+          "families": 18,
+          "total_images": 3600
+        },
+        {
+          "category": "Display",
+          "images": 720,
+          "families": 18,
+          "total_images": 3600
+        },
+        {
+          "category": "Handwriting",
+          "images": 720,
+          "families": 18,
+          "total_images": 3600
+        },
+        {
+          "category": "Monospace",
+          "images": 720,
+          "families": 18,
+          "total_images": 3600
+        }
+      ],
+      "split_counts": [
+        {
+          "split": "Train",
+          "images": 2400,
+          "families": 60,
+          "total_images": 3600
+        },
+        {
+          "split": "Validation",
+          "images": 600,
+          "families": 15,
+          "total_images": 3600
+        },
+        {
+          "split": "Test",
+          "images": 600,
+          "families": 15,
+          "total_images": 3600
+        }
+      ],
+      "family_split_counts": [
+        {
+          "category": "Display",
+          "split": "Test",
+          "families": 3,
+          "images_per_family": 40
+        },
+        {
+          "category": "Display",
+          "split": "Train",
+          "families": 12,
+          "images_per_family": 40
+        },
+        {
+          "category": "Display",
+          "split": "Validation",
+          "families": 3,
+          "images_per_family": 40
+        },
+        {
+          "category": "Handwriting",
+          "split": "Test",
+          "families": 3,
+          "images_per_family": 40
+        },
+        {
+          "category": "Handwriting",
+          "split": "Train",
+          "families": 12,
+          "images_per_family": 40
+        },
+        {
+          "category": "Handwriting",
+          "split": "Validation",
+          "families": 3,
+          "images_per_family": 40
+        },
+        {
+          "category": "Monospace",
+          "split": "Test",
+          "families": 3,
+          "images_per_family": 40
+        },
+        {
+          "category": "Monospace",
+          "split": "Train",
+          "families": 12,
+          "images_per_family": 40
+        },
+        {
+          "category": "Monospace",
+          "split": "Validation",
+          "families": 3,
+          "images_per_family": 40
+        },
+        {
+          "category": "Sans serif",
+          "split": "Test",
+          "families": 3,
+          "images_per_family": 40
+        },
+        {
+          "category": "Sans serif",
+          "split": "Train",
+          "families": 12,
+          "images_per_family": 40
+        },
+        {
+          "category": "Sans serif",
+          "split": "Validation",
+          "families": 3,
+          "images_per_family": 40
+        },
+        {
+          "category": "Serif",
+          "split": "Test",
+          "families": 3,
+          "images_per_family": 40
+        },
+        {
+          "category": "Serif",
+          "split": "Train",
+          "families": 12,
+          "images_per_family": 40
+        },
+        {
+          "category": "Serif",
+          "split": "Validation",
+          "families": 3,
+          "images_per_family": 40
+        }
+      ],
+      "effect_rates": [
+        {
+          "category": "Display",
+          "effect": "Dark background",
+          "rate": 0.2847222222222222,
+          "images": 720
+        },
+        {
+          "category": "Handwriting",
+          "effect": "Dark background",
+          "rate": 0.2847222222222222,
+          "images": 720
+        },
+        {
+          "category": "Monospace",
+          "effect": "Dark background",
+          "rate": 0.2847222222222222,
+          "images": 720
+        },
+        {
+          "category": "Sans serif",
+          "effect": "Dark background",
+          "rate": 0.2847222222222222,
+          "images": 720
+        },
+        {
+          "category": "Serif",
+          "effect": "Dark background",
+          "rate": 0.2847222222222222,
+          "images": 720
+        },
+        {
+          "category": "Display",
+          "effect": "Soft contrast",
+          "rate": 0.3666666666666666,
+          "images": 720
+        },
+        {
+          "category": "Handwriting",
+          "effect": "Soft contrast",
+          "rate": 0.3666666666666666,
+          "images": 720
+        },
+        {
+          "category": "Monospace",
+          "effect": "Soft contrast",
+          "rate": 0.3666666666666666,
+          "images": 720
+        },
+        {
+          "category": "Sans serif",
+          "effect": "Soft contrast",
+          "rate": 0.3666666666666666,
+          "images": 720
+        },
+        {
+          "category": "Serif",
+          "effect": "Soft contrast",
+          "rate": 0.3666666666666666,
+          "images": 720
+        },
+        {
+          "category": "Display",
+          "effect": "Mild blur",
+          "rate": 0.2416666666666666,
+          "images": 720
+        },
+        {
+          "category": "Handwriting",
+          "effect": "Mild blur",
+          "rate": 0.2416666666666666,
+          "images": 720
+        },
+        {
+          "category": "Monospace",
+          "effect": "Mild blur",
+          "rate": 0.2416666666666666,
+          "images": 720
+        },
+        {
+          "category": "Sans serif",
+          "effect": "Mild blur",
+          "rate": 0.2416666666666666,
+          "images": 720
+        },
+        {
+          "category": "Serif",
+          "effect": "Mild blur",
+          "rate": 0.2416666666666666,
+          "images": 720
+        },
+        {
+          "category": "Display",
+          "effect": "JPEG round-trip",
+          "rate": 0.2569444444444444,
+          "images": 720
+        },
+        {
+          "category": "Handwriting",
+          "effect": "JPEG round-trip",
+          "rate": 0.2569444444444444,
+          "images": 720
+        },
+        {
+          "category": "Monospace",
+          "effect": "JPEG round-trip",
+          "rate": 0.2569444444444444,
+          "images": 720
+        },
+        {
+          "category": "Sans serif",
+          "effect": "JPEG round-trip",
+          "rate": 0.2569444444444444,
+          "images": 720
+        },
+        {
+          "category": "Serif",
+          "effect": "JPEG round-trip",
+          "rate": 0.2569444444444444,
+          "images": 720
+        }
+      ],
+      "quality_by_category": [
+        {
+          "category": "Serif",
+          "images": 720,
+          "brightness_min": 11.49,
+          "brightness_average": 178.87,
+          "brightness_max": 249.23,
+          "contrast_min": 10.27,
+          "contrast_average": 25.67,
+          "contrast_max": 50.94,
+          "font_size_min": 13,
+          "font_size_average": 22.4,
+          "font_size_max": 46
+        },
+        {
+          "category": "Sans serif",
+          "images": 720,
+          "brightness_min": 12.88,
+          "brightness_average": 178.81,
+          "brightness_max": 250.33,
+          "contrast_min": 11.32,
+          "contrast_average": 26.15,
+          "contrast_max": 52.51,
+          "font_size_min": 13,
+          "font_size_average": 22.4,
+          "font_size_max": 46
+        },
+        {
+          "category": "Display",
+          "images": 720,
+          "brightness_min": 18.1,
+          "brightness_average": 176.49,
+          "brightness_max": 246.2,
+          "contrast_min": 17.65,
+          "contrast_average": 39.6,
+          "contrast_max": 76.27,
+          "font_size_min": 13,
+          "font_size_average": 22.4,
+          "font_size_max": 46
+        },
+        {
+          "category": "Handwriting",
+          "images": 720,
+          "brightness_min": 11.26,
+          "brightness_average": 179.08,
+          "brightness_max": 251.6,
+          "contrast_min": 7.52,
+          "contrast_average": 23.06,
+          "contrast_max": 56.69,
+          "font_size_min": 13,
+          "font_size_average": 22.4,
+          "font_size_max": 46
+        },
+        {
+          "category": "Monospace",
+          "images": 720,
+          "brightness_min": 12.34,
+          "brightness_average": 178.81,
+          "brightness_max": 250.15,
+          "contrast_min": 10.96,
+          "contrast_average": 26.05,
+          "contrast_max": 53.74,
+          "font_size_min": 13,
+          "font_size_average": 22.4,
+          "font_size_max": 46
+        }
+      ],
+      "validation_checks": [
+        {
+          "check": "Exact duplicate hash groups",
+          "result": "0",
+          "status": "Passed"
+        },
+        {
+          "check": "Expected dimensions",
+          "result": "3,600 / 3,600 at 224×96",
+          "status": "Passed"
+        },
+        {
+          "check": "Family overlap between splits",
+          "result": "0",
+          "status": "Passed"
+        },
+        {
+          "check": "Images opened",
+          "result": "3,600 / 3,600",
+          "status": "Passed"
+        },
+        {
+          "check": "Manifest rows",
+          "result": "3,600",
+          "status": "Passed"
+        },
+        {
+          "check": "Maximum binary effect-rate spread",
+          "result": "0.0%",
+          "status": "Passed"
+        },
+        {
+          "check": "Missing, corrupt, or blank",
+          "result": "0",
+          "status": "Passed"
+        },
+        {
+          "check": "Phrase-category association",
+          "result": "Cramér's V = 0.000",
+          "status": "Passed"
+        },
+        {
+          "check": "Strict near-identical pairs",
+          "result": "0",
+          "status": "Passed"
+        },
+        {
+          "check": "Unique font families",
+          "result": "90",
+          "status": "Passed"
+        }
+      ]
+    },
+    "accessIssues": []
+  },
+  "sources": [
+    {
+      "id": "headline_summary",
+      "label": "EDA headline validation results",
+      "path": "reports/eda/eda_validation_summary.json",
+      "query": {
+        "engine": "sqlite",
+        "language": "sql",
+        "sql": "SELECT\n            total_images,\n            unique_families,\n            invalid_images,\n            family_overlap,\n            effect_rate_spread,\n            phrase_cramers_v\n        FROM eda_headline",
+        "description": "Reads the reviewed headline quality and balance checks.",
+        "executed_at": "2026-07-27T08:19:21Z",
+        "tables_used": [
+          "eda_headline"
+        ]
+      }
+    },
+    {
+      "id": "category_counts",
+      "label": "Category counts from the full manifest",
+      "path": "reports/dataset/full_manifest.csv",
+      "query": {
+        "engine": "sqlite",
+        "language": "sql",
+        "sql": "SELECT\n            category,\n            COUNT(*) AS images,\n            COUNT(DISTINCT family) AS families,\n            (SELECT COUNT(*) FROM full_manifest) AS total_images\n        FROM full_manifest\n        GROUP BY category",
+        "description": "Counts images and independent families by category.",
+        "executed_at": "2026-07-27T08:19:21Z",
+        "tables_used": [
+          "full_manifest"
+        ]
+      }
+    },
+    {
+      "id": "split_counts",
+      "label": "Split counts from the full manifest",
+      "path": "reports/dataset/full_manifest.csv",
+      "query": {
+        "engine": "sqlite",
+        "language": "sql",
+        "sql": "SELECT\n            split,\n            COUNT(*) AS images,\n            COUNT(DISTINCT family) AS families,\n            (SELECT COUNT(*) FROM full_manifest) AS total_images\n        FROM full_manifest\n        GROUP BY split",
+        "description": "Counts images and independent families by split.",
+        "executed_at": "2026-07-27T08:19:21Z",
+        "tables_used": [
+          "full_manifest"
+        ]
+      }
+    },
+    {
+      "id": "family_split_counts",
+      "label": "Family counts from the frozen split",
+      "path": "data/interim/google_fonts_final_family_split.csv",
+      "query": {
+        "engine": "sqlite",
+        "language": "sql",
+        "sql": "SELECT\n            category,\n            split,\n            COUNT(DISTINCT family) AS families,\n            40 AS images_per_family\n        FROM frozen_split\n        GROUP BY category, split",
+        "description": "Counts independent frozen families by category and split.",
+        "executed_at": "2026-07-27T08:19:21Z",
+        "tables_used": [
+          "frozen_split"
+        ]
+      }
+    },
+    {
+      "id": "quality_by_category",
+      "label": "Per-category image quality summary",
+      "path": "reports/eda/image_quality_metrics.csv",
+      "query": {
+        "engine": "sqlite",
+        "language": "sql",
+        "sql": "SELECT\n            category,\n            COUNT(*) AS images,\n            MIN(brightness_mean) AS brightness_min,\n            AVG(brightness_mean) AS brightness_average,\n            MAX(brightness_mean) AS brightness_max,\n            MIN(contrast_std) AS contrast_min,\n            AVG(contrast_std) AS contrast_average,\n            MAX(contrast_std) AS contrast_max,\n            MIN(actual_font_size) AS font_size_min,\n            AVG(actual_font_size) AS font_size_average,\n            MAX(actual_font_size) AS font_size_max\n        FROM image_quality\n        WHERE opens_successfully = 1\n        GROUP BY category",
+        "description": "Summarizes brightness, contrast, and actual font size for open images.",
+        "executed_at": "2026-07-27T08:19:21Z",
+        "tables_used": [
+          "image_quality"
+        ]
+      }
+    },
+    {
+      "id": "effect_rates",
+      "label": "Effect rates by category",
+      "path": "reports/eda/effect_balance_by_category.csv",
+      "query": {
+        "engine": "sqlite",
+        "language": "sql",
+        "sql": "SELECT category, 'Dark background' AS effect, dark_background AS rate, 720 AS images\n        FROM effect_balance\n        UNION ALL\n        SELECT category, 'Soft contrast', soft_contrast, 720 FROM effect_balance\n        UNION ALL\n        SELECT category, 'Mild blur', blur_applied, 720 FROM effect_balance\n        UNION ALL\n        SELECT category, 'JPEG round-trip', jpeg_applied, 720 FROM effect_balance",
+        "description": "Reshapes four reviewed binary effect rates for category comparison.",
+        "executed_at": "2026-07-27T08:19:21Z",
+        "tables_used": [
+          "effect_balance"
+        ]
+      }
+    },
+    {
+      "id": "validation_checks",
+      "label": "Blocking EDA validation checks",
+      "path": "reports/eda/eda_validation_summary.json",
+      "query": {
+        "engine": "sqlite",
+        "language": "sql",
+        "sql": "SELECT \"check\", result, status\n        FROM validation_checks\n        ORDER BY \"check\"",
+        "description": "Reads the reviewed pass/fail checks shown in the report.",
+        "executed_at": "2026-07-27T08:19:21Z",
+        "tables_used": [
+          "validation_checks"
+        ]
+      }
+    }
+  ]
+}
