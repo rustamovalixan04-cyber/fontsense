@@ -28,6 +28,18 @@ This split is created before image generation. A font family must never move
 between splits, and the test families must remain untouched until final
 evaluation.
 
+## Preview dataset
+
+`python -m fontsense.generate_preview` reads the frozen split without making new
+assignments. It creates exactly two inspection images per family with seed 42.
+The 180 preview images are kept in the ignored
+`data/processed/fontsense_preview/` folder, separate from the future full
+dataset. The small manifest, validation summary, and category contact sheets
+are saved in `reports/preview/`.
+
+The preview is only for checking image generation quality. It is not a final
+training dataset and does not contain model results.
+
 ## Unit of observation
 
 One record is one raster image containing a short Latin-script word or text line rendered with a single font family. The target is one of five broad categories.

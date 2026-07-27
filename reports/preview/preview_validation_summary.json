@@ -1,0 +1,53 @@
+{
+  "status": "passed",
+  "purpose": "Small preview dataset for data inspection; not final training data or final results.",
+  "seed": 42,
+  "families_total": 90,
+  "images_per_family": 2,
+  "images_total": 180,
+  "families_per_category": {
+    "display": 18,
+    "handwriting": 18,
+    "monospace": 18,
+    "sans_serif": 18,
+    "serif": 18
+  },
+  "images_per_category": {
+    "display": 36,
+    "handwriting": 36,
+    "monospace": 36,
+    "sans_serif": 36,
+    "serif": 36
+  },
+  "images_per_split": {
+    "test": 30,
+    "train": 120,
+    "validation": 30
+  },
+  "family_overlap_count": 0,
+  "manifest_paths_existing": 180,
+  "images_opened_successfully": 180,
+  "empty_image_files": 0,
+  "fully_blank_images": 0,
+  "font_files_rendered": 90,
+  "effect_counts": {
+    "light_background": 141,
+    "dark_background": 39,
+    "letter_spacing": 124,
+    "mild_rotation": 180,
+    "mild_blur": 37,
+    "jpeg_compression": 40
+  },
+  "frozen_split_file": "data/interim/google_fonts_final_family_split.csv",
+  "frozen_split_sha256": "f6cdd858449a4143993b051e9de83578cd423544135dbf6cc17f004359d2e17b",
+  "preview_config_file": "config/preview.json",
+  "preview_image_root": "data/processed/fontsense_preview/images",
+  "preview_manifest_file": "reports/preview/preview_manifest.csv",
+  "contact_sheets": [
+    "reports/preview/contact_sheets/serif.png",
+    "reports/preview/contact_sheets/sans_serif.png",
+    "reports/preview/contact_sheets/display.png",
+    "reports/preview/contact_sheets/handwriting.png",
+    "reports/preview/contact_sheets/monospace.png"
+  ]
+}
