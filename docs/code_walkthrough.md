@@ -26,7 +26,7 @@ Trains a majority-class sanity baseline and several controlled HOG + multinomial
 
 ## `cnn_model.py` and `train_cnn.py`
 
-Define and train a compact convolutional neural network in PyTorch. The training loop records loss, accuracy, macro F1, early stopping, and experiment parameters. The best validation checkpoint is saved.
+Define and train a compact grayscale convolutional neural network in PyTorch. The training loop records train and validation loss, accuracy, macro F1, early stopping, per-class results, runtime, and model size. Mild augmentation is applied only to training images. The selected checkpoint is fitted on training families only; no test image is loaded or scored.
 
 ## `evaluate.py`
 

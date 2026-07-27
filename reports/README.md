@@ -21,6 +21,10 @@ records, MLflow run identifiers, per-class results, predictions, the canonical
 report input, and the self-contained HTML summary report. These are not final
 test metrics.
 
+`reports/cnn/` contains validation-only CNN experiment records, learning
+curves, confusion matrices, MLflow run identifiers, the HOG comparison, and
+the self-contained CNN experiment report. These are not final test metrics.
+
 `reports/figures/` contains the EDA charts and sample grids. Every important
 chart has a short conclusion in `notebooks/03_eda.ipynb` and in the HTML
 report. It also contains the validation-only HOG confusion matrix.

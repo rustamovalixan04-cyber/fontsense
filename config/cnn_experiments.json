@@ -1,15 +1,51 @@
 {
+  "experiment_name": "FontSense CNN validation",
+  "expected_split_sha256": "f6cdd858449a4143993b051e9de83578cd423544135dbf6cc17f004359d2e17b",
+  "expected_family_count": 90,
+  "image_size": [
+    112,
+    48
+  ],
+  "grayscale": true,
+  "batch_size": 64,
+  "max_epochs": 15,
+  "early_stopping_patience": 4,
+  "early_stopping_min_delta": 0.0001,
+  "weight_decay": 0.0001,
+  "augmentation": {
+    "enabled": true,
+    "rotation_degrees": 2.0,
+    "translate_fraction": [
+      0.02,
+      0.03
+    ],
+    "scale_range": [
+      0.97,
+      1.03
+    ],
+    "sharpness_probability": 0.2,
+    "sharpness_factor": 1.25
+  },
   "experiments": [
     {
-      "name": "cnn_small_lr1e-3",
+      "name": "Reference small CNN",
+      "reason": "Reference architecture and learning rate for the controlled comparison.",
       "learning_rate": 0.001,
       "dropout": 0.25,
-      "width": 24
+      "width": 16
     },
     {
-      "name": "cnn_small_lr3e-4",
+      "name": "Lower learning rate",
+      "reason": "Changes only the learning rate to test slower optimization.",
       "learning_rate": 0.0003,
-      "dropout": 0.3,
+      "dropout": 0.25,
+      "width": 16
+    },
+    {
+      "name": "Wider convolution filters",
+      "reason": "Changes only the filter width to test a slightly larger feature extractor.",
+      "learning_rate": 0.001,
+      "dropout": 0.25,
       "width": 24
     }
   ]
