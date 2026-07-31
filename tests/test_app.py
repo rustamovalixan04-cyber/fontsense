@@ -7,8 +7,10 @@ from pathlib import Path
 from matplotlib import get_data_path
 from PIL import Image, ImageDraw, ImageFont
 import pytest
+import torch
 
 import app
+from fontsense.train_cnn import build_image_transform
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -71,8 +73,15 @@ def test_final_class_order_is_exact():
 
 def test_final_preprocessing_output_shape(readable_image):
     tensor = app.FINAL_CNN_PREDICTOR.preprocess(readable_image)
+    evaluation_transform = build_image_transform(
+        (112, 48),
+        training=False,
+        augmentation={"enabled": False},
+    )
+    expected_tensor = evaluation_transform(readable_image)
 
     assert tuple(tensor.shape) == (1, 48, 112)
+    assert torch.equal(tensor, expected_tensor)
     assert tensor.min().item() >= -1.0
     assert tensor.max().item() <= 1.0
     assert app.FINAL_CNN_PREDICTOR.preprocessing == {
@@ -211,6 +220,7 @@ def test_final_model_is_not_reloaded_for_each_prediction(
 
 
 def test_interface_defaults_to_final_cnn_and_has_predict_and_reset():
+    assert app.build_demo() is app.demo
     assert app.model.value == app.FINAL_MODEL_LABEL
     assert app.FINAL_MODEL_LABEL in app.MODEL_CHOICES
 

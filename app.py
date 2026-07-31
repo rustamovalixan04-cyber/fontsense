@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import importlib.util
 import json
 import math
 from functools import lru_cache
@@ -95,12 +96,18 @@ FINAL_CHECKPOINT_PATH = FROZEN_CONTRACT["checkpoint_path"]
 FINAL_CHECKPOINT_SHA256 = FROZEN_CONTRACT["checkpoint_sha256"]
 FINAL_CNN_PREDICTOR = load_final_cnn_predictor(FROZEN_CONTRACT)
 
-HOG_AVAILABLE = all(
-    (HOG_ARTIFACT_DIR / filename).exists()
-    for filename in (
-        "hog_pipeline.joblib",
-        "label_encoder.joblib",
-        "hog_metadata.json",
+HOG_AVAILABLE = (
+    all(
+        importlib.util.find_spec(package) is not None
+        for package in ("joblib", "sklearn", "skimage", "tqdm")
+    )
+    and all(
+        (HOG_ARTIFACT_DIR / filename).exists()
+        for filename in (
+            "hog_pipeline.joblib",
+            "label_encoder.joblib",
+            "hog_metadata.json",
+        )
     )
 )
 MODEL_CHOICES = [FINAL_MODEL_LABEL]
@@ -288,5 +295,10 @@ reliable exact identification.
     )
 
 
+def build_demo() -> gr.Blocks:
+    """Return the single initialized interface for scripts and notebooks."""
+    return demo
+
+
 if __name__ == "__main__":
-    demo.launch(css=APP_CSS)
+    build_demo().launch(css=APP_CSS)

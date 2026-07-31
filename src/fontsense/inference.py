@@ -3,12 +3,52 @@ from __future__ import annotations
 import time
 from pathlib import Path
 
-import joblib
 import numpy as np
 from PIL import Image, ImageOps
 
-from .features import extract_hog
 from .utils import load_json
+
+
+def build_cnn_inference_transform(image_size: tuple[int, int]):
+    """Build the frozen evaluation transform without importing training code."""
+    from torchvision import transforms
+    from torchvision.transforms import InterpolationMode
+
+    width, height = image_size
+    return transforms.Compose(
+        [
+            transforms.Grayscale(num_output_channels=1),
+            transforms.Resize(
+                (height, width),
+                interpolation=InterpolationMode.BILINEAR,
+                antialias=True,
+            ),
+            transforms.ToTensor(),
+            transforms.Normalize((0.5,), (0.5,)),
+        ]
+    )
+
+
+def load_cnn_for_inference(checkpoint_path: str | Path):
+    """Load the saved CNN on CPU using only inference dependencies."""
+    import torch
+
+    from .cnn_model import FontSenseCNN
+
+    checkpoint = torch.load(
+        checkpoint_path,
+        map_location=torch.device("cpu"),
+        weights_only=False,
+    )
+    architecture = checkpoint["architecture"]
+    model = FontSenseCNN(
+        num_classes=len(checkpoint["classes"]),
+        width=int(architecture["width"]),
+        dropout=float(architecture["dropout"]),
+    )
+    model.load_state_dict(checkpoint["state_dict"])
+    model.eval()
+    return model, checkpoint
 
 
 class FontSensePredictor:
@@ -25,6 +65,8 @@ class FontSensePredictor:
         self.preprocessing = None
 
         if model == "hog":
+            import joblib
+
             self.pipeline = joblib.load(
                 self.artifact_dir / "hog_pipeline.joblib"
             )
@@ -36,14 +78,8 @@ class FontSensePredictor:
             )
             self.classes = self.encoder.classes_.tolist()
         elif model == "cnn":
-            from .train_cnn import (
-                build_image_transform,
-                load_cnn_checkpoint,
-            )
-
-            self.pipeline, self.checkpoint = load_cnn_checkpoint(
-                self.artifact_dir / "cnn_model.pt",
-                device="cpu",
+            self.pipeline, self.checkpoint = load_cnn_for_inference(
+                self.artifact_dir / "cnn_model.pt"
             )
             self.classes = list(self.checkpoint["classes"])
             self.preprocessing = dict(self.checkpoint["preprocessing"])
@@ -60,10 +96,8 @@ class FontSensePredictor:
             image_size = tuple(
                 int(value) for value in self.preprocessing["image_size"]
             )
-            self.transform = build_image_transform(
-                image_size,
-                training=False,
-                augmentation={"enabled": False},
+            self.transform = build_cnn_inference_transform(
+                image_size
             )
         else:
             raise ValueError("model must be 'hog' or 'cnn'")
@@ -113,6 +147,8 @@ class FontSensePredictor:
         prepared = self.prepare_image(image)
         started = time.perf_counter()
         if self.model_type == "hog":
+            from .features import extract_hog
+
             config = self.metadata["hog"]
             vector = extract_hog(
                 prepared,
