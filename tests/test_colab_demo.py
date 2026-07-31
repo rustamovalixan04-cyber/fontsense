@@ -82,6 +82,19 @@ def test_colab_notebook_uses_minimal_cpu_dependencies_and_real_repository():
     assert "personal access token" in source
 
 
+def test_private_repository_fallback_uses_a_safe_zip_upload():
+    source = notebook_source(load_notebook())
+
+    assert "browser does not automatically sign in" in source
+    assert "Code → Download ZIP" in source
+    assert "capture_output=True" in source
+    assert "from google.colab import files" in source
+    assert "files.upload()" in source
+    assert "zipfile.ZipFile" in source
+    assert "unsafe file path" in source
+    assert "archive.extractall(resolved_upload_root)" in source
+
+
 def test_colab_notebook_has_no_local_paths_credentials_or_data_access():
     raw = NOTEBOOK_PATH.read_text(encoding="utf-8")
     source = notebook_source(load_notebook())
