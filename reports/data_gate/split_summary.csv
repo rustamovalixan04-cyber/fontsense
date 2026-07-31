@@ -1,0 +1,5 @@
+"split","image_count","family_count","images_per_category","families_per_category","overlap_result","notes"
+"train","2400","60","480 in each of 5 categories","12 in each of 5 categories","PASS: 0 families shared","Only split used to fit preprocessing and model parameters."
+"validation","600","15","120 in each of 5 categories","3 in each of 5 categories","PASS: 0 families shared","Used for experiment comparison, early stopping, model selection, and threshold selection."
+"test","600","15","120 in each of 5 categories","3 in each of 5 categories","PASS: 0 families shared","Untouched until the frozen selected CNN was evaluated once."
+"total","3600","90","720 in each of 5 categories","18 in each of 5 categories","PASS: zero family overlap","Exactly 40 images per family; assignments match the frozen split."

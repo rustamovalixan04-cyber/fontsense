@@ -1,0 +1,29 @@
+# Data Gate Self-Check
+
+- **Suggested status:** YELLOW
+- **Project type:** cv
+- **Dataset:** C:\Users\Admin\Downloads\FontSense_GitHub_Ready\fontsense-clone\fontsense\reports\dataset\full_manifest.csv
+
+| Status | Check | Evidence | Required action |
+|---|---|---|---|
+| WARN | Constant columns | ['image_size'] | Remove or justify constant columns. |
+| MANUAL | CV manifest | Expected columns: filepath, label, subject/group, split | Check corrupted files, duplicate hashes, subject overlap, and training-only augmentation. |
+| PASS | Data audit | C:\Users\Admin\Downloads\FontSense_GitHub_Ready\fontsense-clone\fontsense\docs\data_audit.md |  |
+| PASS | Data source file | C:\Users\Admin\Downloads\FontSense_GitHub_Ready\fontsense-clone\fontsense\data\README.md |  |
+| PASS | Exact duplicate rows | 0 | Investigate whether duplicates are errors, repeated events, or group leakage. |
+| PASS | Group overlap | 0 |  |
+| PASS | Identifier-like columns | [] | Check whether each ID should be excluded from features or used for grouping. |
+| PASS | PROJECT_STATUS.md: contains 'evidence' | C:\Users\Admin\Downloads\FontSense_GitHub_Ready\fontsense-clone\fontsense\PROJECT_STATUS.md |  |
+| PASS | PROJECT_STATUS.md: contains 'stage' | C:\Users\Admin\Downloads\FontSense_GitHub_Ready\fontsense-clone\fontsense\PROJECT_STATUS.md |  |
+| PASS | PROJECT_STATUS.md: contains 'status' | C:\Users\Admin\Downloads\FontSense_GitHub_Ready\fontsense-clone\fontsense\PROJECT_STATUS.md |  |
+| PASS | Preprocessing fit boundary | train |  |
+| PASS | Project status | C:\Users\Admin\Downloads\FontSense_GitHub_Ready\fontsense-clone\fontsense\PROJECT_STATUS.md |  |
+| PASS | README.md: contains 'limitation' | C:\Users\Admin\Downloads\FontSense_GitHub_Ready\fontsense-clone\fontsense\data\README.md |  |
+| PASS | README.md: contains 'source' | C:\Users\Admin\Downloads\FontSense_GitHub_Ready\fontsense-clone\fontsense\data\README.md |  |
+| PASS | Target distribution inspected | {'serif': 20.0, 'sans_serif': 20.0, 'display': 20.0, 'handwriting': 20.0, 'monospace': 20.0} |  |
+| PASS | Train/validation target ratios | {'train': {'serif': 0.2, 'sans_serif': 0.2, 'display': 0.2, 'handwriting': 0.2, 'monospace': 0.2}, 'validation': {'serif': 0.2, 'sans_serif': 0.2, 'display': 0.2, 'handwriting': 0.2, 'monospace': 0.2}} |  |
+| PASS | data_audit.md: contains 'audit' | C:\Users\Admin\Downloads\FontSense_GitHub_Ready\fontsense-clone\fontsense\docs\data_audit.md |  |
+| PASS | data_audit.md: contains 'leakage' | C:\Users\Admin\Downloads\FontSense_GitHub_Ready\fontsense-clone\fontsense\docs\data_audit.md |  |
+| PASS | data_audit.md: contains 'preprocessing' | C:\Users\Admin\Downloads\FontSense_GitHub_Ready\fontsense-clone\fontsense\docs\data_audit.md |  |
+| PASS | data_audit.md: contains 'split' | C:\Users\Admin\Downloads\FontSense_GitHub_Ready\fontsense-clone\fontsense\docs\data_audit.md |  |
+| PASS | data_audit.md: contains 'status' | C:\Users\Admin\Downloads\FontSense_GitHub_Ready\fontsense-clone\fontsense\docs\data_audit.md |  |

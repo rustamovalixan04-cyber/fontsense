@@ -1,113 +1,124 @@
-# Data documentation
+# FontSense dataset
 
-## Final source
+## Dataset and source
 
-The assessed dataset is generated from legally usable open-source font files in the official Google Fonts repository. `scripts/download_google_fonts.py` downloads a curated subset and records:
+FontSense uses a synthetic computer-vision dataset made from font files in the
+official [Google Fonts repository](https://github.com/google/fonts). The
+download and audit implementation is in `scripts/download_google_fonts.py`.
+The accepted family records, official source URLs, licence codes, Latin support,
+and validation results are preserved in
+`data/interim/google_fonts_manifest.csv` and
+`data/interim/google_fonts_final_family_split.csv`.
 
-- family name
-- broad category read from official Google Fonts metadata
-- official Google Fonts source and exact source URL
-- font file path
-- license code
-- Latin subset availability
-- Pillow validation status and any failure reason
+Licensing is recorded per font family rather than replaced with one blanket
+claim. The selected families use the licence codes present in the official
+metadata (`OFL`, `APACHE2`, or `UFL`). Reusers must follow the licence recorded
+for each source font and retain the relevant attribution. Evidence:
+`data/interim/google_fonts_manifest.csv`.
 
-The audit writes `data/interim/google_fonts_manifest.csv` and a small category
-summary. Downloaded font files remain ignored by Git. This audit does not
-generate the image dataset or train a model.
+## Unit of observation and target
 
-## Final family split
+One sample is one cropped 224 x 96 raster image containing a short
+Latin-script word or phrase rendered with one font family. The prediction
+target is a broad font category:
 
-`python -m fontsense.split` selects 18 usable families per category with random
-seed 42, then assigns 12 to training, 3 to validation, and 3 to test. It writes:
+- display
+- handwriting
+- monospace
+- sans serif
+- serif
 
-- `data/interim/google_fonts_final_family_split.csv`
-- `data/interim/google_fonts_balancing_exclusions.csv`
+FontSense does not identify an exact font family. Evidence:
+`reports/dataset/full_manifest.csv` and `config/full_dataset.json`.
 
-This split is created before image generation. A font family must never move
-between splits, and the test families must remain untouched until final
-evaluation.
+## Counts and frozen split
 
-## Preview dataset
+The dataset contains 90 independent font families and 3,600 images:
 
-`python -m fontsense.generate_preview` reads the frozen split without making new
-assignments. It creates exactly two inspection images per family with seed 42.
-The 180 preview images are kept in the ignored
-`data/processed/fontsense_preview/` folder, separate from the future full
-dataset. The small manifest, validation summary, and category contact sheets
-are saved in `reports/preview/`.
+| Split | Images | Families | Images per category | Families per category |
+|---|---:|---:|---:|---:|
+| Train | 2,400 | 60 | 480 | 12 |
+| Validation | 600 | 15 | 120 | 3 |
+| Test | 600 | 15 | 120 | 3 |
+| Total | 3,600 | 90 | 720 | 18 |
 
-The preview is only for checking image generation quality. It is not a final
-training dataset and does not contain model results.
+Every family contributes exactly 40 images. The frozen split was selected
+deterministically with seed 42 before image generation. A family appears in
+only one split, which prevents the model from seeing the same font family in
+both fitting and evaluation data. Evidence:
+`data/interim/google_fonts_final_family_split.csv`,
+`reports/dataset/full_manifest.csv`, and
+`reports/eda/eda_validation_summary.json`.
 
-## Full image dataset
+## Generation process
 
 `python -m fontsense.generate_full_dataset --verify-reproducibility` reads the
-frozen family split without creating or changing assignments. With seed 42 it
-creates:
+frozen family split and the settings in `config/full_dataset.json`. It renders
+40 readable images per family using seed 42. Controlled variation includes
+short English text, font size, spacing, position, foreground contrast, light or
+dark background, small translation and scaling, mild rotation, mild blur, and
+optional JPEG compression. The same effect schedule is used for every category
+so an effect cannot reveal the target. Evidence:
+`src/fontsense/generate_full_dataset.py`,
+`config/full_dataset.json`,
+`reports/dataset/full_validation_summary.json`, and
+`reports/dataset/full_reproducibility_check.json`.
 
-- 90 independent font families
-- 40 images per family
-- 3,600 images in total
-- 720 images per category
-- 2,400 training images
-- 600 validation images
-- 600 test images
+The committed full manifest is `reports/dataset/full_manifest.csv`. It records
+the image path, family, category, split, rendered text, source font, seed, image
+size, and applied effects.
 
-The complete settings are saved in `config/full_dataset.json`. Images are
-224 by 96 pixels and use short English text with controlled changes to font
-size, spacing, horizontal position, foreground contrast, background, scale,
-translation, rotation, blur, and JPEG quality. Rotation is limited to 2.5
-degrees, scaling to 0.94–1.06, and blur to at most 0.55 pixels so the text
-stays readable.
+## Reproduction
 
-The same deterministic effect schedule is used in every category. This stops
-background or augmentation frequency from acting as a shortcut for the class.
-Validation results are stored in `reports/dataset/`, including the full
-manifest, effect-balance table, reproducibility check, and contact sheets.
-The 3,600 PNG files remain ignored in `data/processed/fontsense_full/`.
+Reproduction requires the official Google Fonts source files and should be done
+from the repository root:
 
-## EDA and data-quality audit
+```powershell
+python scripts/download_google_fonts.py
+python -m fontsense.generate_full_dataset --verify-reproducibility
+python -m fontsense.eda
+```
 
-`python -m fontsense.eda` reads the existing full manifest, frozen split, and
-3,600 generated images. It does not regenerate images and does not train a
-model.
+The checked-in split must remain frozen for an assessed reproduction. Do not run
+`python -m fontsense.split` when reproducing the already assessed dataset; use
+`data/interim/google_fonts_final_family_split.csv` exactly as committed.
+Generation settings and expected hashes are documented in
+`config/full_dataset.json`,
+`reports/dataset/full_validation_summary.json`, and
+`reports/dataset/full_reproducibility_check.json`.
 
-The audit verifies:
+Downloaded fonts and the 3,600 generated images are intentionally ignored by
+Git because they are large and reproducible. The manifest, split, configuration,
+validation summaries, and small contact sheets are versioned. Evidence:
+`.gitignore`.
 
-- 3,600 unique image paths and 90 independent families
-- 720 images and 18 families per category
-- 2,400 train, 600 validation, and 600 test images
-- exactly 40 images per family
-- zero family overlap between splits
-- all images open at 224 by 96 pixels
-- no missing, corrupt, blank, exact-duplicate, or strictly near-identical files
-- the saved effect and phrase schedules are balanced across categories
-- manifest metadata is not used as a model feature
+## Quality checks
 
-The full per-image measurements, validation summary, notebook, report, and
-figures are saved under `reports/eda/`, `reports/figures/`, and
-`notebooks/03_eda.ipynb`.
+The complete image audit opened all 3,600 images and found:
 
-The automated readability screen catches missing, corrupt, blank, or extremely
-low-contrast files. It does not replace human review. These findings describe
-data quality only; they are not model-performance results.
+- 0 missing files
+- 0 corrupted files
+- 0 blank files
+- 0 exact duplicate hash groups
+- 0 suspicious near-identical pairs under the documented strict screen
+- 0 families shared between train, validation, and test
 
-## Unit of observation
+Evidence:
+`reports/eda/eda_validation_summary.json`,
+`reports/eda/image_quality_metrics.csv`,
+`reports/eda/suspicious_image_pairs.csv`, and
+`src/fontsense/eda.py`.
 
-One record is one raster image containing a short Latin-script word or text line rendered with a single font family. The target is one of five broad categories.
+## Limitations
 
-## Split policy
+- The images are synthetic renders, so photographs, screenshots, compression,
+  clutter, and unfamiliar designs may differ from the training distribution.
+- Google Fonts category labels are broad metadata labels, not objective
+  typographic ground truth.
+- A family-level split tests generalisation to unseen families, but only 18
+  families per category are included.
+- Automated blank and readability checks do not replace human visual review.
+- The final model predicts categories, not exact family names.
 
-The project splits **font families**, not images. All images rendered with one family remain in one split. This is the core leakage-prevention rule.
-
-## Generated variations
-
-Images vary in text, size, position, background, foreground contrast, letter
-spacing, scaling, translation, blur, JPEG compression, and mild rotation.
-Augmentation is applied independently of category and must not make the text
-unreadable.
-
-## Git policy
-
-Do not commit the complete generated dataset or downloaded font collection. Commit the scripts, configuration, family manifest, dataset description, and small examples. Another person must be able to reproduce the dataset using the documented commands.
+The complete audit and Data Gate decision are documented in
+`docs/data_audit.md`.

@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "purpose": "Manual CV Data Gate verification only; no dataset generation, model training, tuning, or final test evaluation.",
+  "dataset": {
+    "manifest": "reports/dataset/full_manifest.csv",
+    "images_checked": 3600,
+    "images_opened": 3600,
+    "missing_images": 0,
+    "corrupted_images": 0,
+    "blank_images": 0,
+    "exact_duplicate_hash_groups": 0,
+    "unique_families": 90,
+    "family_overlap_count": 0
+  },
+  "manual_checks": {
+    "exactly_3600_manifest_rows": true,
+    "all_manifest_paths_exist": true,
+    "all_images_open": true,
+    "no_blank_images": true,
+    "no_corrupted_images": true,
+    "no_missing_images": true,
+    "no_exact_duplicate_hash_groups": true,
+    "all_images_224_by_96": true,
+    "zero_family_overlap": true,
+    "frozen_assignments_match": true,
+    "category_independent_effects": true,
+    "phrases_not_category_associated": true,
+    "augmentation_training_only": true,
+    "fit_boundary_is_train_only": true,
+    "validation_used_for_selection": true,
+    "test_not_used_for_training_or_selection": true,
+    "threshold_selected_on_validation_only": true,
+    "frozen_split_hash_unchanged": true,
+    "manifest_hash_unchanged": true,
+    "checkpoint_hash_unchanged": true,
+    "all_evidence_paths_exist": true
+  },
+  "missing_evidence_paths": [],
+  "failed_checks": [],
+  "final_manual_data_gate_decision": "GREEN",
+  "remaining_limitation": "Synthetic rendered images may not represent real screenshots, photographs, clutter, or unfamiliar font designs."
+}

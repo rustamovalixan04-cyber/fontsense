@@ -1,0 +1,86 @@
+{
+  "project_type": "computer vision",
+  "class_order": [
+    "display",
+    "handwriting",
+    "monospace",
+    "sans_serif",
+    "serif"
+  ],
+  "split_strategy": "family-based",
+  "group_column": "family",
+  "family_overlap_forbidden": true,
+  "manifest_path": "reports/dataset/full_manifest.csv",
+  "frozen_split_path": "data/interim/google_fonts_final_family_split.csv",
+  "input": {
+    "grayscale": true,
+    "resize_width": 112,
+    "resize_height": 48,
+    "channels": 1,
+    "normalization_mean": [
+      0.5
+    ],
+    "normalization_std": [
+      0.5
+    ]
+  },
+  "training_only_augmentation": {
+    "enabled": true,
+    "operations": [
+      "mild random affine",
+      "occasional sharpness adjustment"
+    ],
+    "validation_enabled": false,
+    "test_enabled": false,
+    "inference_enabled": false
+  },
+  "excluded_metadata_features": [
+    "image_path",
+    "file_name",
+    "family",
+    "split",
+    "rendered_text",
+    "source_font",
+    "random_seed",
+    "applied_effects",
+    "image_index"
+  ],
+  "implementation_paths": [
+    "src/fontsense/train_cnn.py",
+    "src/fontsense/inference.py",
+    "src/fontsense/features.py",
+    "src/fontsense/train_hog.py"
+  ],
+  "fit_boundary": "train",
+  "train_only_fitting_boundary": {
+    "fit_splits": [
+      "train"
+    ],
+    "model_selection_split": "validation",
+    "test_used_for_fitting": false,
+    "test_used_for_model_selection": false,
+    "test_used_for_threshold_selection": false
+  },
+  "split_counts": {
+    "train": {
+      "images": 2400,
+      "families": 60
+    },
+    "validation": {
+      "images": 600,
+      "families": 15
+    },
+    "test": {
+      "images": 600,
+      "families": 15
+    }
+  },
+  "evidence_paths": [
+    "artifacts/cnn/cnn_metadata.json",
+    "reports/baseline/baseline_validation_summary.json",
+    "reports/cnn/cnn_validation_summary.json",
+    "reports/final_evaluation/pre_test_freeze.json",
+    "tests/test_train_cnn.py",
+    "tests/test_final_evaluation.py"
+  ]
+}
