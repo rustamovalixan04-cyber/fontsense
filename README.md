@@ -12,6 +12,26 @@ Latin text and predicts one of five broad font categories:
 **FontSense predicts broad font categories. It does not identify the exact font
 family or font style.**
 
+## Table of contents
+
+- [Demo](#demo)
+- [Project motivation](#project-motivation)
+- [Student and project information](#student-and-project-information)
+- [Current project state](#current-project-state)
+- [Final held-out test results](#final-held-out-test-results)
+- [Model comparison](#model-comparison)
+- [Uncertainty handling](#uncertainty-handling)
+- [Dataset](#dataset)
+- [Leakage-safe family split](#leakage-safe-family-split)
+- [Selected CNN](#selected-cnn)
+- [Preprocessing](#preprocessing)
+- [Gradio application](#gradio-application)
+- [EDA and Data Gate](#eda-and-data-gate)
+- [Reports and reproducibility](#reports-and-reproducibility)
+- [Intended use and limitations](#intended-use-and-limitations)
+- [Academic integrity and AI assistance](#academic-integrity-and-ai-assistance)
+- [Licence and attribution](#licence-and-attribution)
+
 ## Demo
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/rustamovalixan04-cyber/fontsense/blob/main/notebooks/07_colab_demo.ipynb)
@@ -22,8 +42,8 @@ family or font style.**
 The Colab notebook loads the same frozen CNN checkpoint and launches the same
 Gradio interface as the local application. A Colab Gradio share link is
 temporary: closing or disconnecting the runtime stops the app. The repository
-must remain publicly accessible for unauthenticated Colab cloning. FontSense
-does not currently have a permanent deployed website.
+is public, and the student manually tested the notebook successfully after it
+became public. The local Gradio application has also been launched and checked.
 
 ## Project motivation
 
@@ -47,6 +67,20 @@ identification.
 
 The original scope is recorded in the
 [`FontSense project brief`](docs/FontSense_Project_Brief_Rustamov_Alixan.docx).
+
+## Current project state
+
+The assessed ML pipeline, held-out evaluation, Gradio app, Colab demo, automated
+tests, CI, M8C3 Data Gate evidence, and final project documentation are
+complete. The EXTC0 no-partner Peer QA route is recorded in
+[`docs/extc0_peer_qa_review.md`](docs/extc0_peer_qa_review.md).
+
+EXTC1 is still in progress. Its specification work has reached the real-review
+gate, but exactly two genuine reviewer or mentor comments, the owner's
+decisions, an approved first task, and a Green Specification Gate are still
+required. No Windows EXE has been implemented or claimed. See
+[`PROJECT_STATUS.md`](PROJECT_STATUS.md) for the current boundary and
+[`docs/defense_prep.md`](docs/defense_prep.md) for presentation preparation.
 
 ## Final held-out test results
 
