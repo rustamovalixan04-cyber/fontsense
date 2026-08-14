@@ -38,6 +38,7 @@ family or font style.**
 
 - **Google Colab:** [`notebooks/07_colab_demo.ipynb`](notebooks/07_colab_demo.ipynb)
 - **Local Gradio application:** [`app.py`](app.py)
+- **Vercel deployment guide:** [`docs/deployment_vercel.md`](docs/deployment_vercel.md)
 
 The Colab notebook loads the same frozen CNN checkpoint and launches the same
 Gradio interface as the local application. A Colab Gradio share link is

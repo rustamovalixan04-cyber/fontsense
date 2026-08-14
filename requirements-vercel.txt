@@ -1,0 +1,10 @@
+# Vercel runtime dependencies only. Training and evaluation packages stay in
+# requirements.txt and are deliberately not installed for deployment.
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+torch==2.13.0+cpu
+torchvision==0.28.0+cpu
+gradio==6.20.0
+fastapi==0.139.2
+numpy==2.5.1
+Pillow==12.3.0
