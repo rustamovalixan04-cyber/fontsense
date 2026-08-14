@@ -11,3 +11,6 @@ authors = [{name = "Rustamov Alixan"}]
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.vercel]
+entrypoint = "api.index:app"

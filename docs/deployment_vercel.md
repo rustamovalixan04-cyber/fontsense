@@ -3,6 +3,10 @@
 This deployment reuses the existing Gradio interface and frozen CNN. It does
 not train a model or require the generated dataset.
 
+Use a GitHub import or the Vercel CLI. A static-site or drag-and-drop upload
+does not build the Python FastAPI function and will return Vercel's `404:
+NOT_FOUND` page.
+
 ## Deploy from GitHub
 
 1. In Vercel, choose **Add New > Project**.
@@ -17,6 +21,18 @@ not train a model or require the generated dataset.
    `"status": "ok"` and the frozen checkpoint SHA-256.
 
 No secret or token is required by FontSense itself.
+
+## Deploy the local dist folder
+
+After installing and signing in to the Vercel CLI, open a terminal in the
+repository and run:
+
+```text
+vercel --cwd dist
+```
+
+Use `vercel --prod` from that folder only after the preview URL works. Do not
+upload the ZIP through a static-site uploader.
 
 ## Important Vercel setting
 

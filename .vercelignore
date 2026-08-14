@@ -1,6 +1,7 @@
 /*
 
 !/api
+!/api/__init__.py
 !/api/index.py
 !/app.py
 

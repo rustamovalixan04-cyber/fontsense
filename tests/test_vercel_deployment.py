@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+import tomllib
 
 from fastapi.testclient import TestClient
 
@@ -11,11 +12,15 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_vercel_configuration_uses_slim_cpu_runtime() -> None:
     config = json.loads((ROOT / "vercel.json").read_text(encoding="utf-8"))
+    project = tomllib.loads(
+        (ROOT / "pyproject.toml").read_text(encoding="utf-8")
+    )
     install_command = config["installCommand"]
     function = config["functions"]["api/index.py"]
 
     assert "requirements-vercel.txt" in install_command
     assert config["framework"] == "fastapi"
+    assert project["tool"]["vercel"]["entrypoint"] == "api.index:app"
     assert config["fluid"] is True
     assert function["maxDuration"] == 300
     assert "artifacts/cnn/**" in function["includeFiles"]
