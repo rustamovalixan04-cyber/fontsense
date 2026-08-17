@@ -1,7 +1,8 @@
 # FontSense defense preparation guide
 
-This guide uses the saved FontSense evidence. It does not add new experiments or
-claim that the Windows EXE or EXTC1 review gate is complete.
+This guide uses the saved FontSense evidence and adds no new experiment. The
+teacher removed EXTC1 from the required final scope. FontSense proceeded
+directly to final technical packaging and verification.
 
 ## A. 30-second summary
 
@@ -140,7 +141,9 @@ accepted or uncertain status.
 The project protects against family leakage, compares simple and learned
 models, evaluates on unseen families, uses a small fast CPU model, records
 uncertainty, and keeps reproducible evidence. The app and Colab notebook reuse
-the exact frozen model and preprocessing from the final evaluation.
+the exact frozen model and preprocessing from the final evaluation. FontSense
+also has a verified one-folder Windows standalone build that packages the exact
+frozen final CNN.
 
 ### 14. Limitations
 
@@ -163,9 +166,7 @@ evidence.
 
 Future work could add a labelled benchmark of real screenshots and photographs,
 more independent families, better confidence calibration, more writing
-systems, and a separate exact-family recognition task. Windows packaging is
-also planned, but it must wait for the required EXTC1 human specification
-review.
+systems, and a separate exact-family recognition task.
 
 ### 17. Conclusion
 
@@ -682,13 +683,14 @@ AI assistance did not replace real experimental evidence or human review.”
 | “All 90 families were training data.” | “60 families trained the model, 15 validated it, and 15 were held out for test.” |
 | “The dataset contains real screenshots.” | “The assessed dataset contains controlled synthetic renders from Google Fonts.” |
 | “FontSense is production ready.” | “FontSense is an educational prototype and broad-category first-guess tool.” |
-| “The Windows EXE is complete.” | “Windows packaging is blocked until the EXTC1 Specification Gate is Green.” |
-| “EXTC1 is finished.” | “The specification is awaiting exactly two real reviewer comments and owner decisions.” |
+| “The Windows build is one self-contained EXE.” | “It is a verified one-folder build; its support files must remain beside the EXE.” |
+| “The Windows executable is signed.” | “The distribution is unsigned, so SmartScreen may warn.” |
 
 ## P. Final 5-minute checklist
 
 - [ ] Existing site/showcase open and key facts checked
 - [ ] Local Gradio running with **Final CNN** selected
+- [ ] Windows `FontSense.exe` double-click and browser opening checked
 - [ ] One valid cropped Latin-text demo image ready
 - [ ] Optional blank, invalid, or uncertain example ready
 - [ ] GitHub README open

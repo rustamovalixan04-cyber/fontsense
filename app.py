@@ -8,8 +8,19 @@ from functools import lru_cache
 from pathlib import Path
 import sys
 
-ROOT = Path(__file__).resolve().parent
-sys.path.insert(0, str(ROOT / "src"))
+SOURCE_ROOT = Path(__file__).resolve().parent
+
+
+def get_runtime_root() -> Path:
+    """Return the source root or PyInstaller's bundled resource directory."""
+    bundle_root = getattr(sys, "_MEIPASS", None)
+    if getattr(sys, "frozen", False) and bundle_root:
+        return Path(bundle_root).resolve()
+    return SOURCE_ROOT.resolve()
+
+
+ROOT = get_runtime_root()
+sys.path.insert(0, str(SOURCE_ROOT / "src"))
 
 import gradio as gr
 from PIL import Image

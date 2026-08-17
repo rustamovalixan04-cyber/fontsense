@@ -1,0 +1,47 @@
+{
+  "status": "predeclared_before_first_packaged_comparison",
+  "purpose": "Verify packaging equivalence only; this is not model evaluation.",
+  "checkpoint_sha256": "c98cf0d1a02503a02b8f8242fec462ea2a0c455380238ec54fc4f62fdb13bb2f",
+  "class_order": [
+    "display",
+    "handwriting",
+    "monospace",
+    "sans_serif",
+    "serif"
+  ],
+  "preprocessing": {
+    "grayscale": true,
+    "image_size": [112, 48],
+    "normalize_mean": [0.5],
+    "normalize_std": [0.5]
+  },
+  "threshold": 0.6,
+  "maximum_absolute_probability_difference": 0.00001,
+  "comparison_images": [
+    {
+      "category": "display",
+      "path": "data/sample/display__EB_Garamond_Initials_0000.png",
+      "sha256": "f46612570ef6ce0ebcd251d78c03072acefe9096ee1110c4ef46572a0e3c1bf9"
+    },
+    {
+      "category": "handwriting",
+      "path": "data/sample/handwriting__UnPilgi_0000.png",
+      "sha256": "61263b18b4992ed3a19617570fb193731d4e034628ec4716ba726ce5f856f04d"
+    },
+    {
+      "category": "monospace",
+      "path": "data/sample/monospace__PT_Mono_0000.png",
+      "sha256": "4bd81207d275be7cffe238295af672fc45985466a62a360831e7ac232a66d7cf"
+    },
+    {
+      "category": "sans_serif",
+      "path": "data/sample/sans_serif__PT_Sans_0000.png",
+      "sha256": "6fd1011c4d02948e0e6f67433dafe1065cb47bf0a8dde3844e4dac797d0ddfb9"
+    },
+    {
+      "category": "serif",
+      "path": "data/sample/serif__DejaVu_Serif_0000.png",
+      "sha256": "d36dba191fcf313859dfb0f734b83957a03f2f178bb99c332cdbc26a0704aa2a"
+    }
+  ]
+}

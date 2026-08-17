@@ -26,6 +26,7 @@ family or font style.**
 - [Selected CNN](#selected-cnn)
 - [Preprocessing](#preprocessing)
 - [Gradio application](#gradio-application)
+- [Windows standalone build](#windows-standalone-build)
 - [EDA and Data Gate](#eda-and-data-gate)
 - [Reports and reproducibility](#reports-and-reproducibility)
 - [Intended use and limitations](#intended-use-and-limitations)
@@ -38,6 +39,7 @@ family or font style.**
 
 - **Google Colab:** [`notebooks/07_colab_demo.ipynb`](notebooks/07_colab_demo.ipynb)
 - **Local Gradio application:** [`app.py`](app.py)
+- **Windows standalone build:** [`docs/windows_build.md`](docs/windows_build.md)
 - **Vercel deployment guide:** [`docs/deployment_vercel.md`](docs/deployment_vercel.md)
 
 The Colab notebook loads the same frozen CNN checkpoint and launches the same
@@ -71,17 +73,12 @@ The original scope is recorded in the
 
 ## Current project state
 
-The assessed ML pipeline, held-out evaluation, Gradio app, Colab demo, automated
-tests, CI, M8C3 Data Gate evidence, and final project documentation are
-complete. The EXTC0 no-partner Peer QA route is recorded in
-[`docs/extc0_peer_qa_review.md`](docs/extc0_peer_qa_review.md).
-
-EXTC1 is still in progress. Its specification work has reached the real-review
-gate, but exactly two genuine reviewer or mentor comments, the owner's
-decisions, an approved first task, and a Green Specification Gate are still
-required. No Windows EXE has been implemented or claimed. See
-[`PROJECT_STATUS.md`](PROJECT_STATUS.md) for the current boundary and
-[`docs/defense_prep.md`](docs/defense_prep.md) for presentation preparation.
+The assessed ML pipeline, held-out evaluation, Gradio app, Colab demo,
+automated tests, CI, M8C3 Data Gate evidence, final documentation, and verified
+one-folder Windows distribution are complete. The teacher removed EXTC1 from
+the required final scope. FontSense proceeded directly to final technical
+packaging and verification. See [`PROJECT_STATUS.md`](PROJECT_STATUS.md) for
+the final project state.
 
 ## Final held-out test results
 
@@ -337,6 +334,24 @@ python app.py
 ```
 
 Open the local URL printed by Gradio, normally `http://127.0.0.1:7860`.
+
+## Windows standalone build
+
+A verified **one-folder** Windows x64 distribution is available locally at
+`dist/FontSense/`. Run `FontSense.exe`; no Python installation or virtual
+environment activation is required to use the built distribution. The folder's
+support files must stay beside the executable.
+
+The package contains the exact frozen final CNN, and the bundled checkpoint
+SHA-256 matches
+`c98cf0d1a02503a02b8f8242fec462ea2a0c455380238ec54fc4f62fdb13bb2f`.
+Five fixed source/package prediction comparisons passed with a global maximum
+probability difference of `0.0`, within the predeclared `1e-5` tolerance. The
+distribution is unsigned, so Windows SmartScreen may show a warning.
+
+Rebuilding requires the documented Windows Python environment and PyInstaller;
+the executable itself does not. See the
+[Windows build and verification guide](docs/windows_build.md).
 
 ## EDA and Data Gate
 
