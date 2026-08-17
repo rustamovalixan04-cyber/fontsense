@@ -56,8 +56,6 @@ checkpoint.
 
 ## Remaining user actions
 
-- Double-click `dist/FontSense/FontSense.exe` once and visually confirm that the
-  default browser opens to the local interface.
 - Present and defend the project.
 
 No further technical implementation is currently pending.

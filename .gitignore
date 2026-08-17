@@ -8,6 +8,7 @@ venv/
 build/
 dist/
 /FontSense_Windows_x64.zip
+/FontSense_Windows_x64_FINAL.zip
 
 # IDE / OS
 .vscode/

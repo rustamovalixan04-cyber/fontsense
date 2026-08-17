@@ -255,6 +255,7 @@ Upload a cropped Latin-script text image to estimate its broad font category.
                 choices=MODEL_CHOICES,
                 value=FINAL_MODEL_LABEL,
                 label="Prediction model",
+                visible=len(MODEL_CHOICES) > 1,
                 info=(
                     "The frozen final CNN is the default. "
                     "HOG is an optional baseline comparison."

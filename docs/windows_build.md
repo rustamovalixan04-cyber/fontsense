@@ -95,6 +95,11 @@ The final clean build passed:
 - global observed maximum probability difference of `0.0`;
 - packaged local Gradio server startup;
 - HTTP 200 response from the local interface.
+- PNG and JPEG prediction through the packaged Gradio controls;
+- Reset plus blank, too-small, missing, and corrupted-input handling;
+- two normal launch/stop cycles;
+- an outside-repository portable-folder self-test and live prediction;
+- student visual confirmation of browser opening and a live prediction.
 
 The evidence is saved in
 `reports/windows_package_equivalence.json`. These checks verify packaging
@@ -103,11 +108,13 @@ held-out test dataset.
 
 ## Size and release archive
 
-- One-folder distribution: 842,014,615 bytes (803.01 MiB)
+- One-folder distribution: 842,016,029 bytes (803.01 MiB)
 - Distribution files: 13,663
-- Local release ZIP: `FontSense_Windows_x64.zip`
-- ZIP size: 317,810,800 bytes (303.09 MiB)
-- ZIP SHA-256: `eb445fcf70df564e171bf760934c11eafa5e4c6d5ca2d97964d9b9eabb740100`
+- Executable size: 65,501,032 bytes (62.47 MiB)
+- Executable SHA-256: `9723c3f591f187575a0ff03c55f2b493b85f40c4c1e3a1ca1266238613c61eb4`
+- Local release ZIP: `FontSense_Windows_x64_FINAL.zip`
+- ZIP size: 317,811,916 bytes (303.09 MiB)
+- ZIP SHA-256: `d4c2ec69e5c182f696cbfa7f7847bc6f16ab3a95ec104de2737b0d860f77c619`
 
 The ZIP contains the complete `FontSense/` folder, not only the executable.
 `dist/`, `build/`, and the ZIP are ignored local release artifacts and are not

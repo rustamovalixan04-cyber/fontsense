@@ -1,11 +1,18 @@
 from __future__ import annotations
 
 import argparse
+import ctypes
 import json
 from pathlib import Path
+import socket
 import sys
 
 from PIL import Image
+
+
+LOCAL_HOST = "127.0.0.1"
+DEFAULT_PORT = 7860
+PORT_SEARCH_LIMIT = 100
 
 
 def load_application():
@@ -66,16 +73,52 @@ def predict_json(image_path: str | Path) -> dict:
     }
 
 
+def find_available_port() -> int:
+    """Choose the first free local Gradio port for a normal launch."""
+    for port in range(DEFAULT_PORT, DEFAULT_PORT + PORT_SEARCH_LIMIT):
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as listener:
+            try:
+                listener.bind((LOCAL_HOST, port))
+            except OSError:
+                continue
+            return port
+    raise RuntimeError("No free local port was found for FontSense.")
+
+
 def launch_application(*, inbrowser: bool, port: int | None = None) -> None:
     """Start the local-only Gradio application."""
+    print("FontSense is starting...", flush=True)
+    print("Loading the final CNN...", flush=True)
     app = load_application()
+    selected_port = port if port is not None else find_available_port()
+    local_url = f"http://{LOCAL_HOST}:{selected_port}"
+    if inbrowser:
+        print("Opening FontSense in your browser...", flush=True)
+    print("If the browser does not open, keep this window open.", flush=True)
+    print("Open this address in your browser:", flush=True)
+    print(local_url, flush=True)
     app.build_demo().launch(
         css=app.APP_CSS,
         inbrowser=inbrowser,
-        server_name="127.0.0.1",
-        server_port=port,
+        server_name=LOCAL_HOST,
+        server_port=selected_port,
         share=False,
     )
+
+
+def show_fatal_startup_error(message: str) -> None:
+    """Show a lightweight Windows dialog when a frozen launch cannot start."""
+    if sys.platform != "win32" or not getattr(sys, "frozen", False):
+        return
+    try:
+        ctypes.windll.user32.MessageBoxW(
+            None,
+            message,
+            "FontSense startup error",
+            0x10,
+        )
+    except Exception:
+        pass
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -120,11 +163,20 @@ def main(argv: list[str] | None = None) -> int:
         launch_application(inbrowser=not args.no_browser, port=args.port)
         return 0
     except Exception as exc:
-        failure = {
-            "status": "FAIL",
-            "error": f"{type(exc).__name__}: {exc}",
-        }
-        print(json.dumps(failure, sort_keys=True), file=sys.stderr)
+        error = f"{type(exc).__name__}: {exc}"
+        if args.self_test or args.predict_json:
+            print(
+                json.dumps({"status": "FAIL", "error": error}, sort_keys=True),
+                file=sys.stderr,
+            )
+        else:
+            message = (
+                "FontSense could not start.\n\n"
+                f"{error}\n\n"
+                "Please keep the complete FontSense folder together and try again."
+            )
+            print(message, file=sys.stderr, flush=True)
+            show_fatal_startup_error(message)
         return 1
 
 

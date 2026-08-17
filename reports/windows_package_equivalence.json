@@ -7,7 +7,7 @@
   "distribution_audit": {
     "status": "PASS",
     "distribution": "dist/FontSense",
-    "size_bytes": 842014615,
+    "size_bytes": 842016029,
     "file_count": 13663,
     "missing_required_files": [],
     "forbidden_files": [],
@@ -366,9 +366,54 @@
     "url": "http://127.0.0.1:7867/",
     "http_status": 200,
     "body_identified_as_fontsense": true,
-    "startup_seconds": 6.254479299997911,
+    "functional_checks": {
+      "status": "PASS",
+      "checks": {
+        "final_cnn_is_only_visible_model": true,
+        "png_prediction_has_category_and_confidence": true,
+        "png_has_five_probabilities": true,
+        "jpeg_prediction_has_category_and_confidence": true,
+        "jpeg_has_five_probabilities": true,
+        "accepted_or_uncertain_status_present": true,
+        "repeated_prediction_matches": true,
+        "blank_image_rejected": true,
+        "too_small_image_rejected": true,
+        "missing_image_rejected": true,
+        "corrupted_image_rejected": true,
+        "server_available_after_invalid_input": true,
+        "reset_returns_initial_state": true
+      },
+      "png_probability_summary": {
+        "labels": [
+          "Display",
+          "Handwriting",
+          "Monospace",
+          "Sans serif",
+          "Serif"
+        ],
+        "count": 5,
+        "sum": 1.0000000077034201
+      },
+      "jpeg_probability_summary": {
+        "labels": [
+          "Display",
+          "Handwriting",
+          "Monospace",
+          "Sans serif",
+          "Serif"
+        ],
+        "count": 5,
+        "sum": 1.0000000364234438
+      }
+    },
+    "startup_console_checks": {
+      "friendly_start_message": true,
+      "model_loading_message": true,
+      "browser_fallback_message": true,
+      "local_url_printed": true
+    },
+    "startup_seconds": 8.338707399991108,
     "process_exit_code": 3221225786,
-    "error": null,
-    "output_tail": ""
+    "error": null
   }
 }

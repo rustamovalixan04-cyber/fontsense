@@ -39,14 +39,21 @@ The release was built with `scripts/build_windows.ps1` as a console-enabled PyIn
 - Maximum probability difference: 0.0.
 - Predeclared tolerance: 0.00001.
 - Packaged Gradio HTTP smoke test: PASS.
-- Full project test suite: 77 passed.
+- Packaged PNG/JPEG, repeated prediction, Reset, and invalid-input checks: PASS.
+- Outside-repository portable-folder self-test, launch, and prediction: PASS.
+- Normal launch after shutdown: PASS twice.
+- Student browser and live-prediction visual confirmation: PASS.
+- Full project test suite: 79 passed.
 - Manual Data Gate verification: GREEN.
 - Detailed machine-readable evidence: `reports/windows_package_equivalence.json`.
 
 ## Release artifact
 
-- Local archive: `FontSense_Windows_x64.zip`
+- Local archive: `FontSense_Windows_x64_FINAL.zip`
 - Archive structure: complete `FontSense/` one-folder distribution
-- Archive size: 317,810,800 bytes (303.09 MiB)
-- Archive SHA-256: `eb445fcf70df564e171bf760934c11eafa5e4c6d5ca2d97964d9b9eabb740100`
+- Executable size: 65,501,032 bytes (62.47 MiB)
+- Executable SHA-256: `9723c3f591f187575a0ff03c55f2b493b85f40c4c1e3a1ca1266238613c61eb4`
+- Distribution size: 842,016,029 bytes (803.01 MiB)
+- Archive size: 317,811,916 bytes (303.09 MiB)
+- Archive SHA-256: `d4c2ec69e5c182f696cbfa7f7847bc6f16ab3a95ec104de2737b0d860f77c619`
 - Git policy: the generated archive and unpacked build remain ignored; reproducible build instructions and verification evidence are committed.
