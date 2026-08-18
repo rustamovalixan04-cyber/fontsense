@@ -6,7 +6,7 @@
   "functions": {
     "api/index.py": {
       "maxDuration": 300,
-      "includeFiles": "{app.py,src/fontsense/**,artifacts/cnn/**,reports/final_evaluation/pre_test_freeze.json}",
+      "includeFiles": "{api/static/**,app.py,src/fontsense/**,artifacts/cnn/**,reports/final_evaluation/pre_test_freeze.json}",
       "excludeFiles": "{.venv/**,data/**,docs/**,notebooks/**,tests/**,mlruns/**,reports/figures/**,reports/data_gate/**,reports/data_gate_self_check/**,artifacts/baseline/**,**/__pycache__/**,**/.pytest_cache/**}"
     }
   }

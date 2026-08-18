@@ -3,6 +3,8 @@
 !/api
 !/api/__init__.py
 !/api/index.py
+!/api/static
+!/api/static/index.html
 !/app.py
 
 !/src

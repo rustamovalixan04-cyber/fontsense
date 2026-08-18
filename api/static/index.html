@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FontSense</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --background: #0f0f11;
+      --panel: #242427;
+      --border: #414149;
+      --text: #f4f4f5;
+      --muted: #b7b7c2;
+      --accent: #f35b08;
+      --track: #393940;
+      --success: #35c98a;
+      --warning: #f3b63f;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+        BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--background); color: var(--text); }
+    main { width: min(980px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 56px; }
+    h1 { margin: 0 0 14px; font-size: clamp(2rem, 5vw, 2.7rem); }
+    h2 { margin-top: 28px; }
+    p { line-height: 1.55; }
+    .scope-note {
+      margin: 26px 0 20px; padding: 12px 15px; border-left: 5px solid #555560;
+      background: #171719; font-weight: 700;
+    }
+    .workspace { display: grid; grid-template-columns: 1.1fr 1fr; gap: 20px; }
+    .upload-card {
+      position: relative; min-height: 360px; border: 1px solid var(--border);
+      border-radius: 9px; background: var(--panel); overflow: hidden;
+    }
+    .upload-card.dragging { border-color: var(--accent); }
+    .file-input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+    .upload-label {
+      position: absolute; inset: 0; cursor: pointer; display: flex;
+      align-items: center; justify-content: center; padding: 24px; text-align: center;
+    }
+    .upload-label strong { display: block; font-size: 1.05rem; margin-bottom: 7px; }
+    .upload-label span { color: var(--muted); }
+    #preview {
+      display: none; width: 100%; height: 100%; min-height: 358px;
+      object-fit: contain; padding: 25px; background: var(--panel);
+    }
+    .remove-button {
+      display: none; position: absolute; top: 10px; right: 10px; z-index: 2;
+      border: 1px solid var(--border); border-radius: 7px; background: #18181b;
+      color: var(--text); padding: 7px 10px; cursor: pointer;
+    }
+    .controls { display: flex; flex-direction: column; gap: 16px; }
+    .confidence-rule { margin: 0; font-weight: 650; }
+    .button-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    button {
+      min-height: 52px; border: 0; border-radius: 8px; color: white;
+      background: #5c5c65; font-size: 1rem; font-weight: 750; cursor: pointer;
+    }
+    button.primary { background: var(--accent); }
+    button:disabled { cursor: not-allowed; opacity: .55; }
+    .message {
+      min-height: 112px; padding: 18px; border: 1px solid var(--border);
+      border-radius: 9px; background: #171719;
+    }
+    .message h3 { margin: 0 0 8px; font-size: 1.25rem; }
+    .message p { margin: 5px 0; }
+    .status { margin-top: 14px; font-weight: 700; }
+    .accepted { color: var(--success); }
+    .uncertain { color: var(--warning); }
+    .error { color: #ff7777; }
+    .probability-card {
+      margin-top: 18px; padding: 18px; border: 1px solid var(--border);
+      border-radius: 9px; background: var(--panel);
+    }
+    .probability-card h3 { margin: 0 0 16px; }
+    .probability-row {
+      display: grid; grid-template-columns: 120px 1fr 60px;
+      align-items: center; gap: 11px; margin: 10px 0;
+    }
+    .bar { height: 8px; overflow: hidden; border-radius: 999px; background: var(--track); }
+    .bar > span { display: block; height: 100%; background: var(--accent); }
+    .percent { text-align: right; font-variant-numeric: tabular-nums; }
+    .small-note { color: var(--muted); font-size: .92rem; }
+    .spinner {
+      display: inline-block; width: 15px; height: 15px; margin-right: 8px;
+      vertical-align: -2px; border: 2px solid #ffffff55; border-top-color: white;
+      border-radius: 50%; animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @media (max-width: 720px) {
+      .workspace { grid-template-columns: 1fr; }
+      .upload-card { min-height: 300px; }
+      #preview { min-height: 298px; }
+      .probability-row { grid-template-columns: 95px 1fr 52px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>FontSense</h1>
+    <p>Upload a cropped Latin-script text image to estimate its broad font category.</p>
+    <div class="scope-note">
+      FontSense predicts broad font categories and does not identify the exact font family.
+    </div>
+
+    <section class="workspace" aria-label="Font prediction controls">
+      <div id="upload-card" class="upload-card">
+        <input id="file-input" class="file-input" type="file"
+          accept="image/png,image/jpeg,.png,.jpg,.jpeg">
+        <label id="upload-label" class="upload-label" for="file-input">
+          <span><strong>Upload a PNG or JPEG text crop</strong>
+            Choose a clear image containing readable text (maximum 4 MB)</span>
+        </label>
+        <img id="preview" alt="Uploaded text preview">
+        <button id="remove-button" class="remove-button" type="button">Remove</button>
+      </div>
+
+      <div class="controls">
+        <p class="confidence-rule">
+          Confidence rule: predictions at or above 60% are accepted.
+          Lower-confidence predictions are marked uncertain.
+        </p>
+        <div class="button-row">
+          <button id="predict-button" class="primary" type="button" disabled>Predict</button>
+          <button id="reset-button" type="button">Reset</button>
+        </div>
+        <p class="small-note">
+          The first prediction after the site has been idle can take longer while the
+          frozen CNN starts. Your image is sent only when you press Predict.
+        </p>
+      </div>
+    </section>
+
+    <h2>Result</h2>
+    <section id="message" class="message" aria-live="polite">
+      <h3>No prediction yet</h3>
+      <p>Upload a readable text crop to begin.</p>
+    </section>
+    <section id="probability-card" class="probability-card" hidden>
+      <h3>Probabilities for all five categories</h3>
+      <div id="probabilities"></div>
+    </section>
+
+    <h3>Understanding uncertainty</h3>
+    <p class="small-note">
+      An uncertain result is still the model's first guess, but its confidence is
+      below the frozen 60% validation-selected threshold. Do not treat it as a
+      reliable exact identification.
+    </p>
+  </main>
+
+  <script>
+    const MAX_UPLOAD_BYTES = 4 * 1024 * 1024;
+    const CLASS_ORDER = ["display", "handwriting", "monospace", "sans_serif", "serif"];
+    const CLASS_LABELS = {
+      display: "Display", handwriting: "Handwriting", monospace: "Monospace",
+      sans_serif: "Sans serif", serif: "Serif"
+    };
+    const fileInput = document.getElementById("file-input");
+    const uploadCard = document.getElementById("upload-card");
+    const uploadLabel = document.getElementById("upload-label");
+    const preview = document.getElementById("preview");
+    const removeButton = document.getElementById("remove-button");
+    const predictButton = document.getElementById("predict-button");
+    const resetButton = document.getElementById("reset-button");
+    const message = document.getElementById("message");
+    const probabilityCard = document.getElementById("probability-card");
+    const probabilities = document.getElementById("probabilities");
+    let selectedFile = null;
+    let previewUrl = null;
+
+    function setMessage(title, detail, className = "") {
+      message.replaceChildren();
+      const heading = document.createElement("h3");
+      heading.textContent = title;
+      const text = document.createElement("p");
+      text.textContent = detail;
+      if (className) text.className = className;
+      message.append(heading, text);
+    }
+
+    function showError(detail) {
+      setMessage("Could not classify image", detail, "error");
+      probabilityCard.hidden = true;
+    }
+
+    function clearSelection() {
+      selectedFile = null;
+      fileInput.value = "";
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+      previewUrl = null;
+      preview.removeAttribute("src");
+      preview.style.display = "none";
+      removeButton.style.display = "none";
+      uploadLabel.style.display = "flex";
+      predictButton.disabled = true;
+    }
+
+    function useFile(file) {
+      if (!file) return;
+      if (!["image/png", "image/jpeg"].includes(file.type)) {
+        clearSelection();
+        showError("Only PNG and JPEG images are supported.");
+        return;
+      }
+      if (file.size > MAX_UPLOAD_BYTES) {
+        clearSelection();
+        showError("The image is larger than the 4 MB upload limit.");
+        return;
+      }
+      selectedFile = file;
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+      previewUrl = URL.createObjectURL(file);
+      preview.src = previewUrl;
+      preview.style.display = "block";
+      removeButton.style.display = "block";
+      uploadLabel.style.display = "none";
+      predictButton.disabled = false;
+      setMessage("Ready to predict", file.name);
+      probabilityCard.hidden = true;
+    }
+
+    function renderProbabilities(values) {
+      probabilities.replaceChildren();
+      for (const category of CLASS_ORDER) {
+        const value = Number(values[category] || 0);
+        const row = document.createElement("div");
+        row.className = "probability-row";
+        const label = document.createElement("span");
+        label.textContent = CLASS_LABELS[category];
+        const bar = document.createElement("div");
+        bar.className = "bar";
+        const fill = document.createElement("span");
+        fill.style.width = `${Math.max(0, Math.min(100, value * 100))}%`;
+        bar.append(fill);
+        const percent = document.createElement("span");
+        percent.className = "percent";
+        percent.textContent = `${(value * 100).toFixed(1)}%`;
+        row.append(label, bar, percent);
+        probabilities.append(row);
+      }
+      probabilityCard.hidden = false;
+    }
+
+    async function predict() {
+      if (!selectedFile) {
+        showError("Choose a PNG or JPEG image first.");
+        return;
+      }
+      predictButton.disabled = true;
+      resetButton.disabled = true;
+      message.innerHTML = '<h3><span class="spinner"></span>Analyzing image...</h3>' +
+        '<p>The first request after an idle period can take a little longer.</p>';
+      probabilityCard.hidden = true;
+
+      try {
+        const response = await fetch("/predict", {
+          method: "POST",
+          headers: { "Content-Type": selectedFile.type },
+          body: selectedFile
+        });
+        const payload = await response.json();
+        if (!response.ok) throw new Error(payload.detail || "Prediction failed.");
+
+        const category = CLASS_LABELS[payload.predicted_category] || payload.predicted_category;
+        const confidence = `${(Number(payload.confidence) * 100).toFixed(1)}%`;
+        if (payload.accepted) {
+          setMessage(`Predicted category: ${category}`, `Confidence: ${confidence}`);
+          const status = document.createElement("p");
+          status.className = "status accepted";
+          status.textContent = "Accepted — confidence meets the frozen 60% threshold.";
+          message.append(status);
+        } else {
+          setMessage(`Possible category: ${category}`,
+            `Confidence: ${confidence}. Low confidence — treat this as an uncertain first guess.`);
+          const status = document.createElement("p");
+          status.className = "status uncertain";
+          status.textContent = "Uncertain — confidence is below the frozen 60% threshold.";
+          message.append(status);
+        }
+        renderProbabilities(payload.probabilities);
+      } catch (error) {
+        showError(error instanceof Error ? error.message : "Prediction failed.");
+      } finally {
+        predictButton.disabled = !selectedFile;
+        resetButton.disabled = false;
+      }
+    }
+
+    fileInput.addEventListener("change", () => useFile(fileInput.files[0]));
+    predictButton.addEventListener("click", predict);
+    removeButton.addEventListener("click", () => {
+      clearSelection();
+      setMessage("No prediction yet", "Upload a readable text crop to begin.");
+      probabilityCard.hidden = true;
+    });
+    resetButton.addEventListener("click", () => {
+      clearSelection();
+      setMessage("No prediction yet", "Upload a readable text crop to begin.");
+      probabilityCard.hidden = true;
+    });
+    ["dragenter", "dragover"].forEach(name => uploadCard.addEventListener(name, event => {
+      event.preventDefault();
+      uploadCard.classList.add("dragging");
+    }));
+    ["dragleave", "drop"].forEach(name => uploadCard.addEventListener(name, event => {
+      event.preventDefault();
+      uploadCard.classList.remove("dragging");
+    }));
+    uploadCard.addEventListener("drop", event => useFile(event.dataTransfer.files[0]));
+  </script>
+</body>
+</html>
