@@ -52,7 +52,8 @@ VERCEL_SUPPORT_LARGE_FUNCTIONS=1
 
 - `api/index.py` receives the uploaded image and predicts in one request.
 - `api/static/index.html` provides the lightweight browser interface and
-  previews an image locally before it is sent.
+  previews an image locally before it is sent. Large PNG, JPEG, and WebP
+  photos are resized and compressed in the browser to make uploads faster.
 - `requirements-vercel.txt` contains only CPU inference and web dependencies.
 - `.vercelignore` leaves training data, notebooks, tests, reports, caches, and
   the local virtual environment out of the deployment upload.
@@ -64,7 +65,7 @@ VERCEL_SUPPORT_LARGE_FUNCTIONS=1
 - The first prediction after an idle period may be slow because PyTorch and
   the checkpoint must load in a new serverless process. The page and image
   preview do not need to wait for this model startup.
-- Uploaded requests must fit Vercel's request limit. The deployment adapter
-  caps files at 4 MB.
+- Uploaded requests must fit Vercel's request limit. The browser accepts source
+  photos up to 25 MB, then prepares an upload no larger than 4 MB.
 - Vercel's Python runtime and Large Functions support are currently beta
   features, so Colab or local Gradio remains the simpler backup demo route.

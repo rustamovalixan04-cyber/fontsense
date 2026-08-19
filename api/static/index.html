@@ -36,10 +36,14 @@
       border-radius: 9px; background: var(--panel); overflow: hidden;
     }
     .upload-card.dragging { border-color: var(--accent); }
-    .file-input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+    .file-input {
+      position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0;
+      cursor: pointer; z-index: 2;
+    }
     .upload-label {
       position: absolute; inset: 0; cursor: pointer; display: flex;
       align-items: center; justify-content: center; padding: 24px; text-align: center;
+      pointer-events: none; z-index: 1;
     }
     .upload-label strong { display: block; font-size: 1.05rem; margin-bottom: 7px; }
     .upload-label span { color: var(--muted); }
@@ -48,10 +52,18 @@
       object-fit: contain; padding: 25px; background: var(--panel);
     }
     .remove-button {
-      display: none; position: absolute; top: 10px; right: 10px; z-index: 2;
+      display: none; position: absolute; top: 10px; right: 10px; z-index: 4;
       border: 1px solid var(--border); border-radius: 7px; background: #18181b;
       color: var(--text); padding: 7px 10px; cursor: pointer;
     }
+    .upload-status {
+      position: absolute; left: 12px; right: 12px; bottom: 12px; z-index: 4;
+      padding: 9px 11px; border-radius: 7px; background: #18181be8;
+      color: var(--muted); font-size: .9rem; text-align: center;
+      pointer-events: none;
+    }
+    .upload-status.ready { color: var(--success); }
+    .upload-status.error { color: #ff8c8c; }
     .controls { display: flex; flex-direction: column; gap: 16px; }
     .confidence-rule { margin: 0; font-weight: 650; }
     .button-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -84,6 +96,7 @@
     .bar > span { display: block; height: 100%; background: var(--accent); }
     .percent { text-align: right; font-variant-numeric: tabular-nums; }
     .small-note { color: var(--muted); font-size: .92rem; }
+    .service-status.ready { color: var(--success); }
     .spinner {
       display: inline-block; width: 15px; height: 15px; margin-right: 8px;
       vertical-align: -2px; border: 2px solid #ffffff55; border-top-color: white;
@@ -109,13 +122,15 @@
     <section class="workspace" aria-label="Font prediction controls">
       <div id="upload-card" class="upload-card">
         <input id="file-input" class="file-input" type="file"
-          accept="image/png,image/jpeg,.png,.jpg,.jpeg">
+          aria-label="Upload a PNG, JPEG, or WebP text image"
+          accept="image/png,image/jpeg,image/webp,.png,.jpg,.jpeg,.webp">
         <label id="upload-label" class="upload-label" for="file-input">
-          <span><strong>Upload a PNG or JPEG text crop</strong>
-            Choose a clear image containing readable text (maximum 4 MB)</span>
+          <span><strong>Upload a PNG, JPEG, or WebP text crop</strong>
+            Large photos are automatically resized for faster prediction</span>
         </label>
         <img id="preview" alt="Uploaded text preview">
         <button id="remove-button" class="remove-button" type="button">Remove</button>
+        <div id="upload-status" class="upload-status" hidden aria-live="polite"></div>
       </div>
 
       <div class="controls">
@@ -127,9 +142,8 @@
           <button id="predict-button" class="primary" type="button" disabled>Predict</button>
           <button id="reset-button" type="button">Reset</button>
         </div>
-        <p class="small-note">
-          The first prediction after the site has been idle can take longer while the
-          frozen CNN starts. Your image is sent only when you press Predict.
+        <p id="service-status" class="small-note service-status" aria-live="polite">
+          Preparing the prediction service in the background...
         </p>
       </div>
     </section>
@@ -154,23 +168,47 @@
 
   <script>
     const MAX_UPLOAD_BYTES = 4 * 1024 * 1024;
+    const MAX_SOURCE_BYTES = 25 * 1024 * 1024;
+    const MAX_SOURCE_PIXELS = 40_000_000;
+    const MAX_IMAGE_EDGE = 1600;
+    const DIRECT_UPLOAD_BYTES = 1.5 * 1024 * 1024;
+    const REQUEST_TIMEOUT_MS = 90_000;
     const CLASS_ORDER = ["display", "handwriting", "monospace", "sans_serif", "serif"];
     const CLASS_LABELS = {
       display: "Display", handwriting: "Handwriting", monospace: "Monospace",
       sans_serif: "Sans serif", serif: "Serif"
     };
+    const ACCEPTED_INPUT_TYPES = ["image/png", "image/jpeg", "image/webp"];
+    const ACCEPTED_EXTENSIONS = ["png", "jpg", "jpeg", "webp"];
     const fileInput = document.getElementById("file-input");
     const uploadCard = document.getElementById("upload-card");
     const uploadLabel = document.getElementById("upload-label");
     const preview = document.getElementById("preview");
     const removeButton = document.getElementById("remove-button");
+    const uploadStatus = document.getElementById("upload-status");
     const predictButton = document.getElementById("predict-button");
     const resetButton = document.getElementById("reset-button");
+    const serviceStatus = document.getElementById("service-status");
     const message = document.getElementById("message");
     const probabilityCard = document.getElementById("probability-card");
     const probabilities = document.getElementById("probabilities");
-    let selectedFile = null;
+    let selectedUpload = null;
+    let selectedFileName = "";
     let previewUrl = null;
+    let selectionVersion = 0;
+
+    const sleep = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
+
+    function formatFileSize(bytes) {
+      if (bytes < 1024 * 1024) return `${Math.max(1, Math.round(bytes / 1024))} KB`;
+      return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+    }
+
+    function setUploadStatus(text, state = "") {
+      uploadStatus.textContent = text;
+      uploadStatus.className = `upload-status ${state}`.trim();
+      uploadStatus.hidden = !text;
+    }
 
     function setMessage(title, detail, className = "") {
       message.replaceChildren();
@@ -188,7 +226,9 @@
     }
 
     function clearSelection() {
-      selectedFile = null;
+      selectionVersion += 1;
+      selectedUpload = null;
+      selectedFileName = "";
       fileInput.value = "";
       if (previewUrl) URL.revokeObjectURL(previewUrl);
       previewUrl = null;
@@ -197,30 +237,135 @@
       removeButton.style.display = "none";
       uploadLabel.style.display = "flex";
       predictButton.disabled = true;
+      setUploadStatus("");
     }
 
-    function useFile(file) {
+    async function loadBrowserImage(file) {
+      if ("createImageBitmap" in window) {
+        try {
+          return await createImageBitmap(file, { imageOrientation: "from-image" });
+        } catch (error) {
+          try {
+            return await createImageBitmap(file);
+          } catch (ignored) {
+            // Fall through to the broadly supported HTML image decoder.
+          }
+        }
+      }
+
+      const objectUrl = URL.createObjectURL(file);
+      try {
+        return await new Promise((resolve, reject) => {
+          const image = new Image();
+          image.onload = () => resolve(image);
+          image.onerror = () => reject(new Error("This image could not be opened."));
+          image.src = objectUrl;
+        });
+      } finally {
+        URL.revokeObjectURL(objectUrl);
+      }
+    }
+
+    function canvasToBlob(canvas, quality) {
+      return new Promise((resolve, reject) => {
+        canvas.toBlob(
+          blob => blob ? resolve(blob) : reject(new Error("Image preparation failed.")),
+          "image/jpeg",
+          quality
+        );
+      });
+    }
+
+    async function prepareImageForUpload(file) {
+      const source = await loadBrowserImage(file);
+      const width = source.width || source.naturalWidth;
+      const height = source.height || source.naturalHeight;
+      if (!width || !height || width * height > MAX_SOURCE_PIXELS) {
+        if (typeof source.close === "function") source.close();
+        throw new Error("The image dimensions are too large. Crop it and try again.");
+      }
+
+      const scale = Math.min(1, MAX_IMAGE_EDGE / Math.max(width, height));
+      const canUploadDirectly = ["image/png", "image/jpeg"].includes(file.type) &&
+        file.size <= DIRECT_UPLOAD_BYTES && scale === 1;
+      if (canUploadDirectly) {
+        if (typeof source.close === "function") source.close();
+        return file;
+      }
+
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.max(1, Math.round(width * scale));
+      canvas.height = Math.max(1, Math.round(height * scale));
+      const context = canvas.getContext("2d", { alpha: false });
+      if (!context) {
+        if (typeof source.close === "function") source.close();
+        throw new Error("This browser could not prepare the image.");
+      }
+      context.fillStyle = "white";
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      context.imageSmoothingEnabled = true;
+      context.imageSmoothingQuality = "high";
+      context.drawImage(source, 0, 0, canvas.width, canvas.height);
+      if (typeof source.close === "function") source.close();
+
+      let blob = await canvasToBlob(canvas, 0.86);
+      if (blob.size > MAX_UPLOAD_BYTES) blob = await canvasToBlob(canvas, 0.72);
+      if (blob.size > MAX_UPLOAD_BYTES) {
+        throw new Error("The prepared image is still too large. Crop it and try again.");
+      }
+      return blob;
+    }
+
+    async function useFile(file) {
       if (!file) return;
-      if (!["image/png", "image/jpeg"].includes(file.type)) {
+      const currentVersion = selectionVersion + 1;
+      selectionVersion = currentVersion;
+      const extension = file.name.includes(".") ? file.name.split(".").pop().toLowerCase() : "";
+      const supported = ACCEPTED_INPUT_TYPES.includes(file.type) ||
+        ACCEPTED_EXTENSIONS.includes(extension);
+      if (!supported) {
         clearSelection();
-        showError("Only PNG and JPEG images are supported.");
+        setUploadStatus("Only PNG, JPEG, and WebP images are supported.", "error");
+        showError("Only PNG, JPEG, and WebP images are supported.");
         return;
       }
-      if (file.size > MAX_UPLOAD_BYTES) {
+      if (file.size > MAX_SOURCE_BYTES) {
         clearSelection();
-        showError("The image is larger than the 4 MB upload limit.");
+        setUploadStatus("This photo is above the 25 MB preparation limit.", "error");
+        showError("The photo is too large. Crop it and try again.");
         return;
       }
-      selectedFile = file;
+
+      selectedUpload = null;
+      selectedFileName = file.name;
       if (previewUrl) URL.revokeObjectURL(previewUrl);
       previewUrl = URL.createObjectURL(file);
       preview.src = previewUrl;
       preview.style.display = "block";
       removeButton.style.display = "block";
       uploadLabel.style.display = "none";
-      predictButton.disabled = false;
-      setMessage("Ready to predict", file.name);
+      predictButton.disabled = true;
+      setUploadStatus("Preparing image for a fast upload...");
+      setMessage("Preparing image", "This normally takes less than a second.");
       probabilityCard.hidden = true;
+
+      try {
+        const prepared = await prepareImageForUpload(file);
+        if (selectionVersion !== currentVersion) return;
+        selectedUpload = prepared;
+        predictButton.disabled = false;
+        const sizeDetail = prepared.size < file.size
+          ? `${formatFileSize(file.size)} → ${formatFileSize(prepared.size)}`
+          : formatFileSize(prepared.size);
+        setUploadStatus(`Ready for prediction • ${sizeDetail}`, "ready");
+        setMessage("Ready to predict", selectedFileName);
+      } catch (error) {
+        if (selectionVersion !== currentVersion) return;
+        const detail = error instanceof Error ? error.message : "Image preparation failed.";
+        clearSelection();
+        setUploadStatus(detail, "error");
+        showError(detail);
+      }
     }
 
     function renderProbabilities(values) {
@@ -245,9 +390,43 @@
       probabilityCard.hidden = false;
     }
 
+    async function requestPrediction() {
+      let lastError = null;
+      for (let attempt = 0; attempt < 2; attempt += 1) {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+        try {
+          const response = await fetch("/predict", {
+            method: "POST",
+            headers: { "Content-Type": selectedUpload.type || "image/jpeg" },
+            body: selectedUpload,
+            signal: controller.signal
+          });
+          let payload = null;
+          try {
+            payload = await response.json();
+          } catch (error) {
+            payload = { detail: "The server returned an unreadable response." };
+          }
+          if (response.ok) return payload;
+          lastError = new Error(payload.detail || `Prediction failed (${response.status}).`);
+          if (![502, 503, 504].includes(response.status) || attempt === 1) throw lastError;
+        } catch (error) {
+          lastError = error.name === "AbortError"
+            ? new Error("Prediction timed out. Please press Predict again.")
+            : error;
+          if (attempt === 1 || error.name === "AbortError") throw lastError;
+        } finally {
+          clearTimeout(timeout);
+        }
+        await sleep(800);
+      }
+      throw lastError || new Error("Prediction failed.");
+    }
+
     async function predict() {
-      if (!selectedFile) {
-        showError("Choose a PNG or JPEG image first.");
+      if (!selectedUpload) {
+        showError("Choose a PNG, JPEG, or WebP image first.");
         return;
       }
       predictButton.disabled = true;
@@ -257,13 +436,7 @@
       probabilityCard.hidden = true;
 
       try {
-        const response = await fetch("/predict", {
-          method: "POST",
-          headers: { "Content-Type": selectedFile.type },
-          body: selectedFile
-        });
-        const payload = await response.json();
-        if (!response.ok) throw new Error(payload.detail || "Prediction failed.");
+        const payload = await requestPrediction();
 
         const category = CLASS_LABELS[payload.predicted_category] || payload.predicted_category;
         const confidence = `${(Number(payload.confidence) * 100).toFixed(1)}%`;
@@ -285,8 +458,27 @@
       } catch (error) {
         showError(error instanceof Error ? error.message : "Prediction failed.");
       } finally {
-        predictButton.disabled = !selectedFile;
+        predictButton.disabled = !selectedUpload;
         resetButton.disabled = false;
+      }
+    }
+
+    async function warmPredictionService() {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+      try {
+        const response = await fetch("/healthz", {
+          cache: "no-store",
+          signal: controller.signal
+        });
+        if (!response.ok) throw new Error("Warm-up failed.");
+        serviceStatus.textContent = "Model ready — you can upload and predict.";
+        serviceStatus.classList.add("ready");
+      } catch (error) {
+        serviceStatus.textContent =
+          "The model will start when you press Predict; the first result may take longer.";
+      } finally {
+        clearTimeout(timeout);
       }
     }
 
@@ -311,6 +503,7 @@
       uploadCard.classList.remove("dragging");
     }));
     uploadCard.addEventListener("drop", event => useFile(event.dataTransfer.files[0]));
+    warmPredictionService();
   </script>
 </body>
 </html>

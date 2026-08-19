@@ -51,6 +51,12 @@ def test_vercel_asgi_app_and_health_check() -> None:
     assert "/gradio_api/upload" not in page.text
     assert "/gradio_api/queue" not in page.text
     assert 'fetch("/predict"' in page.text
+    assert 'fetch("/healthz"' in page.text
+    assert "prepareImageForUpload" in page.text
+    assert "canvas.toBlob" in page.text
+    assert "MAX_SOURCE_BYTES = 25 * 1024 * 1024" in page.text
+    assert "AbortController" in page.text
+    assert "image/webp" in page.text
     assert health.status_code == 200
     assert health.json() == {
         "status": "ok",
