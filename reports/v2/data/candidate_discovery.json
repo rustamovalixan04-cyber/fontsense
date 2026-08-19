@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "purpose": "Reproducible V2 candidate discovery from official Google Fonts metadata.",
+  "official_repository": "https://github.com/google/fonts.git",
+  "source_commit": "e1118da94a8cb00cf6d06cdac9ef13eb1e5c6ab7",
+  "metadata_files_scanned": 2023,
+  "eligible_latin_families": {
+    "serif": 357,
+    "sans_serif": 728,
+    "display": 495,
+    "handwriting": 251,
+    "monospace": 45
+  },
+  "selected_candidates": {
+    "serif": 70,
+    "sans_serif": 70,
+    "display": 70,
+    "handwriting": 70,
+    "monospace": 45
+  },
+  "candidate_limit_per_category": 70,
+  "seed": 42,
+  "rejected_metadata_entries": {
+    "no Latin subset": 147
+  },
+  "catalog_path": "data/v2/google_fonts_candidates.csv",
+  "catalog_sha256": "4db5404da6cb91384c9aaae6fe6dfa78324b896d1f5df4ea8cd5f6dd7679e660"
+}

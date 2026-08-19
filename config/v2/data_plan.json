@@ -1,0 +1,17 @@
+{
+  "version": "v2-20k",
+  "seed": 42,
+  "official_repository": "https://github.com/google/fonts.git",
+  "candidate_limit_per_category": 70,
+  "target_families_per_category": 40,
+  "minimum_fallback_families_per_category": 30,
+  "primary_split_families_per_category": {
+    "train": 28,
+    "validation": 6,
+    "test": 6
+  },
+  "primary_images_per_family": 100,
+  "minimum_total_images": 20000,
+  "protect_v1_test_families": true,
+  "require_fresh_v2_test_families": true
+}

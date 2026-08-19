@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "configuration": "primary",
+  "seed": 42,
+  "families_total": 200,
+  "families_per_category": 40,
+  "families_per_split": {
+    "train": 140,
+    "validation": 30,
+    "test": 30
+  },
+  "families_per_category_and_split": {
+    "train": 28,
+    "validation": 6,
+    "test": 6
+  },
+  "images_per_family_required": 100,
+  "planned_images_total": 20000,
+  "family_overlap_count": 0,
+  "protected_v1_test_families_selected": 0,
+  "fresh_v2_test_families": 30,
+  "v2_test_families_seen_in_v1_selected": 0,
+  "split_path": "data/v2/frozen_family_split.csv",
+  "split_sha256": "f610d835f71ed0935bab8606d7ce46ba85875db25edf94759350c12ceadae250",
+  "v1_split_path": "data/interim/google_fonts_final_family_split.csv",
+  "v1_split_sha256": "f6cdd858449a4143993b051e9de83578cd423544135dbf6cc17f004359d2e17b"
+}

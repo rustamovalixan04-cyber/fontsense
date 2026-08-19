@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "checked_at_utc": "2026-08-19T08:39:35.4832639Z",
+  "branch": "v2-20k",
+  "base_main_commit": "36ff95d534517a219daa9ad7a202c6d6fe4dc341",
+  "origin": "https://github.com/rustamovalixan04-cyber/fontsense.git",
+  "main_was_synchronized_with_origin": true,
+  "v1": {
+    "checkpoint": "artifacts/cnn/cnn_model.pt",
+    "checkpoint_sha256": "c98cf0d1a02503a02b8f8242fec462ea2a0c455380238ec54fc4f62fdb13bb2f",
+    "checkpoint_hash_matches_frozen_record": true,
+    "family_split": "data/interim/google_fonts_final_family_split.csv",
+    "family_split_sha256": "f6cdd858449a4143993b051e9de83578cd423544135dbf6cc17f004359d2e17b",
+    "final_metrics": "reports/final_evaluation/final_test_metrics.json",
+    "final_metrics_sha256": "0e991fb614258b0c38caf4474c93a6ea30dda6d5117feebb7dcaa5452587d6f5",
+    "historical_test_will_not_be_rerun": true
+  },
+  "environment": {
+    "python": "3.12.13",
+    "torch": "2.13.0+cpu",
+    "cuda_available_to_project_environment": false,
+    "cpu": "11th Gen Intel(R) Core(TM) i5-11400H @ 2.70GHz",
+    "physical_cores": 6,
+    "logical_processors": 12,
+    "memory_gib": 15.71,
+    "detected_discrete_gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+    "gpu_memory_gib": 4,
+    "training_device_decision": "Use the protected CPU environment unless a separate safe environment is proven necessary."
+  }
+}

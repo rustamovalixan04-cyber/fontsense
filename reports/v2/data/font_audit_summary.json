@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "candidates_audited": 325,
+  "usable_independent_families": {
+    "serif": 70,
+    "sans_serif": 70,
+    "display": 70,
+    "handwriting": 70,
+    "monospace": 45
+  },
+  "failed_candidates": 0,
+  "validation": "Every usable file opened and rendered visible Latin text with Pillow.",
+  "audit_path": "data/v2/google_fonts_audit.csv",
+  "audit_sha256": "c611b118a93dcd1dee8fa26187d62c607ef2124e3c9937507ab9f6768885ff00"
+}

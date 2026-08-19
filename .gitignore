@@ -35,6 +35,13 @@ data/interim/*.csv
 !data/interim/google_fonts_final_family_split.csv
 !data/interim/google_fonts_balancing_exclusions.csv
 
+# V2 reproducible inputs are tracked; downloaded/generated bulk files are not
+data/v2/cache/
+data/v2/raw/fonts/
+data/v2/processed/
+reports/v2/mlruns/
+artifacts/v2/package/
+
 # Large/replaceable model artifacts
 artifacts/*_final.joblib
 

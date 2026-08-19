@@ -1,0 +1,47 @@
+{
+  "version": "v2-20k",
+  "branch": "v2-20k",
+  "seed": 42,
+  "updated_at_utc": "2026-08-19T08:39:35.4832639Z",
+  "stages": {
+    "1_preflight": {
+      "status": "completed",
+      "artifact": "reports/v2/preflight.json"
+    },
+    "2_catalog_discovery": {
+      "status": "completed",
+      "artifact": "reports/v2/data/candidate_discovery.json",
+      "sha256": "4db5404da6cb91384c9aaae6fe6dfa78324b896d1f5df4ea8cd5f6dd7679e660"
+    },
+    "3_audit": {
+      "status": "completed",
+      "artifact": "data/v2/google_fonts_audit.csv",
+      "sha256": "c611b118a93dcd1dee8fa26187d62c607ef2124e3c9937507ab9f6768885ff00"
+    },
+    "4_family_selection": {
+      "status": "completed",
+      "artifact": "data/v2/family_exclusions.csv"
+    },
+    "5_split_freeze": {
+      "status": "completed",
+      "artifact": "data/v2/frozen_family_split.csv",
+      "sha256": "f610d835f71ed0935bab8606d7ce46ba85875db25edf94759350c12ceadae250"
+    },
+    "6_dataset_generation": {"status": "pending"},
+    "7_data_validation": {"status": "pending"},
+    "8_candidate_A": {"status": "pending"},
+    "9_candidate_B": {"status": "pending"},
+    "10_candidate_C": {"status": "pending"},
+    "11_model_selection": {"status": "pending"},
+    "12_threshold_selection": {"status": "pending"},
+    "13_pre_test_freeze": {"status": "pending"},
+    "14_final_test": {"status": "pending"},
+    "15_paired_v1_v2_comparison": {"status": "pending"},
+    "16_app": {"status": "pending"},
+    "17_exe": {"status": "pending"},
+    "18_final_tests": {"status": "pending"},
+    "19_documentation": {"status": "pending"},
+    "20_commit_push": {"status": "pending"}
+  },
+  "resume_command": ".\\.venv\\Scripts\\python.exe -m fontsense.v2_generate"
+}
