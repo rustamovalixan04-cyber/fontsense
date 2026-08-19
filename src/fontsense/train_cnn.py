@@ -494,6 +494,7 @@ def _plot_confusion_matrix(
     class_names: list[str],
     run_name: str,
     output_path: Path,
+    validation_images: int = 600,
 ) -> None:
     labels = [name.replace("_", " ").title() for name in class_names]
     figure, axis = plt.subplots(figsize=(8.2, 7.0))
@@ -517,7 +518,7 @@ def _plot_confusion_matrix(
     figure.text(
         0.5,
         0.947,
-        "600 validation images from unseen families; no test images evaluated",
+        f"{validation_images:,} validation images from unseen families; no test images evaluated",
         ha="center",
         va="top",
         fontsize=9,

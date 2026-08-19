@@ -23,7 +23,7 @@ Validation opened all 20,000 files and found:
 
 A bounded 64-bit difference-hash audit made 2,999,356 comparisons and found many visually similar pairs. This is expected because short text crops often share similar backgrounds and overall edge layouts. The first 5,000 representative pairs are recorded in `reports/v2/data/near_duplicates.csv`; this is a warning for error analysis, not evidence of exact duplicates. Exact byte hashes are the strict duplicate gate.
 
-The manifest plan reproduced exactly on a second seed-42 build, and 25 regenerated sample images matched their original SHA-256 hashes. The manifest SHA-256 is `95fa9642c8bbc0ecfe6af1d4d1e893ed041a238fa1b6a4da59760f584007132e7`.
+The manifest plan reproduced exactly on a second seed-42 build, and 25 regenerated sample images matched their original SHA-256 hashes. The manifest SHA-256 is `95fa9642c8bbc0ecfe6af1d4d1e893ed041a238fa1b6a4da59760f58407132e7`.
 
 Manual review of the five contact sheets confirmed that the sampled train, validation, and test images are readable, uncropped, and visually varied. The raw PNG files live under `data/v2/processed/` and are ignored by Git. They can be regenerated with:
 

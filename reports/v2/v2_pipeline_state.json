@@ -2,7 +2,8 @@
   "version": "v2-20k",
   "branch": "v2-20k",
   "seed": 42,
-  "updated_at_utc": "2026-08-19T09:20:00Z",
+  "updated_at_utc": "2026-08-19T10:18:32Z",
+  "v2_test_status": "V2 TEST REMAINS UNTOUCHED",
   "stages": {
     "1_preflight": {
       "status": "completed",
@@ -30,25 +31,64 @@
     "6_dataset_generation": {
       "status": "completed",
       "artifact": "reports/v2/data/full_manifest.csv",
-      "sha256": "95fa9642c8bbc0ecfe6af1d4d1e893ed041a238fa1b6a4da59760f584007132e7"
+      "sha256": "95fa9642c8bbc0ecfe6af1d4d1e893ed041a238fa1b6a4da59760f58407132e7"
     },
     "7_data_validation": {
       "status": "completed",
       "artifact": "reports/v2/data/dataset_validation_summary.json"
     },
-    "8_candidate_A": {"status": "pending"},
-    "9_candidate_B": {"status": "pending"},
-    "10_candidate_C": {"status": "pending"},
-    "11_model_selection": {"status": "pending"},
-    "12_threshold_selection": {"status": "pending"},
-    "13_pre_test_freeze": {"status": "pending"},
-    "14_final_test": {"status": "pending"},
-    "15_paired_v1_v2_comparison": {"status": "pending"},
-    "16_app": {"status": "pending"},
-    "17_exe": {"status": "pending"},
-    "18_final_tests": {"status": "pending"},
-    "19_documentation": {"status": "pending"},
-    "20_commit_push": {"status": "pending"}
+    "8_candidate_A": {
+      "status": "completed",
+      "artifact": "reports/v2/cnn/candidate_a/summary.json",
+      "sha256": "941674ff99f7edb20f71b2b6c071d2e3c30564879a93155ef16e4e7dd90b0a99"
+    },
+    "9_candidate_B": {
+      "status": "completed",
+      "artifact": "reports/v2/cnn/candidate_b/summary.json",
+      "sha256": "f955f6d0fa3b45ea7c5124a111980cd5d27ec474732d0f5dfe320fde1f9da329"
+    },
+    "10_candidate_C": {
+      "status": "intentionally_stopped",
+      "artifact": "reports/v2/cnn/candidate_c/interruption_record.json",
+      "best_epoch": 13,
+      "validation_macro_f1": 0.7651982421694324,
+      "checkpoint_persisted": false
+    },
+    "11_model_selection": {
+      "status": "pending",
+      "provisional_validation_leader": "B"
+    },
+    "12_threshold_selection": {
+      "status": "pending"
+    },
+    "13_pre_test_freeze": {
+      "status": "pending"
+    },
+    "14_final_test": {
+      "status": "pending",
+      "test_images_loaded": 0,
+      "test_rows_evaluated": 0
+    },
+    "15_paired_v1_v2_comparison": {
+      "status": "pending"
+    },
+    "16_app": {
+      "status": "pending"
+    },
+    "17_exe": {
+      "status": "pending"
+    },
+    "18_final_tests": {
+      "status": "pending"
+    },
+    "19_documentation": {
+      "status": "pending"
+    },
+    "20_commit_push": {
+      "status": "checkpointed",
+      "artifact": "reports/v2/RESUME_V2.md"
+    }
   },
-  "resume_command": ".\\.venv\\Scripts\\python.exe -m fontsense.v2_train"
+  "resume_command": ".\\.venv\\Scripts\\python.exe -m fontsense.v2_train C --device cpu",
+  "resume_note": "Candidate C's validation history is preserved, but its epoch-13 weights were not serialized before interruption. Rerun C after the limit reset if a loadable C checkpoint is required; otherwise Candidate B remains the provisional leader."
 }

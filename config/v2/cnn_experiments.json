@@ -1,0 +1,47 @@
+{
+  "experiment_name": "FontSense V2 CNN validation",
+  "expected_split_sha256": "f610d835f71ed0935bab8606d7ce46ba85875db25edf94759350c12ceadae250",
+  "expected_manifest_sha256": "95fa9642c8bbc0ecfe6af1d4d1e893ed041a238fa1b6a4da59760f58407132e7",
+  "expected_family_count": 200,
+  "image_size": [112, 48],
+  "grayscale": true,
+  "batch_size": 128,
+  "max_epochs": 35,
+  "early_stopping_patience": 5,
+  "early_stopping_min_delta": 0.0005,
+  "weight_decay": 0.0001,
+  "augmentation": {
+    "enabled": true,
+    "rotation_degrees": 2.0,
+    "translate_fraction": [0.02, 0.03],
+    "scale_range": [0.97, 1.03],
+    "sharpness_probability": 0.2,
+    "sharpness_factor": 1.25
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "name": "V2 candidate A - reference width",
+      "reason": "V1 reference architecture retrained on the larger V2 family set.",
+      "learning_rate": 0.001,
+      "width": 16,
+      "dropout": 0.25
+    },
+    {
+      "id": "B",
+      "name": "V2 candidate B - medium width",
+      "reason": "Moderately wider feature extractor with slightly stronger dropout.",
+      "learning_rate": 0.0007,
+      "width": 24,
+      "dropout": 0.28
+    },
+    {
+      "id": "C",
+      "name": "V2 candidate C - wider filters",
+      "reason": "Wider but still small Colab-suitable CNN with moderate dropout.",
+      "learning_rate": 0.0007,
+      "width": 32,
+      "dropout": 0.3
+    }
+  ]
+}

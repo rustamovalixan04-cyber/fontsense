@@ -1,0 +1,4 @@
+candidate,status,best_epoch,epochs_completed,validation_macro_f1,validation_accuracy,runtime_seconds,checkpoint_size_bytes,parameter_count,checkpoint,checkpoint_sha256,mlflow_run_id,notes
+A,completed,3,8,0.6789683146205963,0.6773333333333333,303.6130340999807,255505,60901,artifacts/v2/cnn/candidate_a/cnn_model.pt,941674ff99f7edb20f71b2b6c071d2e3c30564879a93155ef16e4ee7dd90b0a99,cf3fa575a00844abbaac65a160da5640,Complete saved checkpoint
+B,completed,20,25,0.7958228907353944,0.7973333333333333,1523.761401100026,557521,136277,artifacts/v2/cnn/candidate_b/cnn_model.pt,f955f6d0fa3b45ea7c5124a111980cd5d27ec474732d0f5dfe320ffde1f9da329,1d4dbdeea2614d39a7a3b04015f8430c,Current validation leader
+C,intentionally_stopped,13,15,0.7651982421694324,0.7646666666666667,1255.635,,241605,,,bedf251ec4884be38c691fb3f2c6f9ee,Validation evidence preserved but best weights were not serialized before interruption
