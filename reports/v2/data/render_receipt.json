@@ -1,0 +1,8 @@
+{
+  "status": "completed",
+  "images_rendered": 20000,
+  "plan_sha256": "c180637a309d78b975133f479558b674c82cba18ce6fc115904b022c481b4111",
+  "split_sha256": "f610d835f71ed0935bab8606d7ce46ba85875db25edf94759350c12ceadae250",
+  "config_sha256": "05ec9add871934c9edd71893f733e1224d3443df9c857d39ea0387c8deb3e918",
+  "recovered_after_completed_render_validation_failure": true
+}

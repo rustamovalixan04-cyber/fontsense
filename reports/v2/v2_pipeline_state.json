@@ -2,7 +2,7 @@
   "version": "v2-20k",
   "branch": "v2-20k",
   "seed": 42,
-  "updated_at_utc": "2026-08-19T08:39:35.4832639Z",
+  "updated_at_utc": "2026-08-19T09:20:00Z",
   "stages": {
     "1_preflight": {
       "status": "completed",
@@ -27,8 +27,15 @@
       "artifact": "data/v2/frozen_family_split.csv",
       "sha256": "f610d835f71ed0935bab8606d7ce46ba85875db25edf94759350c12ceadae250"
     },
-    "6_dataset_generation": {"status": "pending"},
-    "7_data_validation": {"status": "pending"},
+    "6_dataset_generation": {
+      "status": "completed",
+      "artifact": "reports/v2/data/full_manifest.csv",
+      "sha256": "95fa9642c8bbc0ecfe6af1d4d1e893ed041a238fa1b6a4da59760f584007132e7"
+    },
+    "7_data_validation": {
+      "status": "completed",
+      "artifact": "reports/v2/data/dataset_validation_summary.json"
+    },
     "8_candidate_A": {"status": "pending"},
     "9_candidate_B": {"status": "pending"},
     "10_candidate_C": {"status": "pending"},
@@ -43,5 +50,5 @@
     "19_documentation": {"status": "pending"},
     "20_commit_push": {"status": "pending"}
   },
-  "resume_command": ".\\.venv\\Scripts\\python.exe -m fontsense.v2_generate"
+  "resume_command": ".\\.venv\\Scripts\\python.exe -m fontsense.v2_train"
 }
