@@ -9,6 +9,7 @@ build/
 dist/
 /FontSense_Windows_x64.zip
 /FontSense_Windows_x64_FINAL.zip
+/FontSense_Windows_x64_FINAL/
 
 # IDE / OS
 .vscode/

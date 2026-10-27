@@ -12,5 +12,8 @@ authors = [{name = "Rustamov Alixan"}]
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
 [tool.vercel]
 entrypoint = "api.index:app"

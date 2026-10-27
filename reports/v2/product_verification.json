@@ -1,0 +1,141 @@
+{
+  "status": "passed",
+  "checked_at_utc": "2026-10-27T21:56:53.870594+00:00",
+  "scope": "Technical HTTP smoke checks only. Generated inputs are not performance evidence.",
+  "base_url": "http://127.0.0.1:8001",
+  "checkpoint_sha256": "c98cf0d1a02503a02b8f8242fec462ea2a0c455380238ec54fc4f62fdb13bb2f",
+  "dataset_manifests_loaded": false,
+  "v2_test_images_loaded": 0,
+  "cases": [
+    {
+      "case": "clear_text",
+      "http_status": 200,
+      "request_ms": 71.40280003659427,
+      "upload_bytes": 7221,
+      "response": {
+        "predicted_category": "sans_serif",
+        "confidence": 0.9091622233390808,
+        "probabilities": {
+          "display": 0.0007654317887499928,
+          "handwriting": 0.0662444680929184,
+          "monospace": 0.015530223026871681,
+          "sans_serif": 0.9091622233390808,
+          "serif": 0.00829765759408474
+        },
+        "accepted": true,
+        "threshold": 0.6,
+        "class_order": [
+          "display",
+          "handwriting",
+          "monospace",
+          "sans_serif",
+          "serif"
+        ]
+      }
+    },
+    {
+      "case": "transparent_text",
+      "http_status": 200,
+      "request_ms": 22.495599929243326,
+      "upload_bytes": 5304,
+      "response": {
+        "predicted_category": "sans_serif",
+        "confidence": 0.9091622233390808,
+        "probabilities": {
+          "display": 0.0007654317887499928,
+          "handwriting": 0.0662444680929184,
+          "monospace": 0.015530223026871681,
+          "sans_serif": 0.9091622233390808,
+          "serif": 0.00829765759408474
+        },
+        "accepted": true,
+        "threshold": 0.6,
+        "class_order": [
+          "display",
+          "handwriting",
+          "monospace",
+          "sans_serif",
+          "serif"
+        ]
+      }
+    },
+    {
+      "case": "dark_background",
+      "http_status": 200,
+      "request_ms": 7.933699991554022,
+      "upload_bytes": 7893,
+      "response": {
+        "predicted_category": "sans_serif",
+        "confidence": 0.5232229232788086,
+        "probabilities": {
+          "display": 0.12105663120746613,
+          "handwriting": 0.10139026492834091,
+          "monospace": 0.17908139526844025,
+          "sans_serif": 0.5232229232788086,
+          "serif": 0.07524881511926651
+        },
+        "accepted": false,
+        "threshold": 0.6,
+        "class_order": [
+          "display",
+          "handwriting",
+          "monospace",
+          "sans_serif",
+          "serif"
+        ]
+      }
+    },
+    {
+      "case": "mild_blur_jpeg",
+      "http_status": 200,
+      "request_ms": 7.243799977004528,
+      "upload_bytes": 7381,
+      "response": {
+        "predicted_category": "sans_serif",
+        "confidence": 0.8977972269058228,
+        "probabilities": {
+          "display": 0.0021232140716165304,
+          "handwriting": 0.06498529762029648,
+          "monospace": 0.02225007861852646,
+          "sans_serif": 0.8977972269058228,
+          "serif": 0.0128441471606493
+        },
+        "accepted": true,
+        "threshold": 0.6,
+        "class_order": [
+          "display",
+          "handwriting",
+          "monospace",
+          "sans_serif",
+          "serif"
+        ]
+      }
+    },
+    {
+      "case": "blank",
+      "http_status": 400,
+      "request_ms": 4.899799940176308,
+      "upload_bytes": 649,
+      "response": {
+        "detail": "The image appears blank or nearly blank. Upload a readable text crop."
+      }
+    },
+    {
+      "case": "disguised_gif",
+      "http_status": 415,
+      "request_ms": 2.191200037486851,
+      "upload_bytes": 5582,
+      "response": {
+        "detail": "Only PNG and JPEG images are supported."
+      }
+    }
+  ],
+  "warm_request_repetitions": 10,
+  "warm_request_median_ms": 7.563650025986135,
+  "warm_request_max_ms": 10.514700086787343,
+  "concurrent_requests": 8,
+  "concurrent_request_median_ms": 29.70320003805682,
+  "concurrent_request_max_ms": 32.68260008189827,
+  "timing_limitations": "Local warmed process; excludes public network latency and Vercel cold starts.",
+  "visual_browser_check": "Blocked: Windows computer-use tool could not reliably determine the browser URL."
+}

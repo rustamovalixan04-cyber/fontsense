@@ -1,8 +1,6 @@
 from __future__ import annotations
 
-import hashlib
 import importlib.util
-import json
 import math
 from functools import lru_cache
 from pathlib import Path
@@ -25,87 +23,25 @@ sys.path.insert(0, str(SOURCE_ROOT / "src"))
 import gradio as gr
 from PIL import Image
 
-from fontsense.inference import FontSensePredictor
-
-
-FINAL_MODEL_LABEL = "Final CNN"
-HOG_MODEL_LABEL = "HOG comparison"
-FROZEN_THRESHOLD = 0.60
-FINAL_CLASS_ORDER = (
-    "display",
-    "handwriting",
-    "monospace",
-    "sans_serif",
-    "serif",
+from fontsense.inference import FontSensePredictor, validate_probabilities
+from fontsense.runtime import (
+    FINAL_MODEL_LABEL,
+    FROZEN_THRESHOLD,
+    FINAL_CLASS_ORDER,
+    FINAL_PREPROCESSING,
+    FREEZE_PATH,
+    sha256_file,
+    load_frozen_contract,
+    load_final_cnn_predictor,
+    FROZEN_CONTRACT,
+    FINAL_CHECKPOINT_PATH,
+    FINAL_CHECKPOINT_SHA256,
+    FINAL_CNN_PREDICTOR,
 )
-FINAL_PREPROCESSING = {
-    "image_size": [112, 48],
-    "grayscale": True,
-    "normalize_mean": [0.5],
-    "normalize_std": [0.5],
-}
-FREEZE_PATH = ROOT / "reports" / "final_evaluation" / "pre_test_freeze.json"
+
+
+HOG_MODEL_LABEL = "HOG comparison"
 HOG_ARTIFACT_DIR = ROOT / "artifacts" / "baseline"
-
-
-def sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
-
-
-def load_frozen_contract() -> dict:
-    with FREEZE_PATH.open("r", encoding="utf-8") as handle:
-        freeze = json.load(handle)
-
-    checkpoint_path = (
-        ROOT / freeze["selected_model"]["checkpoint"]
-    ).resolve()
-    if ROOT.resolve() not in checkpoint_path.parents:
-        raise RuntimeError("The frozen checkpoint path leaves the project folder.")
-    expected_hash = freeze["selected_model"]["checkpoint_sha256"].lower()
-    actual_hash = sha256_file(checkpoint_path)
-    if actual_hash != expected_hash:
-        raise RuntimeError(
-            "The final CNN checkpoint hash does not match the frozen evaluation."
-        )
-    if float(
-        freeze["uncertainty_threshold"]["selected_threshold"]
-    ) != FROZEN_THRESHOLD:
-        raise RuntimeError("The frozen confidence threshold changed.")
-    if tuple(freeze["class_order"]) != FINAL_CLASS_ORDER:
-        raise RuntimeError("The frozen CNN class order changed.")
-    if freeze["preprocessing"] != FINAL_PREPROCESSING:
-        raise RuntimeError("The frozen CNN preprocessing changed.")
-
-    return {
-        "checkpoint_path": checkpoint_path,
-        "checkpoint_sha256": actual_hash,
-        "threshold": FROZEN_THRESHOLD,
-        "class_order": list(FINAL_CLASS_ORDER),
-        "preprocessing": dict(FINAL_PREPROCESSING),
-    }
-
-
-def load_final_cnn_predictor(contract: dict) -> FontSensePredictor:
-    predictor = FontSensePredictor(
-        artifact_dir=contract["checkpoint_path"].parent,
-        model="cnn",
-        threshold=contract["threshold"],
-    )
-    if predictor.classes != contract["class_order"]:
-        raise RuntimeError("The loaded CNN class order differs from the freeze.")
-    if predictor.preprocessing != contract["preprocessing"]:
-        raise RuntimeError("The loaded CNN preprocessing differs from the freeze.")
-    return predictor
-
-
-FROZEN_CONTRACT = load_frozen_contract()
-FINAL_CHECKPOINT_PATH = FROZEN_CONTRACT["checkpoint_path"]
-FINAL_CHECKPOINT_SHA256 = FROZEN_CONTRACT["checkpoint_sha256"]
-FINAL_CNN_PREDICTOR = load_final_cnn_predictor(FROZEN_CONTRACT)
 
 HOG_AVAILABLE = (
     all(
@@ -153,11 +89,15 @@ def format_prediction(
     prediction: dict,
     threshold: float = FROZEN_THRESHOLD,
 ) -> tuple[str, dict[str, float], str]:
+    if not math.isfinite(float(threshold)) or not 0 <= float(threshold) <= 1:
+        raise ValueError("The uncertainty threshold must be between 0 and 1.")
+    values = validate_probabilities(
+        [prediction["probabilities"][category] for category in FINAL_CLASS_ORDER],
+        len(FINAL_CLASS_ORDER),
+    )
     probabilities = {
-        display_category(category): float(
-            prediction["probabilities"][category]
-        )
-        for category in FINAL_CLASS_ORDER
+        display_category(category): float(values[index])
+        for index, category in enumerate(FINAL_CLASS_ORDER)
     }
     total_probability = sum(probabilities.values())
     if not all(math.isfinite(value) for value in probabilities.values()):
@@ -237,6 +177,8 @@ with gr.Blocks(title="FontSense") as demo:
 
 Upload a cropped Latin-script text image to estimate its broad font category.
 
+For best results, crop one clear line of text. Avoid full pages and mixed fonts.
+
 > **FontSense predicts broad font categories and does not identify the exact
 > font family.**
 """
@@ -244,7 +186,7 @@ Upload a cropped Latin-script text image to estimate its broad font category.
     with gr.Row():
         image = gr.Image(
             type="pil",
-            image_mode="RGB",
+            image_mode="RGBA",
             sources=["upload"],
             label="Upload a PNG or JPEG text crop",
             placeholder="Choose a clear image containing readable text",
@@ -291,6 +233,7 @@ Lower-confidence predictions are marked uncertain.
 An **uncertain** result is still the model's first guess, but its confidence is
 below the frozen 60% validation-selected threshold. Do not treat it as a
 reliable exact identification.
+Even a confident prediction can be wrong on unfamiliar fonts and photographs.
 """
     )
 

@@ -49,7 +49,7 @@
     .upload-label span { color: var(--muted); }
     #preview {
       display: none; width: 100%; height: 100%; min-height: 358px;
-      object-fit: contain; padding: 25px; background: var(--panel);
+      object-fit: contain; padding: 25px; background: white;
     }
     .remove-button {
       display: none; position: absolute; top: 10px; right: 10px; z-index: 4;
@@ -115,6 +115,7 @@
   <main>
     <h1>FontSense</h1>
     <p>Upload a cropped Latin-script text image to estimate its broad font category.</p>
+    <p class="small-note">For best results, crop one clear line of text. Avoid full pages and mixed fonts.</p>
     <div class="scope-note">
       FontSense predicts broad font categories and does not identify the exact font family.
     </div>
@@ -163,6 +164,7 @@
       An uncertain result is still the model's first guess, but its confidence is
       below the frozen 60% validation-selected threshold. Do not treat it as a
       reliable exact identification.
+      Even a confident prediction can be wrong on unfamiliar fonts and photographs.
     </p>
   </main>
 
@@ -170,7 +172,7 @@
     const MAX_UPLOAD_BYTES = 4 * 1024 * 1024;
     const MAX_SOURCE_BYTES = 25 * 1024 * 1024;
     const MAX_SOURCE_PIXELS = 40_000_000;
-    const MAX_IMAGE_EDGE = 1600;
+    const MAX_IMAGE_EDGE = 1280;
     const DIRECT_UPLOAD_BYTES = 1.5 * 1024 * 1024;
     const REQUEST_TIMEOUT_MS = 90_000;
     const CLASS_ORDER = ["display", "handwriting", "monospace", "sans_serif", "serif"];
@@ -196,6 +198,7 @@
     let selectedFileName = "";
     let previewUrl = null;
     let selectionVersion = 0;
+    let activePrediction = null;
 
     const sleep = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
 
@@ -226,6 +229,8 @@
     }
 
     function clearSelection() {
+      if (activePrediction) activePrediction.abort();
+      activePrediction = null;
       selectionVersion += 1;
       selectedUpload = null;
       selectedFileName = "";
@@ -277,7 +282,26 @@
     }
 
     async function prepareImageForUpload(file) {
-      const source = await loadBrowserImage(file);
+      let preparationTimedOut = false;
+      let preparationTimer;
+      const decoding = loadBrowserImage(file);
+      decoding.then(source => {
+        if (preparationTimedOut && typeof source.close === "function") source.close();
+      }, () => {});
+      let source;
+      try {
+        source = await Promise.race([
+          decoding,
+          new Promise((resolve, reject) => {
+            preparationTimer = setTimeout(() => {
+              preparationTimedOut = true;
+              reject(new Error("Image preparation timed out. Try a smaller text crop."));
+            }, 15_000);
+          })
+        ]);
+      } finally {
+        clearTimeout(preparationTimer);
+      }
       const width = source.width || source.naturalWidth;
       const height = source.height || source.naturalHeight;
       if (!width || !height || width * height > MAX_SOURCE_PIXELS) {
@@ -318,6 +342,8 @@
 
     async function useFile(file) {
       if (!file) return;
+      if (activePrediction) activePrediction.abort();
+      activePrediction = null;
       const currentVersion = selectionVersion + 1;
       selectionVersion = currentVersion;
       const extension = file.name.includes(".") ? file.name.split(".").pop().toLowerCase() : "";
@@ -390,16 +416,36 @@
       probabilityCard.hidden = false;
     }
 
-    async function requestPrediction() {
+    function validatePrediction(payload) {
+      const values = CLASS_ORDER.map(category => payload?.probabilities?.[category]);
+      if (!CLASS_ORDER.includes(payload?.predicted_category) ||
+          typeof payload.accepted !== "boolean" ||
+          !Number.isFinite(payload.confidence) ||
+          values.some(value => !Number.isFinite(value) || value < 0 || value > 1) ||
+          Math.abs(values.reduce((sum, value) => sum + value, 0) - 1) > 0.0001 ||
+          Math.abs(Math.max(...values) - payload.confidence) > 0.0001 ||
+          Math.abs(payload.probabilities[payload.predicted_category] - payload.confidence) > 0.0001 ||
+          payload.accepted !== (payload.confidence >= 0.60)) {
+        const error = new Error("The server returned an invalid prediction. Please try again.");
+        error.noRetry = true;
+        throw error;
+      }
+      return payload;
+    }
+
+    async function requestPrediction(upload, signal) {
       let lastError = null;
       for (let attempt = 0; attempt < 2; attempt += 1) {
         const controller = new AbortController();
+        const cancel = () => controller.abort();
+        if (signal.aborted) controller.abort();
+        signal.addEventListener("abort", cancel, { once: true });
         const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
         try {
           const response = await fetch("/predict", {
             method: "POST",
-            headers: { "Content-Type": selectedUpload.type || "image/jpeg" },
-            body: selectedUpload,
+            headers: { "Content-Type": upload.type || "image/jpeg" },
+            body: upload,
             signal: controller.signal
           });
           let payload = null;
@@ -408,16 +454,19 @@
           } catch (error) {
             payload = { detail: "The server returned an unreadable response." };
           }
-          if (response.ok) return payload;
+          if (response.ok) return validatePrediction(payload);
           lastError = new Error(payload.detail || `Prediction failed (${response.status}).`);
+          lastError.httpStatus = response.status;
           if (![502, 503, 504].includes(response.status) || attempt === 1) throw lastError;
         } catch (error) {
           lastError = error.name === "AbortError"
             ? new Error("Prediction timed out. Please press Predict again.")
             : error;
-          if (attempt === 1 || error.name === "AbortError") throw lastError;
+          if (attempt === 1 || error.name === "AbortError" || signal.aborted || error.noRetry ||
+              (error.httpStatus && ![502, 503, 504].includes(error.httpStatus))) throw lastError;
         } finally {
           clearTimeout(timeout);
+          signal.removeEventListener("abort", cancel);
         }
         await sleep(800);
       }
@@ -430,13 +479,17 @@
         return;
       }
       predictButton.disabled = true;
-      resetButton.disabled = true;
+      const currentVersion = selectionVersion;
+      const upload = selectedUpload;
+      const controller = new AbortController();
+      activePrediction = controller;
       message.innerHTML = '<h3><span class="spinner"></span>Analyzing image...</h3>' +
         '<p>The first request after an idle period can take a little longer.</p>';
       probabilityCard.hidden = true;
 
       try {
-        const payload = await requestPrediction();
+        const payload = await requestPrediction(upload, controller.signal);
+        if (selectionVersion !== currentVersion || controller.signal.aborted) return;
 
         const category = CLASS_LABELS[payload.predicted_category] || payload.predicted_category;
         const confidence = `${(Number(payload.confidence) * 100).toFixed(1)}%`;
@@ -456,10 +509,11 @@
         }
         renderProbabilities(payload.probabilities);
       } catch (error) {
+        if (selectionVersion !== currentVersion || controller.signal.aborted) return;
         showError(error instanceof Error ? error.message : "Prediction failed.");
       } finally {
-        predictButton.disabled = !selectedUpload;
-        resetButton.disabled = false;
+        if (activePrediction === controller) activePrediction = null;
+        if (selectionVersion === currentVersion) predictButton.disabled = !selectedUpload;
       }
     }
 

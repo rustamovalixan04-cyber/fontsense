@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import math
 import time
 from pathlib import Path
 
@@ -7,6 +8,29 @@ import numpy as np
 from PIL import Image, ImageOps
 
 from .utils import load_json
+
+
+def image_to_rgb(image: Image.Image) -> Image.Image:
+    """Orient the input and display transparency against the same white as the web preview."""
+    oriented = ImageOps.exif_transpose(image)
+    if oriented.mode in {"RGBA", "LA"} or "transparency" in oriented.info:
+        rgba = oriented.convert("RGBA")
+        background = Image.new("RGBA", rgba.size, "white")
+        return Image.alpha_composite(background, rgba).convert("RGB")
+    return oriented.convert("RGB")
+
+
+def validate_probabilities(probabilities, class_count: int) -> np.ndarray:
+    values = np.asarray(probabilities, dtype=np.float64)
+    if (
+        values.shape != (class_count,)
+        or not np.isfinite(values).all()
+        or np.any(values < 0)
+        or np.any(values > 1)
+        or not np.isclose(values.sum(), 1.0, atol=1e-5)
+    ):
+        raise RuntimeError("The model returned invalid class probabilities.")
+    return values
 
 
 def build_cnn_inference_transform(image_size: tuple[int, int]):
@@ -38,7 +62,7 @@ def load_cnn_for_inference(checkpoint_path: str | Path):
     checkpoint = torch.load(
         checkpoint_path,
         map_location=torch.device("cpu"),
-        weights_only=False,
+        weights_only=True,
     )
     architecture = checkpoint["architecture"]
     model = FontSenseCNN(
@@ -61,6 +85,8 @@ class FontSensePredictor:
         self.artifact_dir = Path(artifact_dir)
         self.model_type = model
         self.threshold = float(threshold)
+        if not math.isfinite(self.threshold) or not 0 <= self.threshold <= 1:
+            raise ValueError("The uncertainty threshold must be between 0 and 1.")
         self.transform = None
         self.preprocessing = None
 
@@ -108,9 +134,11 @@ class FontSensePredictor:
             raise ValueError("No image was provided.")
         if not isinstance(image, Image.Image):
             raise ValueError("Unsupported input. Upload a PNG or JPEG image.")
+        if image.width > 6000 or image.height > 6000:
+            raise ValueError("The image is too large. Resize it before prediction.")
         try:
             image.load()
-            prepared = ImageOps.exif_transpose(image).convert("RGB")
+            prepared = image_to_rgb(image)
         except (OSError, SyntaxError, ValueError) as exc:
             raise ValueError(
                 "The image could not be read. Upload a valid PNG or JPEG file."
@@ -124,9 +152,14 @@ class FontSensePredictor:
         if width > 6000 or height > 6000:
             raise ValueError("The image is too large. Resize it before prediction.")
 
-        grayscale = np.asarray(prepared.convert("L"), dtype=np.float32)
-        standard_deviation = float(grayscale.std())
-        lower, upper = np.percentile(grayscale, [1, 99])
+        # A 256-bin histogram avoids allocating several full-size float images.
+        histogram = np.asarray(prepared.convert("L").histogram(), dtype=np.float64)
+        levels = np.arange(256, dtype=np.float64)
+        weights = histogram / histogram.sum()
+        mean = float(weights @ levels)
+        standard_deviation = float(np.sqrt(weights @ ((levels - mean) ** 2)))
+        cumulative = np.cumsum(weights)
+        lower, upper = np.searchsorted(cumulative, [0.01, 0.99])
         if standard_deviation < 2.0 or (
             float(upper - lower) < 5.0 and standard_deviation < 5.0
         ):
@@ -162,13 +195,14 @@ class FontSensePredictor:
             import torch
 
             tensor = self.transform(prepared).unsqueeze(0)
-            with torch.no_grad():
+            with torch.inference_mode():
                 probabilities = (
                     torch.softmax(self.pipeline(tensor), dim=1)[0]
                     .cpu()
                     .numpy()
                 )
 
+        probabilities = validate_probabilities(probabilities, len(self.classes))
         best_index = int(np.argmax(probabilities))
         confidence = float(probabilities[best_index])
         uncertain = confidence < self.threshold
