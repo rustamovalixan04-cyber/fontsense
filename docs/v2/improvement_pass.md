@@ -116,8 +116,9 @@ Additional useful data would include independently labelled, permitted real
 screenshots and photographs, with font-family grouping preserved. Synthetic
 renders alone cannot establish real-world accuracy. Such a collection should
 use a new dataset version and must not change the existing frozen split or reuse
-held-out families for fitting. Uploaded user images are not automatically stored
-or added to training.
+held-out families for fitting. The stateless web API processes images in memory.
+Gradio can use a temporary upload cache. Neither interface automatically adds
+uploaded images to training.
 
 AI assistance: Codex helped inspect code, implement and test fixes, run the
 documented experiments, and prepare these records. The student remains
