@@ -1,0 +1,69 @@
+{
+  "status": "completed_validation_and_source_reliability_pass",
+  "data": {
+    "images_total": 20000,
+    "families_total": 200,
+    "train_images_fitted": 14000,
+    "validation_images_compared": 3000,
+    "reserved_test_images": 3000,
+    "new_images_generated_this_pass": 0,
+    "new_font_families_downloaded_this_pass": 0
+  },
+  "validation_results": [
+    {
+      "candidate": "A",
+      "macro_f1": 0.6789683146205963,
+      "accuracy": 0.6773333333333333,
+      "best_epoch": 3,
+      "epochs_trained": 8,
+      "checkpoint": "artifacts/v2/cnn/candidate_a/cnn_model.pt"
+    },
+    {
+      "candidate": "B",
+      "macro_f1": 0.7958228907353944,
+      "accuracy": 0.7973333333333333,
+      "best_epoch": 20,
+      "epochs_trained": 25,
+      "checkpoint": "artifacts/v2/cnn/candidate_b/cnn_model.pt"
+    },
+    {
+      "candidate": "C",
+      "macro_f1": 0.7605907229774974,
+      "accuracy": 0.7703333333333333,
+      "best_epoch": 13,
+      "epochs_trained": 18,
+      "checkpoint": "artifacts/v2/cnn/candidate_c/cnn_model.pt"
+    },
+    {
+      "candidate": "D",
+      "macro_f1": 0.7882642550215866,
+      "accuracy": 0.7876666666666666,
+      "best_epoch": 4,
+      "epochs_trained": 8,
+      "checkpoint": "artifacts/v2/refinement/candidate_d/cnn_model.pt"
+    }
+  ],
+  "selected_candidate": "B",
+  "selected_checkpoint": "artifacts/v2/cnn/selected/cnn_model_v2.pt",
+  "selected_checkpoint_sha256": "f955f6d0fa3b45ea7c5124a111980cd5d27ec474732d0f5dfe320fde1f9da329",
+  "app_default": "assessed V1; V2 promotion pending frozen evaluation",
+  "v1_checkpoint_sha256_verified": "c98cf0d1a02503a02b8f8242fec462ea2a0c455380238ec54fc4f62fdb13bb2f",
+  "v2_test_status": "V2 TEST REMAINS UNTOUCHED",
+  "frozen_manifest_and_split_hashes_unchanged": true,
+  "candidate_checkpoint_hashes_verified": true,
+  "evidence_paths_verified": true,
+  "checks": {
+    "python_tests_passed": 111,
+    "javascript_tests_passed": 4,
+    "http_smoke": "reports/v2/product_verification.json",
+    "selected_checkpoint_reload": "reports/v2/cnn/selected_reload_check.json"
+  },
+  "recovered_error": "Refinement D completed but a relative output path prevented writing summary.json; recovered from saved outputs and FINISHED MLflow evidence without retraining. The path bug is fixed and covered by a regression test.",
+  "remaining_limits": [
+    "V2 final test evaluation and production promotion are pending.",
+    "No measured real-world screenshot or photo accuracy is claimed.",
+    "Windows computer-use blocked visual browser verification.",
+    "Third-party Starlette/httpx and joblib/NumPy deprecation warnings remain.",
+    "The existing Windows EXE was not rebuilt and the production website was not redeployed in this pass."
+  ]
+}

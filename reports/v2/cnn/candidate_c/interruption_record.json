@@ -26,5 +26,5 @@
   "manifest_sha256": "95fa9642c8bbc0ecfe6af1d4d1e893ed041a238fa1b6a4da59760f58407132e7",
   "split_sha256": "f610d835f71ed0935bab8606d7ce46ba85875db25edf94759350c12ceadae250",
   "config_sha256": "7a2192a11885866de573563f0c955f056feda45080cbc6548190ed9482fb3b49",
-  "history": "reports/v2/cnn/candidate_c/history.csv"
+  "history": "reports/v2/cnn/candidate_c/previous_attempts/history_4fc7b817a415.csv"
 }

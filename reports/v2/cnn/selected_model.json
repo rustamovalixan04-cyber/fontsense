@@ -1,0 +1,19 @@
+{
+  "status": "selected_using_validation_only",
+  "selection_metric": "validation_macro_f1",
+  "selected_candidate": "B",
+  "compared_candidates": [
+    "A",
+    "B",
+    "C",
+    "D"
+  ],
+  "selected_name": "V2 candidate B - medium width",
+  "validation_macro_f1": 0.7958228907353944,
+  "validation_accuracy": 0.7973333333333333,
+  "checkpoint": "artifacts/v2/cnn/selected/cnn_model_v2.pt",
+  "checkpoint_sha256": "f955f6d0fa3b45ea7c5124a111980cd5d27ec474732d0f5dfe320fde1f9da329",
+  "validation_predictions": "reports/v2/cnn/selected_validation_predictions.csv",
+  "test_images_loaded": 0,
+  "test_results_used": false
+}

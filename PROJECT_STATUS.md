@@ -2,12 +2,31 @@
 
 ## Current stage
 
-**FINAL — TECHNICALLY COMPLETE**
+**V1 assessed workflow complete; V2 validation comparison and product reliability pass complete.**
 
 FontSense has a complete assessed ML workflow, reproducible evidence, working
 Gradio and Colab demos, passing automated verification, and a verified
 one-folder Windows standalone distribution. The teacher removed EXTC1 from the
 required final scope, so it is not a project blocker or pending task.
+
+The separate `v2-20k` branch contains 20,000 rendered images from 200 audited
+families: 14,000 training, 3,000 validation, and 3,000 reserved test images.
+The V1 assessed results and frozen checkpoint remain preserved. V2 validation
+results must not be described as final held-out results or as measured
+real-world accuracy. Current work is recorded in
+`reports/v2/v2_pipeline_state.json` and `reports/v2/RESUME_V2.md`.
+
+The completed C restart reached validation macro F1 0.760591. A separate
+lower-learning-rate refinement of B reached 0.788264. Neither beat B, which
+remains selected at 0.795823 macro F1 and 0.797333 accuracy. Its V2 checkpoint
+and comparison evidence are saved in `reports/v2/cnn/selected_model.json` and
+`reports/v2/cnn/validation_report.md`. V2 test images remain reserved.
+
+The current app retains the assessed V1 model, with verified upload fixes,
+transparent-image handling, bounded request sizes, and stale-request protection.
+The source suite passes 111 Python tests and four JavaScript tests. Technical
+HTTP smoke checks pass; visual browser verification was blocked by the Windows
+computer-use tool. See `reports/v2/product_verification.json`.
 
 ## M8C3 Data Gate
 
@@ -58,4 +77,6 @@ checkpoint.
 
 - Present and defend the project.
 
-No further technical implementation is currently pending.
+V2 model comparison and its final evaluation remain separate from the completed
+V1 assessed workflow. The larger dataset alone does not establish an improvement
+on real screenshots or photographs.

@@ -2,7 +2,7 @@
   "version": "v2-20k",
   "branch": "v2-20k",
   "seed": 42,
-  "updated_at_utc": "2026-08-19T10:18:32Z",
+  "updated_at_utc": "2026-10-27T22:07:13.018799+00:00",
   "v2_test_status": "V2 TEST REMAINS UNTOUCHED",
   "stages": {
     "1_preflight": {
@@ -48,15 +48,19 @@
       "sha256": "f955f6d0fa3b45ea7c5124a111980cd5d27ec474732d0f5dfe320fde1f9da329"
     },
     "10_candidate_C": {
-      "status": "intentionally_stopped",
-      "artifact": "reports/v2/cnn/candidate_c/interruption_record.json",
-      "best_epoch": 13,
-      "validation_macro_f1": 0.7651982421694324,
-      "checkpoint_persisted": false
+      "status": "completed",
+      "artifact": "reports/v2/cnn/candidate_c/summary.json",
+      "sha256": "6595626c49320b5e0619a6f7b4a563dd3c59b5711c25b64258bd3bd9df7c7385"
+    },
+    "10b_candidate_D": {
+      "status": "completed",
+      "artifact": "reports/v2/refinement/candidate_d/summary.json",
+      "sha256": "ca2d4815b8145bba662c9c1b30614c88fbb6f707111cd0bcea5bec2e22423447"
     },
     "11_model_selection": {
-      "status": "pending",
-      "provisional_validation_leader": "B"
+      "status": "completed",
+      "artifact": "reports/v2/cnn/selected_model.json",
+      "sha256": "f955f6d0fa3b45ea7c5124a111980cd5d27ec474732d0f5dfe320fde1f9da329"
     },
     "12_threshold_selection": {
       "status": "pending"
@@ -89,6 +93,15 @@
       "artifact": "reports/v2/RESUME_V2.md"
     }
   },
-  "resume_command": ".\\.venv\\Scripts\\python.exe -m fontsense.v2_train C --device cpu",
-  "resume_note": "Candidate C's validation history is preserved, but its epoch-13 weights were not serialized before interruption. Rerun C after the limit reset if a loadable C checkpoint is required; otherwise Candidate B remains the provisional leader."
+  "product_reliability_pass": {
+    "status": "completed_source_verification",
+    "artifact": "reports/v2/product_verification.json",
+    "python_tests_passed": 111,
+    "javascript_tests_passed": 4,
+    "default_app_model": "assessed_v1",
+    "v1_checkpoint_sha256_verified": "c98cf0d1a02503a02b8f8242fec462ea2a0c455380238ec54fc4f62fdb13bb2f",
+    "visual_browser_check": "blocked_by_windows_computer_use_url_check"
+  },
+  "resume_command": null,
+  "resume_note": "Training and validation comparison are complete. Candidate B remains selected; C and D are saved. Review the validation evidence and freeze the V2 preprocessing, class order, hashes, and validation-only threshold decision before the single V2 held-out test evaluation."
 }

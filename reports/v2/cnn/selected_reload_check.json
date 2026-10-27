@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "checkpoint": "artifacts/v2/cnn/selected/cnn_model_v2.pt",
+  "checkpoint_sha256": "f955f6d0fa3b45ea7c5124a111980cd5d27ec474732d0f5dfe320fde1f9da329",
+  "class_order": [
+    "display",
+    "handwriting",
+    "monospace",
+    "sans_serif",
+    "serif"
+  ],
+  "preprocessing": {
+    "image_size": [
+      112,
+      48
+    ],
+    "grayscale": true,
+    "normalize_mean": [
+      0.5
+    ],
+    "normalize_std": [
+      0.5
+    ]
+  },
+  "probability_count": 5,
+  "probability_sum": 1.0,
+  "input": "generated zero tensor for checkpoint shape check only",
+  "scope": "Technical reload test; not an accuracy measurement",
+  "dataset_images_loaded": 0,
+  "environment": {
+    "python": "3.12.14",
+    "torch": "2.13.0+cpu",
+    "cuda_available": false
+  },
+  "training_cpu_threads": {
+    "C": 4,
+    "D": 2
+  }
+}

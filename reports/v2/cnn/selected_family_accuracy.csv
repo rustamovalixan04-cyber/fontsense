@@ -1,0 +1,31 @@
+category,family,validation_images,validation_accuracy
+display,Bahianita,100,0.95
+display,Blaka Hollow,100,0.97
+display,Bowlby One SC,100,0.95
+display,Metal,100,0.13
+display,Oxanium,100,0.0
+display,Vina Sans,100,0.94
+handwriting,Damion,100,1.0
+handwriting,Delius,100,0.14
+handwriting,Fuggles,100,1.0
+handwriting,Kings,100,0.74
+handwriting,Mr Bedfort,100,0.95
+handwriting,Princess Sofia,100,0.85
+monospace,DM Mono,100,1.0
+monospace,Datatype,100,0.77
+monospace,Digital Numbers,100,0.83
+monospace,Google Sans Code,100,1.0
+monospace,Hibur Mono,100,1.0
+monospace,Workbench,100,0.77
+sans_serif,Anta,100,0.86
+sans_serif,Gotu,100,0.3
+sans_serif,Khula,100,0.83
+sans_serif,Noto Sans Egyptian Hieroglyphs,100,0.96
+sans_serif,Orienta,100,0.55
+sans_serif,Questrial,100,0.96
+serif,Aref Ruqaa,100,0.74
+serif,Epunda Slab,100,0.83
+serif,Sahitya,100,0.97
+serif,Sorts Mill Goudy,100,0.99
+serif,Unna,100,0.96
+serif,Yrsa,100,0.98

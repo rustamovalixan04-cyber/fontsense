@@ -2,8 +2,10 @@ from __future__ import annotations
 
 import argparse
 import json
+import platform
 import shutil
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 
 import numpy as np
@@ -37,6 +39,31 @@ from .v2_data import sha256_file
 
 def _candidate_slug(candidate_id: str) -> str:
     return f"candidate_{candidate_id.casefold()}"
+
+
+def _initialize_from_checkpoint(model, candidate: dict, classes: list[str], image_size: tuple[int, int]) -> dict:
+    """Refine a verified training-only checkpoint without overwriting its source."""
+    source = candidate.get("initial_checkpoint")
+    if source is None:
+        return {}
+    path = (project_root() / source).resolve()
+    if project_root().resolve() not in path.parents:
+        raise ValueError("Initialization checkpoint leaves the project folder")
+    actual = sha256_file(path)
+    if actual != candidate.get("initial_checkpoint_sha256"):
+        raise ValueError("Initialization checkpoint hash mismatch")
+    _, checkpoint = load_cnn_checkpoint(path)
+    expected_preprocessing = {
+        "image_size": list(image_size), "grayscale": True,
+        "normalize_mean": [0.5], "normalize_std": [0.5],
+    }
+    if checkpoint["classes"] != classes or checkpoint["preprocessing"] != expected_preprocessing:
+        raise ValueError("Initialization checkpoint preprocessing or class order differs")
+    training = checkpoint["training_data"]
+    if training.get("test_images_loaded") != 0 or training.get("fit_splits") != ["train"]:
+        raise ValueError("Initialization checkpoint violates the training boundary")
+    model.load_state_dict(checkpoint["state_dict"])
+    return {"checkpoint": path.relative_to(project_root()).as_posix(), "sha256": actual}
 
 
 def _save_progress_checkpoint(
@@ -82,6 +109,7 @@ def _update_stage(stage: str, artifact: Path, checkpoint_hash: str | None = None
     if checkpoint_hash is not None:
         payload["sha256"] = checkpoint_hash
     state["stages"][stage] = payload
+    state["updated_at_utc"] = datetime.now(timezone.utc).isoformat()
     save_json(state, state_path)
 
 
@@ -119,14 +147,15 @@ def train_v2_candidate(
     report_dir: str | Path,
     tracking_dir: str | Path,
     device_name: str | None = None,
+    stop_file: str | Path | None = None,
 ) -> dict:
     root = project_root()
-    manifest_path = Path(manifest_path)
-    split_path = Path(split_path)
-    config_path = Path(config_path)
-    artifact_dir = Path(artifact_dir)
-    report_dir = Path(report_dir)
-    tracking_dir = Path(tracking_dir)
+    manifest_path = Path(manifest_path).resolve()
+    split_path = Path(split_path).resolve()
+    config_path = Path(config_path).resolve()
+    artifact_dir = Path(artifact_dir).resolve()
+    report_dir = Path(report_dir).resolve()
+    tracking_dir = Path(tracking_dir).resolve()
     config = load_json(config_path)
     candidates = {str(item["id"]).upper(): item for item in config["candidates"]}
     candidate_id = candidate_id.upper()
@@ -138,6 +167,10 @@ def train_v2_candidate(
     candidate_artifact_dir = artifact_dir / slug
     summary_path = candidate_report_dir / "summary.json"
     checkpoint_path = candidate_artifact_dir / "cnn_model.pt"
+    history_path = candidate_report_dir / "history.csv"
+    stop_path = Path(stop_file) if stop_file else candidate_report_dir / "STOP"
+    if stop_path.exists():
+        raise RuntimeError(f"Training stop signal exists: {stop_path}. Remove it to restart.")
 
     expected_hashes = {
         "manifest_sha256": str(config["expected_manifest_sha256"]),
@@ -151,7 +184,7 @@ def train_v2_candidate(
             and all(existing.get(key) == value for key, value in expected_hashes.items())
             and existing.get("checkpoint_sha256") == sha256_file(checkpoint_path)
         ):
-            return {"status": "reused", **existing}
+            return {**existing, "status": "reused"}
 
     if sha256_file(manifest_path) != expected_hashes["manifest_sha256"]:
         raise AssertionError("V2 manifest hash changed before CNN training")
@@ -190,6 +223,9 @@ def train_v2_candidate(
         width=int(candidate["width"]),
         dropout=float(candidate["dropout"]),
     ).to(device)
+    initialization = _initialize_from_checkpoint(
+        model, candidate, encoder.classes_.tolist(), image_size,
+    )
     optimizer = torch.optim.AdamW(
         model.parameters(),
         lr=float(candidate["learning_rate"]),
@@ -206,6 +242,17 @@ def train_v2_candidate(
     history: list[dict] = []
     candidate_report_dir.mkdir(parents=True, exist_ok=True)
     candidate_artifact_dir.mkdir(parents=True, exist_ok=True)
+    if history_path.is_file():
+        # Preserve the interrupted attempt before writing a new epoch history.
+        archive = candidate_report_dir / "previous_attempts" / f"history_{sha256_file(history_path)[:12]}.csv"
+        archive.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(history_path, archive)
+        interruption = candidate_report_dir / "interruption_record.json"
+        if interruption.is_file():
+            previous = load_json(interruption)
+            previous["history"] = archive.relative_to(root).as_posix()
+            save_json(previous, interruption)
+    intentionally_stopped = False
     started = time.perf_counter()
 
     with optional_mlflow_run(
@@ -232,9 +279,16 @@ def train_v2_candidate(
                     "validation_rows": len(validation_frame),
                     "test_images_loaded": 0,
                     "augmentation_train_only": True,
+                    "initial_checkpoint_sha256": initialization.get("sha256", "from_scratch"),
+                    "cpu_threads": torch.get_num_threads(),
+                    "python_version": platform.python_version(),
+                    "torch_version": torch.__version__,
                 }
             )
         for epoch in range(1, maximum_epochs + 1):
+            if stop_path.exists():
+                intentionally_stopped = True
+                break
             train_metrics = run_epoch(
                 model, train_loader, criterion, optimizer, device, training=True
             )
@@ -251,6 +305,9 @@ def train_v2_candidate(
                 "validation_macro_f1": validation_metrics["macro_f1"],
             }
             history.append(row)
+            temporary_history = history_path.with_suffix(".csv.tmp")
+            pd.DataFrame(history).to_csv(temporary_history, index=False)
+            temporary_history.replace(history_path)
             print(
                 f"Candidate {candidate_id} epoch {epoch:02d}: "
                 f"train_f1={row['train_macro_f1']:.4f} "
@@ -355,8 +412,8 @@ def train_v2_candidate(
         if active_mlflow is not None:
             active_mlflow.log_metrics(
                 {
-                    "validation_macro_f1": validation_macro_f1,
-                    "validation_accuracy": validation_accuracy,
+                    "best_validation_macro_f1": validation_macro_f1,
+                    "best_validation_accuracy": validation_accuracy,
                     "best_epoch": best_epoch,
                     "epochs_trained": len(history),
                     "training_seconds": training_seconds,
@@ -379,6 +436,7 @@ def train_v2_candidate(
     summary = {
         "status": "passed",
         "candidate_id": candidate_id,
+        "initialization": initialization,
         "name": candidate["name"],
         "reason": candidate["reason"],
         "learning_rate": float(candidate["learning_rate"]),
@@ -387,6 +445,11 @@ def train_v2_candidate(
         "best_epoch": best_epoch,
         "epochs_trained": len(history),
         "stopped_early": len(history) < maximum_epochs,
+        "stop_reason": (
+            "user_stop_signal" if intentionally_stopped
+            else "early_stopping" if len(history) < maximum_epochs
+            else "maximum_epochs"
+        ),
         "validation_macro_f1": validation_macro_f1,
         "validation_accuracy": validation_accuracy,
         "training_seconds": training_seconds,
@@ -413,7 +476,11 @@ def train_v2_candidate(
         "validation_predictions": predictions_path.relative_to(root).as_posix(),
     }
     save_json(summary, summary_path)
-    _update_stage(f"{7 + ord(candidate_id) - ord('A') + 1}_candidate_{candidate_id}", summary_path, checkpoint_hash)
+    stage = (
+        f"{7 + ord(candidate_id) - ord('A') + 1}_candidate_{candidate_id}"
+        if candidate_id in {"A", "B", "C"} else f"10b_candidate_{candidate_id}"
+    )
+    _update_stage(stage, summary_path, checkpoint_hash)
     return summary
 
 
@@ -421,16 +488,50 @@ def select_v2_candidate(
     *,
     artifact_dir: str | Path,
     report_dir: str | Path,
+    refinement_report_dir: str | Path | None = None,
 ) -> dict:
     root = project_root()
-    artifact_dir = Path(artifact_dir)
-    report_dir = Path(report_dir)
+    artifact_dir = Path(artifact_dir).resolve()
+    report_dir = Path(report_dir).resolve()
     summaries = []
-    for candidate_id in ("A", "B", "C"):
-        path = report_dir / _candidate_slug(candidate_id) / "summary.json"
+    candidate_reports = [(key, report_dir) for key in ("A", "B", "C")]
+    if refinement_report_dir is not None:
+        candidate_reports.append(("D", Path(refinement_report_dir).resolve()))
+    for candidate_id, directory in candidate_reports:
+        path = directory / _candidate_slug(candidate_id) / "summary.json"
         if not path.is_file():
             raise FileNotFoundError(f"V2 candidate {candidate_id} summary is missing")
-        summaries.append(load_json(path))
+        summary = load_json(path)
+        if (
+            summary.get("status") != "passed"
+            or summary.get("candidate_id") != candidate_id
+            or summary.get("test_images_loaded") != 0
+            or summary.get("test_rows_evaluated") != 0
+            or summary.get("test_metrics_recorded") is not False
+        ):
+            raise ValueError(f"V2 candidate {candidate_id} lacks valid validation-only evidence")
+        checkpoint = (root / summary["checkpoint"]).resolve()
+        if root.resolve() not in checkpoint.parents:
+            raise ValueError("Candidate checkpoint leaves the project folder")
+        if sha256_file(checkpoint) != summary["checkpoint_sha256"]:
+            raise ValueError(f"V2 candidate {candidate_id} checkpoint hash mismatch")
+        for metric in ("validation_macro_f1", "validation_accuracy"):
+            if not 0 <= float(summary[metric]) <= 1:
+                raise ValueError(f"V2 candidate {candidate_id} has invalid {metric}")
+        predictions_path = (root / summary["validation_predictions"]).resolve()
+        if root.resolve() not in predictions_path.parents:
+            raise ValueError("Validation predictions leave the project folder")
+        frame = pd.read_csv(predictions_path)
+        if len(frame) != 3000 or set(frame["split"]) != {"validation"}:
+            raise ValueError("Selection requires 3,000 validation predictions only")
+        accuracy = accuracy_score(frame["category"], frame["predicted_category"])
+        macro_f1 = f1_score(frame["category"], frame["predicted_category"], average="macro", zero_division=0)
+        if not np.isclose(accuracy, summary["validation_accuracy"], atol=1e-8) or not np.isclose(macro_f1, summary["validation_macro_f1"], atol=1e-8):
+            raise ValueError(f"V2 candidate {candidate_id} summary does not match its predictions")
+        summaries.append(summary)
+    for key in ("manifest_sha256", "split_sha256", "class_order"):
+        if any(item[key] != summaries[0][key] for item in summaries[1:]):
+            raise ValueError(f"Candidate {key} values differ; comparison is invalid")
     comparison = pd.DataFrame(summaries).sort_values("candidate_id")
     winner = comparison.sort_values(
         ["validation_macro_f1", "validation_accuracy"], ascending=False
@@ -449,6 +550,7 @@ def select_v2_candidate(
         "status": "selected_using_validation_only",
         "selection_metric": "validation_macro_f1",
         "selected_candidate": str(winner["candidate_id"]),
+        "compared_candidates": [item[0] for item in candidate_reports],
         "selected_name": str(winner["name"]),
         "validation_macro_f1": float(winner["validation_macro_f1"]),
         "validation_accuracy": float(winner["validation_accuracy"]),
@@ -460,14 +562,43 @@ def select_v2_candidate(
     }
     selected_path = report_dir / "selected_model.json"
     save_json(result, selected_path)
+    winner_directory = next(directory for key, directory in candidate_reports if key == result["selected_candidate"]) / _candidate_slug(result["selected_candidate"])
+    for filename in ("confusion_matrix.png", "learning_curves.png", "classification_report.csv"):
+        shutil.copy2(winner_directory / filename, report_dir / f"selected_{filename}")
+    selected_frame = pd.read_csv(selected_predictions)
+    selected_frame["correct"] = selected_frame["category"] == selected_frame["predicted_category"]
+    family_scores = selected_frame.groupby(["category", "family"])["correct"].agg(["count", "mean"]).reset_index()
+    family_scores.rename(columns={"count": "validation_images", "mean": "validation_accuracy"}).to_csv(report_dir / "selected_family_accuracy.csv", index=False)
+    mistakes = selected_frame.loc[~selected_frame["correct"]]
+    mistakes.groupby(["category", "predicted_category"]).size().rename("count").reset_index().sort_values("count", ascending=False).to_csv(report_dir / "selected_confusions.csv", index=False)
+    lines = [
+        "# V2 validation comparison", "",
+        "These are validation results on 3,000 images from 30 unseen font families. The V2 test images remain reserved. These numbers do not establish accuracy on real screenshots or photographs.", "",
+        "| Candidate | Best epoch | Macro F1 | Accuracy | Training seconds | Checkpoint bytes |",
+        "| --- | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for _, row in comparison.iterrows():
+        lines.append(f"| {row['candidate_id']} | {row['best_epoch']} | {row['validation_macro_f1']:.6f} | {row['validation_accuracy']:.6f} | {row['training_seconds']:.2f} | {row['model_size_bytes']} |")
+    lines.extend([
+        "", f"Selected candidate: **{result['selected_candidate']}**, using validation macro F1 only.", "",
+        "The selected checkpoint is a separate V2 artifact. It does not replace the assessed V1 checkpoint or change the application's default model.", "",
+        "Per-class results: `reports/v2/cnn/selected_classification_report.csv`.",
+        "Family-level results: `reports/v2/cnn/selected_family_accuracy.csv`.",
+        "Common confusions: `reports/v2/cnn/selected_confusions.csv`.",
+        "Confusion matrix: `reports/v2/cnn/selected_confusion_matrix.png`.", "",
+        "The interrupted original C attempt is preserved separately. The completed C restart is the result compared here; a checkpoint that was never saved is not included in model selection.", "",
+        "V2 TEST REMAINS UNTOUCHED", "",
+        "AI assistance supported implementation, execution, tests, and reporting. The student remains responsible for reviewing the evidence and explaining the models.",
+    ])
+    (report_dir / "validation_report.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     _update_stage("11_model_selection", selected_path, result["checkpoint_sha256"])
     return result
 
 
 def main() -> None:
     root = project_root()
-    parser = argparse.ArgumentParser(description="Train resumable FontSense V2 CNN candidates")
-    parser.add_argument("command", choices=["A", "B", "C", "all", "select"])
+    parser = argparse.ArgumentParser(description="Train and checkpoint FontSense V2 CNN candidates")
+    parser.add_argument("command", choices=["A", "B", "C", "D", "all", "select"])
     parser.add_argument("--manifest", default=str(root / "reports/v2/data/full_manifest.csv"))
     parser.add_argument("--split", default=str(root / "data/v2/frozen_family_split.csv"))
     parser.add_argument("--config", default=str(root / "config/v2/cnn_experiments.json"))
@@ -475,9 +606,14 @@ def main() -> None:
     parser.add_argument("--report-dir", default=str(root / "reports/v2/cnn"))
     parser.add_argument("--tracking-dir", default=str(root / "reports/v2/mlruns"))
     parser.add_argument("--device", default=None)
+    parser.add_argument("--stop-file", default=None, help="Stop after the current epoch when this file exists")
+    parser.add_argument("--refinement-report-dir", default=None, help="Include completed refinement D in validation comparison")
     args = parser.parse_args()
     if args.command == "select":
-        result = select_v2_candidate(artifact_dir=args.artifact_dir, report_dir=args.report_dir)
+        result = select_v2_candidate(
+            artifact_dir=args.artifact_dir, report_dir=args.report_dir,
+            refinement_report_dir=args.refinement_report_dir,
+        )
         print(json.dumps(result, indent=2))
         return
     candidate_ids = ("A", "B", "C") if args.command == "all" else (args.command,)
@@ -493,6 +629,7 @@ def main() -> None:
                 report_dir=args.report_dir,
                 tracking_dir=args.tracking_dir,
                 device_name=args.device,
+                stop_file=args.stop_file,
             )
         )
     if args.command == "all":
