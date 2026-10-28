@@ -2,7 +2,40 @@
 
 ## Current stage
 
-**V1 assessed workflow complete; V2 validation comparison and product reliability pass complete.**
+**Independent product development: V3 500,000-image data gate passed.**
+
+The owner has expanded FontSense beyond the original course scope. New work is
+separate from the historical V1 and V2 evidence. The current product-data plan
+uses 1,641 selected Google Fonts families: 350,000 training images, 75,000
+validation images, and 75,000 reserved test images. The reviewed split is
+`data/v3/frozen_readable_family_split.csv`; the earlier, unapproved split is
+preserved separately and is not the training input.
+
+The font audit, split, full generation, and independent image checks passed.
+All 500,000 JPEGs reopened; 100 training samples reproduced byte-for-byte. There
+are zero remaining exact pixel duplicates and zero family overlap. See
+`reports/v3/dataset_validation_summary.json` and
+`reports/v3/independent_image_verification.json`. Neither V2 nor V3
+test images have been model-evaluated in this product pass. The app continues to
+use the original V1 checkpoint and threshold.
+
+Visual review excluded 11 barcode/redaction utility fonts. Exact Latin-glyph
+aliases spanning historical V2 folds were also quarantined; six historical V2
+families are in three affected groups. Historical metrics remain unchanged but
+need that qualification. See `reports/v3/historical_alias_risk_summary.json`.
+
+On the new 75,000-image validation set, the existing Candidate B scored macro
+F1 0.668795 and accuracy 0.667507. This is a different, broader validation set
+than V2; do not compare its score directly with V2's old validation score.
+The next step is validation-only GPU training and comparison on these same new
+families. The source suite passes 131 Python tests and four JavaScript tests.
+An independent real-image evaluation remains necessary before broad product
+accuracy claims. Details: `docs/product/v3_data.md`.
+
+### Preserved historical stage
+
+V1 assessed workflow complete; V2 validation comparison and product reliability
+pass complete.
 
 FontSense has a complete assessed ML workflow, reproducible evidence, working
 Gradio and Colab demos, passing automated verification, and a verified
@@ -24,7 +57,7 @@ and comparison evidence are saved in `reports/v2/cnn/selected_model.json` and
 
 The current app retains the assessed V1 model, with verified upload fixes,
 transparent-image handling, bounded request sizes, and stale-request protection.
-The source suite passes 111 Python tests and four JavaScript tests. Technical
+That earlier pass had 111 Python tests and four JavaScript tests. Technical
 HTTP smoke checks pass; visual browser verification was blocked by the Windows
 computer-use tool. See `reports/v2/product_verification.json`.
 
@@ -73,7 +106,7 @@ regenerate data, retrain or tune a model, rerun the final held-out evaluation,
 or change the threshold, class order, preprocessing, architecture, or final
 checkpoint.
 
-## Remaining user actions
+## Remaining historical user actions
 
 - Present and defend the project.
 

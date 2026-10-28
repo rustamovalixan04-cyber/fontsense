@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 .venv/
+.venv-gpu/
 venv/
 *.egg-info/
 build/
@@ -42,6 +43,17 @@ data/v2/raw/fonts/
 data/v2/processed/
 reports/v2/mlruns/
 artifacts/v2/package/
+
+# Large product datasets and local GPU experiments
+data/v3/raw/
+data/v3/cache/
+data/v3/shards/
+data/v3/manifests/
+data/v3/repairs.json
+data/v3/STOP
+reports/v3/training/STOP
+reports/v3/mlruns/
+artifacts/v3/training_state/
 
 # Large/replaceable model artifacts
 artifacts/*_final.joblib

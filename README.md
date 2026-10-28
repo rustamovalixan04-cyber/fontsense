@@ -12,6 +12,19 @@ Latin text and predicts one of five broad font categories:
 **FontSense predicts broad font categories. It does not identify the exact font
 family or font style.**
 
+## Independent product development
+
+FontSense is continuing beyond its original course scope as an independent
+product. The separate `v2-20k` branch now contains 500,000 validated images and a
+reproducible pipeline with broader font coverage. This is new development, not a change
+to the historical V1 evaluation below. The released app still uses V1 until a
+replacement has its own evaluation and deployment checks.
+
+See [`docs/product/v3_data.md`](docs/product/v3_data.md) for provenance, storage,
+generation, GPU training, and limitations, and
+[`PROJECT_STATUS.md`](PROJECT_STATUS.md) for current progress. A larger synthetic
+dataset does not by itself establish accuracy on real customer images.
+
 ## Table of contents
 
 - [Demo](#demo)

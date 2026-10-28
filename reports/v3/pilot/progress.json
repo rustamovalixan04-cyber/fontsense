@@ -1,0 +1,8 @@
+{
+  "status": "generating",
+  "images_completed": 4000,
+  "target_images": 500000,
+  "shards_completed": 4,
+  "elapsed_seconds": 11.706417900044471,
+  "stored_bytes": 29059433
+}

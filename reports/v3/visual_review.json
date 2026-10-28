@@ -1,0 +1,16 @@
+{
+  "reviewer": "Codex assistant, not an independent human or customer review",
+  "scope": "Twelve actual rendered training images per category in five contact sheets; not an inspection of the complete corpus or model evaluation",
+  "initial_finding": "Barcode and redaction/wireframe fonts passed technical glyph checks but were not readable Latin-text examples",
+  "action": "Stopped the unapproved first draft gracefully at 366000 images; preserved it under data/v3/cache/pre_review; excluded 11 selected utility-font families; froze a separate readable-family split before training",
+  "policy": "config/v3/dataset.json: excluded_family_prefixes and family_exclusion_reason",
+  "reviewed_split": "data/v3/frozen_readable_family_split.csv",
+  "reviewed_split_sha256": "45fb0eb423b3ee3fcce782d0b83beac9cdf1027e83ace758639357d2d67ed7c8",
+  "completed_corpus_review": "Regenerated all five contact sheets after generation completed and inspected 60 actual training examples from 60 families. No barcode/redaction blocks, blank samples, or obvious clipping in those sheets. Thin and decorative text can still be difficult; this is not a claim of exhaustive human readability review.",
+  "remaining_limitations": [
+    "Visual sampling does not prove every text crop is readable",
+    "Official category labels can be visually ambiguous",
+    "Exact glyph hashing does not remove every near-related typeface"
+  ],
+  "model_test_images_evaluated": 0
+}

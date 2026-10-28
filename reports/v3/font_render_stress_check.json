@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "families_checked": 1641,
+  "seeds_per_family": [
+    42,
+    1234,
+    6789,
+    131337,
+    14629533,
+    250099,
+    823341,
+    1000000049
+  ],
+  "renders_attempted": 13128,
+  "failures": [],
+  "elapsed_seconds": 51.87559529999271,
+  "model_images_evaluated": 0,
+  "scope": "Technical font-rendering checks, including reserved-family fonts; no training, prediction, threshold selection, or test evaluation"
+}

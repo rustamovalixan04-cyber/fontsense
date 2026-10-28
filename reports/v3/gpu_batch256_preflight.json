@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "scope": "Technical loader, mixed-precision, backward-pass and memory preflight only. Disposable weights; no accuracy results or released checkpoint.",
+  "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "torch_version": "2.13.0+cu130",
+  "cuda_version": "13.0",
+  "batch_size": 256,
+  "loader_workers": 4,
+  "images_processed": 4000,
+  "elapsed_seconds": 11.08523890003562,
+  "images_per_second": 360.84021608114796,
+  "steady_images_per_second": 1453.041918335064,
+  "peak_gpu_allocated_mib": 882.2490234375,
+  "peak_gpu_reserved_mib": 1440.0,
+  "training_input_shape": [
+    1,
+    64,
+    192
+  ],
+  "test_images_loaded": 0
+}

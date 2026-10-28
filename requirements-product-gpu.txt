@@ -1,0 +1,13 @@
+# Install in .venv-gpu only; the application/CI CPU environment stays separate.
+--extra-index-url https://download.pytorch.org/whl/cu130
+torch==2.13.0+cu130
+torchvision==0.28.0+cu130
+numpy>=1.26,<3
+pandas>=2.0
+Pillow==12.3.0
+scikit-learn>=1.4
+matplotlib>=3.8
+requests>=2.31
+tqdm>=4.66
+fonttools==4.63.0
+mlflow>=2.12

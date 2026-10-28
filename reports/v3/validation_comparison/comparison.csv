@@ -1,0 +1,3 @@
+model,accuracy,macro_f1
+Majority sanity check,0.2,0.06666666666666667
+V2 Candidate B,0.6675066666666667,0.668795420059926

@@ -1,0 +1,14 @@
+{
+  "status": "completed",
+  "candidates": 1876,
+  "usable_families_per_category": {
+    "display": 491,
+    "handwriting": 251,
+    "monospace": 43,
+    "sans_serif": 718,
+    "serif": 344
+  },
+  "failed": 29,
+  "source_commit": "e1118da94a8cb00cf6d06cdac9ef13eb1e5c6ab7",
+  "audit_sha256": "432026dd463dd70b9436ec4ee50e7f6b08743ca363e209e0f92c63a6926ec580"
+}

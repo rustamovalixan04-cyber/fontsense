@@ -1,0 +1,8 @@
+# Reproduce the measured Windows generation environment.
+numpy==2.5.1
+pandas==2.3.3
+Pillow==12.3.0
+fonttools==4.63.0
+requests==2.34.2
+tqdm>=4.66
+scikit-learn>=1.4

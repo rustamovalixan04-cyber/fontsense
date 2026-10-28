@@ -1,0 +1,7 @@
+{
+  "candidate_families_quarantined_for_cross_fold_aliases": 66,
+  "historical_v2_families_in_affected_groups": 6,
+  "affected_probe_groups": 3,
+  "risk": "Different official family names can share identical default Latin glyphs. Name-only family splitting does not remove this alias risk. V3 quarantines these groups. Historical metrics remain unchanged.",
+  "evidence": "reports/v3/historical_alias_risks.csv"
+}

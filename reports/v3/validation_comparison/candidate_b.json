@@ -1,0 +1,31 @@
+{
+  "name": "Candidate B on V3 validation",
+  "loss": 1.2857543952115378,
+  "accuracy": 0.6675066666666667,
+  "macro_f1": 0.668795420059926,
+  "images": 75000,
+  "seconds": 46.269306200090796,
+  "checkpoint": "artifacts/v2/cnn/candidate_b/cnn_model.pt",
+  "checkpoint_sha256": "f955f6d0fa3b45ea7c5124a111980cd5d27ec474732d0f5dfe320fde1f9da329",
+  "preprocessing": {
+    "image_size": [
+      112,
+      48
+    ],
+    "grayscale": true,
+    "normalize_mean": [
+      0.5
+    ],
+    "normalize_std": [
+      0.5
+    ]
+  },
+  "manifest_sha256": "7fe87c99568784a9a6612bafcc256dac737d0f0ad38dd70004aee6eda6827f18",
+  "dataset_content_sha256": "8a0961d7fe63471ad2f10710d5e3acafa87b80a668795d8a90d4ebc4c5fa9950",
+  "predictions_sha256": "df381d646e1f73f8fcedcd356d0a94e7ea31afd019657de9585511f6fe2567c1",
+  "device": "cuda",
+  "mixed_precision": false,
+  "end_to_end_milliseconds_per_image": 0.6169240826678772,
+  "test_images_loaded": 0,
+  "real_world_accuracy_claim": false
+}

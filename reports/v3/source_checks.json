@@ -1,0 +1,23 @@
+{
+  "python_test_command": ".venv/Scripts/python.exe -m pytest -q",
+  "python_tests_passed": 131,
+  "python_tests_failed": 0,
+  "python_warnings": 13,
+  "warning_scope": "Existing Starlette/httpx and joblib/NumPy deprecation warnings; not suppressed",
+  "javascript_test_command": "node --test tests/web_client.test.cjs",
+  "javascript_tests_passed": 4,
+  "selected_licence_files_checked": 1641,
+  "missing_licence_files": 0,
+  "invalid_licence_headers": 0,
+  "dependency_checks": {
+    ".venv": "python -m pip check: No broken requirements found",
+    ".venv-gpu": "python -m pip check: No broken requirements found"
+  },
+  "preserved_hashes_verified": {
+    "artifacts/cnn/cnn_model.pt": "c98cf0d1a02503a02b8f8242fec462ea2a0c455380238ec54fc4f62fdb13bb2f",
+    "data/v2/frozen_family_split.csv": "f610d835f71ed0935bab8606d7ce46ba85875db25edf94759350c12ceadae250",
+    "reports/v2/data/full_manifest.csv": "95fa9642c8bbc0ecfe6af1d4d1e893ed041a238fa1b6a4da59760f58407132e7",
+    "artifacts/v2/cnn/candidate_b/cnn_model.pt": "f955f6d0fa3b45ea7c5124a111980cd5d27ec474732d0f5dfe320fde1f9da329"
+  },
+  "scope": "Source, dependency, regression, and historical-integrity checks; not proof that full dataset generation or model training completed"
+}

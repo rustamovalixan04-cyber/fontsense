@@ -1,6 +1,22 @@
-# FontSense Capstone Project Instructions
+# FontSense Product Instructions
 
-## Student and project context
+## Current product direction — 28 October 2026
+
+FontSense is now the owner's independent commercial product. The course and
+exam framing below is historical context, not a limit on current development.
+The owner has requested a larger product dataset targeting 500,000 images,
+broader font coverage, stronger models, and reliable use by other people.
+Preserve the completed V1/V2 artifacts and evidence as historical versions.
+Develop new datasets/models separately, retain licences and provenance, protect
+held-out font families, and never describe synthetic validation as real-world
+accuracy. Keep AI assistance acknowledged honestly; ownership does not imply
+that assistance was absent. Use measured quality, latency, resource use, and
+independent evaluation to decide product improvements. The small-CNN/HOG course
+requirements do not prevent additional architectures or GPU training in an
+isolated environment. Do not buy cloud compute or change system drivers without
+the owner's specific authorization. Keep the Git safety and evidence rules below.
+
+## Historical capstone context
 
 I am Rustamov Alixan, a beginner AI/ML student. I am still learning Python, machine learning, Git, experiment tracking, and software development.
 

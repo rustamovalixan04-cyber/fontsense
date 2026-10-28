@@ -1,2 +1,14 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Frozen product contracts keep the same byte hashes after Windows/Linux clones.
+/config/v3/* text eol=lf
+/data/v3/*.csv text eol=lf
+# Preserve the byte-hashed source-audit exports, including original endings.
+/data/v3/font_candidates.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/data/v3/font_audit.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/reports/v3/*.json text eol=lf
+/reports/v3/*.csv text eol=lf
+/reports/v3/**/*.json text eol=lf
+/reports/v3/**/*.csv text eol=lf
+/src/fontsense/v3_*.py text eol=lf

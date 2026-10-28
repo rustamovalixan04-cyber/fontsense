@@ -1,0 +1,22 @@
+{
+  "phase": "data_ready_for_gpu_training",
+  "dataset_images": 500000,
+  "selected_families": 1641,
+  "train_images": 350000,
+  "validation_images": 75000,
+  "reserved_test_images": 75000,
+  "split_path": "data/v3/frozen_readable_family_split.csv",
+  "split_sha256": "45fb0eb423b3ee3fcce782d0b83beac9cdf1027e83ace758639357d2d67ed7c8",
+  "manifest_path": "data/v3/manifests/manifest.sqlite",
+  "manifest_sha256": "7fe87c99568784a9a6612bafcc256dac737d0f0ad38dd70004aee6eda6827f18",
+  "generation_check": "reports/v3/dataset_validation_summary.json",
+  "independent_image_check": "reports/v3/independent_image_verification.json",
+  "source_checks": "reports/v3/source_checks.json",
+  "baseline_comparison": "reports/v3/validation_comparison/comparison.csv",
+  "v2_test_status": "V2 TEST REMAINS UNTOUCHED",
+  "v3_test_model_images_loaded": 0,
+  "production_model": "Preserved V1; no product promotion yet",
+  "next_command": ".venv-gpu/Scripts/python.exe -u -m fontsense.v3_train",
+  "resume_instructions": "reports/v3/RESUME_V3.md",
+  "limitations": "Synthetic data only. No real-world accuracy or final V3 test score claimed."
+}

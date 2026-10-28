@@ -1,0 +1,44 @@
+{
+  "status": "passed",
+  "families_total": 1641,
+  "families_per_category": {
+    "display": 454,
+    "handwriting": 247,
+    "monospace": 38,
+    "sans_serif": 585,
+    "serif": 317
+  },
+  "families_per_category_and_split": {
+    "display": {
+      "test": 46,
+      "train": 361,
+      "validation": 47
+    },
+    "handwriting": {
+      "test": 26,
+      "train": 195,
+      "validation": 26
+    },
+    "monospace": {
+      "test": 5,
+      "train": 27,
+      "validation": 6
+    },
+    "sans_serif": {
+      "test": 59,
+      "train": 466,
+      "validation": 60
+    },
+    "serif": {
+      "test": 33,
+      "train": 251,
+      "validation": 33
+    }
+  },
+  "family_overlap_count": 0,
+  "split_sha256": "45fb0eb423b3ee3fcce782d0b83beac9cdf1027e83ace758639357d2d67ed7c8",
+  "historical_v2_split_sha256": "f610d835f71ed0935bab8606d7ce46ba85875db25edf94759350c12ceadae250",
+  "target_images": 500000,
+  "raw_font_redistribution": false,
+  "source_commit": "e1118da94a8cb00cf6d06cdac9ef13eb1e5c6ab7"
+}
