@@ -18,6 +18,8 @@ Thumbs.db
 
 # Secrets
 .env
+.env.*
+!.env.example
 *.key
 
 # MLflow
@@ -40,3 +42,7 @@ artifacts/*_final.joblib
 
 # Temporary notebook output
 .ipynb_checkpoints/
+
+# Reproducible web assets are fetched and checksum-verified at build time.
+artifacts/web/fonts/
+artifacts/web/text_recognition.onnx

@@ -1,0 +1,16 @@
+{
+  "source_checkpoint_sha256": "c98cf0d1a02503a02b8f8242fec462ea2a0c455380238ec54fc4f62fdb13bb2f",
+  "weights_sha256": "94744e2113f42d896c1c36f49e8364c15fe4e5acb55740fa7cdf93939e93a757",
+  "format": "float32 NumPy arrays, fused batch normalization at load",
+  "class_order": [
+    "display",
+    "handwriting",
+    "monospace",
+    "sans_serif",
+    "serif"
+  ],
+  "input_size": [
+    112,
+    48
+  ]
+}

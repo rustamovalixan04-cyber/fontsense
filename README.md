@@ -9,8 +9,15 @@ Latin text and predicts one of five broad font categories:
 - Sans serif
 - Serif
 
-**FontSense predicts broad font categories. It does not identify the exact font
-family or font style.**
+The original capstone classifier predicts broad categories, with its frozen
+checkpoint and assessed results preserved below. The web product also finds
+visually similar families from a licensed reference library. Suggestions are
+alternatives, not proof of the screenshot's original font.
+
+The updated web interface uses OCR and rendered-font comparison, displays three
+real font previews and links, and accepts corrected image text for refinement.
+It requires no API key. See [font matching and limitations](docs/font_matching.md)
+and [deployment instructions](docs/deployment_vercel.md).
 
 ## Table of contents
 
@@ -41,6 +48,7 @@ family or font style.**
 - **Local Gradio application:** [`app.py`](app.py)
 - **Windows standalone build:** [`docs/windows_build.md`](docs/windows_build.md)
 - **Vercel deployment guide:** [`docs/deployment_vercel.md`](docs/deployment_vercel.md)
+- **Optional OpenAI typography analysis:** [`docs/openai_analysis.md`](docs/openai_analysis.md)
 
 The Colab notebook loads the same frozen CNN checkpoint and launches the same
 Gradio interface as the local application. A Colab Gradio share link is

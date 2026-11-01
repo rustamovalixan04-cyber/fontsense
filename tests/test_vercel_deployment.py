@@ -26,21 +26,22 @@ def test_vercel_configuration_uses_slim_cpu_runtime() -> None:
     assert project["tool"]["vercel"]["entrypoint"] == "api.index:app"
     assert config["fluid"] is True
     assert function["maxDuration"] == 300
-    assert "artifacts/cnn/**" in function["includeFiles"]
+    assert "artifacts/web/**" in function["includeFiles"]
     assert "api/static/**" in function["includeFiles"]
 
     requirements = (ROOT / "requirements-vercel.txt").read_text(
         encoding="utf-8"
     )
-    assert "https://download.pytorch.org/whl/cpu" in requirements
-    assert "torch==2.13.0+cpu" in requirements
-    assert "torchvision==0.28.0+cpu" in requirements
+    assert "torch==" not in requirements
+    assert "torchvision==" not in requirements
+    assert "gradio==" not in requirements
+    assert "onnxruntime==" in requirements
     assert "mlflow" not in requirements
 
 
 def test_vercel_asgi_app_and_health_check() -> None:
     from api.index import app, get_runtime
-    from app import FINAL_CHECKPOINT_SHA256
+    from api.compact import FINAL_CHECKPOINT_SHA256
 
     with TestClient(app) as client:
         page = client.get("/")
@@ -50,8 +51,11 @@ def test_vercel_asgi_app_and_health_check() -> None:
     assert "FontSense" in page.text
     assert "/gradio_api/upload" not in page.text
     assert "/gradio_api/queue" not in page.text
-    assert 'fetch("/predict"' in page.text
-    assert 'fetch("/healthz"' in page.text
+    assert "fetch('/identify'" in page.text
+    assert "idle" not in page.text.lower()
+    assert "frozen 60%" not in page.text
+    assert "Closest matches" in page.text
+    assert "Get font" in page.text
     assert "prepareImageForUpload" in page.text
     assert "canvas.toBlob" in page.text
     assert "MAX_SOURCE_BYTES = 25 * 1024 * 1024" in page.text

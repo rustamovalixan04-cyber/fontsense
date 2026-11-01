@@ -1,71 +1,50 @@
 # Deploy FontSense on Vercel
 
-This deployment reuses the existing frozen CNN through a small stateless web
-interface. The local and Colab versions still use Gradio. The Vercel adapter
-sends each image and prediction in one request because separate serverless
-requests cannot safely share Gradio's temporary upload files. It does not
-train a model or require the generated dataset.
+The stateless FastAPI web product accepts one image per request and returns
+visually similar fonts. The original Gradio and Colab category demos remain
+available separately. There is no upload session or keepalive dependency.
 
-Use a GitHub import or the Vercel CLI. A static-site or drag-and-drop upload
-does not build the Python FastAPI function and will return Vercel's `404:
-NOT_FOUND` page.
+## Deploy
 
-## Deploy from GitHub
+1. Import `rustamovalixan04-cyber/fontsense` into Vercel, or deploy a local
+   repository checkout using the Vercel CLI.
+2. Keep the repository root and FastAPI framework preset. Do not set an output
+   directory or separate build command; `vercel.json` supplies installation.
+3. Installation uses `requirements-vercel.txt`, then downloads and verifies
+   the pinned OCR model and 39 licensed reference fonts. Outbound build access
+   to the manifest source URLs is required. Runtime requests do not download assets.
+4. Open `/healthz`: expect `status: ok` and original checkpoint hash
+   `c98cf0d1a02503a02b8f8242fec462ea2a0c455380238ec54fc4f62fdb13bb2f`.
+5. Upload a clear one-line crop. Confirm three matching previews load and the
+   text-correction Refine flow works before promoting a preview to production.
 
-1. In Vercel, choose **Add New > Project**.
-2. Import `rustamovalixan04-cyber/fontsense`.
-3. Keep the repository root as the project root.
-4. Use the **FastAPI** framework preset. The checked-in `vercel.json` also
-   selects it explicitly.
-5. Do not add a build command or output directory.
-6. Deploy. `vercel.json` installs the CPU-only inference dependencies, and
-   Vercel serves the stateless FastAPI interface.
-7. Open `/healthz` on the deployment URL. A successful response has
-   `"status": "ok"` and the frozen checkpoint SHA-256.
+No key is needed for matching. The separate private OpenAI pilot requires
+server credentials and shared rate limits; see [its guide](openai_analysis.md).
+Do not put those secrets into the browser, source files, or URLs.
 
-No secret or token is required by FontSense itself.
+## Deployment contents
 
-## Deploy the local dist folder
+`.vercelignore` uploads only the API, page, dependency/config files, small
+verified CNN export, asset manifests and preparation script. `includeFiles`
+bundles installed font/OCR assets and licenses. Notebooks, training datasets,
+historical reports, Gradio, PyTorch and torchvision are excluded from the web
+runtime. The original training checkpoint remains in the repository unchanged.
 
-After installing and signing in to the Vercel CLI, open a terminal in the
-repository and run:
+The page loads independently of matching. NumPy executes the unchanged CNN;
+ONNX Runtime handles one-line OCR. Reference rendering and vectors are cached
+in each running process. The browser caches repeat requests for its selected
+image and cancels stale results when the user resets or changes the image.
 
-```text
-vercel --cwd dist
-```
+## Limits and verification
 
-Use `vercel --prod` from that folder only after the preview URL works. Do not
-upload the ZIP through a static-site uploader.
-
-## Important Vercel setting
-
-PyTorch makes this a large Python function. New Vercel projects created after
-30 June 2026 are enrolled in Large Functions automatically. If an older Vercel
-project reports a function-size error, enable Fluid Compute and add this
-environment variable in the Vercel project settings before redeploying:
-
-```text
-VERCEL_SUPPORT_LARGE_FUNCTIONS=1
-```
-
-## What is deployed
-
-- `api/index.py` receives the uploaded image and predicts in one request.
-- `api/static/index.html` provides the lightweight browser interface and
-  previews an image locally before it is sent. Large PNG, JPEG, and WebP
-  photos are resized and compressed in the browser to make uploads faster.
-- `requirements-vercel.txt` contains only CPU inference and web dependencies.
-- `.vercelignore` leaves training data, notebooks, tests, reports, caches, and
-  the local virtual environment out of the deployment upload.
-- The frozen checkpoint and its freeze record remain included and are verified
-  when the process starts.
-
-## Limits
-
-- The first prediction after an idle period may be slow because PyTorch and
-  the checkpoint must load in a new serverless process. The page and image
-  preview do not need to wait for this model startup.
-- Uploaded requests must fit Vercel's request limit. The browser accepts source
-  photos up to 25 MB, then prepares an upload no larger than 4 MB.
-- Vercel's Python runtime and Large Functions support are currently beta
-  features, so Colab or local Gradio remains the simpler backup demo route.
+- Hosting may still start a new process after inactivity. A lighter runtime
+  reduces startup work but does not promise an always-running server.
+- The browser accepts PNG/JPEG/WebP source images up to 25MB, prepares a JPEG
+  with longest edge 1800px, and limits uploads to 4MB. Direct API image requests
+  accept PNG/JPEG up to 4MB and 20 million pixels.
+- Matching is restricted to the reference catalog. Similar-font names are
+  alternatives, not verified exact identification. See [matching limitations](font_matching.md).
+- Use protected preview share URLs for testing when Vercel Authentication is
+  enabled. Temporary links expire; a stable public domain is separate.
+- Do not use an outdated `dist` copy or a static-site uploader; the current
+  Python API and prepared assets must be built together.

@@ -2,11 +2,11 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "fastapi",
   "fluid": true,
-  "installCommand": "python -m pip install --disable-pip-version-check -r requirements-vercel.txt",
+  "installCommand": "python -m pip install --disable-pip-version-check -r requirements-vercel.txt && python scripts/prepare_web_assets.py",
   "functions": {
     "api/index.py": {
       "maxDuration": 300,
-      "includeFiles": "{api/static/**,app.py,src/fontsense/**,artifacts/cnn/**,reports/final_evaluation/pre_test_freeze.json}",
+      "includeFiles": "{api/analysis.py,api/compact.py,api/font_match.py,api/static/**,artifacts/web/**}",
       "excludeFiles": "{.venv/**,data/**,docs/**,notebooks/**,tests/**,mlruns/**,reports/figures/**,reports/data_gate/**,reports/data_gate_self_check/**,artifacts/baseline/**,**/__pycache__/**,**/.pytest_cache/**}"
     }
   }
