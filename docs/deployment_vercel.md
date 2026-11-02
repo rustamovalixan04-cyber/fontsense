@@ -30,6 +30,13 @@ See [font identification](font_identification.md) for coverage and limits.
 
 ## Deployment contents
 
+The extended retrieval stage adds `extended_catalog.json` and
+`api/extended_match.py`. Build-time fontTools creates checksum-verified, renamed
+Latin reference subsets and retains each OFL license. No new network requests
+or font downloads occur during matching. See
+[expanded retrieval](extended_font_retrieval.md) for the search, licensing,
+cache behavior and supported scope.
+
 `.vercelignore` uploads only the API, page, dependency/config files, small
 verified CNN export, asset manifests and preparation script. `includeFiles`
 bundles installed font/OCR assets and licenses. Notebooks, training datasets,

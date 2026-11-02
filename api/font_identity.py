@@ -53,9 +53,9 @@ def reference_scores(new_vectors, old_vectors, cases, arrays, weight, case_penal
     return np.stack([scores[:, arrays["families"] == index].max(axis=1) for index in range(int(arrays["families"].max()) + 1)], axis=1)
 
 
-def recognize(image, text):
+def candidates(image, text, limit=5):
     if len([char for char in text if char.isalpha()]) < 4 or len(set(text.casefold()) - {" "}) < 3:
-        return None
+        return []
     metadata, arrays = gallery()
     new_vector = encoder().encode(image)
     old_vector = None
@@ -68,9 +68,23 @@ def recognize(image, text):
     scores = reference_scores(new_vector[None], old_vector, [case_id(text)], arrays,
                               metadata["neural_weight"], metadata["case_penalty"])[0]
     order = np.argsort(-scores)
-    score, margin = float(scores[order[0]]), float(scores[order[0]] - scores[order[1]])
-    if score < metadata["minimum_similarity"] or margin < metadata["minimum_margin"]:
+    margin = float(scores[order[0]] - scores[order[1]])
+    result = []
+    for index in order[:limit]:
+        font = metadata["families"][int(index)]
+        result.append({**font, "score": float(scores[index]), "margin": margin,
+                       "strength": "candidate", "method": "whole-word-reference-model"})
+    return result
+
+
+def recognize(image, text, ranked=None):
+    if ranked is None:
+        ranked = candidates(image, text, limit=2)
+    if not ranked:
         return None
-    font = metadata["families"][int(order[0])]
+    metadata, _ = gallery()
+    if ranked[0]["score"] < metadata["minimum_similarity"] or ranked[0]["margin"] < metadata["minimum_margin"]:
+        return None
+    font = ranked[0]
     return {"family": font["family"], "category": font["category"], "url": font["url"],
             "strength": "likely", "method": "whole-word-reference-model"}

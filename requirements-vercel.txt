@@ -4,3 +4,5 @@ fastapi==0.139.2
 numpy==2.3.5
 Pillow==12.3.0
 onnxruntime==1.31.1
+# Build-time Latin reference subsetting; no training dependency is deployed.
+fonttools==4.61.1

@@ -7,6 +7,7 @@
 !/api/font_match.py
 !/api/category_ensemble.py
 !/api/font_identity.py
+!/api/extended_match.py
 !/api/name_encoder.py
 !/api/static
 !/api/static/index.html
@@ -21,10 +22,12 @@
 !/artifacts/web/font_name_gallery.npz
 !/artifacts/web/font_name_gallery.json
 !/artifacts/web/font_catalog.json
+!/artifacts/web/extended_catalog.json
 !/artifacts/web/ocr_source.json
 !/artifacts/web/OCR-LICENSE.txt
 !/scripts
 !/scripts/prepare_web_assets.py
+!/scripts/extended_font_assets.py
 !/pyproject.toml
 !/requirements-vercel.txt
 !/requirements-analysis.txt

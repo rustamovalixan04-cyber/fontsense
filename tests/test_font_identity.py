@@ -20,7 +20,7 @@ def test_impact_is_named_separately_from_anton_alternatives(filename):
         result = identify(image.convert("RGB"))
     assert result["identified_font"]["family"] == "Impact"
     assert result["category"] == "display"
-    assert result["matches"][0]["family"] == "Anton"
+    assert "Anton" in {font["family"] for font in result["matches"]}
     assert all(font["family"] != "Impact" for font in result["matches"])
 
 

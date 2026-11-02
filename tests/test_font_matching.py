@@ -11,6 +11,7 @@ import pytest
 from api.compact import CHECKPOINT_SHA256, get_model, text_crop
 from api.font_match import catalog, font_face, identify, preview_png, render_reference
 from api.index import app
+from api.extended_match import catalog as extended_catalog
 
 
 def png(image):
@@ -30,7 +31,7 @@ def test_font_matching_returns_real_catalog_entries_and_text():
     assert result["text"].replace(" ", "").lower() == "visualcraft"
     assert (result.get("identified_font") or result["matches"][0])["family"] == "Tinos"
     assert result["needs_text"] is False
-    known = {record["id"] for record in catalog()}
+    known = {record["id"] for record in catalog()} | {record["id"] for record in extended_catalog()}
     assert all(match["id"] in known for match in result["matches"])
     assert "confidence" not in result["matches"][0]
 
@@ -41,7 +42,7 @@ def test_dark_and_transparent_inputs_keep_the_same_match():
     white = identify(image, "Clean Lines")
     inverted = identify(dark, "Clean Lines")
     assert white["category"] == inverted["category"] == "sans_serif"
-    assert white["matches"][0]["id"] == inverted["matches"][0]["id"] == "arimo"
+    assert white["matches"][0]["family"] == inverted["matches"][0]["family"] == "Arimo"
     transparent = image.convert("RGBA")
     transparent.putalpha(ImageOps.invert(image.convert("L")))
     # Preserve black foreground pixels and make the white background transparent.

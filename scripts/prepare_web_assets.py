@@ -6,6 +6,9 @@ from pathlib import Path
 import time
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 ROOT = Path(__file__).resolve().parents[1] / "artifacts/web"
 
@@ -32,6 +35,32 @@ def download(job):
             time.sleep(1)
 
 
+def extended_asset(source):
+    from scripts.extended_font_assets import make_subset
+    path = ROOT / source["file"]
+    if not path.exists() or hashlib.sha256(path.read_bytes()).hexdigest() != source["sha256"]:
+        url = source["download_url"]
+        if not url.startswith("https://raw.githubusercontent.com/google/fonts/"):
+            raise ValueError("Unexpected extended font source")
+        for attempt in range(3):
+            try:
+                with urlopen(Request(url, headers={"User-Agent": "FontSense-build"}), timeout=60) as response:
+                    data = response.read()
+                if hashlib.sha256(data).hexdigest() != source["source_sha256"]:
+                    raise ValueError("Extended source checksum mismatch")
+                converted = make_subset(data, source["id"])
+                if hashlib.sha256(converted).hexdigest() != source["sha256"]:
+                    raise ValueError("Extended subset checksum mismatch")
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(converted)
+                break
+            except OSError:
+                if attempt == 2:
+                    raise
+                time.sleep(1)
+    download((source["license_file"], source["license_url"], source["license_sha256"]))
+
+
 if __name__ == "__main__":
     catalog = json.loads((ROOT / "font_catalog.json").read_text())
     ocr = json.loads((ROOT / "ocr_source.json").read_text())
@@ -45,3 +74,9 @@ if __name__ == "__main__":
     with ThreadPoolExecutor(max_workers=8) as pool:
         list(pool.map(download, jobs))
     print("Verified", len({font["family"] for font in catalog["fonts"]}), "licensed families /", len(catalog["fonts"]), "styles and the OCR model.")
+    extended_path = ROOT / "extended_catalog.json"
+    if extended_path.exists():
+        extended = json.loads(extended_path.read_text(encoding="utf-8"))
+        with ThreadPoolExecutor(max_workers=8) as pool:
+            list(pool.map(extended_asset, extended["sources"]))
+        print("Verified extended catalog:", extended["families"], "families /", extended["styles"], "styles.")

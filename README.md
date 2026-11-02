@@ -20,10 +20,13 @@ real font previews and links, and accepts corrected image text for refinement.
 It requires no API key. See [font matching and limitations](docs/font_matching.md)
 and [deployment instructions](docs/deployment_vercel.md).
 
-A separate selective [font-name recognizer](docs/font_identification.md) now
-compares 86 reference families. The page separates **Likely font** (for example,
-Impact) from **Similar fonts** (for example, Anton). Uncertain names are withheld;
-the alternatives remain available. Windows font binaries are not redistributed.
+A separate selective [font-name encoder](docs/font_identification.md) compares
+86 reference families. The product also searches the much larger
+[open-font catalog](docs/extended_font_retrieval.md) using the actual visible
+text and real Regular/Bold/Italic references. The page separates **Likely font**,
+**Possible fonts** when identity is ambiguous, and **Similar fonts** with previews.
+This finite Latin catalog does not cover every existing font or guarantee exact
+identity. Windows font binaries are not redistributed.
 
 ## Table of contents
 

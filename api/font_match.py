@@ -19,6 +19,8 @@ from PIL import Image, ImageDraw, ImageFont, ImageOps
 from api.compact import get_model, text_crop
 from api.category_ensemble import feature_vector, predict as predict_category
 from api.font_identity import recognize as recognize_font_name
+from api.font_identity import candidates as name_candidates
+from api import extended_match
 
 ROOT = Path(__file__).resolve().parents[1] / "artifacts/web"
 
@@ -64,7 +66,7 @@ def read_text(image: Image.Image) -> tuple[str, float]:
 def font_face(font_id: str) -> ImageFont.FreeTypeFont:
     record = next((f for f in catalog() if f["id"] == font_id), None)
     if record is None:
-        raise ValueError("Unknown font")
+        return extended_match.font_face(font_id, 96)
     font = ImageFont.truetype(str(ROOT / record["file"]), 96)
     if record.get("variable_weight"):
         axes = font.get_variation_axes()
@@ -190,9 +192,37 @@ def identify(image: Image.Image, supplied_text: str = "") -> dict:
     other = max(float(scores[i]) for i in order if catalog()[i]["category"] != catalog()[order[0]]["category"])
     if best >= .90 and best - other >= .06:
         category = catalog()[order[0]]["category"]
-    identified_font = recognize_font_name(image, text)
+    # Keep the category combiner's original reference distribution unchanged.
+    # The larger library is a separate, text-specific retrieval stage.
+    extended = extended_match.rank(normalized, text)
+    broad_name = extended_match.likely_match(extended, text)
+    embedding_candidates = name_candidates(image, text)
+    identified_font = recognize_font_name(image, text, ranked=embedding_candidates)
+    # The older encoder was calibrated against just 86 names. It must not
+    # overrule the larger open-font comparison with a familiar OFL lookalike.
+    # Native references remain useful where no font program can be deployed.
+    if identified_font and not embedding_candidates[0].get("native"):
+        identified_font = None
+    if broad_name is not None:
+        if identified_font is not None and identified_font["family"] != broad_name["family"]:
+            identified_font = None
+        else:
+            identified_font = broad_name
+    # Known compatible alternatives are not evidence of which vendor's font
+    # produced the pixels. Keep both names possible, even on a very close match.
+    compatible = {"Tinos": "Times New Roman", "Arimo": "Arial", "Cousine": "Courier New", "Carlito": "Calibri"}
+    related = compatible.get(extended[0]["family"]) if extended else None
+    native_neighbor = next((font for font in embedding_candidates if font["family"] == related), None)
+    if related and native_neighbor is None:
+        native_neighbor = {"family": related, "category": extended[0]["category"],
+                           "url": "https://learn.microsoft.com/en-us/typography/font-list/" + related.lower().replace(" ", "-"),
+                           "basis": "compatible-design-alternative"}
+    if native_neighbor and identified_font and identified_font["family"] in (extended[0]["family"], related):
+        identified_font = None
     if identified_font is not None:
         category = identified_font["category"]
+    elif extended and extended[0]["score"] >= .90:
+        category = extended[0]["category"]
     # Keep the first suggestion consistent with the chosen broad category.
     order = [i for i in order if catalog()[i]["category"] == category] + [i for i in order if catalog()[i]["category"] != category]
     if best < .65:
@@ -212,10 +242,33 @@ def identify(image: Image.Image, supplied_text: str = "") -> dict:
                         "similarity": round(float(np.clip(scores[index], 0, 1)) * 100, 1),
                         "url": "https://fonts.google.com/specimen/" + quote(font["family"]),
                         "preview": f"/font-preview/{font['id']}?text=" + quote(text)})
+    broader_matches = [{"id": font["id"], "family": font["family"], "category": font["category"],
+                        "style": font["style"], "similarity": round(float(np.clip(font["score"], 0, 1)) * 100, 1),
+                        "url": font["url"], "preview": f"/font-preview/{font['id']}?text=" + quote(text)}
+                       for font in extended if not identified_font or font["family"] != identified_font["family"]]
+    broader_matches.sort(key=lambda font: font["category"] != category)
+    if broader_matches:
+        matches = broader_matches[:5]
+        selected_best = matches[0]["similarity"] / 100
+        if selected_best >= .90:
+            ambiguous = False
+    possible = []
+    if not identified_font and extended:
+        if native_neighbor:
+            possible.append({key: native_neighbor[key] for key in ("family", "category", "url")})
+        for font in embedding_candidates:
+            if font.get("native") and font["category"] == category and font["score"] >= max(.86, embedding_candidates[0]["score"] - .04):
+                if font["family"] not in {row["family"] for row in possible}:
+                    possible.append({key: font[key] for key in ("family", "category", "url")})
+        for font in [font for font in extended if font["category"] == category][:3]:
+            if font["score"] >= .65:
+                possible.append({key: font[key] for key in ("family", "category", "url")})
+        possible = possible[:5]
     return {"category": category, "matches": matches, "text": text,
-            "identified_font": identified_font, "font_name_model": "font-name-encoder-1",
+            "identified_font": identified_font, "font_candidates": possible,
+            "font_name_model": "extended-rendered-reference-1",
             "needs_text": False, "match_strength": "uncertain" if ambiguous else "strong" if selected_best >= 0.88 else "possible" if selected_best >= 0.65 else "uncertain",
-            "classifier": classifier, "catalog_size": len({font["family"] for font in catalog()}),
+            "classifier": classifier, "catalog_size": len({font["family"] for font in extended_match.catalog()}),
             "category_model": "similarity-ensemble-1",
             "elapsed_ms": round((time.perf_counter() - started) * 1000, 1)}
 

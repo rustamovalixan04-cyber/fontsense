@@ -1,5 +1,10 @@
 # Font names and similar fonts
 
+The original 86-family encoder described below remains available. The product
+now also searches the [expanded open-font catalog](extended_font_retrieval.md)
+and shows possible names when exact identity is ambiguous. Metrics below belong
+to the earlier encoder evaluation, not the expanded retrieval system.
+
 The earlier web product returned a category and open-font alternatives. Impact
 was correctly categorized as Display but Anton was the first alternative; there
 was no font-name recognizer and no Impact reference. Adding more category data

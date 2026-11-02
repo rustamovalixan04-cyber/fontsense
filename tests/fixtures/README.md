@@ -6,6 +6,10 @@ region from the user's reported failing screenshot. These are regression cases,
 not an independent accuracy benchmark. No font program or per-letter bitmap
 font is embedded in either PNG.
 
+`times_new_roman_screenshot_crop.png` is the complete-word crop from the user's
+next screenshot regression. It checks that Times New Roman/Tinos candidates
+remain visible without claiming a verified exact Tinos identity.
+
 Microsoft permits graphics containing words/phrases rendered with Windows fonts;
 the font binaries remain local. See the official
 [font redistribution FAQ](https://learn.microsoft.com/en-us/typography/fonts/font-faq).
