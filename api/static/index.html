@@ -39,7 +39,7 @@ const resultCache=new Map();
 function message(text,error=false){status.textContent=text;status.className='status'+(error?' error':'');}
 function buttons(){find.disabled=!selected||preparing||Boolean(active);refine.disabled=!selected||Boolean(active);find.replaceChildren();if(active){const spin=document.createElement('span');spin.className='spinner';spin.setAttribute('aria-hidden','true');find.append(spin);}find.append(document.createTextNode(active?'Identifying…':'Identify font'));}
 function cancel(){if(active)active.abort();active=null;buttons();}
-function clear(){version++;selected=null;selectedRegion=null;preparing=false;cancel();input.value='';textInput.value='';regionChoice.replaceChildren();regionControls.hidden=true;regionOverlay.hidden=true;if(previewUrl)URL.revokeObjectURL(previewUrl);previewUrl=null;preview.removeAttribute('src');preview.hidden=true;label.hidden=false;remove.hidden=true;results.hidden=true;empty.hidden=false;matches.replaceChildren();message('');resultCache.clear();buttons();}
+function clear(){version++;selected=null;selectedRegion=null;preparing=false;cancel();input.value='';textInput.value='';regionChoice.replaceChildren();regionControls.hidden=true;regionOverlay.toggleAttribute("hidden",true);if(previewUrl)URL.revokeObjectURL(previewUrl);previewUrl=null;preview.removeAttribute('src');preview.hidden=true;label.hidden=false;remove.hidden=true;results.hidden=true;empty.hidden=false;matches.replaceChildren();message('');resultCache.clear();buttons();}
 async function prepareImageForUpload(file){
 const bitmap=await createImageBitmap(file,{imageOrientation:'from-image'});
 try{if(!bitmap.width||!bitmap.height||bitmap.width*bitmap.height>MAX_PIXELS)throw new Error('Image too large. Crop the text and try again.');
@@ -56,7 +56,7 @@ function render(data){
 selectedRegion=data.selected_region??null;
 if(data.text_source!=='manual'||!regionChoice.options.length){regionChoice.replaceChildren();for(const region of data.text_regions||[]){const option=document.createElement('option');option.value=String(region.index);option.textContent=region.text||'Text '+(region.index+1);regionChoice.append(option);}}
 regionChoice.value=String(selectedRegion);regionControls.hidden=regionChoice.options.length<2;
-const selectedBox=(data.text_regions||[]).find(region=>region.index===selectedRegion)?.box;regionOverlay.hidden=!selectedBox;
+const selectedBox=(data.text_regions||[]).find(region=>region.index===selectedRegion)?.box;regionOverlay.toggleAttribute("hidden",!selectedBox);
 if(selectedBox){const width=preview.naturalWidth,height=preview.naturalHeight;regionOverlay.setAttribute('viewBox','0 0 '+width+' '+height);const rect=$('region-box');rect.setAttribute('x',selectedBox[0]*width);rect.setAttribute('y',selectedBox[1]*height);rect.setAttribute('width',(selectedBox[2]-selectedBox[0])*width);rect.setAttribute('height',(selectedBox[3]-selectedBox[1])*height);}
 matches.replaceChildren();empty.hidden=true;results.hidden=false;$('category').textContent=(!data.identified_font&&data.match_strength==='uncertain'?'Possible ':'')+(labels[data.category]||data.category);textInput.value=data.text||'';
 const identified=data.identified_font;$('identity-label').textContent=identified?'Likely font':'Font name';$('identity-name').textContent=identified?identified.family:'Not identified confidently';$('identity-link').hidden=!identified;if(identified)$('identity-link').href=identified.url;
