@@ -1,5 +1,10 @@
 # Broader font identification
 
+The exhaustive matcher described here is retained as a fallback. The newer
+[trained retrieval stage](retrieval_training.md) selects references first,
+compares individual letter shapes where separation is reliable, fits supported
+variable axes, and applies separately selected name acceptance rules.
+
 The name gallery introduced earlier was finite: 86 families, with a deliberately
 strict confidence gate. A request to identify every font cannot be satisfied
 literally. Private fonts, unreleased designs, scripts outside the supported Latin

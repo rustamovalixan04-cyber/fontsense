@@ -108,10 +108,10 @@ async def identify_fonts(request: Request, text: str = "") -> dict:
 
 
 @app.get("/font-preview/{font_id}", include_in_schema=False)
-def font_preview(font_id: str, text: str = "Typography") -> Response:
+def font_preview(font_id: str, text: str = "Typography", weight: float | None = None, width: float | None = None, optical_size: float | None = None) -> Response:
     from api.font_match import preview_png
     try:
-        return Response(preview_png(font_id, text), media_type="image/png", headers={"Cache-Control": "public, max-age=86400"})
+        return Response(preview_png(font_id, text, weight, width, optical_size), media_type="image/png", headers={"Cache-Control": "public, max-age=86400"})
     except ValueError:
         raise HTTPException(status_code=404, detail="Font preview not found.") from None
 

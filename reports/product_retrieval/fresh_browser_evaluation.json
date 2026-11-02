@@ -1,0 +1,77 @@
+{
+  "created_utc": "2026-11-02T13:12:34.736710+00:00",
+  "baseline_commit": "c3b908ac51730d0173585a65b97e8928464d1d13",
+  "artifact_sha256": {
+    "retrieval_encoder.onnx": "159c210ae503f6492a4813e1df63338638b72ad885543648f23bb5de189df5ca",
+    "retrieval_index.npz": "fb95831734a403161091ecd02b5dc8922b39c6fd8ae3271a450aa4bcc246faf0",
+    "retrieval_confidence.json": "61b0ded44a193bad0dc3b3bc14da6336849c414d3baf8e102b8de8e4022cf3cd"
+  },
+  "browser_images": 620,
+  "browser_split_counts": {
+    "native_test": 42,
+    "native_test2": 42,
+    "test": 160,
+    "test2": 160,
+    "train": 96,
+    "validation": 120
+  },
+  "results": {
+    "test2-legacy-final": {
+      "images": 320,
+      "names_returned": 71,
+      "correct_returned": 71,
+      "returned_precision": 1.0,
+      "known_images": 320,
+      "unknown_images": 0,
+      "coverage": 0.221875,
+      "top1": 0.734375,
+      "top3": 0.81875,
+      "identity_candidate_top3": 0.74375,
+      "unknown_names_withheld": 0,
+      "ocr_needs_text": 4
+    },
+    "test2-candidate-final": {
+      "images": 320,
+      "names_returned": 97,
+      "correct_returned": 97,
+      "returned_precision": 1.0,
+      "known_images": 320,
+      "unknown_images": 0,
+      "coverage": 0.303125,
+      "top1": 0.753125,
+      "top3": 0.81875,
+      "identity_candidate_top3": 0.821875,
+      "unknown_names_withheld": 0,
+      "ocr_needs_text": 4
+    },
+    "native_test2-legacy-final": {
+      "images": 84,
+      "names_returned": 4,
+      "correct_returned": 0,
+      "returned_precision": 0.0,
+      "known_images": 60,
+      "unknown_images": 24,
+      "coverage": 0.06666666666666667,
+      "top1": 0.0,
+      "top3": 0.0,
+      "identity_candidate_top3": 0.0,
+      "unknown_names_withheld": 24,
+      "ocr_needs_text": 0
+    },
+    "native_test2-candidate-final": {
+      "images": 84,
+      "names_returned": 14,
+      "correct_returned": 14,
+      "returned_precision": 1.0,
+      "known_images": 60,
+      "unknown_images": 24,
+      "coverage": 0.23333333333333334,
+      "top1": 0.23333333333333334,
+      "top3": 0.23333333333333334,
+      "identity_candidate_top3": 0.9,
+      "unknown_names_withheld": 24,
+      "ocr_needs_text": 0
+    }
+  },
+  "limits": "Fresh OFL queries use 80 other reserved test families, excluding prior diagnostic duplicate groups. Fresh native queries use new words on nine diagnostically seen families excluded from new neural gradient training and positive confidence-query fitting. Enrollment references necessarily include all searchable families. Original and compressed conditions are correlated. This is not worldwide accuracy."
+}

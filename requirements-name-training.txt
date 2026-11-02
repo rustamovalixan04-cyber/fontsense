@@ -1,3 +1,4 @@
 --extra-index-url https://download.pytorch.org/whl/cpu
 -r requirements-product-training.txt
 torch==2.10.0+cpu
+onnx==1.20.1

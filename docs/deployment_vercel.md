@@ -30,6 +30,20 @@ See [font identification](font_identification.md) for coverage and limits.
 
 ## Deployment contents
 
+The trained retrieval release also bundles `retrieval_encoder.onnx`, its
+metadata, `retrieval_index.npz/json`, `retrieval_confidence.json` and
+`retrieval_policy.json`. ONNX Runtime runs the small encoder on CPU; PyTorch is
+only a training dependency. The API modules matching `retrieval_*.py`,
+`glyph_match.py` and `font_variations.py` must be deployed with these artifacts.
+The reference index contains derived native-font statistics, never native font
+programs. See [training and release evidence](retrieval_training.md).
+
+`retrieval_policy.json` enables the selected product matcher. Setting the
+server-only environment variable `FONTSENSE_RETRIEVAL_ENGINE=legacy` restores
+the previous exhaustive stage for diagnosis. The trained stage also falls back
+to exhaustive comparisons when its best direct-shape evidence is weak.
+No key or remote model request is required for this path.
+
 The extended retrieval stage adds `extended_catalog.json` and
 `api/extended_match.py`. Build-time fontTools creates checksum-verified, renamed
 Latin reference subsets and retains each OFL license. No new network requests

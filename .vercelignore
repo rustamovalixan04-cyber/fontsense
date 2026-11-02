@@ -8,6 +8,9 @@
 !/api/category_ensemble.py
 !/api/font_identity.py
 !/api/extended_match.py
+!/api/font_variations.py
+!/api/glyph_match.py
+!/api/retrieval_*.py
 !/api/name_encoder.py
 !/api/static
 !/api/static/index.html
@@ -23,6 +26,12 @@
 !/artifacts/web/font_name_gallery.json
 !/artifacts/web/font_catalog.json
 !/artifacts/web/extended_catalog.json
+!/artifacts/web/retrieval_encoder.onnx
+!/artifacts/web/retrieval_encoder.json
+!/artifacts/web/retrieval_index.npz
+!/artifacts/web/retrieval_index.json
+!/artifacts/web/retrieval_confidence.json
+!/artifacts/web/retrieval_policy.json
 !/artifacts/web/ocr_source.json
 !/artifacts/web/OCR-LICENSE.txt
 !/scripts

@@ -28,6 +28,14 @@ text and real Regular/Bold/Italic references. The page separates **Likely font**
 This finite Latin catalog does not cover every existing font or guarantee exact
 identity. Windows font binaries are not redistributed.
 
+The web product now includes a separately trained 96-dimensional retrieval
+encoder, letter-shape comparisons, real variable-font fitting and development-
+selected name acceptance rules. It was trained from scratch on 1,325 families
+and 64,752 image patches; its reference index contains 1,862 families, including
+22 native families represented only by derived whole-phrase statistics.
+See [training, independent checks and limitations](docs/retrieval_training.md).
+These product measurements do not replace the assessed category results below.
+
 ## Table of contents
 
 - [Demo](#demo)

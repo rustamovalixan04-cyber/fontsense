@@ -203,6 +203,15 @@ def identify(image: Image.Image, supplied_text: str = "") -> dict:
     # Native references remain useful where no font program can be deployed.
     if identified_font and not embedding_candidates[0].get("native"):
         identified_font = None
+    trained_native = None
+    if extended and "native_candidates" in extended[0]:
+        from api.retrieval_match import likely_native
+        fresh_native = extended[0].get("native_candidates", [])
+        if identified_font and (not fresh_native or fresh_native[0]["family"] != identified_font["family"] or fresh_native[0]["embedding_similarity"] < .9):
+            identified_font = None
+        trained_native = likely_native(extended, text)
+        if trained_native is not None:
+            identified_font = trained_native
     if broad_name is not None:
         if identified_font is not None and identified_font["family"] != broad_name["family"]:
             identified_font = None
@@ -244,7 +253,8 @@ def identify(image: Image.Image, supplied_text: str = "") -> dict:
                         "preview": f"/font-preview/{font['id']}?text=" + quote(text)})
     broader_matches = [{"id": font["id"], "family": font["family"], "category": font["category"],
                         "style": font["style"], "similarity": round(float(np.clip(font["score"], 0, 1)) * 100, 1),
-                        "url": font["url"], "preview": f"/font-preview/{font['id']}?text=" + quote(text)}
+                        "url": font["url"], "preview": f"/font-preview/{font['id']}?text=" + quote(text) +
+                        "".join("&" + key + "=" + str(value) for key, value in font.get("fit_axes", {}).items())}
                        for font in extended if not identified_font or font["family"] != identified_font["family"]]
     broader_matches.sort(key=lambda font: font["category"] != category)
     if broader_matches:
@@ -254,19 +264,36 @@ def identify(image: Image.Image, supplied_text: str = "") -> dict:
             ambiguous = False
     possible = []
     if not identified_font and extended:
+        native_options = []
+        if "native_candidates" in extended[0]:
+            from api.retrieval_confidence import parameters
+            soft = parameters().get("native_candidate", {"minimum_similarity": .9, "maximum_family_rank": 10})
+            native_options = [font for font in extended[0]["native_candidates"][:2]
+                              if font["embedding_similarity"] >= soft["minimum_similarity"] and font["embedding_family_rank"] <= soft["maximum_family_rank"]]
+            consensus = bool(native_options and any(font["family"] == native_options[0]["family"] and font.get("native") and font["score"] >= .86 for font in embedding_candidates))
+            if native_options and (native_options[0]["embedding_family_rank"] == 1 or consensus):
+                possible.append({key: native_options[0][key] for key in ("family", "category", "url")})
+            if not possible and extended[0]["score"] >= .65:
+                possible.append({key: extended[0][key] for key in ("family", "category", "url")})
+            for font in native_options:
+                if font["family"] not in {row["family"] for row in possible}:
+                    possible.append({key: font[key] for key in ("family", "category", "url")})
         if native_neighbor:
-            possible.append({key: native_neighbor[key] for key in ("family", "category", "url")})
+            if native_neighbor["family"] not in {row["family"] for row in possible}:
+                possible.append({key: native_neighbor[key] for key in ("family", "category", "url")})
         for font in embedding_candidates:
+            if native_options: continue
             if font.get("native") and font["category"] == category and font["score"] >= max(.86, embedding_candidates[0]["score"] - .04):
                 if font["family"] not in {row["family"] for row in possible}:
                     possible.append({key: font[key] for key in ("family", "category", "url")})
         for font in [font for font in extended if font["category"] == category][:3]:
             if font["score"] >= .65:
-                possible.append({key: font[key] for key in ("family", "category", "url")})
+                if font["family"] not in {row["family"] for row in possible}:
+                    possible.append({key: font[key] for key in ("family", "category", "url")})
         possible = possible[:5]
     return {"category": category, "matches": matches, "text": text,
             "identified_font": identified_font, "font_candidates": possible,
-            "font_name_model": "extended-rendered-reference-1",
+            "font_name_model": "trained-retrieval-1" if extended_match.learned_enabled() else "extended-rendered-reference-1",
             "needs_text": False, "match_strength": "uncertain" if ambiguous else "strong" if selected_best >= 0.88 else "possible" if selected_best >= 0.65 else "uncertain",
             "classifier": classifier, "catalog_size": len({font["family"] for font in extended_match.catalog()}),
             "category_model": "similarity-ensemble-1",
@@ -274,10 +301,14 @@ def identify(image: Image.Image, supplied_text: str = "") -> dict:
 
 
 @lru_cache(maxsize=128)
-def preview_png(font_id: str, text: str) -> bytes:
+def preview_png(font_id: str, text: str, weight=None, width=None, optical_size=None) -> bytes:
     if not text or len(text) > 80:
         raise ValueError("Invalid preview text")
-    image = render_reference(font_id, text).copy()
+    if any(value is not None for value in (weight, width, optical_size)):
+        from api.font_variations import render_variation
+        image = render_variation(font_id, text, weight, width, optical_size).convert("RGB")
+    else:
+        image = render_reference(font_id, text).copy()
     image.thumbnail((900, 120), Image.Resampling.LANCZOS)
     canvas = Image.new("RGB", (940, 160), "white")
     canvas.paste(image, ((940 - image.width) // 2, (160 - image.height) // 2))

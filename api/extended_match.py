@@ -7,6 +7,7 @@ comparison. These similarity scores are not probabilities.
 from functools import lru_cache
 from pathlib import Path
 import json
+import os
 from threading import RLock
 
 import numpy as np
@@ -49,6 +50,11 @@ def primary_styles():
 
 
 def render_reference(font_id, text, size=64):
+    with _LOCK:
+        return _render_reference(font_id, text, size)
+
+
+def _render_reference(font_id, text, size=64):
     font = font_face(font_id, size)
     box = font.getbbox(text)
     width, height = box[2] - box[0], box[3] - box[1]
@@ -85,7 +91,7 @@ def coarse_references(text):
     return vectors, np.maximum(norms, 1e-6), np.asarray(aspects, dtype=np.float32)
 
 
-def rank(image, text, limit=8):
+def exhaustive_rank(image, text, limit=8):
     # Lock the font engine and expensive cache fill, bounding duplicate work
     # when several requests arrive together on one warm worker.
     with _LOCK:
@@ -122,7 +128,34 @@ def rank(image, text, limit=8):
         return sorted(found.values(), key=lambda record: -record["score"])[:limit]
 
 
+def learned_enabled():
+    choice = os.environ.get("FONTSENSE_RETRIEVAL_ENGINE", "auto")
+    if choice == "legacy": return False
+    if choice == "candidate": return True
+    policy = ROOT / "retrieval_policy.json"
+    return policy.exists() and json.loads(policy.read_text()).get("enabled", False)
+
+
+def rank(image, text, limit=8):
+    native = None
+    if learned_enabled():
+        from api.retrieval_match import rank as learned_rank
+        result = learned_rank(image, text, limit)
+        if result and result[0]["pixel_score"] >= .8:
+            return result
+        if result: native = result[0].get("native_candidates", [])
+    fallback = exhaustive_rank(image, text, limit)
+    if native is not None:
+        for row in fallback:
+            row["native_candidates"] = native
+            row["method"] = "exhaustive-with-trained-native-references"
+    return fallback
+
+
 def likely_match(ranked, text):
+    if ranked and ranked[0].get("method") == "trained-shortlist-and-glyphs":
+        from api.retrieval_match import likely_match as learned_name
+        return learned_name(ranked, text)
     # Conservative direct-evidence gate; close, compatible fonts stay candidates.
     # This is a retrieval decision, never an exact-identity guarantee.
     if len(ranked) < 2 or sum(char.isalpha() for char in text) < 5 or len(set(text.casefold())) < 4:

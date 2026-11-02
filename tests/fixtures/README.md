@@ -1,5 +1,10 @@
 # Font-name regression images
 
+`retrieval_encoder_parity.npz` contains 12 OFL-derived image patches and the
+actual normalized PyTorch vectors recorded at ONNX export. It verifies that
+the portable runtime preserves those outputs within floating-point tolerance;
+it is a runtime regression fixture, not accuracy evidence or a font program.
+
 `impact_typography.png` is the complete word Typography rendered locally with
 the Windows system Impact font. `impact_screenshot_crop.png` is the cropped text
 region from the user's reported failing screenshot. These are regression cases,
