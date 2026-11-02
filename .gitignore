@@ -46,4 +46,6 @@ artifacts/*_final.joblib
 # Reproducible web assets are fetched and checksum-verified at build time.
 artifacts/web/fonts/
 artifacts/web/text_recognition.onnx
+artifacts/web/text_detection.onnx
+artifacts/web/text_recognition_secondary.onnx
 artifacts/web/extended-fonts/

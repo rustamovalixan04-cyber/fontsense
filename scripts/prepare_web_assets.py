@@ -65,6 +65,10 @@ if __name__ == "__main__":
     catalog = json.loads((ROOT / "font_catalog.json").read_text())
     ocr = json.loads((ROOT / "ocr_source.json").read_text())
     jobs = [("text_recognition.onnx", ocr["url"], ocr["sha256"])]
+    layout_path = ROOT / 'ocr_layout_source.json'
+    if layout_path.exists():
+        layout = json.loads(layout_path.read_text())
+        jobs.extend((source['file'], source['url'], source['sha256']) for source in layout.values() if isinstance(source, dict) and 'file' in source)
     for font in catalog["fonts"]:
         jobs.extend([
             (font["file"], font["download_url"], font["sha256"]),

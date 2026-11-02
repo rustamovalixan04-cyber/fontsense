@@ -10,6 +10,8 @@
 !/api/extended_match.py
 !/api/font_variations.py
 !/api/glyph_match.py
+!/api/text_regions.py
+!/api/ocr_refine.py
 !/api/retrieval_*.py
 !/api/name_encoder.py
 !/api/static
@@ -33,6 +35,7 @@
 !/artifacts/web/retrieval_confidence.json
 !/artifacts/web/retrieval_policy.json
 !/artifacts/web/ocr_source.json
+!/artifacts/web/ocr_layout_source.json
 !/artifacts/web/OCR-LICENSE.txt
 !/scripts
 !/scripts/prepare_web_assets.py

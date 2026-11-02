@@ -44,8 +44,16 @@ def rank(image, text, limit=8, candidate_limit=400):
             try: compare(record, render_variation(record["id"], text, **axes), axes)
             except (ValueError, OSError): continue
     result = sorted(found.values(), key=lambda row: -row["score"])
+    appearance, seen = [], set()
+    for record in shortlisted:
+        if record.get('native') or record['family'] in seen: continue
+        seen.add(record['family'])
+        appearance.append({**record, 'score': record['embedding_similarity'],
+                           'method': 'trained-appearance-alternatives', 'native_candidates': native[:5]})
+        if len(appearance) == limit: break
     for row in result:
         row["native_candidates"] = native[:5]
+        row['appearance_candidates'] = appearance
     return result[:limit]
 
 

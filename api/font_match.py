@@ -45,7 +45,7 @@ def recognizer():
     return session, [""] + characters
 
 
-def read_text(image: Image.Image) -> tuple[str, float]:
+def read_text_basic(image: Image.Image) -> tuple[str, float]:
     session, characters = recognizer()
     height = 48
     width = min(1536, max(320, math.ceil(height * image.width / image.height)))
@@ -60,6 +60,11 @@ def read_text(image: Image.Image) -> tuple[str, float]:
     text = "".join(characters[int(i)] for i in indices[selected]).strip()
     confidence = float(predictions.max(axis=1)[selected].mean()) if selected.any() else 0
     return text[:80], confidence
+
+
+def read_text(image: Image.Image) -> tuple[str, float]:
+    from api.ocr_refine import refine
+    return refine(image, read_text_basic(image))
 
 
 @lru_cache(maxsize=256)
@@ -165,22 +170,51 @@ def alignment_scores(normalized: Image.Image, text: str) -> np.ndarray:
     return np.maximum(full, .5 * (full + compact) - .04)
 
 
-def identify(image: Image.Image, supplied_text: str = "") -> dict:
-    started = time.perf_counter()
+def prepare_query(image, supplied_text, region):
+    """Select actual text pixels before OCR, category and font comparisons."""
+    from api.text_regions import crop, detect, needs_detection
     normalized = straighten_line(text_crop(image))
+    if region == -1 or not needs_detection(normalized):
+        if region not in (None, -1): raise ValueError("Choose a detected text line.")
+        return image, normalized, [], None, None
+    regions, prepared = [], {}
+    for index, candidate in enumerate(detect(image)):
+        selected = crop(image, candidate['box'])
+        try: line = straighten_line(text_crop(selected))
+        except ValueError: continue
+        reading = (supplied_text, None) if supplied_text else read_text(line)
+        # Detection can mistake illustration strokes for text. Recognition
+        # rejects those regions; confidence never determines the font's name.
+        if not supplied_text and (sum(c.isalpha() for c in reading[0]) < 2 or reading[1] < .3): continue
+        regions.append({'index': index, 'box': [round(v, 6) for v in candidate['box']], 'text': reading[0] if not supplied_text else f'Text {index + 1}'})
+        prepared[index] = (selected, line, reading)
+        if len(regions) == 4: break
+    if not regions:
+        if region is not None: raise ValueError("No text line found. Try a closer crop.")
+        return image, normalized, [], None, None
+    selected_index = regions[0]['index'] if region is None else region
+    if selected_index not in prepared: raise ValueError("Choose a detected text line.")
+    selected, normalized, reading = prepared[selected_index]
+    return selected, normalized, regions, selected_index, reading
+
+
+def identify(image: Image.Image, supplied_text: str = "", region: int | None = None) -> dict:
+    started = time.perf_counter()
     supplied_text = " ".join(supplied_text.split())
     if len(supplied_text) > 80 or any(ord(c) < 32 or ord(c) > 126 for c in supplied_text):
         raise ValueError("Use up to 80 Latin letters, numbers or punctuation.")
+    selected_image, normalized, regions, selected_region, reading = prepare_query(image, supplied_text, region)
+    region_info = {'text_regions': regions, 'selected_region': selected_region, 'text_source': 'manual' if supplied_text else 'ocr'}
     if supplied_text:
         text, text_confidence = supplied_text, None
     else:
-        text, text_confidence = read_text(normalized)
-    classifier = get_model().predict(image)
+        text, text_confidence = reading if reading is not None else read_text(normalized)
+    classifier = get_model().predict(selected_image)
     if len(text.strip()) < 2 or (text_confidence is not None and text_confidence < 0.55):
         return {"category": classifier["predicted_category"], "matches": [],
                 "text": text, "needs_text": True, "match_strength": "uncertain",
                 "identified_font": None,
-                "classifier": classifier, "elapsed_ms": round((time.perf_counter() - started) * 1000, 1)}
+                "classifier": classifier, **region_info, "elapsed_ms": round((time.perf_counter() - started) * 1000, 1)}
     # Spacing invariance is an alternate alignment, never a penalty on a good
     # full-line match. Its small cost favors an equally good original layout.
     scores = alignment_scores(normalized, text)
@@ -196,8 +230,8 @@ def identify(image: Image.Image, supplied_text: str = "") -> dict:
     # The larger library is a separate, text-specific retrieval stage.
     extended = extended_match.rank(normalized, text)
     broad_name = extended_match.likely_match(extended, text)
-    embedding_candidates = name_candidates(image, text)
-    identified_font = recognize_font_name(image, text, ranked=embedding_candidates)
+    embedding_candidates = name_candidates(selected_image, text)
+    identified_font = recognize_font_name(selected_image, text, ranked=embedding_candidates)
     # The older encoder was calibrated against just 86 names. It must not
     # overrule the larger open-font comparison with a familiar OFL lookalike.
     # Native references remain useful where no font program can be deployed.
@@ -230,6 +264,12 @@ def identify(image: Image.Image, supplied_text: str = "") -> dict:
         identified_font = None
     if identified_font is not None:
         category = identified_font["category"]
+    elif extended and extended[0].get('method') == 'trained-appearance-alternatives':
+        # Similarity for an unfamiliar design is not exact text/family evidence.
+        categories = [font['category'] for font in extended[:5]]
+        majority = max(categories, key=categories.count)
+        if categories.count(majority) >= max(2, math.ceil(len(categories) * .6)):
+            category = majority
     elif extended and extended[0]["score"] >= .90:
         category = extended[0]["category"]
     # Keep the first suggestion consistent with the chosen broad category.
@@ -256,7 +296,9 @@ def identify(image: Image.Image, supplied_text: str = "") -> dict:
                         "url": font["url"], "preview": f"/font-preview/{font['id']}?text=" + quote(text) +
                         "".join("&" + key + "=" + str(value) for key, value in font.get("fit_axes", {}).items())}
                        for font in extended if not identified_font or font["family"] != identified_font["family"]]
-    broader_matches.sort(key=lambda font: font["category"] != category)
+    appearance_only = bool(extended and extended[0].get('method') == 'trained-appearance-alternatives')
+    if not appearance_only:
+        broader_matches.sort(key=lambda font: font["category"] != category)
     if broader_matches:
         matches = broader_matches[:5]
         selected_best = matches[0]["similarity"] / 100
@@ -291,12 +333,16 @@ def identify(image: Image.Image, supplied_text: str = "") -> dict:
                 if font["family"] not in {row["family"] for row in possible}:
                     possible.append({key: font[key] for key in ("family", "category", "url")})
         possible = possible[:5]
+        if appearance_only:
+            # Appearance-only open alternatives do not establish identity.
+            native_names = {font['family'] for font in native_options}
+            possible = [font for font in possible if font['family'] in native_names]
     return {"category": category, "matches": matches, "text": text,
             "identified_font": identified_font, "font_candidates": possible,
             "font_name_model": "trained-retrieval-1" if extended_match.learned_enabled() else "extended-rendered-reference-1",
             "needs_text": False, "match_strength": "uncertain" if ambiguous else "strong" if selected_best >= 0.88 else "possible" if selected_best >= 0.65 else "uncertain",
             "classifier": classifier, "catalog_size": len({font["family"] for font in extended_match.catalog()}),
-            "category_model": "similarity-ensemble-1",
+            "category_model": "similarity-ensemble-1", **region_info,
             "elapsed_ms": round((time.perf_counter() - started) * 1000, 1)}
 
 

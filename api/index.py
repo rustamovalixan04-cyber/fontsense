@@ -92,14 +92,14 @@ async def read_image(request: Request) -> Image.Image:
 
 
 @app.post("/identify", include_in_schema=False)
-async def identify_fonts(request: Request, text: str = "") -> dict:
+async def identify_fonts(request: Request, text: str = "", region: int | None = None) -> dict:
     """Return image-specific font alternatives and a broad category."""
     if len(text) > 80:
         raise HTTPException(status_code=400, detail="Use up to 80 visible characters.")
     image = await read_image(request)
     from api import font_match
     try:
-        return await run_in_threadpool(font_match.identify, image, text)
+        return await run_in_threadpool(font_match.identify, image, text, region)
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from None
     except Exception:

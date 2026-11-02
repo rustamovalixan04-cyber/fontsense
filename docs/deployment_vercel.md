@@ -44,6 +44,14 @@ the previous exhaustive stage for diagnosis. The trained stage also falls back
 to exhaustive comparisons when its best direct-shape evidence is weak.
 No key or remote model request is required for this path.
 
+Poster handling adds `api/text_regions.py`, `api/ocr_refine.py` and
+`ocr_layout_source.json`. The existing asset preparation script also downloads
+`text_detection.onnx` and `text_recognition_secondary.onnx`, checks their pinned
+hashes and includes them through `artifacts/web/**`. They add about 12.7 MB of
+model data, use the existing ONNX Runtime dependency, and do not download at
+request time. Verify a mixed poster, its text-line selector and highlighted
+region as well as clean-line regressions. See [poster matching](poster_matching.md).
+
 The extended retrieval stage adds `extended_catalog.json` and
 `api/extended_match.py`. Build-time fontTools creates checksum-verified, renamed
 Latin reference subsets and retains each OFL license. No new network requests

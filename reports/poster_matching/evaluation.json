@@ -1,0 +1,105 @@
+{
+  "created_utc": "2026-11-02T16:58:01.110103+00:00",
+  "baseline_commit": "cf5de74508a5ec74a664a1f7b14fbfe54833e9fa",
+  "protocol": "24 generated mixed-layout images per set, 12 reserved families outside earlier browser-query families and detected shared-Latin groups. Initial two sets are diagnostic. Final set uses fresh words on the same diagnostically inspected families after line-grouping, OCR and ranking rules were locked. Not an unseen-family or real-camera benchmark. No new gradient training.",
+  "evaluations": {
+    "diagnostic_before_ocr_refinement": {
+      "baseline": {
+        "images": 24,
+        "families": 12,
+        "exact_text": 0,
+        "top3_correct": 0,
+        "category_correct": 6,
+        "names_returned": 0,
+        "correct_names": 0,
+        "needs_text": 21
+      },
+      "candidate": {
+        "images": 24,
+        "families": 12,
+        "exact_text": 16,
+        "top3_correct": 23,
+        "category_correct": 24,
+        "names_returned": 13,
+        "correct_names": 13,
+        "needs_text": 0
+      }
+    },
+    "diagnostic_word_grouping_failure": {
+      "baseline": {
+        "images": 24,
+        "families": 12,
+        "exact_text": 0,
+        "top3_correct": 0,
+        "category_correct": 6,
+        "names_returned": 0,
+        "correct_names": 0,
+        "needs_text": 22
+      },
+      "candidate": {
+        "images": 24,
+        "families": 12,
+        "exact_text": 17,
+        "top3_correct": 23,
+        "category_correct": 24,
+        "names_returned": 16,
+        "correct_names": 16,
+        "needs_text": 0
+      }
+    },
+    "locked_fresh_query_check": {
+      "baseline": {
+        "images": 24,
+        "families": 12,
+        "exact_text": 0,
+        "top3_correct": 0,
+        "category_correct": 8,
+        "names_returned": 0,
+        "correct_names": 0,
+        "needs_text": 24
+      },
+      "candidate": {
+        "images": 24,
+        "families": 12,
+        "exact_text": 22,
+        "top3_correct": 24,
+        "category_correct": 24,
+        "names_returned": 18,
+        "correct_names": 18,
+        "needs_text": 0
+      }
+    }
+  },
+  "ocr_development": {
+    "real_browser_images": 120,
+    "v4_exact": 115,
+    "v5_exact": 115,
+    "visual_refinement_exact": 116,
+    "metric": "Exact text ignoring case and whitespace; development model-selection evidence only."
+  },
+  "outside_library_regression": {
+    "conditions": 24,
+    "names_withheld": 24,
+    "kind": "Reused outside-index native query regression; not a new independent accuracy test."
+  },
+  "checks": {
+    "web_regression_tests": 101,
+    "result": "passed",
+    "seconds": 43.4,
+    "assessed_checkpoint_sha256": "c98cf0d1a02503a02b8f8242fec462ea2a0c455380238ec54fc4f62fdb13bb2f"
+  },
+  "component_sources": {
+    "source": "https://github.com/RapidAI/RapidOCR/blob/main/python/rapidocr/default_models.yaml",
+    "license": "Apache-2.0",
+    "detector": {
+      "file": "text_detection.onnx",
+      "url": "https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/v3.10.0/onnx/PP-OCRv5/det/ch_PP-OCRv5_det_mobile.onnx",
+      "sha256": "4d97c44a20d30a81aad087d6a396b08f786c4635742afc391f6621f5c6ae78ae"
+    },
+    "secondary_reader": {
+      "file": "text_recognition_secondary.onnx",
+      "url": "https://www.modelscope.cn/models/RapidAI/RapidOCR/resolve/v3.10.0/onnx/PP-OCRv5/rec/en_PP-OCRv5_rec_mobile.onnx",
+      "sha256": "c3461add59bb4323ecba96a492ab75e06dda42467c9e3d0c18db5d1d21924be8"
+    }
+  }
+}

@@ -36,6 +36,11 @@ and 64,752 image patches; its reference index contains 1,862 families, including
 See [training, independent checks and limitations](docs/retrieval_training.md).
 These product measurements do not replace the assessed category results below.
 
+For mixed posters, the product also detects and highlights text lines, supports
+line selection, checks uncertain OCR readings against rendered references and
+keeps useful neural alternatives for unfamiliar fonts. See
+[poster handling, evaluation and limitations](docs/poster_matching.md).
+
 ## Table of contents
 
 - [Demo](#demo)

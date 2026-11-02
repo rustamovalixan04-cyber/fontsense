@@ -143,6 +143,8 @@ def rank(image, text, limit=8):
         result = learned_rank(image, text, limit)
         if result and result[0]["pixel_score"] >= .8:
             return result
+        if result and result[0].get('appearance_candidates'):
+            return result[0]['appearance_candidates'][:limit]
         if result: native = result[0].get("native_candidates", [])
     fallback = exhaustive_rank(image, text, limit)
     if native is not None:
@@ -153,6 +155,8 @@ def rank(image, text, limit=8):
 
 
 def likely_match(ranked, text):
+    if ranked and ranked[0].get('method') == 'trained-appearance-alternatives':
+        return None
     if ranked and ranked[0].get("method") == "trained-shortlist-and-glyphs":
         from api.retrieval_match import likely_match as learned_name
         return learned_name(ranked, text)

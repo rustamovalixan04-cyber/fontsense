@@ -1,0 +1,199 @@
+{
+  "kind": "synthetic mixed-layout graphics; not browser or camera photographs",
+  "seed": 92061,
+  "protocol": "12 reserved test families outside the earlier diagnostic/fresh browser query families and detected shared-Latin groups. No new neural gradient training. Queries chosen before this comparison.",
+  "rows": [
+    {
+      "file": "000.png",
+      "font_id": "x-bevan",
+      "family": "Bevan",
+      "category": "serif",
+      "text": "Amber Grove",
+      "dark": false
+    },
+    {
+      "file": "001.png",
+      "font_id": "x-bevan",
+      "family": "Bevan",
+      "category": "serif",
+      "text": "SUMMER HORIZON",
+      "dark": true
+    },
+    {
+      "file": "002.png",
+      "font_id": "x-volkhov",
+      "family": "Volkhov",
+      "category": "serif",
+      "text": "Amber Grove",
+      "dark": false
+    },
+    {
+      "file": "003.png",
+      "font_id": "x-volkhov",
+      "family": "Volkhov",
+      "category": "serif",
+      "text": "SUMMER HORIZON",
+      "dark": true
+    },
+    {
+      "file": "004.png",
+      "font_id": "x-notonastaliqurdu",
+      "family": "Noto Nastaliq Urdu",
+      "category": "serif",
+      "text": "Amber Grove",
+      "dark": false
+    },
+    {
+      "file": "005.png",
+      "font_id": "x-notonastaliqurdu",
+      "family": "Noto Nastaliq Urdu",
+      "category": "serif",
+      "text": "SUMMER HORIZON",
+      "dark": true
+    },
+    {
+      "file": "006.png",
+      "font_id": "x-ysabeauoffice",
+      "family": "Ysabeau Office",
+      "category": "sans_serif",
+      "text": "Amber Grove",
+      "dark": false
+    },
+    {
+      "file": "007.png",
+      "font_id": "x-ysabeauoffice",
+      "family": "Ysabeau Office",
+      "category": "sans_serif",
+      "text": "SUMMER HORIZON",
+      "dark": true
+    },
+    {
+      "file": "008.png",
+      "font_id": "x-valleysans",
+      "family": "Valley Sans",
+      "category": "sans_serif",
+      "text": "Amber Grove",
+      "dark": false
+    },
+    {
+      "file": "009.png",
+      "font_id": "x-valleysans",
+      "family": "Valley Sans",
+      "category": "sans_serif",
+      "text": "SUMMER HORIZON",
+      "dark": true
+    },
+    {
+      "file": "010.png",
+      "font_id": "x-alegreyasanssc",
+      "family": "Alegreya Sans SC",
+      "category": "sans_serif",
+      "text": "Amber Grove",
+      "dark": false
+    },
+    {
+      "file": "011.png",
+      "font_id": "x-alegreyasanssc",
+      "family": "Alegreya Sans SC",
+      "category": "sans_serif",
+      "text": "SUMMER HORIZON",
+      "dark": true
+    },
+    {
+      "file": "012.png",
+      "font_id": "x-reggaeone",
+      "family": "Reggae One",
+      "category": "display",
+      "text": "Amber Grove",
+      "dark": false
+    },
+    {
+      "file": "013.png",
+      "font_id": "x-reggaeone",
+      "family": "Reggae One",
+      "category": "display",
+      "text": "SUMMER HORIZON",
+      "dark": true
+    },
+    {
+      "file": "014.png",
+      "font_id": "x-happymonkey",
+      "family": "Happy Monkey",
+      "category": "display",
+      "text": "Amber Grove",
+      "dark": false
+    },
+    {
+      "file": "015.png",
+      "font_id": "x-happymonkey",
+      "family": "Happy Monkey",
+      "category": "display",
+      "text": "SUMMER HORIZON",
+      "dark": true
+    },
+    {
+      "file": "016.png",
+      "font_id": "x-turretroad",
+      "family": "Turret Road",
+      "category": "display",
+      "text": "Amber Grove",
+      "dark": false
+    },
+    {
+      "file": "017.png",
+      "font_id": "x-turretroad",
+      "family": "Turret Road",
+      "category": "display",
+      "text": "SUMMER HORIZON",
+      "dark": true
+    },
+    {
+      "file": "018.png",
+      "font_id": "x-kaushanscript",
+      "family": "Kaushan Script",
+      "category": "handwriting",
+      "text": "Amber Grove",
+      "dark": false
+    },
+    {
+      "file": "019.png",
+      "font_id": "x-kaushanscript",
+      "family": "Kaushan Script",
+      "category": "handwriting",
+      "text": "SUMMER HORIZON",
+      "dark": true
+    },
+    {
+      "file": "020.png",
+      "font_id": "x-greyqo",
+      "family": "Grey Qo",
+      "category": "handwriting",
+      "text": "Amber Grove",
+      "dark": false
+    },
+    {
+      "file": "021.png",
+      "font_id": "x-greyqo",
+      "family": "Grey Qo",
+      "category": "handwriting",
+      "text": "SUMMER HORIZON",
+      "dark": true
+    },
+    {
+      "file": "022.png",
+      "font_id": "x-sixtyfour",
+      "family": "Sixtyfour",
+      "category": "monospace",
+      "text": "Amber Grove",
+      "dark": false
+    },
+    {
+      "file": "023.png",
+      "font_id": "x-sixtyfour",
+      "family": "Sixtyfour",
+      "category": "monospace",
+      "text": "SUMMER HORIZON",
+      "dark": true
+    }
+  ]
+}

@@ -56,8 +56,10 @@ Up to 400 real source styles are compared using the recognized text, both
 full-line and spacing-tolerant descriptors. Reliable separated glyphs add
 letter-shape evidence. The five strongest open families can be fitted to real
 supported weight, width and optical-size axes, one axis at a time. The
-exhaustive matcher remains a fallback when direct shape evidence is weak.
-Native candidates survive that fallback.
+exhaustive matcher remains available. The subsequent
+[poster-matching release](poster_matching.md) keeps neural appearance
+alternatives when direct shape evidence is weak, and uses exhaustive search
+if no such alternatives can be formed. Native candidates are preserved.
 
 The 12-patch ONNX parity check has maximum absolute error 3.82e-7 against
 the actual PyTorch vectors. Runtime verifies model and index hashes. No
