@@ -1,0 +1,173 @@
+{
+  "version": "font-name-encoder-1",
+  "sha256": "50b69cf1a240961c7989fcbb4a37f59409597502e1371a55a00eb09926637194",
+  "seed": 20261103,
+  "family_splits": {
+    "Tinos": "validation",
+    "Gelasio": "train",
+    "Libre Baskerville": "train",
+    "Libre Caslon Text": "train",
+    "Lora": "train",
+    "EB Garamond": "validation",
+    "Merriweather": "train",
+    "Crimson Pro": "train",
+    "Spectral": "validation",
+    "Noto Serif": "train",
+    "PT Serif": "train",
+    "Cormorant Garamond": "train",
+    "Arimo": "train",
+    "Roboto": "train",
+    "Inter": "train",
+    "Open Sans": "train",
+    "Lato": "train",
+    "Montserrat": "train",
+    "Nunito": "train",
+    "Poppins": "train",
+    "Work Sans": "validation",
+    "Carlito": "validation",
+    "Source Sans 3": "train",
+    "Noto Sans": "validation",
+    "PT Sans": "train",
+    "Cousine": "train",
+    "Roboto Mono": "train",
+    "IBM Plex Mono": "train",
+    "Inconsolata": "train",
+    "Space Mono": "validation",
+    "JetBrains Mono": "train",
+    "Anonymous Pro": "validation",
+    "DM Mono": "train",
+    "Anton": "train",
+    "Bebas Neue": "train",
+    "Bungee": "train",
+    "Abril Fatface": "train",
+    "Alfa Slab One": "train",
+    "Black Ops One": "train",
+    "Monoton": "train",
+    "Righteous": "train",
+    "Caveat": "train",
+    "Patrick Hand": "train",
+    "Dancing Script": "train",
+    "Pacifico": "validation",
+    "Shadows Into Light": "train",
+    "Kalam": "train",
+    "Sacramento": "train",
+    "Comic Neue": "train",
+    "Handlee": "validation",
+    "Allura": "train",
+    "Architects Daughter": "validation",
+    "Comic Relief": "train",
+    "Charm": "train",
+    "Italianno": "train",
+    "Niconne": "validation",
+    "Lobster": "train",
+    "Press Start 2P": "train",
+    "Bowlby One SC": "validation",
+    "Frijole": "train",
+    "Nosifer": "train",
+    "Fascinate": "validation",
+    "Limelight": "validation",
+    "Gravitas One": "train",
+    "Modak": "train",
+    "Rampart One": "validation",
+    "Chango": "validation",
+    "Great Vibes": "train",
+    "Cookie": "validation",
+    "Alex Brush": "train",
+    "Bad Script": "validation",
+    "Covered By Your Grace": "train",
+    "Gloria Hallelujah": "train",
+    "Kaushan Script": "train",
+    "Nanum Pen Script": "train",
+    "Nothing You Could Do": "train"
+  },
+  "training_families": 57,
+  "validation_families": 19,
+  "training_patches": 7296,
+  "validation_queries": 114,
+  "selected_epoch": 10,
+  "validation_name_top1": 0.8421052631578947,
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 4.85906550131346,
+      "validation_name_top1": 0.5526315789473685,
+      "seconds": 17.9
+    },
+    {
+      "epoch": 2,
+      "loss": 2.8443196259046855,
+      "validation_name_top1": 0.7105263157894737,
+      "seconds": 18.2
+    },
+    {
+      "epoch": 3,
+      "loss": 2.168767063241256,
+      "validation_name_top1": 0.7719298245614035,
+      "seconds": 17.4
+    },
+    {
+      "epoch": 4,
+      "loss": 1.8321454681848224,
+      "validation_name_top1": 0.7807017543859649,
+      "seconds": 19.3
+    },
+    {
+      "epoch": 5,
+      "loss": 1.5621822492072457,
+      "validation_name_top1": 0.7543859649122807,
+      "seconds": 18.2
+    },
+    {
+      "epoch": 6,
+      "loss": 1.3499703399444882,
+      "validation_name_top1": 0.7543859649122807,
+      "seconds": 17.8
+    },
+    {
+      "epoch": 7,
+      "loss": 1.1818233595082634,
+      "validation_name_top1": 0.8070175438596491,
+      "seconds": 18.1
+    },
+    {
+      "epoch": 8,
+      "loss": 1.0524747795180271,
+      "validation_name_top1": 0.8245614035087719,
+      "seconds": 18.2
+    },
+    {
+      "epoch": 9,
+      "loss": 0.9256184516768706,
+      "validation_name_top1": 0.8157894736842105,
+      "seconds": 18.7
+    },
+    {
+      "epoch": 10,
+      "loss": 0.8310765145640624,
+      "validation_name_top1": 0.8421052631578947,
+      "seconds": 18.1
+    },
+    {
+      "epoch": 11,
+      "loss": 0.7397359303737941,
+      "validation_name_top1": 0.8245614035087719,
+      "seconds": 17.6
+    },
+    {
+      "epoch": 12,
+      "loss": 0.6596733335601656,
+      "validation_name_top1": 0.8157894736842105,
+      "seconds": 17.7
+    }
+  ],
+  "mlflow_run_id": "2b0aa33a4f254918a56f52d932cdf7ec",
+  "input_size": [
+    112,
+    48
+  ],
+  "embedding_dimensions": 64,
+  "source": "OFL whole-word images only; source-family names are training targets, never image inputs. Windows families are gallery-only.",
+  "evaluation": "Family-held-out embedding retrieval: reference words and validation query words are disjoint. This is font-name retrieval, separate from frozen capstone category evaluation.",
+  "warm_start_checkpoint_sha256": "c98cf0d1a02503a02b8f8242fec462ea2a0c455380238ec54fc4f62fdb13bb2f",
+  "validation_scope": "Validation families are excluded from this fine-tuning run. The starting category CNN was pretrained separately, so this is not a claim that all validation families were unseen in every pretraining source."
+}

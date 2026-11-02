@@ -20,6 +20,11 @@ real font previews and links, and accepts corrected image text for refinement.
 It requires no API key. See [font matching and limitations](docs/font_matching.md)
 and [deployment instructions](docs/deployment_vercel.md).
 
+A separate selective [font-name recognizer](docs/font_identification.md) now
+compares 86 reference families. The page separates **Likely font** (for example,
+Impact) from **Similar fonts** (for example, Anton). Uncertain names are withheld;
+the alternatives remain available. Windows font binaries are not redistributed.
+
 ## Table of contents
 
 - [Demo](#demo)

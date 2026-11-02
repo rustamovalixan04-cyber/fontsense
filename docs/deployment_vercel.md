@@ -22,6 +22,12 @@ No key is needed for matching. The separate private OpenAI pilot requires
 server credentials and shared rate limits; see [its guide](openai_analysis.md).
 Do not put those secrets into the browser, source files, or URLs.
 
+The checked-in font-name encoder and reference-statistics archives are included
+with the function. No name-model training or native Windows fonts are needed
+during deployment. A smoke test should upload the Impact regression PNG and
+confirm `identified_font.family` is `Impact` with separate alternatives.
+See [font identification](font_identification.md) for coverage and limits.
+
 ## Deployment contents
 
 `.vercelignore` uploads only the API, page, dependency/config files, small

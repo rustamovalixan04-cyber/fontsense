@@ -6,6 +6,8 @@
 !/api/compact.py
 !/api/font_match.py
 !/api/category_ensemble.py
+!/api/font_identity.py
+!/api/name_encoder.py
 !/api/static
 !/api/static/index.html
 !/artifacts
@@ -14,6 +16,10 @@
 !/artifacts/web/web_runtime.json
 !/artifacts/web/category_ensemble.npz
 !/artifacts/web/category_ensemble.json
+!/artifacts/web/font_name_encoder.npz
+!/artifacts/web/font_name_encoder.json
+!/artifacts/web/font_name_gallery.npz
+!/artifacts/web/font_name_gallery.json
 !/artifacts/web/font_catalog.json
 !/artifacts/web/ocr_source.json
 !/artifacts/web/OCR-LICENSE.txt

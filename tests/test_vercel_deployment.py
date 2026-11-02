@@ -54,7 +54,9 @@ def test_vercel_asgi_app_and_health_check() -> None:
     assert "fetch('/identify'" in page.text
     assert "idle" not in page.text.lower()
     assert "frozen 60%" not in page.text
-    assert "Closest matches" in page.text
+    assert "Similar fonts" in page.text
+    assert "Likely font" in page.text
+    assert "identified_font" in page.text
     assert "Get font" in page.text
     assert "prepareImageForUpload" in page.text
     assert "canvas.toBlob" in page.text

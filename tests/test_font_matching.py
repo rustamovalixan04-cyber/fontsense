@@ -28,7 +28,7 @@ def test_font_matching_returns_real_catalog_entries_and_text():
     result = identify(specimen("tinos"))
     assert result["category"] == "serif"
     assert result["text"].replace(" ", "").lower() == "visualcraft"
-    assert result["matches"][0]["family"] == "Tinos"
+    assert (result.get("identified_font") or result["matches"][0])["family"] == "Tinos"
     assert result["needs_text"] is False
     known = {record["id"] for record in catalog()}
     assert all(match["id"] in known for match in result["matches"])
@@ -109,7 +109,7 @@ def test_bold_and_italic_keep_their_category_and_family(font_id, category, famil
     image = specimen(font_id, "Letters and lines")
     result = identify(image)
     assert result["category"] == category
-    assert result["matches"][0]["family"] == family
+    assert (result.get("identified_font") or result["matches"][0])["family"] == family
     assert len({match["family"] for match in result["matches"]}) == len(result["matches"])
 
 
@@ -117,7 +117,7 @@ def test_rotation_does_not_turn_serif_into_handwriting():
     image = specimen("tinos-italic", "Sphinx 27").rotate(2.5, Image.Resampling.BICUBIC, expand=True, fillcolor="white")
     result = identify(image)
     assert result["category"] == "serif"
-    assert result["matches"][0]["family"] == "Tinos"
+    assert (result.get("identified_font") or result["matches"][0])["family"] == "Tinos"
 
 
 def test_missing_ocr_space_can_still_match_letter_shapes():

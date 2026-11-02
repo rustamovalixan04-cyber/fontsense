@@ -18,6 +18,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 from api.compact import get_model, text_crop
 from api.category_ensemble import feature_vector, predict as predict_category
+from api.font_identity import recognize as recognize_font_name
 
 ROOT = Path(__file__).resolve().parents[1] / "artifacts/web"
 
@@ -176,6 +177,7 @@ def identify(image: Image.Image, supplied_text: str = "") -> dict:
     if len(text.strip()) < 2 or (text_confidence is not None and text_confidence < 0.55):
         return {"category": classifier["predicted_category"], "matches": [],
                 "text": text, "needs_text": True, "match_strength": "uncertain",
+                "identified_font": None,
                 "classifier": classifier, "elapsed_ms": round((time.perf_counter() - started) * 1000, 1)}
     # Spacing invariance is an alternate alignment, never a penalty on a good
     # full-line match. Its small cost favors an equally good original layout.
@@ -188,10 +190,15 @@ def identify(image: Image.Image, supplied_text: str = "") -> dict:
     other = max(float(scores[i]) for i in order if catalog()[i]["category"] != catalog()[order[0]]["category"])
     if best >= .90 and best - other >= .06:
         category = catalog()[order[0]]["category"]
+    identified_font = recognize_font_name(image, text)
+    if identified_font is not None:
+        category = identified_font["category"]
     # Keep the first suggestion consistent with the chosen broad category.
     order = [i for i in order if catalog()[i]["category"] == category] + [i for i in order if catalog()[i]["category"] != category]
     if best < .65:
         order = [i for i in order if catalog()[i]["category"] == category]
+    if identified_font is not None:
+        order = [i for i in order if catalog()[i]["family"] != identified_font["family"]]
     order = order[:5]
     selected_best = float(scores[order[0]])
     decorative = {"display", "handwriting"}
@@ -206,6 +213,7 @@ def identify(image: Image.Image, supplied_text: str = "") -> dict:
                         "url": "https://fonts.google.com/specimen/" + quote(font["family"]),
                         "preview": f"/font-preview/{font['id']}?text=" + quote(text)})
     return {"category": category, "matches": matches, "text": text,
+            "identified_font": identified_font, "font_name_model": "font-name-encoder-1",
             "needs_text": False, "match_strength": "uncertain" if ambiguous else "strong" if selected_best >= 0.88 else "possible" if selected_best >= 0.65 else "uncertain",
             "classifier": classifier, "catalog_size": len({font["family"] for font in catalog()}),
             "category_model": "similarity-ensemble-1",
