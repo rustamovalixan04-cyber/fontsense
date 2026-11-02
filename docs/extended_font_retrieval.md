@@ -32,6 +32,10 @@ OFL text are downloaded/derived during builds, ignored by Git and not served to
 the browser. The product's family labels describe the original reference source;
 they are not the modified program's internal names.
 
+Build dependencies explicitly include lxml 6.1.1: the six SVG-bearing source
+assets require it for fontTools subsetting. It is required in both hosting and
+CI rather than relying on its incidental presence in a training environment.
+
 This follows the [OFL modification FAQ](https://openfontlicense.org/ofl-faq/)
 and the source [Google Fonts repository](https://github.com/google/fonts).
 No Windows font program is copied, subset, downloaded or deployed. The earlier
