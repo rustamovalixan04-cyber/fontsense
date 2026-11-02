@@ -41,6 +41,7 @@ if __name__ == "__main__":
             (font["file"], font["download_url"], font["sha256"]),
             ("fonts/" + font["id"] + "-OFL.txt", font["license_url"], font["license_sha256"]),
         ])
+    jobs = list(dict.fromkeys(jobs))  # Variable styles can share the same file.
     with ThreadPoolExecutor(max_workers=8) as pool:
         list(pool.map(download, jobs))
-    print("Verified", len(catalog["fonts"]), "licensed reference fonts and the OCR model.")
+    print("Verified", len({font["family"] for font in catalog["fonts"]}), "licensed families /", len(catalog["fonts"]), "styles and the OCR model.")

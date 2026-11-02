@@ -49,7 +49,7 @@ if(!/\.(png|jpe?g|webp)$/i.test(file.name)&&!['image/png','image/jpeg','image/we
 preparing=true;buttons();message('Preparing image…');try{const prepared=await prepareImageForUpload(file);if(thisVersion!==version)return;selected=prepared;previewUrl=URL.createObjectURL(prepared);preview.src=previewUrl;preview.hidden=false;label.hidden=true;remove.hidden=false;message('');}
 catch(error){if(thisVersion===version)message(error.message||'This image could not be opened.',true);}finally{if(thisVersion===version){preparing=false;buttons();}}}
 function render(data){
-matches.replaceChildren();empty.hidden=true;results.hidden=false;$('category').textContent=labels[data.category]||data.category;textInput.value=data.text||'';
+matches.replaceChildren();empty.hidden=true;results.hidden=false;$('category').textContent=(data.match_strength==='uncertain'?'Possible ':'')+(labels[data.category]||data.category);textInput.value=data.text||'';
 for(const [index,font] of data.matches.slice(0,3).entries()){
 const card=document.createElement('article');card.className='match';const top=document.createElement('div');top.className='match-top';const name=document.createElement('div');name.className='match-name';const rank=document.createElement('span');rank.className='rank';rank.textContent=String(index+1).padStart(2,'0');const title=document.createElement('h3');title.textContent=font.family;name.append(rank,title);
 const link=document.createElement('a');link.textContent='Get font';link.href=font.url;link.target='_blank';link.rel='noopener noreferrer';top.append(name,link);

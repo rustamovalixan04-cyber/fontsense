@@ -5,12 +5,15 @@
 !/api/analysis.py
 !/api/compact.py
 !/api/font_match.py
+!/api/category_ensemble.py
 !/api/static
 !/api/static/index.html
 !/artifacts
 !/artifacts/web
 !/artifacts/web/cnn_v1.npz
 !/artifacts/web/web_runtime.json
+!/artifacts/web/category_ensemble.npz
+!/artifacts/web/category_ensemble.json
 !/artifacts/web/font_catalog.json
 !/artifacts/web/ocr_source.json
 !/artifacts/web/OCR-LICENSE.txt

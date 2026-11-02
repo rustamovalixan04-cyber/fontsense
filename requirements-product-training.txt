@@ -1,0 +1,4 @@
+# Development only: the deployed portable combiner requires NumPy, not sklearn.
+-r requirements-vercel.txt
+scikit-learn==1.8.0
+mlflow-skinny==3.5.1

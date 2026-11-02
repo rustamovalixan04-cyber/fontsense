@@ -14,7 +14,8 @@ checkpoint and assessed results preserved below. The web product also finds
 visually similar families from a licensed reference library. Suggestions are
 alternatives, not proof of the screenshot's original font.
 
-The updated web interface uses OCR and rendered-font comparison, displays three
+The updated web interface uses OCR, rendered-font comparison and a small trained
+category combiner with 56 reference families / 159 styles. It displays three
 real font previews and links, and accepts corrected image text for refinement.
 It requires no API key. See [font matching and limitations](docs/font_matching.md)
 and [deployment instructions](docs/deployment_vercel.md).

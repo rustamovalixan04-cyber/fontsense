@@ -9,7 +9,7 @@ from PIL import Image, ImageDraw, ImageOps
 import pytest
 
 from api.compact import CHECKPOINT_SHA256, get_model, text_crop
-from api.font_match import catalog, identify, render_reference
+from api.font_match import catalog, font_face, identify, preview_png, render_reference
 from api.index import app
 
 
@@ -95,3 +95,50 @@ def test_health_uses_small_runtime_without_importing_training_frameworks():
 def test_invalid_manual_text_is_rejected(text):
     with pytest.raises(ValueError):
         identify(specimen("tinos"), text)
+
+
+@pytest.mark.parametrize("font_id,category,family", [
+    ("tinos-bold", "serif", "Tinos"),
+    ("tinos-italic", "serif", "Tinos"),
+    ("tinos-bolditalic", "serif", "Tinos"),
+    ("arimo-bold", "sans_serif", "Arimo"),
+    ("arimo-italic", "sans_serif", "Arimo"),
+    ("cousine-bolditalic", "monospace", "Cousine"),
+])
+def test_bold_and_italic_keep_their_category_and_family(font_id, category, family):
+    image = specimen(font_id, "Letters and lines")
+    result = identify(image)
+    assert result["category"] == category
+    assert result["matches"][0]["family"] == family
+    assert len({match["family"] for match in result["matches"]}) == len(result["matches"])
+
+
+def test_rotation_does_not_turn_serif_into_handwriting():
+    image = specimen("tinos-italic", "Sphinx 27").rotate(2.5, Image.Resampling.BICUBIC, expand=True, fillcolor="white")
+    result = identify(image)
+    assert result["category"] == "serif"
+    assert result["matches"][0]["family"] == "Tinos"
+
+
+def test_missing_ocr_space_can_still_match_letter_shapes():
+    result = identify(specimen("arimo", "Modern Layout"), "ModernLayout")
+    assert result["category"] == "sans_serif"
+    assert "Arimo" in [match["family"] for match in result["matches"][:3]]
+
+
+def test_preview_does_not_mutate_cached_full_size_reference():
+    text = "Wide mixed letters " * 4
+    source = render_reference("arimo", text)
+    dimensions = source.size
+    assert dimensions[0] > 900
+    preview_png("arimo", text)
+    assert render_reference("arimo", text).size == dimensions
+
+
+def test_variable_font_bold_is_a_real_weight_change():
+    text = "Bold strokes"
+    regular = render_reference("arimo", text).convert("L")
+    bold = render_reference("arimo-bold", text).convert("L")
+    regular_ink = float((255 - np.asarray(regular, dtype=np.float32)).sum())
+    bold_ink = float((255 - np.asarray(bold, dtype=np.float32)).sum())
+    assert bold_ink > regular_ink * 1.25
