@@ -1,0 +1,13 @@
+{
+  "original_commit": "6622a5e76f8927da14986114c816e026d23aaf4a",
+  "failed_deployment": "dpl_GKx6UbhQYqjFG4eiskerdCmZ2Wr6",
+  "failure": "Build rejected a FontSpace ZIP-container checksum before completing asset preparation.",
+  "change": "Allow a repackaged ZIP only when the selected original font, complete license and derived subset exactly match all recorded hashes. Reject non-ZIP responses, oversized packages and altered components. Validate this source bank first during builds.",
+  "validation": {
+    "freshly_downloaded_source_files": 153,
+    "regression_tests_passed": 109,
+    "font_and_license_tampering_rejected": true,
+    "complete_local_asset_preparation_passed": true
+  },
+  "scope": "Build importer only. Model weights, index vectors, calibration, data splits and final evaluation outcomes are unchanged."
+}

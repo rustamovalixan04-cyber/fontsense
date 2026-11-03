@@ -29,13 +29,17 @@ def payload(url, digest):
         except (URLError, TimeoutError):
             if attempt == 2: raise
             time.sleep(1)
-    if len(data) > MAX_DOWNLOAD or hashlib.sha256(data).hexdigest() != digest:
-        raise ValueError('Independent-font download checksum or size mismatch')
+    if len(data) > MAX_DOWNLOAD or (digest is not None and hashlib.sha256(data).hexdigest() != digest):
+        raise ValueError('Independent-font download checksum or size mismatch: ' + url)
+    if digest is None and not zipfile.is_zipfile(BytesIO(data)):
+        raise ValueError('Independent-font source returned an invalid ZIP: ' + url)
     return data
 
 
 def member(archive, name):
     with zipfile.ZipFile(BytesIO(archive)) as package:
+        if len(package.infolist()) > 1000 or sum(info.file_size for info in package.infolist()) > 64 * 1024 * 1024:
+            raise ValueError('Oversized independent-font archive')
         info = package.getinfo(name)
         if info.is_dir() or info.file_size > MAX_MEMBER:
             raise ValueError('Invalid independent-font archive member')
@@ -52,16 +56,21 @@ def prepare(source, root):
             and license_target.exists() and hashlib.sha256(license_target.read_bytes()).hexdigest() == source['license_sha256']):
         return
     if source['kind'] == 'archive':
-        archive = payload(source['download_url'],source['archive_sha256'])
+        # FontSpace can rebuild the ZIP wrapper (timestamps/extra documents).
+        # Pin the exact selected font and license bytes below, independently of
+        # that wrapper. The observed archive hash remains in the source audit.
+        archive = payload(source['download_url'],None)
         raw, license_data = member(archive,source['member']),member(archive,source['license_member'])
     else:
         raw = payload(source['download_url'],source['source_sha256'])
         license_data = payload(source['license_url'],source['license_sha256'])
     if hashlib.sha256(raw).hexdigest() != source['source_sha256'] or hashlib.sha256(license_data).hexdigest() != source['license_sha256']:
-        raise ValueError('Independent-font source or license checksum mismatch')
+        raise ValueError('Independent-font source or license checksum mismatch: ' + source['id'])
     converted = make_subset(raw,source['id'])
     if hashlib.sha256(converted).hexdigest() != source['sha256']:
         raise ValueError('Independent-font subset checksum mismatch')
     target.parent.mkdir(parents=True,exist_ok=True)
     target.write_bytes(converted)
     license_target.write_bytes(license_data)
+    if source['kind'] == 'archive' and hashlib.sha256(archive).hexdigest() != source['archive_sha256']:
+        print('Verified repackaged font and license components:', source['id'], flush=True)

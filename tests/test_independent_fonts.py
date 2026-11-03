@@ -10,6 +10,7 @@ import pytest
 from api.extended_match import catalog, render_reference
 from api.font_match import identify
 from scripts.independent_font_assets import member, prepare
+from scripts import independent_font_assets
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -59,3 +60,34 @@ def test_archive_member_is_read_without_extracting_its_path(tmp_path, monkeypatc
     monkeypatch.chdir(tmp_path)
     assert member(stream.getvalue(), '../outside.txt') == b'in-memory only'
     assert not list(tmp_path.iterdir())
+
+
+@pytest.mark.parametrize('changed_member', [None, 'font.ttf', 'LICENSE.txt'])
+def test_archive_wrapper_may_change_but_font_and_license_must_match(tmp_path, monkeypatch, changed_member):
+    original = {'font.ttf': b'exact-font-program', 'LICENSE.txt': b'exact-license'}
+    def package(values, year):
+        stream = BytesIO()
+        with zipfile.ZipFile(stream, 'w') as archive:
+            for name, data in values.items(): archive.writestr(zipfile.ZipInfo(name, (year, 1, 1, 0, 0, 0)), data)
+        return stream.getvalue()
+    sha = lambda data: hashlib.sha256(data).hexdigest()
+    old_archive = package(original, 2020)
+    current = dict(original)
+    if changed_member: current[changed_member] += b'-modified'
+    new_archive = package(current, 2026)
+    assert sha(new_archive) != sha(old_archive)
+    source = {'id': 'example', 'kind': 'archive', 'file': 'independent-fonts/example.ttf',
+              'license_file': 'independent-fonts/example-LICENSE.txt', 'download_url': 'https://get.fontspace.co/example.zip',
+              'archive_sha256': sha(old_archive), 'member': 'font.ttf', 'license_member': 'LICENSE.txt',
+              'source_sha256': sha(original['font.ttf']), 'license_sha256': sha(original['LICENSE.txt']),
+              'sha256': sha(b'renamed-subset')}
+    monkeypatch.setattr(independent_font_assets, 'payload', lambda url, digest: new_archive)
+    converted = []
+    monkeypatch.setattr(independent_font_assets, 'make_subset', lambda raw, name: converted.append(raw) or b'renamed-subset')
+    if changed_member:
+        with pytest.raises(ValueError, match='source or license checksum'): prepare(source, tmp_path)
+        assert not converted and not list(tmp_path.iterdir())
+    else:
+        prepare(source, tmp_path)
+        assert (tmp_path / source['file']).read_bytes() == b'renamed-subset'
+        assert (tmp_path / source['license_file']).read_bytes() == original['LICENSE.txt']

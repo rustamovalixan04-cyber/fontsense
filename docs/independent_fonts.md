@@ -28,6 +28,10 @@ References are downloaded at build time, checksum-verified, subset to Latin
 and renamed deterministically. Full copyright and license files accompany
 the subsets. Archive members are read in memory; archive paths are never
 extracted to disk. No native Windows font programs are distributed.
+The originally observed ZIP-container hash is retained for provenance.
+FontSpace ZIP containers can vary independently of the selected contents, so
+builds pin the exact original font, full license and derived subset bytes;
+changed font or license bytes still fail before any asset is written.
 
 ## Actual training
 

@@ -62,6 +62,14 @@ def extended_asset(source):
 
 
 if __name__ == "__main__":
+    # Verify the independent download service before the much larger Google bank.
+    independent_path = ROOT / 'independent_catalog.json'
+    if independent_path.exists():
+        from scripts.independent_font_assets import prepare
+        independent = json.loads(independent_path.read_text(encoding='utf-8'))
+        with ThreadPoolExecutor(max_workers=4) as pool:
+            list(pool.map(lambda source: prepare(source, ROOT), independent['sources']))
+        print('Verified independent catalog:', independent['families'], 'families /', independent['styles'], 'styles.', flush=True)
     catalog = json.loads((ROOT / "font_catalog.json").read_text())
     ocr = json.loads((ROOT / "ocr_source.json").read_text())
     jobs = [("text_recognition.onnx", ocr["url"], ocr["sha256"])]
@@ -84,10 +92,3 @@ if __name__ == "__main__":
         with ThreadPoolExecutor(max_workers=8) as pool:
             list(pool.map(extended_asset, extended["sources"]))
         print("Verified extended catalog:", extended["families"], "families /", extended["styles"], "styles.")
-    independent_path = ROOT / 'independent_catalog.json'
-    if independent_path.exists():
-        from scripts.independent_font_assets import prepare
-        independent = json.loads(independent_path.read_text(encoding='utf-8'))
-        with ThreadPoolExecutor(max_workers=4) as pool:
-            list(pool.map(lambda source: prepare(source, ROOT), independent['sources']))
-        print('Verified independent catalog:', independent['families'], 'families /', independent['styles'], 'styles.')

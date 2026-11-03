@@ -1,11 +1,12 @@
 {
   "regression_tests": {
-    "passed": 106,
-    "seconds": 52.31,
+    "passed": 109,
+    "seconds": 65.14,
     "scope": "Original web/classifier, font identity, retrieval, poster and independent font tests"
   },
   "clean_source_rebuild": {
-    "verified_source_files": 153
+    "verified_source_files": 153,
+    "policy": "Exact source font, full license and generated subset hashes; ZIP-wrapper hash retained as provenance"
   },
   "warm_start_parity": {
     "checked_patches": 12,
