@@ -1,5 +1,6 @@
 """Build whole-word reference vectors without deploying native font programs."""
 from collections import defaultdict
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -58,8 +59,14 @@ def native_render(record, text, size=64):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--checkpoint', type=Path, default=DATA / 'selected-model.pt')
+    args = parser.parse_args()
     torch.set_num_threads(6)
-    state = torch.load(DATA / "selected-model.pt", map_location="cpu", weights_only=True)
+    model_metadata = json.loads((ROOT / 'artifacts/web/retrieval_encoder.json').read_text())
+    if model_metadata.get('checkpoint_sha256') and hashlib.sha256(args.checkpoint.read_bytes()).hexdigest() != model_metadata['checkpoint_sha256']:
+        raise ValueError('Index checkpoint does not match the exported encoder')
+    state = torch.load(args.checkpoint, map_location="cpu", weights_only=True)
     model = RetrievalModel(state["head"].shape[0]); model.load_state_dict(state); model.eval()
     sources = [{**record, "native": False} for record in catalog()] + native_sources()
     values, cases, source_ids = [], [], []
@@ -78,7 +85,6 @@ def main():
         if i % 100 == 0: print("Indexed styles", i, "/", len(sources), flush=True)
     destination = ROOT / "artifacts/web/retrieval_index.npz"
     np.savez_compressed(destination, vectors=np.asarray(values, dtype=np.float32), cases=np.asarray(cases, dtype=np.int8), sources=np.asarray(source_ids, dtype=np.int32))
-    model_metadata = json.loads((ROOT / "artifacts/web/retrieval_encoder.json").read_text())
     metadata = {"version": "broad-reference-index-1", "encoder_sha256": model_metadata["sha256"],
                 "sha256": hashlib.sha256(destination.read_bytes()).hexdigest(),
                 "sources": [{key: value for key, value in source.items() if key not in ("local_file", "file")} for source in sources],

@@ -19,7 +19,8 @@ def test_portable_retrieval_model_matches_real_pytorch_export():
 
 def test_reference_index_contains_verified_unit_vectors_and_native_statistics():
     metadata, arrays = index()
-    assert metadata["reference_families"] == 1862
+    from api.extended_match import primary_styles
+    assert metadata['reference_families'] == len(primary_styles()) + 22
     assert arrays["vectors"].shape == (metadata["reference_vectors"], 96)
     np.testing.assert_allclose(np.linalg.norm(arrays["vectors"], axis=1), 1., atol=3e-5)
     assert len({row["family"] for row in metadata["sources"] if row["native"]}) == 22
@@ -28,8 +29,10 @@ def test_reference_index_contains_verified_unit_vectors_and_native_statistics():
 
 def test_training_families_and_shared_latin_groups_do_not_cross_query_splits():
     contract = json.loads((ROOT / "artifacts/web/retrieval_encoder.json").read_text())
-    assert contract["training_families"] == 1325
-    assert contract["training_images"] == 64752
+    data = json.loads((ROOT / 'reports/independent_fonts/data_contract.json').read_text())
+    assert contract['training_families'] == data['training_families']
+    assert contract['training_images'] == data['training_images']
+    assert len(contract['active_training_families']) == contract['training_families']
     assert all(contract["family_splits"][name] == "train" for name in contract["active_training_families"])
     for group in contract["duplicate_groups"]:
         assert len({contract["family_splits"][name] for name in group}) == 1

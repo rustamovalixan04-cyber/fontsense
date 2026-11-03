@@ -1,9 +1,9 @@
 {
-  "version": "trained-matcher-1",
+  "version": "independent-retrieval-1",
   "enabled": true,
   "shortlist_styles": 400,
   "fallback_pixel_score": 0.8,
-  "encoder_sha256": "159c210ae503f6492a4813e1df63338638b72ad885543648f23bb5de189df5ca",
-  "index_sha256": "fb95831734a403161091ecd02b5dc8922b39c6fd8ae3271a450aa4bcc246faf0",
-  "protocol": "Neural weights and confidence gates locked before final screenshot query evaluation. Enrollment references are separate from query images. No 100% worldwide guarantee."
+  "encoder_sha256": "6894d3edac92f6321dfdcaa19981968256016bb3ae3d430f433a2c9222801f1c",
+  "index_sha256": "4dd45bc81ee21b8d862006c91a3190145c824574f28755746737b475adc4d0de",
+  "protocol": "Validation-selected fine-tuning with family/source grouping; confidence refitted before final independent queries. Known enrollment includes held-out families; actual unknown fonts remain unenrolled. No worldwide accuracy guarantee."
 }

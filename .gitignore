@@ -49,3 +49,4 @@ artifacts/web/text_recognition.onnx
 artifacts/web/text_detection.onnx
 artifacts/web/text_recognition_secondary.onnx
 artifacts/web/extended-fonts/
+artifacts/web/independent-fonts/

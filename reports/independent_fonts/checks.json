@@ -1,0 +1,33 @@
+{
+  "regression_tests": {
+    "passed": 106,
+    "seconds": 52.31,
+    "scope": "Original web/classifier, font identity, retrieval, poster and independent font tests"
+  },
+  "clean_source_rebuild": {
+    "verified_source_files": 153
+  },
+  "warm_start_parity": {
+    "checked_patches": 12,
+    "maximum_absolute_error": 3.818422555923462e-07,
+    "baseline_encoder_sha256": "159c210ae503f6492a4813e1df63338638b72ad885543648f23bb5de189df5ca"
+  },
+  "development_regeneration": {
+    "reference": true,
+    "queries": true,
+    "labels": true,
+    "family_names": true
+  },
+  "artifact_hashes_match": true,
+  "assessed_checkpoint_unchanged": true,
+  "calibration_selection": {
+    "accepted": 30,
+    "correct": 30,
+    "precision": 1.0,
+    "unknown_accepted": 0,
+    "unknown_queries": 137,
+    "queries": 274,
+    "threshold": 0.8615862631198211,
+    "minimum_pixel_score": 0.86
+  }
+}

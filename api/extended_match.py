@@ -19,7 +19,13 @@ _LOCK = RLock()
 
 @lru_cache(maxsize=1)
 def catalog():
-    return tuple(json.loads((ROOT / "extended_catalog.json").read_text(encoding="utf-8"))["fonts"])
+    fonts = json.loads((ROOT / "extended_catalog.json").read_text(encoding="utf-8"))["fonts"]
+    independent = ROOT / "independent_catalog.json"
+    if independent.exists():
+        fonts += json.loads(independent.read_text(encoding="utf-8"))["fonts"]
+    if len({row['id'] for row in fonts}) != len(fonts):
+        raise ValueError('Duplicate font identifier in reference catalogs')
+    return tuple(fonts)
 
 
 @lru_cache(maxsize=512)

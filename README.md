@@ -30,10 +30,13 @@ identity. Windows font binaries are not redistributed.
 
 The web product now includes a separately trained 96-dimensional retrieval
 encoder, letter-shape comparisons, real variable-font fitting and development-
-selected name acceptance rules. It was trained from scratch on 1,325 families
-and 64,752 image patches; its reference index contains 1,862 families, including
-22 native families represented only by derived whole-phrase statistics.
-See [training, independent checks and limitations](docs/retrieval_training.md).
+selected name acceptance rules. Its original product encoder was trained from
+scratch on 1,325 families and 64,752 image patches. The independent-font update
+fine-tunes it on 20,700 patches with old-family replay, adds 81 OFL/CC0 families
+from FontSpace and original designers, and expands the index to 1,943 families.
+That includes 22 native families represented only by derived whole-phrase
+statistics. See [independent font training and evidence](docs/independent_fonts.md)
+and [the original product training protocol](docs/retrieval_training.md).
 These product measurements do not replace the assessed category results below.
 
 For mixed posters, the product also detects and highlights text lines, supports

@@ -15,9 +15,10 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_extended_catalog_is_large_licensed_and_does_not_replace_category_catalog():
     metadata = json.loads((ROOT / "artifacts/web/extended_catalog.json").read_text())
+    independent = json.loads((ROOT / 'artifacts/web/independent_catalog.json').read_text())
     assert metadata["families"] >= 1500
-    assert len(extended_match.primary_styles()) == metadata["families"]
-    assert len(extended_match.catalog()) == metadata["styles"]
+    assert len(extended_match.primary_styles()) == metadata['families'] + independent['families']
+    assert len(extended_match.catalog()) == metadata['styles'] + independent['styles']
     assert all(source["download_url"].startswith("https://raw.githubusercontent.com/google/fonts/") for source in metadata["sources"])
     assert all("source_sha256" in source and "license_sha256" in source for source in metadata["sources"])
     original = json.loads((ROOT / "artifacts/web/font_catalog.json").read_text())

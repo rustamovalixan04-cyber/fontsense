@@ -1,9 +1,10 @@
 """Fit a correctness filter and select its gate on separate validation families.
 
-Unknowns are simulated by removing the query's true family from the enrollment
-result; actual outside-gallery fonts are checked separately in the final audit.
+Unknowns include simulated removal of the true family and actual non-enrolled
+development fonts. A separate outside-gallery pool stays reserved for the final audit.
 """
 import hashlib
+import argparse
 import json
 from pathlib import Path
 import random
@@ -101,20 +102,34 @@ def calibrate_native(negatives):
 
 
 def main():
-    samples = [row for row in json.loads((DATA / "browser/samples.json").read_text()) if row["split"] == "validation"]
-    queries = [(row["family"], Image.open(DATA / "browser" / row["file"]).convert("RGB"), row["phrase"], "browser") for row in samples]
+    browser = ROOT.parent / 'retrieval-training/browser'
+    samples = [row for row in json.loads((browser / 'samples.json').read_text()) if row['split'] == 'validation']
+    queries = [(row["family"], Image.open(browser / row["file"]).convert("RGB"), row["phrase"], "browser") for row in samples]
     # Add independent synthesized conditions from other validation families.
     reserved = {row["family"] for row in samples}
-    splits = json.loads((DATA / "splits.json").read_text())["families"]
+    split_contract = json.loads((DATA / 'splits.json').read_text())
+    splits = split_contract.get('family_splits', split_contract.get('families'))
     extra = [font for font in primary_styles() if splits[font["family"]] == "validation" and font["family"] not in reserved]
     random.Random(SEED + 703).shuffle(extra)
-    for i, font in enumerate(extra[:60]):
+    independent = set(split_contract.get('new_family_splits', {}))
+    chosen = [font for font in extra if font['family'] in independent] + [font for font in extra if font['family'] not in independent][:60]
+    for i, font in enumerate(chosen):
         for text in VALIDATION_TEXTS:
             try:
                 image = augment(render_reference(font["id"], text, 73), random.Random(SEED + i * 13))
                 text_crop(image)
                 queries.append((font["family"], image, text, "synthetic_damage"))
             except (OSError, ValueError): continue
+    if independent:
+        from scripts.independent_training_data import SOURCES, render
+        audited = json.loads((SOURCES / 'audited-catalog.json').read_text())
+        unknown_faces = {row['family']: row for row in audited['fonts'] if splits[row['family']] == 'unknown_validation'}
+        for i, (family, font) in enumerate(sorted(unknown_faces.items())):
+            for text in VALIDATION_TEXTS:
+                for condition in range(2):
+                    image = render(font, text)
+                    if condition: image = augment(image, random.Random(SEED + 901 + i))
+                    queries.append((family, image, text, 'independent_unknown'))
     # Native fonts are outside the open-font rendering bank. Include their
     # distinct-phrase queries as real negative examples for open-font naming.
     for i, source in enumerate(native_sources()):
@@ -123,6 +138,13 @@ def main():
             queries.append((source["family"], native_render(source, text, 73).convert("RGB"), text, "native_graphic"))
     families = sorted({row[0] for row in queries}); random.Random(SEED + 81).shuffle(families)
     fitting = set(families[:round(len(families) * .65)])
+    # Keep linked source families in the same calibration partition too.
+    groups = json.loads((ROOT / 'artifacts/web/retrieval_encoder.json').read_text())['duplicate_groups']
+    for group in groups:
+        present = set(group) & set(families)
+        if present:
+            if min(present) in fitting: fitting.update(present)
+            else: fitting.difference_update(present)
     rows, native_negatives = [], []
     for i, (family, image, visible_text, source) in enumerate(queries):
         normalized = straighten_line(text_crop(image))
@@ -135,10 +157,10 @@ def main():
             native_negatives.append({"partition": "fit" if family in fitting else "selection", "family": family,
                                      "correct": native[0]["family"] == family, "similarity": native[0]["embedding_similarity"], "margin": native[0]["prototype_margin"]})
         rows.append({"family": family, "partition": "fit" if family in fitting else "selection", "source": source,
-                     "unknown": False, "correct": ranked[0]["family"] == family,
+                     "unknown": source == 'independent_unknown', "correct": ranked[0]["family"] == family,
                      "features": confidence_features(ranked, text).tolist()})
         unknown = [font for font in ranked if font["family"] != family]
-        if len(unknown) >= 2:
+        if len(unknown) >= 2 and source != 'independent_unknown':
             rows.append({"family": family, "partition": "fit" if family in fitting else "selection", "source": source,
                          "unknown": True, "correct": False, "features": confidence_features(unknown, text).tolist()})
         if i % 20 == 0: print("Calibration images", i, "/", len(queries), flush=True)
@@ -181,7 +203,11 @@ def main():
 
 
 if __name__ == "__main__":
-    if "--refresh-native" in sys.argv:
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--data-dir', type=Path, default=DATA)
+    parser.add_argument('--refresh-native', action='store_true')
+    args = parser.parse_args(); DATA = args.data_dir
+    if args.refresh_native:
         rows = [row for row in json.loads((DATA / "native-confidence-rows.json").read_text()) if row.get("source") != "actual_unknown"]
         rows.extend(native_unknown_rows())
         families = sorted({row["family"] for row in native_sources() if row["family"] not in NATIVE_FINAL_FAMILIES})

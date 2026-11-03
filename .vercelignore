@@ -17,7 +17,9 @@
 !/api/static
 !/api/static/index.html
 !/artifacts
+/artifacts/*
 !/artifacts/web
+/artifacts/web/*
 !/artifacts/web/cnn_v1.npz
 !/artifacts/web/web_runtime.json
 !/artifacts/web/category_ensemble.npz
@@ -28,6 +30,7 @@
 !/artifacts/web/font_name_gallery.json
 !/artifacts/web/font_catalog.json
 !/artifacts/web/extended_catalog.json
+!/artifacts/web/independent_catalog.json
 !/artifacts/web/retrieval_encoder.onnx
 !/artifacts/web/retrieval_encoder.json
 !/artifacts/web/retrieval_index.npz
@@ -38,8 +41,10 @@
 !/artifacts/web/ocr_layout_source.json
 !/artifacts/web/OCR-LICENSE.txt
 !/scripts
+/scripts/*
 !/scripts/prepare_web_assets.py
 !/scripts/extended_font_assets.py
+!/scripts/independent_font_assets.py
 !/pyproject.toml
 !/requirements-vercel.txt
 !/requirements-analysis.txt

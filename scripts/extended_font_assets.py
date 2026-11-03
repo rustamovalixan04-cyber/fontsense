@@ -1,4 +1,4 @@
-"""Deterministic, renamed Latin reference subsets of verified OFL sources.
+"""Deterministic, renamed Latin reference subsets of verified open sources.
 
 This module runs during builds only. Keep copyright/license names; rename all
 font-family/PostScript names because OFL sources can have Reserved Font Names.
