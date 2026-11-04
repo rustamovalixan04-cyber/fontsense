@@ -1,0 +1,77 @@
+{
+  "method": "Diagnostic reuse of the previously evaluated five non-enrolled independent families (four source groups), with a fresh phrase and tight/margin JPEG conditions. Not an untouched final test or global false-positive estimate.",
+  "images": 10,
+  "names_withheld": 10,
+  "rows": [
+    {
+      "family": "Cairopixel",
+      "condition": "tight",
+      "named": null,
+      "text": "Copper Meadow",
+      "needs_text": false
+    },
+    {
+      "family": "Cairopixel",
+      "condition": "large_margins",
+      "named": null,
+      "text": "Copper Meadow",
+      "needs_text": false
+    },
+    {
+      "family": "Correction Brush",
+      "condition": "tight",
+      "named": null,
+      "text": "COPPER MEADOW",
+      "needs_text": false
+    },
+    {
+      "family": "Correction Brush",
+      "condition": "large_margins",
+      "named": null,
+      "text": "COPPER MEADOW",
+      "needs_text": false
+    },
+    {
+      "family": "Pixeloid Mono",
+      "condition": "tight",
+      "named": null,
+      "text": "Copper Meadow",
+      "needs_text": false
+    },
+    {
+      "family": "Pixeloid Mono",
+      "condition": "large_margins",
+      "named": null,
+      "text": "Copper Meadow",
+      "needs_text": false
+    },
+    {
+      "family": "Pixeloid Sans",
+      "condition": "tight",
+      "named": null,
+      "text": "Copper Meadow",
+      "needs_text": false
+    },
+    {
+      "family": "Pixeloid Sans",
+      "condition": "large_margins",
+      "named": null,
+      "text": "Copper Meadow",
+      "needs_text": false
+    },
+    {
+      "family": "X Company",
+      "condition": "tight",
+      "named": null,
+      "text": "COPPER MEADOW",
+      "needs_text": false
+    },
+    {
+      "family": "X Company",
+      "condition": "large_margins",
+      "named": null,
+      "text": "COPPER MEADOW",
+      "needs_text": false
+    }
+  ]
+}

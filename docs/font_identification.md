@@ -12,7 +12,7 @@ alone could not make the page identify an absent family by name.
 
 The result now separates **Likely font** from **Similar fonts**. A supported,
 confident match can show Impact, with Anton and the other alternatives below.
-When the evidence is weak, the page says **Not identified confidently** and still
+When the evidence is weak, the page says **No verified match** and still
 offers visual alternatives. Similar font names are never presented as proof of
 the uploaded image's original family. No calibrated probability is displayed.
 

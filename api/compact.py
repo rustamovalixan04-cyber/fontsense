@@ -4,6 +4,7 @@ from __future__ import annotations
 from functools import lru_cache
 import hashlib
 import json
+import os
 from pathlib import Path
 import time
 
@@ -19,6 +20,37 @@ FINAL_MODEL_LABEL = "Final CNN"
 FROZEN_THRESHOLD = 0.60
 
 
+def _trim_faint_fragments(mask, contrast):
+    """Discard distant, faint partial rows; keep dark dots/accents and full lines."""
+    occupied = mask.any(axis=1)
+    changes = np.diff(np.r_[False, occupied, False].astype(np.int8))
+    bands = list(zip(np.flatnonzero(changes == 1), np.flatnonzero(changes == -1)))
+    if len(bands) < 2:
+        return mask
+    masses = [float(contrast[a:b][mask[a:b]].sum()) for a, b in bands]
+    main = int(np.argmax(masses))
+    top, bottom = bands[main]
+    height = bottom - top
+    if height < 10:
+        return mask
+    strength = float(np.percentile(contrast[top:bottom][mask[top:bottom]], 90))
+    keep = mask.copy()
+    for i, (a, b) in enumerate(bands):
+        if i == main:
+            continue
+        gap = max(top - b, a - bottom, 0)
+        # Repeated faint grid rows can belong to a decorative glyph. A fragment
+        # must be isolated from every occupied band, not just the darkest band.
+        nearest = min(a - bands[i - 1][1] if i else float("inf"),
+                      bands[i + 1][0] - b if i + 1 < len(bands) else float("inf"))
+        faint = float(np.percentile(contrast[a:b][mask[a:b]], 90)) < strength * .55
+        if (faint and b - a <= max(3, height * .25)
+                and masses[i] < masses[main] * .08 and gap >= max(3, height * .1)
+                and nearest >= max(3, height * .1)):
+            keep[a:b] = False
+    return keep
+
+
 def text_crop(image: Image.Image) -> Image.Image:
     """Normalize polarity and crop excess background without losing thin strokes."""
     rgba = ImageOps.exif_transpose(image).convert("RGBA")
@@ -29,9 +61,20 @@ def text_crop(image: Image.Image) -> Image.Image:
     background = float(np.median(border))
     contrast = np.abs(gray - background)
     peak = float(np.percentile(contrast, 99.5))
-    if float(gray.std()) < 2 or peak < 8:
+    legacy = os.environ.get("FONTSENSE_CROP_MODE", "improved") == "legacy"
+    sparse = False
+    if not legacy and peak < 8:
+        # Screenshot margins can occupy >99.5% of the pixels. Estimate stroke
+        # contrast from actual foreground samples instead of declaring it blank.
+        foreground = contrast[contrast >= 8]
+        if foreground.size >= 32:
+            peak = float(np.percentile(foreground, 90))
+            sparse = peak >= 16
+    if (float(gray.std()) < 2 and not sparse) or peak < 8:
         raise ValueError("No readable text found. Try a closer crop.")
     mask = contrast > max(8, peak * 0.16)
+    if not legacy:
+        mask = _trim_faint_fragments(mask, contrast)
     rows, cols = np.where(mask)
     if rows.size < 20:
         raise ValueError("No readable text found. Try a closer crop.")

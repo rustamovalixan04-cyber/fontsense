@@ -1,0 +1,319 @@
+{
+  "comparisons": 41304,
+  "changed": 24,
+  "changed_rows": [
+    {
+      "id": "x-jacquard24charted",
+      "family": "Jacquard 24 Charted",
+      "phrase": "CLOUD DESIGN",
+      "old_size": [
+        434,
+        77
+      ],
+      "new_size": [
+        432,
+        67
+      ]
+    },
+    {
+      "id": "x-jersey20charted",
+      "family": "Jersey 20 Charted",
+      "phrase": "bright river",
+      "old_size": [
+        291,
+        77
+      ],
+      "new_size": [
+        289,
+        68
+      ]
+    },
+    {
+      "id": "x-jersey20charted",
+      "family": "Jersey 20 Charted",
+      "phrase": "Bright River",
+      "old_size": [
+        298,
+        77
+      ],
+      "new_size": [
+        296,
+        68
+      ]
+    },
+    {
+      "id": "x-jersey20charted",
+      "family": "Jersey 20 Charted",
+      "phrase": "BRIGHT RIVER",
+      "old_size": [
+        316,
+        77
+      ],
+      "new_size": [
+        312,
+        54
+      ]
+    },
+    {
+      "id": "x-jersey20charted",
+      "family": "Jersey 20 Charted",
+      "phrase": "cloud design",
+      "old_size": [
+        316,
+        77
+      ],
+      "new_size": [
+        314,
+        68
+      ]
+    },
+    {
+      "id": "x-jersey20charted",
+      "family": "Jersey 20 Charted",
+      "phrase": "Cloud Design",
+      "old_size": [
+        318,
+        77
+      ],
+      "new_size": [
+        316,
+        68
+      ]
+    },
+    {
+      "id": "x-jersey20charted",
+      "family": "Jersey 20 Charted",
+      "phrase": "CLOUD DESIGN",
+      "old_size": [
+        335,
+        77
+      ],
+      "new_size": [
+        331,
+        54
+      ]
+    },
+    {
+      "id": "x-jersey20charted",
+      "family": "Jersey 20 Charted",
+      "phrase": "golden hour",
+      "old_size": [
+        299,
+        77
+      ],
+      "new_size": [
+        297,
+        66
+      ]
+    },
+    {
+      "id": "x-jersey20charted",
+      "family": "Jersey 20 Charted",
+      "phrase": "Golden Hour",
+      "old_size": [
+        299,
+        77
+      ],
+      "new_size": [
+        295,
+        54
+      ]
+    },
+    {
+      "id": "x-jersey20charted",
+      "family": "Jersey 20 Charted",
+      "phrase": "GOLDEN HOUR",
+      "old_size": [
+        320,
+        77
+      ],
+      "new_size": [
+        316,
+        54
+      ]
+    },
+    {
+      "id": "x-jersey20charted",
+      "family": "Jersey 20 Charted",
+      "phrase": "modern paper",
+      "old_size": [
+        347,
+        77
+      ],
+      "new_size": [
+        345,
+        66
+      ]
+    },
+    {
+      "id": "x-jersey20charted",
+      "family": "Jersey 20 Charted",
+      "phrase": "Modern Paper",
+      "old_size": [
+        348,
+        77
+      ],
+      "new_size": [
+        346,
+        66
+      ]
+    },
+    {
+      "id": "x-jersey20charted",
+      "family": "Jersey 20 Charted",
+      "phrase": "MODERN PAPER",
+      "old_size": [
+        365,
+        77
+      ],
+      "new_size": [
+        361,
+        54
+      ]
+    },
+    {
+      "id": "x-jersey25charted",
+      "family": "Jersey 25 Charted",
+      "phrase": "bright river",
+      "old_size": [
+        299,
+        77
+      ],
+      "new_size": [
+        299,
+        75
+      ]
+    },
+    {
+      "id": "x-jersey25charted",
+      "family": "Jersey 25 Charted",
+      "phrase": "BRIGHT RIVER",
+      "old_size": [
+        333,
+        77
+      ],
+      "new_size": [
+        331,
+        65
+      ]
+    },
+    {
+      "id": "x-jersey25charted",
+      "family": "Jersey 25 Charted",
+      "phrase": "cloud design",
+      "old_size": [
+        316,
+        77
+      ],
+      "new_size": [
+        316,
+        75
+      ]
+    },
+    {
+      "id": "x-jersey25charted",
+      "family": "Jersey 25 Charted",
+      "phrase": "Cloud Design",
+      "old_size": [
+        323,
+        77
+      ],
+      "new_size": [
+        323,
+        75
+      ]
+    },
+    {
+      "id": "x-jersey25charted",
+      "family": "Jersey 25 Charted",
+      "phrase": "CLOUD DESIGN",
+      "old_size": [
+        360,
+        77
+      ],
+      "new_size": [
+        358,
+        65
+      ]
+    },
+    {
+      "id": "x-jersey25charted",
+      "family": "Jersey 25 Charted",
+      "phrase": "golden hour",
+      "old_size": [
+        300,
+        77
+      ],
+      "new_size": [
+        298,
+        67
+      ]
+    },
+    {
+      "id": "x-jersey25charted",
+      "family": "Jersey 25 Charted",
+      "phrase": "Golden Hour",
+      "old_size": [
+        307,
+        77
+      ],
+      "new_size": [
+        305,
+        65
+      ]
+    },
+    {
+      "id": "x-jersey25charted",
+      "family": "Jersey 25 Charted",
+      "phrase": "GOLDEN HOUR",
+      "old_size": [
+        347,
+        77
+      ],
+      "new_size": [
+        345,
+        65
+      ]
+    },
+    {
+      "id": "x-jersey25charted",
+      "family": "Jersey 25 Charted",
+      "phrase": "modern paper",
+      "old_size": [
+        350,
+        77
+      ],
+      "new_size": [
+        348,
+        67
+      ]
+    },
+    {
+      "id": "x-jersey25charted",
+      "family": "Jersey 25 Charted",
+      "phrase": "Modern Paper",
+      "old_size": [
+        354,
+        77
+      ],
+      "new_size": [
+        352,
+        67
+      ]
+    },
+    {
+      "id": "x-jersey25charted",
+      "family": "Jersey 25 Charted",
+      "phrase": "MODERN PAPER",
+      "old_size": [
+        384,
+        77
+      ],
+      "new_size": [
+        382,
+        65
+      ]
+    }
+  ],
+  "method": "All available open-font styles, four enrollment phrases and lower/title/upper case; compare normalized pixels from legacy and selected crop behavior. Existing font binaries not committed."
+}

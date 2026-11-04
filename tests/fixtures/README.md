@@ -1,5 +1,13 @@
 # Font-name regression images
 
+`moga_user_screenshot_crop.png` is the text image inside the user's reported
+Moga screenshot, cropped to remove FontSense controls. It checks that the visible
+words `Moga Regular` are read correctly and that a font outside the reference
+library receives alternatives without an invented exact name. The written label
+is not used as identity evidence. This is a regression fixture, not a blind
+benchmark. No commercial font program is included. See
+[screenshot handling and coverage](../../docs/screenshot_crops.md).
+
 `allover_poster_crop.png` is the design region from the user's reported
 ALLOVER failure, cropped to exclude the site's controls. It checks separation
 of the headline, subtitle and illustration. The user identified the advertised

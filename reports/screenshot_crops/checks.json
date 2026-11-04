@@ -1,0 +1,47 @@
+{
+  "base_commit": "c2e0c4cb8198c28808fa0a0624c6c8e75f39e3cb",
+  "scope": "Product screenshot preprocessing and unresolved-match UI; no trained weights, enrolled families or confidence settings changed.",
+  "regression_checks": {
+    "command": "python -m pytest -q tests/test_screenshot_crops.py tests/test_analysis.py tests/test_category_ensemble.py tests/test_extended_matching.py tests/test_font_identity.py tests/test_font_matching.py tests/test_glyph_and_variations.py tests/test_independent_fonts.py tests/test_poster_matching.py tests/test_retrieval_runtime.py tests/test_vercel_deployment.py",
+    "passed": 118,
+    "elapsed_seconds": 60.51
+  },
+  "new_crop_tests": 10,
+  "reference_parity": {
+    "comparisons": 41304,
+    "changed": 0,
+    "changed_rows": [],
+    "method": "All available open-font styles, four enrollment phrases and lower/title/upper case; compare normalized pixels from legacy and selected crop behavior. Existing font binaries not committed."
+  },
+  "final_protocol": "Final candidate frozen after development and decorative-grid regression correction; test3 uses 13 families excluding the initial 15 test2 families. Four related transforms per base crop; historical browser-corpus reuse explicitly disclosed.",
+  "unknown_regression": {
+    "images": 10,
+    "names_withheld": 10,
+    "status": "Reused families; diagnostic, not untouched final evidence"
+  },
+  "model_hashes": {
+    "artifacts/cnn/cnn_model.pt": "c98cf0d1a02503a02b8f8242fec462ea2a0c455380238ec54fc4f62fdb13bb2f",
+    "artifacts/web/cnn_v1.npz": "94744e2113f42d896c1c36f49e8364c15fe4e5acb55740fa7cdf93939e93a757",
+    "artifacts/web/retrieval_encoder.onnx": "6894d3edac92f6321dfdcaa19981968256016bb3ae3d430f433a2c9222801f1c",
+    "artifacts/web/retrieval_index.npz": "4dd45bc81ee21b8d862006c91a3190145c824574f28755746737b475adc4d0de",
+    "artifacts/web/retrieval_confidence.json": "c00f15a91acc7f2b6fd7b3ed9f0eebfca3971a202ecefcd07e79009f5e480c61",
+    "artifacts/web/retrieval_policy.json": "f6bca5b6cf845b891620980beb73970bc962dcf9f141c5aa8fb1a00f77d32033"
+  },
+  "environment": {
+    "python": "3.12.14",
+    "pillow": "12.3.0",
+    "numpy": "2.3.5",
+    "onnxruntime": "1.31.1"
+  },
+  "user_fixture": {
+    "file": "tests/fixtures/moga_user_screenshot_crop.png",
+    "sha256": "bf47e79cf140c0b02dd1fcc3e29b6b2a2cc7524ef9d83d40a4ae947b2ef73217",
+    "source": "User-provided app screenshot; cropped to the text image only. No font program included.",
+    "source_crop_box": [
+      79,
+      255,
+      617,
+      343
+    ]
+  }
+}

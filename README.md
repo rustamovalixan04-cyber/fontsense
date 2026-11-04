@@ -44,6 +44,13 @@ line selection, checks uncertain OCR readings against rendered references and
 keeps useful neural alternatives for unfamiliar fonts. See
 [poster handling, evaluation and limitations](docs/poster_matching.md).
 
+Screenshot handling also recovers small text inside large blank margins and
+ignores distant, faint caption fragments when choosing the main text bounds.
+The final crop audit improved top-three retrieval from 30/52 to 51/52 on its
+limited check; this is not worldwide recognition accuracy. Unsupported fonts
+can open an optional broader-search page without automatically uploading an
+image. See [screenshot evaluation and coverage](docs/screenshot_crops.md).
+
 ## Table of contents
 
 - [Demo](#demo)

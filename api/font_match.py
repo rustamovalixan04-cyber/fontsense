@@ -9,6 +9,7 @@ from functools import lru_cache
 from io import BytesIO
 import json
 import math
+import os
 from pathlib import Path
 import time
 from urllib.parse import quote
@@ -209,7 +210,14 @@ def identify(image: Image.Image, supplied_text: str = "", region: int | None = N
         text, text_confidence = supplied_text, None
     else:
         text, text_confidence = reading if reading is not None else read_text(normalized)
-    classifier = get_model().predict(selected_image)
+    try:
+        classifier = get_model().predict(selected_image)
+    except ValueError:
+        # A full screenshot can shrink thin letters to nothing at 112x48.
+        # The readable text crop is already validated. Keep /predict untouched.
+        if os.environ.get("FONTSENSE_CROP_MODE", "improved") == "legacy":
+            raise
+        classifier = get_model().predict(normalized)
     if len(text.strip()) < 2 or (text_confidence is not None and text_confidence < 0.55):
         return {"category": classifier["predicted_category"], "matches": [],
                 "text": text, "needs_text": True, "match_strength": "uncertain",

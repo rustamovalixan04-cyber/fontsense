@@ -1,0 +1,1061 @@
+{
+  "mode": "legacy",
+  "split": "test3",
+  "method": "Actual saved browser crops. Tight boundaries, faint partial-caption strips and blank margins are simulated transformations, then JPEG quality 95 as in the public client. Not new photographs or fresh font families relative to previous browser audits.",
+  "summary": {
+    "images": 52,
+    "top3_correct": 30,
+    "names_returned": 10,
+    "correct_names": 10,
+    "top1_macro_f1_query_families": 0.6556776556776557,
+    "exact_text": 37,
+    "rejected": 12,
+    "median_ms": 1329.2
+  },
+  "by_condition": {
+    "browser": {
+      "images": 13,
+      "top3_correct": 13,
+      "names_returned": 4,
+      "correct_names": 4,
+      "top1_macro_f1_query_families": 0.9230769230769231,
+      "exact_text": 12,
+      "rejected": 0,
+      "median_ms": 1683.4
+    },
+    "clipped_caption": {
+      "images": 13,
+      "top3_correct": 4,
+      "names_returned": 0,
+      "correct_names": 0,
+      "top1_macro_f1_query_families": 0.1282051282051282,
+      "exact_text": 12,
+      "rejected": 0,
+      "median_ms": 1372.7
+    },
+    "large_margins": {
+      "images": 13,
+      "top3_correct": 1,
+      "names_returned": 1,
+      "correct_names": 1,
+      "top1_macro_f1_query_families": 0.07692307692307693,
+      "exact_text": 1,
+      "rejected": 12,
+      "median_ms": 48.2
+    },
+    "tight_boundary": {
+      "images": 13,
+      "top3_correct": 12,
+      "names_returned": 5,
+      "correct_names": 5,
+      "top1_macro_f1_query_families": 0.8461538461538461,
+      "exact_text": 12,
+      "rejected": 0,
+      "median_ms": 1273.8
+    }
+  },
+  "rows": [
+    {
+      "file": "00-browser.jpg",
+      "family": "Alumni Sans Collegiate One",
+      "category": "display",
+      "text": "Cobalt Horizon",
+      "condition": "browser",
+      "source_file": "test2/068.png",
+      "source_capture_sha256": "ab0307967cedf23d0ef33a710f3a968b431c36bc98cfd61833ba5788945b8880",
+      "named": null,
+      "top3": [
+        "Alumni Sans Collegiate One SC",
+        "Alumni Sans Collegiate One",
+        "Erica One"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 4015.3
+    },
+    {
+      "file": "00-tight_boundary.jpg",
+      "family": "Alumni Sans Collegiate One",
+      "category": "display",
+      "text": "Cobalt Horizon",
+      "condition": "tight_boundary",
+      "source_file": "test2/068.png",
+      "source_capture_sha256": "ab0307967cedf23d0ef33a710f3a968b431c36bc98cfd61833ba5788945b8880",
+      "named": null,
+      "top3": [
+        "Alumni Sans Collegiate One SC",
+        "Alumni Sans Collegiate One",
+        "Erica One"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1410.0
+    },
+    {
+      "file": "00-clipped_caption.jpg",
+      "family": "Alumni Sans Collegiate One",
+      "category": "display",
+      "text": "Cobalt Horizon",
+      "condition": "clipped_caption",
+      "source_file": "test2/068.png",
+      "source_capture_sha256": "ab0307967cedf23d0ef33a710f3a968b431c36bc98cfd61833ba5788945b8880",
+      "named": null,
+      "top3": [
+        "Alumni Sans Collegiate One",
+        "Alumni Sans Collegiate One SC",
+        "Badeen Display"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1692.6
+    },
+    {
+      "file": "00-large_margins.jpg",
+      "family": "Alumni Sans Collegiate One",
+      "category": "display",
+      "text": "Cobalt Horizon",
+      "condition": "large_margins",
+      "source_file": "test2/068.png",
+      "source_capture_sha256": "ab0307967cedf23d0ef33a710f3a968b431c36bc98cfd61833ba5788945b8880",
+      "error": "No readable text found. Try a closer crop.",
+      "elapsed_ms": 45.0
+    },
+    {
+      "file": "01-browser.jpg",
+      "family": "Prosto One",
+      "category": "display",
+      "text": "Cobalt Horizon",
+      "condition": "browser",
+      "source_file": "test2/050.png",
+      "source_capture_sha256": "ab0307967cedf23d0ef33a710f3a968b431c36bc98cfd61833ba5788945b8880",
+      "named": null,
+      "top3": [
+        "Prosto One",
+        "M PLUS 1",
+        "Mitr"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1683.4
+    },
+    {
+      "file": "01-tight_boundary.jpg",
+      "family": "Prosto One",
+      "category": "display",
+      "text": "Cobalt Horizon",
+      "condition": "tight_boundary",
+      "source_file": "test2/050.png",
+      "source_capture_sha256": "ab0307967cedf23d0ef33a710f3a968b431c36bc98cfd61833ba5788945b8880",
+      "named": null,
+      "top3": [
+        "Prosto One",
+        "M PLUS 1",
+        "Mitr"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1154.8
+    },
+    {
+      "file": "01-clipped_caption.jpg",
+      "family": "Prosto One",
+      "category": "display",
+      "text": "Cobalt Horizon",
+      "condition": "clipped_caption",
+      "source_file": "test2/050.png",
+      "source_capture_sha256": "ab0307967cedf23d0ef33a710f3a968b431c36bc98cfd61833ba5788945b8880",
+      "named": null,
+      "top3": [
+        "Federo",
+        "Jupiteroid",
+        "Prosto One"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1306.4
+    },
+    {
+      "file": "01-large_margins.jpg",
+      "family": "Prosto One",
+      "category": "display",
+      "text": "Cobalt Horizon",
+      "condition": "large_margins",
+      "source_file": "test2/050.png",
+      "source_capture_sha256": "ab0307967cedf23d0ef33a710f3a968b431c36bc98cfd61833ba5788945b8880",
+      "error": "No readable text found. Try a closer crop.",
+      "elapsed_ms": 48.2
+    },
+    {
+      "file": "02-browser.jpg",
+      "family": "Bhavuka",
+      "category": "display",
+      "text": "Cobalt Horizon",
+      "condition": "browser",
+      "source_file": "test2/110.png",
+      "source_capture_sha256": "7cb7a77a7476775a521b346c92b3f5180c4c2a348a57cd4c7e5adcb02f414ee6",
+      "named": null,
+      "top3": [
+        "Bhavuka",
+        "Bellota",
+        "Tuffy"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1813.8
+    },
+    {
+      "file": "02-tight_boundary.jpg",
+      "family": "Bhavuka",
+      "category": "display",
+      "text": "Cobalt Horizon",
+      "condition": "tight_boundary",
+      "source_file": "test2/110.png",
+      "source_capture_sha256": "7cb7a77a7476775a521b346c92b3f5180c4c2a348a57cd4c7e5adcb02f414ee6",
+      "named": null,
+      "top3": [
+        "Bhavuka",
+        "Bellota",
+        "Tuffy"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1169.5
+    },
+    {
+      "file": "02-clipped_caption.jpg",
+      "family": "Bhavuka",
+      "category": "display",
+      "text": "Cobalt Horizon",
+      "condition": "clipped_caption",
+      "source_file": "test2/110.png",
+      "source_capture_sha256": "7cb7a77a7476775a521b346c92b3f5180c4c2a348a57cd4c7e5adcb02f414ee6",
+      "named": null,
+      "top3": [
+        "Josefin Slab",
+        "Nixie One",
+        "Life Savers"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1336.9
+    },
+    {
+      "file": "02-large_margins.jpg",
+      "family": "Bhavuka",
+      "category": "display",
+      "text": "Cobalt Horizon",
+      "condition": "large_margins",
+      "source_file": "test2/110.png",
+      "source_capture_sha256": "7cb7a77a7476775a521b346c92b3f5180c4c2a348a57cd4c7e5adcb02f414ee6",
+      "error": "No readable text found. Try a closer crop.",
+      "elapsed_ms": 49.1
+    },
+    {
+      "file": "03-browser.jpg",
+      "family": "Kristi",
+      "category": "handwriting",
+      "text": "Cobalt Horizon",
+      "condition": "browser",
+      "source_file": "test2/086.png",
+      "source_capture_sha256": "7cb7a77a7476775a521b346c92b3f5180c4c2a348a57cd4c7e5adcb02f414ee6",
+      "named": null,
+      "top3": [
+        "Kristi",
+        "Miniver",
+        "Ranga"
+      ],
+      "read_text": "Cobalt Hohizon",
+      "needs_text": false,
+      "elapsed_ms": 2058.5
+    },
+    {
+      "file": "03-tight_boundary.jpg",
+      "family": "Kristi",
+      "category": "handwriting",
+      "text": "Cobalt Horizon",
+      "condition": "tight_boundary",
+      "source_file": "test2/086.png",
+      "source_capture_sha256": "7cb7a77a7476775a521b346c92b3f5180c4c2a348a57cd4c7e5adcb02f414ee6",
+      "named": null,
+      "top3": [
+        "Kristi",
+        "Miniver",
+        "Syne Tactile"
+      ],
+      "read_text": "Cobalt Hohizon",
+      "needs_text": false,
+      "elapsed_ms": 1336.5
+    },
+    {
+      "file": "03-clipped_caption.jpg",
+      "family": "Kristi",
+      "category": "handwriting",
+      "text": "Cobalt Horizon",
+      "condition": "clipped_caption",
+      "source_file": "test2/086.png",
+      "source_capture_sha256": "7cb7a77a7476775a521b346c92b3f5180c4c2a348a57cd4c7e5adcb02f414ee6",
+      "named": null,
+      "top3": [
+        "Kristi",
+        "Miniver",
+        "Edu TAS Beginner"
+      ],
+      "read_text": "Cobalt Hohizon",
+      "needs_text": false,
+      "elapsed_ms": 1431.3
+    },
+    {
+      "file": "03-large_margins.jpg",
+      "family": "Kristi",
+      "category": "handwriting",
+      "text": "Cobalt Horizon",
+      "condition": "large_margins",
+      "source_file": "test2/086.png",
+      "source_capture_sha256": "7cb7a77a7476775a521b346c92b3f5180c4c2a348a57cd4c7e5adcb02f414ee6",
+      "error": "No readable text found. Try a closer crop.",
+      "elapsed_ms": 50.7
+    },
+    {
+      "file": "04-browser.jpg",
+      "family": "Patrick Hand",
+      "category": "handwriting",
+      "text": "Cobalt Horizon",
+      "condition": "browser",
+      "source_file": "test2/118.png",
+      "source_capture_sha256": "7cb7a77a7476775a521b346c92b3f5180c4c2a348a57cd4c7e5adcb02f414ee6",
+      "named": "Patrick Hand",
+      "top3": [
+        "Patrick Hand",
+        "Jua",
+        "Chau Philomene One"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1988.0
+    },
+    {
+      "file": "04-tight_boundary.jpg",
+      "family": "Patrick Hand",
+      "category": "handwriting",
+      "text": "Cobalt Horizon",
+      "condition": "tight_boundary",
+      "source_file": "test2/118.png",
+      "source_capture_sha256": "7cb7a77a7476775a521b346c92b3f5180c4c2a348a57cd4c7e5adcb02f414ee6",
+      "named": "Patrick Hand",
+      "top3": [
+        "Patrick Hand",
+        "Jua",
+        "Chau Philomene One"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1273.8
+    },
+    {
+      "file": "04-clipped_caption.jpg",
+      "family": "Patrick Hand",
+      "category": "handwriting",
+      "text": "Cobalt Horizon",
+      "condition": "clipped_caption",
+      "source_file": "test2/118.png",
+      "source_capture_sha256": "7cb7a77a7476775a521b346c92b3f5180c4c2a348a57cd4c7e5adcb02f414ee6",
+      "named": null,
+      "top3": [
+        "Neucha",
+        "Sue Ellen Francisco",
+        "Pompiere"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1413.1
+    },
+    {
+      "file": "04-large_margins.jpg",
+      "family": "Patrick Hand",
+      "category": "handwriting",
+      "text": "Cobalt Horizon",
+      "condition": "large_margins",
+      "source_file": "test2/118.png",
+      "source_capture_sha256": "7cb7a77a7476775a521b346c92b3f5180c4c2a348a57cd4c7e5adcb02f414ee6",
+      "error": "No readable text found. Try a closer crop.",
+      "elapsed_ms": 45.9
+    },
+    {
+      "file": "05-browser.jpg",
+      "family": "Delius Unicase",
+      "category": "handwriting",
+      "text": "Cobalt Horizon",
+      "condition": "browser",
+      "source_file": "test2/090.png",
+      "source_capture_sha256": "7cb7a77a7476775a521b346c92b3f5180c4c2a348a57cd4c7e5adcb02f414ee6",
+      "named": "Delius Unicase",
+      "top3": [
+        "Delius Unicase",
+        "DynaPuff",
+        "Signika Negative SC"
+      ],
+      "read_text": "cobalt HorIzon",
+      "needs_text": false,
+      "elapsed_ms": 1933.8
+    },
+    {
+      "file": "05-tight_boundary.jpg",
+      "family": "Delius Unicase",
+      "category": "handwriting",
+      "text": "Cobalt Horizon",
+      "condition": "tight_boundary",
+      "source_file": "test2/090.png",
+      "source_capture_sha256": "7cb7a77a7476775a521b346c92b3f5180c4c2a348a57cd4c7e5adcb02f414ee6",
+      "named": "Delius Unicase",
+      "top3": [
+        "Delius Unicase",
+        "DynaPuff",
+        "Signika Negative SC"
+      ],
+      "read_text": "cobalt HorIzon",
+      "needs_text": false,
+      "elapsed_ms": 1475.7
+    },
+    {
+      "file": "05-clipped_caption.jpg",
+      "family": "Delius Unicase",
+      "category": "handwriting",
+      "text": "Cobalt Horizon",
+      "condition": "clipped_caption",
+      "source_file": "test2/090.png",
+      "source_capture_sha256": "7cb7a77a7476775a521b346c92b3f5180c4c2a348a57cd4c7e5adcb02f414ee6",
+      "named": null,
+      "top3": [
+        "Itim",
+        "Tsukimi Rounded",
+        "Mali"
+      ],
+      "read_text": "cobalt horizon",
+      "needs_text": false,
+      "elapsed_ms": 1937.0
+    },
+    {
+      "file": "05-large_margins.jpg",
+      "family": "Delius Unicase",
+      "category": "handwriting",
+      "text": "Cobalt Horizon",
+      "condition": "large_margins",
+      "source_file": "test2/090.png",
+      "source_capture_sha256": "7cb7a77a7476775a521b346c92b3f5180c4c2a348a57cd4c7e5adcb02f414ee6",
+      "error": "No readable text found. Try a closer crop.",
+      "elapsed_ms": 45.2
+    },
+    {
+      "file": "06-browser.jpg",
+      "family": "Libertinus Mono",
+      "category": "monospace",
+      "text": "Cobalt Horizon",
+      "condition": "browser",
+      "source_file": "test2/104.png",
+      "source_capture_sha256": "7cb7a77a7476775a521b346c92b3f5180c4c2a348a57cd4c7e5adcb02f414ee6",
+      "named": "Libertinus Mono",
+      "top3": [
+        "Libertinus Mono",
+        "BatangChe",
+        "Noto Serif Sinhala"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1494.9
+    },
+    {
+      "file": "06-tight_boundary.jpg",
+      "family": "Libertinus Mono",
+      "category": "monospace",
+      "text": "Cobalt Horizon",
+      "condition": "tight_boundary",
+      "source_file": "test2/104.png",
+      "source_capture_sha256": "7cb7a77a7476775a521b346c92b3f5180c4c2a348a57cd4c7e5adcb02f414ee6",
+      "named": "Libertinus Mono",
+      "top3": [
+        "Libertinus Mono",
+        "BatangChe",
+        "Noto Serif Sinhala"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1421.4
+    },
+    {
+      "file": "06-clipped_caption.jpg",
+      "family": "Libertinus Mono",
+      "category": "monospace",
+      "text": "Cobalt Horizon",
+      "condition": "clipped_caption",
+      "source_file": "test2/104.png",
+      "source_capture_sha256": "7cb7a77a7476775a521b346c92b3f5180c4c2a348a57cd4c7e5adcb02f414ee6",
+      "named": null,
+      "top3": [
+        "Halibut",
+        "Baskervville",
+        "Baskervville SC"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1474.3
+    },
+    {
+      "file": "06-large_margins.jpg",
+      "family": "Libertinus Mono",
+      "category": "monospace",
+      "text": "Cobalt Horizon",
+      "condition": "large_margins",
+      "source_file": "test2/104.png",
+      "source_capture_sha256": "7cb7a77a7476775a521b346c92b3f5180c4c2a348a57cd4c7e5adcb02f414ee6",
+      "error": "No readable text found. Try a closer crop.",
+      "elapsed_ms": 53.1
+    },
+    {
+      "file": "07-browser.jpg",
+      "family": "Arya",
+      "category": "sans_serif",
+      "text": "Cobalt Horizon",
+      "condition": "browser",
+      "source_file": "test2/144.png",
+      "source_capture_sha256": "f3facea9013168d990d22edb86d3f46891291ef75295ef6de6669c95a0c3d6b3",
+      "named": null,
+      "top3": [
+        "Arya",
+        "Sintony",
+        "Ruda"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1461.4
+    },
+    {
+      "file": "07-tight_boundary.jpg",
+      "family": "Arya",
+      "category": "sans_serif",
+      "text": "Cobalt Horizon",
+      "condition": "tight_boundary",
+      "source_file": "test2/144.png",
+      "source_capture_sha256": "f3facea9013168d990d22edb86d3f46891291ef75295ef6de6669c95a0c3d6b3",
+      "named": null,
+      "top3": [
+        "Arya",
+        "Sintony",
+        "Ruda"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1244.7
+    },
+    {
+      "file": "07-clipped_caption.jpg",
+      "family": "Arya",
+      "category": "sans_serif",
+      "text": "Cobalt Horizon",
+      "condition": "clipped_caption",
+      "source_file": "test2/144.png",
+      "source_capture_sha256": "f3facea9013168d990d22edb86d3f46891291ef75295ef6de6669c95a0c3d6b3",
+      "named": null,
+      "top3": [
+        "Unna",
+        "Cantata One",
+        "LXGW Marker Gothic"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1275.1
+    },
+    {
+      "file": "07-large_margins.jpg",
+      "family": "Arya",
+      "category": "sans_serif",
+      "text": "Cobalt Horizon",
+      "condition": "large_margins",
+      "source_file": "test2/144.png",
+      "source_capture_sha256": "f3facea9013168d990d22edb86d3f46891291ef75295ef6de6669c95a0c3d6b3",
+      "error": "No readable text found. Try a closer crop.",
+      "elapsed_ms": 53.0
+    },
+    {
+      "file": "08-browser.jpg",
+      "family": "Zain",
+      "category": "sans_serif",
+      "text": "Cobalt Horizon",
+      "condition": "browser",
+      "source_file": "test2/028.png",
+      "source_capture_sha256": "163b6de4a47ea805c5782e4426709aa70c554893d5c116fc33890262eb98c543",
+      "named": null,
+      "top3": [
+        "Zain",
+        "Prompt",
+        "Quattrocento Sans"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1333.5
+    },
+    {
+      "file": "08-tight_boundary.jpg",
+      "family": "Zain",
+      "category": "sans_serif",
+      "text": "Cobalt Horizon",
+      "condition": "tight_boundary",
+      "source_file": "test2/028.png",
+      "source_capture_sha256": "163b6de4a47ea805c5782e4426709aa70c554893d5c116fc33890262eb98c543",
+      "named": "Zain",
+      "top3": [
+        "Zain",
+        "Quattrocento Sans",
+        "Raleway"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1148.7
+    },
+    {
+      "file": "08-clipped_caption.jpg",
+      "family": "Zain",
+      "category": "sans_serif",
+      "text": "Cobalt Horizon",
+      "condition": "clipped_caption",
+      "source_file": "test2/028.png",
+      "source_capture_sha256": "163b6de4a47ea805c5782e4426709aa70c554893d5c116fc33890262eb98c543",
+      "named": null,
+      "top3": [
+        "Cabin",
+        "GFS Neohellenic",
+        "Jost"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1288.1
+    },
+    {
+      "file": "08-large_margins.jpg",
+      "family": "Zain",
+      "category": "sans_serif",
+      "text": "Cobalt Horizon",
+      "condition": "large_margins",
+      "source_file": "test2/028.png",
+      "source_capture_sha256": "163b6de4a47ea805c5782e4426709aa70c554893d5c116fc33890262eb98c543",
+      "error": "No readable text found. Try a closer crop.",
+      "elapsed_ms": 56.5
+    },
+    {
+      "file": "09-browser.jpg",
+      "family": "Marvel",
+      "category": "sans_serif",
+      "text": "Cobalt Horizon",
+      "condition": "browser",
+      "source_file": "test2/066.png",
+      "source_capture_sha256": "ab0307967cedf23d0ef33a710f3a968b431c36bc98cfd61833ba5788945b8880",
+      "named": null,
+      "top3": [
+        "Marvel",
+        "Economica",
+        "Advent Pro"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1435.0
+    },
+    {
+      "file": "09-tight_boundary.jpg",
+      "family": "Marvel",
+      "category": "sans_serif",
+      "text": "Cobalt Horizon",
+      "condition": "tight_boundary",
+      "source_file": "test2/066.png",
+      "source_capture_sha256": "ab0307967cedf23d0ef33a710f3a968b431c36bc98cfd61833ba5788945b8880",
+      "named": "Marvel",
+      "top3": [
+        "Marvel",
+        "Economica",
+        "Advent Pro"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1186.7
+    },
+    {
+      "file": "09-clipped_caption.jpg",
+      "family": "Marvel",
+      "category": "sans_serif",
+      "text": "Cobalt Horizon",
+      "condition": "clipped_caption",
+      "source_file": "test2/066.png",
+      "source_capture_sha256": "ab0307967cedf23d0ef33a710f3a968b431c36bc98cfd61833ba5788945b8880",
+      "named": null,
+      "top3": [
+        "Tulpen One",
+        "Marvel",
+        "Pompiere"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1324.9
+    },
+    {
+      "file": "09-large_margins.jpg",
+      "family": "Marvel",
+      "category": "sans_serif",
+      "text": "Cobalt Horizon",
+      "condition": "large_margins",
+      "source_file": "test2/066.png",
+      "source_capture_sha256": "ab0307967cedf23d0ef33a710f3a968b431c36bc98cfd61833ba5788945b8880",
+      "error": "No readable text found. Try a closer crop.",
+      "elapsed_ms": 44.2
+    },
+    {
+      "file": "10-browser.jpg",
+      "family": "Antic Slab",
+      "category": "serif",
+      "text": "Cobalt Horizon",
+      "condition": "browser",
+      "source_file": "test2/008.png",
+      "source_capture_sha256": "163b6de4a47ea805c5782e4426709aa70c554893d5c116fc33890262eb98c543",
+      "named": null,
+      "top3": [
+        "Antic Slab",
+        "Merriweather",
+        "Belgrano"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1307.5
+    },
+    {
+      "file": "10-tight_boundary.jpg",
+      "family": "Antic Slab",
+      "category": "serif",
+      "text": "Cobalt Horizon",
+      "condition": "tight_boundary",
+      "source_file": "test2/008.png",
+      "source_capture_sha256": "163b6de4a47ea805c5782e4426709aa70c554893d5c116fc33890262eb98c543",
+      "named": null,
+      "top3": [
+        "Antic Slab",
+        "Merriweather",
+        "Belgrano"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1146.7
+    },
+    {
+      "file": "10-clipped_caption.jpg",
+      "family": "Antic Slab",
+      "category": "serif",
+      "text": "Cobalt Horizon",
+      "condition": "clipped_caption",
+      "source_file": "test2/008.png",
+      "source_capture_sha256": "163b6de4a47ea805c5782e4426709aa70c554893d5c116fc33890262eb98c543",
+      "named": null,
+      "top3": [
+        "Josefin Slab",
+        "Life Savers",
+        "Halibut"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1244.9
+    },
+    {
+      "file": "10-large_margins.jpg",
+      "family": "Antic Slab",
+      "category": "serif",
+      "text": "Cobalt Horizon",
+      "condition": "large_margins",
+      "source_file": "test2/008.png",
+      "source_capture_sha256": "163b6de4a47ea805c5782e4426709aa70c554893d5c116fc33890262eb98c543",
+      "error": "No readable text found. Try a closer crop.",
+      "elapsed_ms": 44.1
+    },
+    {
+      "file": "11-browser.jpg",
+      "family": "Annapurna SIL",
+      "category": "serif",
+      "text": "Cobalt Horizon",
+      "condition": "browser",
+      "source_file": "test2/048.png",
+      "source_capture_sha256": "ab0307967cedf23d0ef33a710f3a968b431c36bc98cfd61833ba5788945b8880",
+      "named": null,
+      "top3": [
+        "Annapurna SIL",
+        "Charis SIL",
+        "Gelasio"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1635.8
+    },
+    {
+      "file": "11-tight_boundary.jpg",
+      "family": "Annapurna SIL",
+      "category": "serif",
+      "text": "Cobalt Horizon",
+      "condition": "tight_boundary",
+      "source_file": "test2/048.png",
+      "source_capture_sha256": "ab0307967cedf23d0ef33a710f3a968b431c36bc98cfd61833ba5788945b8880",
+      "named": null,
+      "top3": [
+        "Annapurna SIL",
+        "Charis SIL",
+        "Lisu Bosa"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1314.4
+    },
+    {
+      "file": "11-clipped_caption.jpg",
+      "family": "Annapurna SIL",
+      "category": "serif",
+      "text": "Cobalt Horizon",
+      "condition": "clipped_caption",
+      "source_file": "test2/048.png",
+      "source_capture_sha256": "ab0307967cedf23d0ef33a710f3a968b431c36bc98cfd61833ba5788945b8880",
+      "named": null,
+      "top3": [
+        "Linden Hill",
+        "Unna",
+        "Fanwood Text"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1372.7
+    },
+    {
+      "file": "11-large_margins.jpg",
+      "family": "Annapurna SIL",
+      "category": "serif",
+      "text": "Cobalt Horizon",
+      "condition": "large_margins",
+      "source_file": "test2/048.png",
+      "source_capture_sha256": "ab0307967cedf23d0ef33a710f3a968b431c36bc98cfd61833ba5788945b8880",
+      "error": "No readable text found. Try a closer crop.",
+      "elapsed_ms": 45.2
+    },
+    {
+      "file": "12-browser.jpg",
+      "family": "Zilla Slab Highlight",
+      "category": "serif",
+      "text": "Cobalt Horizon",
+      "condition": "browser",
+      "source_file": "test2/036.png",
+      "source_capture_sha256": "163b6de4a47ea805c5782e4426709aa70c554893d5c116fc33890262eb98c543",
+      "named": "Zilla Slab Highlight",
+      "top3": [
+        "Zilla Slab Highlight",
+        "Redacted",
+        "Flow Circular"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1915.9
+    },
+    {
+      "file": "12-tight_boundary.jpg",
+      "family": "Zilla Slab Highlight",
+      "category": "serif",
+      "text": "Cobalt Horizon",
+      "condition": "tight_boundary",
+      "source_file": "test2/036.png",
+      "source_capture_sha256": "163b6de4a47ea805c5782e4426709aa70c554893d5c116fc33890262eb98c543",
+      "named": null,
+      "top3": [
+        "Kay Pho Du",
+        "Zilla Slab",
+        "Life Savers"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1369.7
+    },
+    {
+      "file": "12-clipped_caption.jpg",
+      "family": "Zilla Slab Highlight",
+      "category": "serif",
+      "text": "Cobalt Horizon",
+      "condition": "clipped_caption",
+      "source_file": "test2/036.png",
+      "source_capture_sha256": "163b6de4a47ea805c5782e4426709aa70c554893d5c116fc33890262eb98c543",
+      "named": null,
+      "top3": [
+        "Alumni Sans Collegiate One",
+        "Alumni Sans Collegiate One SC",
+        "Badeen Display"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1800.8
+    },
+    {
+      "file": "12-large_margins.jpg",
+      "family": "Zilla Slab Highlight",
+      "category": "serif",
+      "text": "Cobalt Horizon",
+      "condition": "large_margins",
+      "source_file": "test2/036.png",
+      "source_capture_sha256": "163b6de4a47ea805c5782e4426709aa70c554893d5c116fc33890262eb98c543",
+      "named": "Zilla Slab Highlight",
+      "top3": [
+        "Zilla Slab Highlight",
+        "Redacted",
+        "Badeen Display"
+      ],
+      "read_text": "Cobalt Horizon",
+      "needs_text": false,
+      "elapsed_ms": 1933.6
+    }
+  ],
+  "top1_classification": {
+    "labels": "Queried families only; unrelated predicted names and rejected cases remain visible in confusion counts.",
+    "per_family": {
+      "Alumni Sans Collegiate One": {
+        "precision": 0.5,
+        "recall": 0.25,
+        "f1": 0.3333333333333333,
+        "support": 4
+      },
+      "Annapurna SIL": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "support": 4
+      },
+      "Antic Slab": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "support": 4
+      },
+      "Arya": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "support": 4
+      },
+      "Bhavuka": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "support": 4
+      },
+      "Delius Unicase": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "support": 4
+      },
+      "Kristi": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571428571428571,
+        "support": 4
+      },
+      "Libertinus Mono": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "support": 4
+      },
+      "Marvel": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "support": 4
+      },
+      "Patrick Hand": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "support": 4
+      },
+      "Prosto One": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "support": 4
+      },
+      "Zain": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "support": 4
+      },
+      "Zilla Slab Highlight": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "support": 4
+      }
+    },
+    "confusion_counts": {
+      "Alumni Sans Collegiate One": {
+        "Alumni Sans Collegiate One SC": 2,
+        "Alumni Sans Collegiate One": 1,
+        "<no result>": 1
+      },
+      "Prosto One": {
+        "Prosto One": 2,
+        "Federo": 1,
+        "<no result>": 1
+      },
+      "Bhavuka": {
+        "Bhavuka": 2,
+        "Josefin Slab": 1,
+        "<no result>": 1
+      },
+      "Kristi": {
+        "Kristi": 3,
+        "<no result>": 1
+      },
+      "Patrick Hand": {
+        "Patrick Hand": 2,
+        "Neucha": 1,
+        "<no result>": 1
+      },
+      "Delius Unicase": {
+        "Delius Unicase": 2,
+        "Itim": 1,
+        "<no result>": 1
+      },
+      "Libertinus Mono": {
+        "Libertinus Mono": 2,
+        "Halibut": 1,
+        "<no result>": 1
+      },
+      "Arya": {
+        "Arya": 2,
+        "Unna": 1,
+        "<no result>": 1
+      },
+      "Zain": {
+        "Zain": 2,
+        "Cabin": 1,
+        "<no result>": 1
+      },
+      "Marvel": {
+        "Marvel": 2,
+        "Tulpen One": 1,
+        "<no result>": 1
+      },
+      "Antic Slab": {
+        "Antic Slab": 2,
+        "Josefin Slab": 1,
+        "<no result>": 1
+      },
+      "Annapurna SIL": {
+        "Annapurna SIL": 2,
+        "Linden Hill": 1,
+        "<no result>": 1
+      },
+      "Zilla Slab Highlight": {
+        "Zilla Slab Highlight": 2,
+        "Kay Pho Du": 1,
+        "Alumni Sans Collegiate One": 1
+      }
+    }
+  },
+  "implementation_stage": "final isolated-band fix"
+}

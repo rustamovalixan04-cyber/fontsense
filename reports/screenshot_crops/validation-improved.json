@@ -1,0 +1,1204 @@
+{
+  "mode": "improved",
+  "split": "validation",
+  "method": "Actual saved browser crops. Tight boundaries, faint partial-caption strips and blank margins are simulated transformations, then JPEG quality 95 as in the public client. Not new photographs or fresh font families relative to previous browser audits.",
+  "summary": {
+    "images": 56,
+    "top3_correct": 56,
+    "names_returned": 22,
+    "correct_names": 22,
+    "top1_macro_f1_query_families": 0.9231292517006803,
+    "exact_text": 48,
+    "rejected": 0,
+    "median_ms": 1081.85
+  },
+  "by_condition": {
+    "browser": {
+      "images": 14,
+      "top3_correct": 14,
+      "names_returned": 5,
+      "correct_names": 5,
+      "top1_macro_f1_query_families": 1.0,
+      "exact_text": 12,
+      "rejected": 0,
+      "median_ms": 1111.65
+    },
+    "clipped_caption": {
+      "images": 14,
+      "top3_correct": 14,
+      "names_returned": 6,
+      "correct_names": 6,
+      "top1_macro_f1_query_families": 0.8571428571428571,
+      "exact_text": 12,
+      "rejected": 0,
+      "median_ms": 1005.6
+    },
+    "large_margins": {
+      "images": 14,
+      "top3_correct": 14,
+      "names_returned": 5,
+      "correct_names": 5,
+      "top1_macro_f1_query_families": 0.8571428571428571,
+      "exact_text": 12,
+      "rejected": 0,
+      "median_ms": 1175.4
+    },
+    "tight_boundary": {
+      "images": 14,
+      "top3_correct": 14,
+      "names_returned": 6,
+      "correct_names": 6,
+      "top1_macro_f1_query_families": 0.8571428571428571,
+      "exact_text": 12,
+      "rejected": 0,
+      "median_ms": 1016.15
+    }
+  },
+  "rows": [
+    {
+      "file": "00-browser.jpg",
+      "family": "Poller One",
+      "category": "display",
+      "text": "Zebra Festival",
+      "condition": "browser",
+      "source_file": "validation/008.png",
+      "source_capture_sha256": "07baf2fe4ec5a09c5fb437444871103b9dd8e23603393a07806f72d1a732e003",
+      "named": "Poller One",
+      "top3": [
+        "Poller One",
+        "Jomhuria",
+        "Rowdies"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 2577.1
+    },
+    {
+      "file": "00-tight_boundary.jpg",
+      "family": "Poller One",
+      "category": "display",
+      "text": "Zebra Festival",
+      "condition": "tight_boundary",
+      "source_file": "validation/008.png",
+      "source_capture_sha256": "07baf2fe4ec5a09c5fb437444871103b9dd8e23603393a07806f72d1a732e003",
+      "named": "Poller One",
+      "top3": [
+        "Poller One",
+        "Jomhuria",
+        "Rowdies"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1030.6
+    },
+    {
+      "file": "00-clipped_caption.jpg",
+      "family": "Poller One",
+      "category": "display",
+      "text": "Zebra Festival",
+      "condition": "clipped_caption",
+      "source_file": "validation/008.png",
+      "source_capture_sha256": "07baf2fe4ec5a09c5fb437444871103b9dd8e23603393a07806f72d1a732e003",
+      "named": "Poller One",
+      "top3": [
+        "Poller One",
+        "Jomhuria",
+        "Rowdies"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1024.4
+    },
+    {
+      "file": "00-large_margins.jpg",
+      "family": "Poller One",
+      "category": "display",
+      "text": "Zebra Festival",
+      "condition": "large_margins",
+      "source_file": "validation/008.png",
+      "source_capture_sha256": "07baf2fe4ec5a09c5fb437444871103b9dd8e23603393a07806f72d1a732e003",
+      "named": "Poller One",
+      "top3": [
+        "Poller One",
+        "Rowdies",
+        "Jomhuria"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1175.7
+    },
+    {
+      "file": "01-browser.jpg",
+      "family": "Pixelify Sans",
+      "category": "display",
+      "text": "Zebra Festival",
+      "condition": "browser",
+      "source_file": "validation/076.png",
+      "source_capture_sha256": "82480d20a058b25f0e4952c692ddf1f9f5077259d1cf5e6e058b52363073ceb1",
+      "named": null,
+      "top3": [
+        "Pixelify Sans",
+        "Bitrimus",
+        "Ithaca"
+      ],
+      "read_text": "2ebra Festivol",
+      "needs_text": false,
+      "elapsed_ms": 1772.9
+    },
+    {
+      "file": "01-tight_boundary.jpg",
+      "family": "Pixelify Sans",
+      "category": "display",
+      "text": "Zebra Festival",
+      "condition": "tight_boundary",
+      "source_file": "validation/076.png",
+      "source_capture_sha256": "82480d20a058b25f0e4952c692ddf1f9f5077259d1cf5e6e058b52363073ceb1",
+      "named": "Pixelify Sans",
+      "top3": [
+        "Pixelify Sans",
+        "Bitrimus",
+        "Ithaca"
+      ],
+      "read_text": "2ebra Festivol",
+      "needs_text": false,
+      "elapsed_ms": 1276.5
+    },
+    {
+      "file": "01-clipped_caption.jpg",
+      "family": "Pixelify Sans",
+      "category": "display",
+      "text": "Zebra Festival",
+      "condition": "clipped_caption",
+      "source_file": "validation/076.png",
+      "source_capture_sha256": "82480d20a058b25f0e4952c692ddf1f9f5077259d1cf5e6e058b52363073ceb1",
+      "named": "Pixelify Sans",
+      "top3": [
+        "Pixelify Sans",
+        "Bitrimus",
+        "Ithaca"
+      ],
+      "read_text": "2ebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1595.1
+    },
+    {
+      "file": "01-large_margins.jpg",
+      "family": "Pixelify Sans",
+      "category": "display",
+      "text": "Zebra Festival",
+      "condition": "large_margins",
+      "source_file": "validation/076.png",
+      "source_capture_sha256": "82480d20a058b25f0e4952c692ddf1f9f5077259d1cf5e6e058b52363073ceb1",
+      "named": "Pixelify Sans",
+      "top3": [
+        "Pixelify Sans",
+        "Bitrimus",
+        "Ithaca"
+      ],
+      "read_text": "2ebra.Festival",
+      "needs_text": false,
+      "elapsed_ms": 1729.8
+    },
+    {
+      "file": "02-browser.jpg",
+      "family": "Luxurious Roman",
+      "category": "display",
+      "text": "Zebra Festival",
+      "condition": "browser",
+      "source_file": "validation/084.png",
+      "source_capture_sha256": "5b4f50d87483bd13c7e94e8b3eabb5ad88069b30ef527d8012cac0f9171b0180",
+      "named": null,
+      "top3": [
+        "Luxurious Roman",
+        "Kings",
+        "Gideon Roman"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1126.6
+    },
+    {
+      "file": "02-tight_boundary.jpg",
+      "family": "Luxurious Roman",
+      "category": "display",
+      "text": "Zebra Festival",
+      "condition": "tight_boundary",
+      "source_file": "validation/084.png",
+      "source_capture_sha256": "5b4f50d87483bd13c7e94e8b3eabb5ad88069b30ef527d8012cac0f9171b0180",
+      "named": null,
+      "top3": [
+        "Luxurious Roman",
+        "Kings",
+        "Gideon Roman"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1063.9
+    },
+    {
+      "file": "02-clipped_caption.jpg",
+      "family": "Luxurious Roman",
+      "category": "display",
+      "text": "Zebra Festival",
+      "condition": "clipped_caption",
+      "source_file": "validation/084.png",
+      "source_capture_sha256": "5b4f50d87483bd13c7e94e8b3eabb5ad88069b30ef527d8012cac0f9171b0180",
+      "named": null,
+      "top3": [
+        "Luxurious Roman",
+        "Gideon Roman",
+        "Kings"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1021.5
+    },
+    {
+      "file": "02-large_margins.jpg",
+      "family": "Luxurious Roman",
+      "category": "display",
+      "text": "Zebra Festival",
+      "condition": "large_margins",
+      "source_file": "validation/084.png",
+      "source_capture_sha256": "5b4f50d87483bd13c7e94e8b3eabb5ad88069b30ef527d8012cac0f9171b0180",
+      "named": null,
+      "top3": [
+        "Luxurious Roman",
+        "Gideon Roman",
+        "Gupter"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1182.4
+    },
+    {
+      "file": "03-browser.jpg",
+      "family": "Euphoria Script",
+      "category": "handwriting",
+      "text": "Zebra Festival",
+      "condition": "browser",
+      "source_file": "validation/104.png",
+      "source_capture_sha256": "5b4f50d87483bd13c7e94e8b3eabb5ad88069b30ef527d8012cac0f9171b0180",
+      "named": "Euphoria Script",
+      "top3": [
+        "Euphoria Script",
+        "Praise",
+        "Sail"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1082.6
+    },
+    {
+      "file": "03-tight_boundary.jpg",
+      "family": "Euphoria Script",
+      "category": "handwriting",
+      "text": "Zebra Festival",
+      "condition": "tight_boundary",
+      "source_file": "validation/104.png",
+      "source_capture_sha256": "5b4f50d87483bd13c7e94e8b3eabb5ad88069b30ef527d8012cac0f9171b0180",
+      "named": "Euphoria Script",
+      "top3": [
+        "Euphoria Script",
+        "Praise",
+        "Sail"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1024.5
+    },
+    {
+      "file": "03-clipped_caption.jpg",
+      "family": "Euphoria Script",
+      "category": "handwriting",
+      "text": "Zebra Festival",
+      "condition": "clipped_caption",
+      "source_file": "validation/104.png",
+      "source_capture_sha256": "5b4f50d87483bd13c7e94e8b3eabb5ad88069b30ef527d8012cac0f9171b0180",
+      "named": "Euphoria Script",
+      "top3": [
+        "Euphoria Script",
+        "Praise",
+        "Sail"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 992.2
+    },
+    {
+      "file": "03-large_margins.jpg",
+      "family": "Euphoria Script",
+      "category": "handwriting",
+      "text": "Zebra Festival",
+      "condition": "large_margins",
+      "source_file": "validation/104.png",
+      "source_capture_sha256": "5b4f50d87483bd13c7e94e8b3eabb5ad88069b30ef527d8012cac0f9171b0180",
+      "named": null,
+      "top3": [
+        "Euphoria Script",
+        "Praise",
+        "Sail"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1189.7
+    },
+    {
+      "file": "04-browser.jpg",
+      "family": "Ruge Boogie",
+      "category": "handwriting",
+      "text": "Zebra Festival",
+      "condition": "browser",
+      "source_file": "validation/066.png",
+      "source_capture_sha256": "82480d20a058b25f0e4952c692ddf1f9f5077259d1cf5e6e058b52363073ceb1",
+      "named": null,
+      "top3": [
+        "Ruge Boogie",
+        "Ingrid Darling",
+        "Puppies Play"
+      ],
+      "read_text": "Lebra Festiral",
+      "needs_text": false,
+      "elapsed_ms": 1441.6
+    },
+    {
+      "file": "04-tight_boundary.jpg",
+      "family": "Ruge Boogie",
+      "category": "handwriting",
+      "text": "Zebra Festival",
+      "condition": "tight_boundary",
+      "source_file": "validation/066.png",
+      "source_capture_sha256": "82480d20a058b25f0e4952c692ddf1f9f5077259d1cf5e6e058b52363073ceb1",
+      "named": null,
+      "top3": [
+        "Ingrid Darling",
+        "Ruge Boogie",
+        "Puppies Play"
+      ],
+      "read_text": "Lebra Festiral",
+      "needs_text": false,
+      "elapsed_ms": 1167.0
+    },
+    {
+      "file": "04-clipped_caption.jpg",
+      "family": "Ruge Boogie",
+      "category": "handwriting",
+      "text": "Zebra Festival",
+      "condition": "clipped_caption",
+      "source_file": "validation/066.png",
+      "source_capture_sha256": "82480d20a058b25f0e4952c692ddf1f9f5077259d1cf5e6e058b52363073ceb1",
+      "named": null,
+      "top3": [
+        "Ingrid Darling",
+        "Ruge Boogie",
+        "Puppies Play"
+      ],
+      "read_text": "Lebra Festiral",
+      "needs_text": false,
+      "elapsed_ms": 1103.9
+    },
+    {
+      "file": "04-large_margins.jpg",
+      "family": "Ruge Boogie",
+      "category": "handwriting",
+      "text": "Zebra Festival",
+      "condition": "large_margins",
+      "source_file": "validation/066.png",
+      "source_capture_sha256": "82480d20a058b25f0e4952c692ddf1f9f5077259d1cf5e6e058b52363073ceb1",
+      "named": null,
+      "top3": [
+        "Ruge Boogie",
+        "Ingrid Darling",
+        "Puppies Play"
+      ],
+      "read_text": "Lebra Festiral",
+      "needs_text": false,
+      "elapsed_ms": 1323.5
+    },
+    {
+      "file": "05-browser.jpg",
+      "family": "Sue Ellen Francisco",
+      "category": "handwriting",
+      "text": "Zebra Festival",
+      "condition": "browser",
+      "source_file": "validation/052.png",
+      "source_capture_sha256": "82480d20a058b25f0e4952c692ddf1f9f5077259d1cf5e6e058b52363073ceb1",
+      "named": "Sue Ellen Francisco",
+      "top3": [
+        "Sue Ellen Francisco",
+        "Gloria Hallelujah",
+        "Delicious Handrawn"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1112.2
+    },
+    {
+      "file": "05-tight_boundary.jpg",
+      "family": "Sue Ellen Francisco",
+      "category": "handwriting",
+      "text": "Zebra Festival",
+      "condition": "tight_boundary",
+      "source_file": "validation/052.png",
+      "source_capture_sha256": "82480d20a058b25f0e4952c692ddf1f9f5077259d1cf5e6e058b52363073ceb1",
+      "named": "Sue Ellen Francisco",
+      "top3": [
+        "Sue Ellen Francisco",
+        "Delicious Handrawn",
+        "Gloria Hallelujah"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1081.1
+    },
+    {
+      "file": "05-clipped_caption.jpg",
+      "family": "Sue Ellen Francisco",
+      "category": "handwriting",
+      "text": "Zebra Festival",
+      "condition": "clipped_caption",
+      "source_file": "validation/052.png",
+      "source_capture_sha256": "82480d20a058b25f0e4952c692ddf1f9f5077259d1cf5e6e058b52363073ceb1",
+      "named": "Sue Ellen Francisco",
+      "top3": [
+        "Sue Ellen Francisco",
+        "Delicious Handrawn",
+        "Gloria Hallelujah"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1072.7
+    },
+    {
+      "file": "05-large_margins.jpg",
+      "family": "Sue Ellen Francisco",
+      "category": "handwriting",
+      "text": "Zebra Festival",
+      "condition": "large_margins",
+      "source_file": "validation/052.png",
+      "source_capture_sha256": "82480d20a058b25f0e4952c692ddf1f9f5077259d1cf5e6e058b52363073ceb1",
+      "named": "Sue Ellen Francisco",
+      "top3": [
+        "Sue Ellen Francisco",
+        "Gloria Hallelujah",
+        "Delicious Handrawn"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1221.2
+    },
+    {
+      "file": "06-browser.jpg",
+      "family": "Xanh Mono",
+      "category": "monospace",
+      "text": "Zebra Festival",
+      "condition": "browser",
+      "source_file": "validation/018.png",
+      "source_capture_sha256": "07baf2fe4ec5a09c5fb437444871103b9dd8e23603393a07806f72d1a732e003",
+      "named": "Xanh Mono",
+      "top3": [
+        "Xanh Mono",
+        "Lilex",
+        "Cousine"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1049.0
+    },
+    {
+      "file": "06-tight_boundary.jpg",
+      "family": "Xanh Mono",
+      "category": "monospace",
+      "text": "Zebra Festival",
+      "condition": "tight_boundary",
+      "source_file": "validation/018.png",
+      "source_capture_sha256": "07baf2fe4ec5a09c5fb437444871103b9dd8e23603393a07806f72d1a732e003",
+      "named": "Xanh Mono",
+      "top3": [
+        "Xanh Mono",
+        "IBM Plex Mono",
+        "Lilex"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 952.9
+    },
+    {
+      "file": "06-clipped_caption.jpg",
+      "family": "Xanh Mono",
+      "category": "monospace",
+      "text": "Zebra Festival",
+      "condition": "clipped_caption",
+      "source_file": "validation/018.png",
+      "source_capture_sha256": "07baf2fe4ec5a09c5fb437444871103b9dd8e23603393a07806f72d1a732e003",
+      "named": "Xanh Mono",
+      "top3": [
+        "Xanh Mono",
+        "IBM Plex Mono",
+        "Lilex"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 953.2
+    },
+    {
+      "file": "06-large_margins.jpg",
+      "family": "Xanh Mono",
+      "category": "monospace",
+      "text": "Zebra Festival",
+      "condition": "large_margins",
+      "source_file": "validation/018.png",
+      "source_capture_sha256": "07baf2fe4ec5a09c5fb437444871103b9dd8e23603393a07806f72d1a732e003",
+      "named": "Xanh Mono",
+      "top3": [
+        "Xanh Mono",
+        "Lilex",
+        "IBM Plex Mono"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1116.0
+    },
+    {
+      "file": "07-browser.jpg",
+      "family": "GulimChe",
+      "category": "monospace",
+      "text": "Zebra Festival",
+      "condition": "browser",
+      "source_file": "validation/046.png",
+      "source_capture_sha256": "82480d20a058b25f0e4952c692ddf1f9f5077259d1cf5e6e058b52363073ceb1",
+      "named": null,
+      "top3": [
+        "GulimChe",
+        "DotumChe",
+        "DotGothic16"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1068.8
+    },
+    {
+      "file": "07-tight_boundary.jpg",
+      "family": "GulimChe",
+      "category": "monospace",
+      "text": "Zebra Festival",
+      "condition": "tight_boundary",
+      "source_file": "validation/046.png",
+      "source_capture_sha256": "82480d20a058b25f0e4952c692ddf1f9f5077259d1cf5e6e058b52363073ceb1",
+      "named": null,
+      "top3": [
+        "GulimChe",
+        "DotumChe",
+        "DotGothic16"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 962.8
+    },
+    {
+      "file": "07-clipped_caption.jpg",
+      "family": "GulimChe",
+      "category": "monospace",
+      "text": "Zebra Festival",
+      "condition": "clipped_caption",
+      "source_file": "validation/046.png",
+      "source_capture_sha256": "82480d20a058b25f0e4952c692ddf1f9f5077259d1cf5e6e058b52363073ceb1",
+      "named": null,
+      "top3": [
+        "GulimChe",
+        "DotumChe",
+        "DotGothic16"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 970.5
+    },
+    {
+      "file": "07-large_margins.jpg",
+      "family": "GulimChe",
+      "category": "monospace",
+      "text": "Zebra Festival",
+      "condition": "large_margins",
+      "source_file": "validation/046.png",
+      "source_capture_sha256": "82480d20a058b25f0e4952c692ddf1f9f5077259d1cf5e6e058b52363073ceb1",
+      "named": null,
+      "top3": [
+        "DotumChe",
+        "GulimChe",
+        "Metrophobic"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1182.8
+    },
+    {
+      "file": "08-browser.jpg",
+      "family": "Sen",
+      "category": "sans_serif",
+      "text": "Zebra Festival",
+      "condition": "browser",
+      "source_file": "validation/110.png",
+      "source_capture_sha256": "5b4f50d87483bd13c7e94e8b3eabb5ad88069b30ef527d8012cac0f9171b0180",
+      "named": null,
+      "top3": [
+        "Sen",
+        "Lexend",
+        "Lexend Deca"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1090.1
+    },
+    {
+      "file": "08-tight_boundary.jpg",
+      "family": "Sen",
+      "category": "sans_serif",
+      "text": "Zebra Festival",
+      "condition": "tight_boundary",
+      "source_file": "validation/110.png",
+      "source_capture_sha256": "5b4f50d87483bd13c7e94e8b3eabb5ad88069b30ef527d8012cac0f9171b0180",
+      "named": null,
+      "top3": [
+        "Sen",
+        "Lexend Deca",
+        "Lexend"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 961.7
+    },
+    {
+      "file": "08-clipped_caption.jpg",
+      "family": "Sen",
+      "category": "sans_serif",
+      "text": "Zebra Festival",
+      "condition": "clipped_caption",
+      "source_file": "validation/110.png",
+      "source_capture_sha256": "5b4f50d87483bd13c7e94e8b3eabb5ad88069b30ef527d8012cac0f9171b0180",
+      "named": null,
+      "top3": [
+        "Sen",
+        "Lexend Deca",
+        "Lexend"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 951.7
+    },
+    {
+      "file": "08-large_margins.jpg",
+      "family": "Sen",
+      "category": "sans_serif",
+      "text": "Zebra Festival",
+      "condition": "large_margins",
+      "source_file": "validation/110.png",
+      "source_capture_sha256": "5b4f50d87483bd13c7e94e8b3eabb5ad88069b30ef527d8012cac0f9171b0180",
+      "named": null,
+      "top3": [
+        "Sen",
+        "Lexend Deca",
+        "Lexend"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1118.2
+    },
+    {
+      "file": "09-browser.jpg",
+      "family": "Story Script",
+      "category": "sans_serif",
+      "text": "Zebra Festival",
+      "condition": "browser",
+      "source_file": "validation/092.png",
+      "source_capture_sha256": "5b4f50d87483bd13c7e94e8b3eabb5ad88069b30ef527d8012cac0f9171b0180",
+      "named": null,
+      "top3": [
+        "Story Script",
+        "Libre Caslon Condensed",
+        "Ranga"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1126.6
+    },
+    {
+      "file": "09-tight_boundary.jpg",
+      "family": "Story Script",
+      "category": "sans_serif",
+      "text": "Zebra Festival",
+      "condition": "tight_boundary",
+      "source_file": "validation/092.png",
+      "source_capture_sha256": "5b4f50d87483bd13c7e94e8b3eabb5ad88069b30ef527d8012cac0f9171b0180",
+      "named": null,
+      "top3": [
+        "Story Script",
+        "Ranga",
+        "Allan"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1042.6
+    },
+    {
+      "file": "09-clipped_caption.jpg",
+      "family": "Story Script",
+      "category": "sans_serif",
+      "text": "Zebra Festival",
+      "condition": "clipped_caption",
+      "source_file": "validation/092.png",
+      "source_capture_sha256": "5b4f50d87483bd13c7e94e8b3eabb5ad88069b30ef527d8012cac0f9171b0180",
+      "named": null,
+      "top3": [
+        "Story Script",
+        "Ranga",
+        "Allan"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1030.1
+    },
+    {
+      "file": "09-large_margins.jpg",
+      "family": "Story Script",
+      "category": "sans_serif",
+      "text": "Zebra Festival",
+      "condition": "large_margins",
+      "source_file": "validation/092.png",
+      "source_capture_sha256": "5b4f50d87483bd13c7e94e8b3eabb5ad88069b30ef527d8012cac0f9171b0180",
+      "named": null,
+      "top3": [
+        "Story Script",
+        "Ranga",
+        "Allan"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1175.1
+    },
+    {
+      "file": "10-browser.jpg",
+      "family": "Harmattan",
+      "category": "sans_serif",
+      "text": "Zebra Festival",
+      "condition": "browser",
+      "source_file": "validation/070.png",
+      "source_capture_sha256": "82480d20a058b25f0e4952c692ddf1f9f5077259d1cf5e6e058b52363073ceb1",
+      "named": null,
+      "top3": [
+        "Harmattan",
+        "Andika",
+        "Kanchenjunga"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1048.2
+    },
+    {
+      "file": "10-tight_boundary.jpg",
+      "family": "Harmattan",
+      "category": "sans_serif",
+      "text": "Zebra Festival",
+      "condition": "tight_boundary",
+      "source_file": "validation/070.png",
+      "source_capture_sha256": "82480d20a058b25f0e4952c692ddf1f9f5077259d1cf5e6e058b52363073ceb1",
+      "named": null,
+      "top3": [
+        "Harmattan",
+        "Kanchenjunga",
+        "Andika"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 935.7
+    },
+    {
+      "file": "10-clipped_caption.jpg",
+      "family": "Harmattan",
+      "category": "sans_serif",
+      "text": "Zebra Festival",
+      "condition": "clipped_caption",
+      "source_file": "validation/070.png",
+      "source_capture_sha256": "82480d20a058b25f0e4952c692ddf1f9f5077259d1cf5e6e058b52363073ceb1",
+      "named": null,
+      "top3": [
+        "Harmattan",
+        "Kanchenjunga",
+        "Andika"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 928.9
+    },
+    {
+      "file": "10-large_margins.jpg",
+      "family": "Harmattan",
+      "category": "sans_serif",
+      "text": "Zebra Festival",
+      "condition": "large_margins",
+      "source_file": "validation/070.png",
+      "source_capture_sha256": "82480d20a058b25f0e4952c692ddf1f9f5077259d1cf5e6e058b52363073ceb1",
+      "named": null,
+      "top3": [
+        "Harmattan",
+        "Andika",
+        "Kanchenjunga"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1072.4
+    },
+    {
+      "file": "11-browser.jpg",
+      "family": "Kotta One",
+      "category": "serif",
+      "text": "Zebra Festival",
+      "condition": "browser",
+      "source_file": "validation/026.png",
+      "source_capture_sha256": "07baf2fe4ec5a09c5fb437444871103b9dd8e23603393a07806f72d1a732e003",
+      "named": "Kotta One",
+      "top3": [
+        "Kotta One",
+        "Gentium Plus",
+        "Petrona"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1085.5
+    },
+    {
+      "file": "11-tight_boundary.jpg",
+      "family": "Kotta One",
+      "category": "serif",
+      "text": "Zebra Festival",
+      "condition": "tight_boundary",
+      "source_file": "validation/026.png",
+      "source_capture_sha256": "07baf2fe4ec5a09c5fb437444871103b9dd8e23603393a07806f72d1a732e003",
+      "named": "Kotta One",
+      "top3": [
+        "Kotta One",
+        "Dai Banna SIL",
+        "Gentium Book Plus"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 988.0
+    },
+    {
+      "file": "11-clipped_caption.jpg",
+      "family": "Kotta One",
+      "category": "serif",
+      "text": "Zebra Festival",
+      "condition": "clipped_caption",
+      "source_file": "validation/026.png",
+      "source_capture_sha256": "07baf2fe4ec5a09c5fb437444871103b9dd8e23603393a07806f72d1a732e003",
+      "named": "Kotta One",
+      "top3": [
+        "Kotta One",
+        "Dai Banna SIL",
+        "Gentium Book Plus"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1014.6
+    },
+    {
+      "file": "11-large_margins.jpg",
+      "family": "Kotta One",
+      "category": "serif",
+      "text": "Zebra Festival",
+      "condition": "large_margins",
+      "source_file": "validation/026.png",
+      "source_capture_sha256": "07baf2fe4ec5a09c5fb437444871103b9dd8e23603393a07806f72d1a732e003",
+      "named": "Kotta One",
+      "top3": [
+        "Kotta One",
+        "Gentium Book Plus",
+        "Gentium Plus"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1172.3
+    },
+    {
+      "file": "12-browser.jpg",
+      "family": "Libre Caslon Display",
+      "category": "serif",
+      "text": "Zebra Festival",
+      "condition": "browser",
+      "source_file": "validation/024.png",
+      "source_capture_sha256": "07baf2fe4ec5a09c5fb437444871103b9dd8e23603393a07806f72d1a732e003",
+      "named": null,
+      "top3": [
+        "Libre Caslon Display",
+        "Ibarra Real Nova",
+        "Benne"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1134.7
+    },
+    {
+      "file": "12-tight_boundary.jpg",
+      "family": "Libre Caslon Display",
+      "category": "serif",
+      "text": "Zebra Festival",
+      "condition": "tight_boundary",
+      "source_file": "validation/024.png",
+      "source_capture_sha256": "07baf2fe4ec5a09c5fb437444871103b9dd8e23603393a07806f72d1a732e003",
+      "named": null,
+      "top3": [
+        "Ibarra Real Nova",
+        "Libre Caslon Display",
+        "Bacasime Antique"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1007.8
+    },
+    {
+      "file": "12-clipped_caption.jpg",
+      "family": "Libre Caslon Display",
+      "category": "serif",
+      "text": "Zebra Festival",
+      "condition": "clipped_caption",
+      "source_file": "validation/024.png",
+      "source_capture_sha256": "07baf2fe4ec5a09c5fb437444871103b9dd8e23603393a07806f72d1a732e003",
+      "named": null,
+      "top3": [
+        "Ibarra Real Nova",
+        "Libre Caslon Display",
+        "Bacasime Antique"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 992.5
+    },
+    {
+      "file": "12-large_margins.jpg",
+      "family": "Libre Caslon Display",
+      "category": "serif",
+      "text": "Zebra Festival",
+      "condition": "large_margins",
+      "source_file": "validation/024.png",
+      "source_capture_sha256": "07baf2fe4ec5a09c5fb437444871103b9dd8e23603393a07806f72d1a732e003",
+      "named": null,
+      "top3": [
+        "Ibarra Real Nova",
+        "Libre Caslon Display",
+        "Bacasime Antique"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1164.4
+    },
+    {
+      "file": "13-browser.jpg",
+      "family": "Sura",
+      "category": "serif",
+      "text": "Zebra Festival",
+      "condition": "browser",
+      "source_file": "validation/074.png",
+      "source_capture_sha256": "82480d20a058b25f0e4952c692ddf1f9f5077259d1cf5e6e058b52363073ceb1",
+      "named": null,
+      "top3": [
+        "Sura",
+        "Volkhov",
+        "Labrada"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1111.1
+    },
+    {
+      "file": "13-tight_boundary.jpg",
+      "family": "Sura",
+      "category": "serif",
+      "text": "Zebra Festival",
+      "condition": "tight_boundary",
+      "source_file": "validation/074.png",
+      "source_capture_sha256": "82480d20a058b25f0e4952c692ddf1f9f5077259d1cf5e6e058b52363073ceb1",
+      "named": null,
+      "top3": [
+        "Sura",
+        "Volkhov",
+        "Labrada"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 993.5
+    },
+    {
+      "file": "13-clipped_caption.jpg",
+      "family": "Sura",
+      "category": "serif",
+      "text": "Zebra Festival",
+      "condition": "clipped_caption",
+      "source_file": "validation/074.png",
+      "source_capture_sha256": "82480d20a058b25f0e4952c692ddf1f9f5077259d1cf5e6e058b52363073ceb1",
+      "named": null,
+      "top3": [
+        "Sura",
+        "Volkhov",
+        "Labrada"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 996.6
+    },
+    {
+      "file": "13-large_margins.jpg",
+      "family": "Sura",
+      "category": "serif",
+      "text": "Zebra Festival",
+      "condition": "large_margins",
+      "source_file": "validation/074.png",
+      "source_capture_sha256": "82480d20a058b25f0e4952c692ddf1f9f5077259d1cf5e6e058b52363073ceb1",
+      "named": null,
+      "top3": [
+        "Sura",
+        "Labrada",
+        "Volkhov"
+      ],
+      "read_text": "Zebra Festival",
+      "needs_text": false,
+      "elapsed_ms": 1166.4
+    }
+  ],
+  "top1_classification": {
+    "labels": "Queried families only; unrelated predicted names and rejected cases remain visible in confusion counts.",
+    "per_family": {
+      "Euphoria Script": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 4
+      },
+      "GulimChe": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571428571428571,
+        "support": 4
+      },
+      "Harmattan": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 4
+      },
+      "Kotta One": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 4
+      },
+      "Libre Caslon Display": {
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4,
+        "support": 4
+      },
+      "Luxurious Roman": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 4
+      },
+      "Pixelify Sans": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 4
+      },
+      "Poller One": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 4
+      },
+      "Ruge Boogie": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "support": 4
+      },
+      "Sen": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 4
+      },
+      "Story Script": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 4
+      },
+      "Sue Ellen Francisco": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 4
+      },
+      "Sura": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 4
+      },
+      "Xanh Mono": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 4
+      }
+    },
+    "confusion_counts": {
+      "Poller One": {
+        "Poller One": 4
+      },
+      "Pixelify Sans": {
+        "Pixelify Sans": 4
+      },
+      "Luxurious Roman": {
+        "Luxurious Roman": 4
+      },
+      "Euphoria Script": {
+        "Euphoria Script": 4
+      },
+      "Ruge Boogie": {
+        "Ruge Boogie": 2,
+        "Ingrid Darling": 2
+      },
+      "Sue Ellen Francisco": {
+        "Sue Ellen Francisco": 4
+      },
+      "Xanh Mono": {
+        "Xanh Mono": 4
+      },
+      "GulimChe": {
+        "GulimChe": 3,
+        "DotumChe": 1
+      },
+      "Sen": {
+        "Sen": 4
+      },
+      "Story Script": {
+        "Story Script": 4
+      },
+      "Harmattan": {
+        "Harmattan": 4
+      },
+      "Kotta One": {
+        "Kotta One": 4
+      },
+      "Libre Caslon Display": {
+        "Libre Caslon Display": 1,
+        "Ibarra Real Nova": 3
+      },
+      "Sura": {
+        "Sura": 4
+      }
+    }
+  },
+  "implementation_stage": "initial candidate before library-wide decorative-grid audit; retained as development history"
+}
